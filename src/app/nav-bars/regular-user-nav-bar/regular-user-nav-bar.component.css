@@ -2,5 +2,9 @@
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 @import '~ngx-toastr/toastr';
 @import '~mdb-ui-kit/css/mdb.min.css';
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.navbar{
+    margin-bottom: 0px !important;
+    background-color: darkslategrey !important;
+
+}

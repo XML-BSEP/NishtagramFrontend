@@ -1,0 +1,77 @@
+
+.component{
+  background-image: linear-gradient( 135deg, #b8fad3 10%, #022457 100%);
+  width: 100%;
+  height: 100%;
+  display:flex;
+  justify-content:center;
+  flex-direction: row;
+}
+.content{
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  overflow-x: hidden;
+  overflow-y: auto;
+    /* flex-direction:column; */
+}
+
+#right-part{
+  width:50%;
+  height:100%;
+  display:flex;
+  /*  If I uncomment this then it will be even on both sides and like mroe on the right  */
+  justify-content:center;
+  flex-direction:row;
+}
+
+.register-text{
+    color:black;
+    font-size: 2rem;
+    text-align: center;
+}
+
+#register{
+    background-color: darkslategray;
+    color:white;
+    font-size: 1.0rem;
+    margin-top: 0.5rem;
+
+    width:20rem;
+    height:3rem;
+    border-radius: 20px;
+    border:1px solid darkslategray;
+
+}
+#register:hover{
+    background-color:white;
+    color: darkslategray;
+    border: 1px solid darkslategray;
+
+}
+.main-card{
+    margin-top:4%;
+    margin-left: 0%;
+    width:40%;
+    height:90%;
+    display:flex;
+    justify-content:center;
+    flex-direction: column;
+}
+.name{
+  width: 100%;
+  height: fit-content;
+}
+
+#image-preview{
+  width: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 80%;
+}
+#login{
+  margin-top:5%;
+  text-align: center;
+  font-size:1.1rem;
+}
