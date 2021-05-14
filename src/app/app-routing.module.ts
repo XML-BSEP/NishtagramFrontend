@@ -1,3 +1,5 @@
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { RegistrationConfirmationComponent } from './registration-confirmation/registration-confirmation.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
@@ -14,6 +16,12 @@ const routes: Routes = [
   },{
     path: 'registration',
     component: RegisterComponent
+  },{
+    path: 'confirmRegistration',
+    component : RegistrationConfirmationComponent
+  },{
+    path: 'forgotPassword',
+    component : ForgotPasswordComponent
   }
 ];
 

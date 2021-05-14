@@ -1,3 +1,5 @@
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { AdminNavBarComponent } from './nav-bars/admin-nav-bar/admin-nav-bar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -15,7 +17,8 @@ import { ToastrModule } from 'ngx-toastr';
 import {RegularUserComponent} from "./nav-bars/regular-user-nav-bar/regular-user-nav-bar.component";
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component'
-
+import {RegistrationConfirmationComponent} from './registration-confirmation/registration-confirmation.component'
+import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component"
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +26,9 @@ import { RegisterComponent } from './register/register.component'
     RegularUserComponent,
     AdminNavBarComponent,
     LoginComponent,
-    RegisterComponent
+    RegistrationConfirmationComponent,
+    RegisterComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -39,8 +44,8 @@ import { RegisterComponent } from './register/register.component'
 
   ],
   providers: [
-    // {provide : HTTP_INTERCEPTORS, useClass : JwtInterceptor, multi : true},
-    // {provide : HTTP_INTERCEPTORS, useClass : ErrorInterceptor, multi : true}
+    {provide : HTTP_INTERCEPTORS, useClass : JwtInterceptor, multi : true},
+    {provide : HTTP_INTERCEPTORS, useClass : ErrorInterceptor, multi : true}
   ],
   bootstrap: [AppComponent]
 })
