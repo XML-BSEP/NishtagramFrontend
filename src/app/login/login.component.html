@@ -21,7 +21,7 @@
         </div>
 
         <!-- Sign in button -->
-        <button type="submit" style="background-color: darkslategray;" class="btn btn-primary btn-block mb-4" (click)="login()">Login</button>
+        <button mat-raised-button id="register" class="mb-3" [disabled]="!loginForm.valid" (click)="login()">Login</button>
 
         <p>Not a member?
           <a href="/registration">Register</a>

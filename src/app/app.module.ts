@@ -19,6 +19,10 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component'
 import {RegistrationConfirmationComponent} from './registration-confirmation/registration-confirmation.component'
 import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component"
+import {HomepageComponent} from "./feed/homepage/homepage.component"
+import {FeedCardComponent} from "./feed/feed-card/feed-card.component"
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +32,10 @@ import {ForgotPasswordComponent} from "./forgot-password/forgot-password.compone
     LoginComponent,
     RegistrationConfirmationComponent,
     RegisterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    HomepageComponent,
+    FeedCardComponent
+
   ],
   imports: [
     BrowserModule,
@@ -40,6 +47,7 @@ import {ForgotPasswordComponent} from "./forgot-password/forgot-password.compone
     HttpClientModule,
     MatInputModule,
     MatSelectModule,
+    IvyCarouselModule,
     ToastrModule.forRoot(),
 
   ],
