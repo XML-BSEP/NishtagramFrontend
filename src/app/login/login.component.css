@@ -27,3 +27,22 @@
   text-align: center;
 
 }
+
+#register{
+  background-color: darkslategray;
+  color:white;
+  font-size: 1.0rem;
+  margin-top: 0.5rem;
+
+  width:20rem;
+  height:3rem;
+  border-radius: 20px;
+  border:1px solid darkslategray;
+
+}
+#register:hover{
+  background-color:white;
+  color: darkslategray;
+  border: 1px solid darkslategray;
+
+}

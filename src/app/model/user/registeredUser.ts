@@ -7,13 +7,14 @@ export class RegisteredUser{
   public password : String;
   public confirmedpassword : String;
   public username : String;
-
-  constructor(name : String, surname : String, email : String, password : String, confirmedpassword : String, username : String){
+  public profilePhoto : String;
+  constructor(name : String, surname : String, email : String, password : String, confirmedpassword : String, username : String, photo : String){
     this.name = name;
     this.surname = surname;
     this.email = email;
     this.password = password;
     this.confirmedpassword = confirmedpassword;
     this.username = username;
+    this.profilePhoto = photo;
   }
 }

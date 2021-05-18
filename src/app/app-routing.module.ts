@@ -1,3 +1,4 @@
+import { HomepageComponent } from './feed/homepage/homepage.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { RegistrationConfirmationComponent } from './registration-confirmation/registration-confirmation.component';
 import { RegisterComponent } from './register/register.component';
@@ -22,7 +23,12 @@ const routes: Routes = [
   },{
     path: 'forgotPassword',
     component : ForgotPasswordComponent
-  }
+  },
+  {
+    path: 'home',
+    component : HomepageComponent
+  },
+
 ];
 
 @NgModule({

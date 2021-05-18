@@ -1,0 +1,73 @@
+<div class="component mt-5">
+  <div class="container">
+    <div class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="d-flex justify-content-between p-2 px-3">
+                    <div class="d-flex flex-row align-items-center"> <img src="{{post.user.profilePhoto.path}}"  width="50" class="rounded-circle">
+                        <div class="d-flex flex-column ml-2"> <span class="font-weight-bold">{{post.user.username}}</span> <small class="text-primary">{{post.location.city}}, {{post.location.state}}</small> </div>
+                    </div>
+                    <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">{{this.post.moment}}</small> <i class="fa fa-ellipsis-h"></i> </div>
+                </div>
+                <div style="width: 100%; height: 40rem;">
+
+                  <carousel
+                    class="karusel"
+                    *ngIf="post.isAlbum"
+                    [images]="post.images"
+                    [objectFit]="'auto'"
+                    [height]="'auto'"
+                    [cellWidth]="'100%'"
+                    [arrowsOutside]="false"
+                    [autoplay]="false"
+                    [dots]="true"
+                    [loop]="false">
+                  </carousel>
+                  <img *ngIf="!post.isAlbum" src="{{post.images[0].path}}" style="width: 100%; height: auto; max-height:100%; object-fit: contain ;">
+                </div>
+
+                <div class="p-2">
+                    <p class="text-justify mr-2 ml-2">{{post.description}}</p>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex flex-row icons d-flex align-items-center">
+                          <i *ngIf="!post.isLiked" class="bi bi-hand-thumbs-up" (click)="like()"></i>
+                          <i *ngIf="post.isLiked" class="bi bi-hand-thumbs-up-fill" (click)="like()"></i>
+
+                          <i *ngIf="!post.isDisliked" class="bi bi-hand-thumbs-down" (click)="dislike()"></i>
+                          <i *ngIf="post.isDisliked" class="bi bi-hand-thumbs-down-fill" (click)="dislike()"></i>
+
+                          <i *ngIf="!post.isBookmarked" class="bi bi-bookmark" (click)="bookmark()"></i>
+                          <i *ngIf="post.isBookmarked" class="bi bi-bookmark-fill" (click)="bookmark()"></i>
+                          <i  class="bi bi-bookmark-plus"></i>
+
+                         </div>
+                        <div class="d-flex flex-row muted-color"> <span *ngIf="post.comments.length>1">{{post.comments.length}} comments</span><span *ngIf="post.comments.length==1">{{post.comments.length}} comment</span></div>
+                    </div>
+                    <hr>
+                    <div class="comentsection" *ngIf="post.comments.length>1">
+                      <div class="comments" *ngFor="let comment of post.comments">
+                        <div class="d-flex flex-row mb-2"> <img src="{{comment.user.profilePhoto.path}}" width="40" class="rounded-image">
+                            <div class="d-flex flex-column ml-2"> <span class="name">{{comment.user.username}}</span> <small class="comment-text">{{comment.text}}</small>
+                            </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="comments">
+                        <div class="postcomment" [formGroup]="commentForm">
+                          <div class="comment-input"> <input type="text" placeholder="Comment" formControlName="comm" class="form-control"> </div>
+                          <button mat-raised-button color="primary" (click)="comment()">
+                            <i class="bi bi-chat-left"></i>
+                          </button>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
