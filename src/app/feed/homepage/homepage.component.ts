@@ -51,10 +51,10 @@ export class HomepageComponent implements OnInit {
     this.comment2 = new Comment(this.user2, "Wow, jako mi se dopada slon na fotki ide gas matori!")
     this.postLocation = new Location(19.833549, 45.267136, "Novi Sad", "Serbia")
     this.comments2 = [new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA")]
-    this.comments1 = [this.comment1, this.comment2]
+    this.comments1 = [this.comment1]
 
     let date: Date = new Date(2021, 4, 18, 0, 0, 0, 0);
-    let date1: Date = new Date(2021, 4, 18, 1, 0, 0, 0);
+    let date1: Date = new Date(2021, 4, 18, 22, 0, 0, 0);
 
     let a = moment(date).fromNow();
     let a1 = moment(date1).fromNow();

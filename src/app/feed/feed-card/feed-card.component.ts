@@ -53,4 +53,7 @@ export class FeedCardComponent implements OnInit {
     this.post.comments.push(new Comment(currUsr, this.commentForm.controls.comm.value))
     this.commentForm.reset();
   }
+  click(event){
+    console.log(event.offsetX, event.offsetY)
+  }
 }

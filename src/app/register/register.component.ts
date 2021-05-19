@@ -12,8 +12,9 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent implements OnInit {
   fileName : String="";
-  imgFile : string;
   today : Date;
+  imgFile="../../assets/emptyprofile.png";
+
   constructor(private router: Router, private toastr : ToastrService) { }
   public registrationForm: FormGroup;
   ngOnInit(): void {
@@ -83,6 +84,19 @@ export class RegisterComponent implements OnInit {
     }
 
 
+  }
+  removePhoto(){
+
+    this.imgFile="../../assets/emptyprofile.png";
+    this.fileName="";
+
+  }
+  isEmptyImage(){
+    if(this.imgFile==="../../assets/emptyprofile.png"){
+      return true;
+    }else{
+      return false;
+    }
   }
   removeImg(){
     this.imgFile="";

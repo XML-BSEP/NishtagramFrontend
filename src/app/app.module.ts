@@ -22,6 +22,9 @@ import {ForgotPasswordComponent} from "./forgot-password/forgot-password.compone
 import {HomepageComponent} from "./feed/homepage/homepage.component"
 import {FeedCardComponent} from "./feed/feed-card/feed-card.component"
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { CreatePostComponent } from './create-post/create-post.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     RegisterComponent,
     ForgotPasswordComponent,
     HomepageComponent,
-    FeedCardComponent
+    FeedCardComponent,
+    CreatePostComponent,
+    ProfileComponent,
+    EditProfileComponent
 
   ],
   imports: [

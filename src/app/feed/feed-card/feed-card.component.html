@@ -21,9 +21,10 @@
                     [arrowsOutside]="false"
                     [autoplay]="false"
                     [dots]="true"
-                    [loop]="false">
+                    [loop]="false"
+                    >
                   </carousel>
-                  <img *ngIf="!post.isAlbum" src="{{post.images[0].path}}" style="width: 100%; height: auto; max-height:100%; object-fit: contain ;">
+                  <img *ngIf="!post.isAlbum" (click)="click($event)" src="{{post.images[0].path}}" style="width: 100%; height: auto; max-height:100%; object-fit: contain ;">
                 </div>
 
                 <div class="p-2">
@@ -45,7 +46,7 @@
                         <div class="d-flex flex-row muted-color"> <span *ngIf="post.comments.length>1">{{post.comments.length}} comments</span><span *ngIf="post.comments.length==1">{{post.comments.length}} comment</span></div>
                     </div>
                     <hr>
-                    <div class="comentsection" *ngIf="post.comments.length>1">
+                    <div class="comentsection" *ngIf="post.comments.length>=1">
                       <div class="comments" *ngFor="let comment of post.comments">
                         <div class="d-flex flex-row mb-2"> <img src="{{comment.user.profilePhoto.path}}" width="40" class="rounded-image">
                             <div class="d-flex flex-column ml-2"> <span class="name">{{comment.user.username}}</span> <small class="comment-text">{{comment.text}}</small>
