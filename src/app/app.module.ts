@@ -25,6 +25,8 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { ProfileComponent } from './userprofile/profile/profile.component';
 import { EditProfileComponent } from './userprofile/edit-profile/edit-profile.component';
+import { FollowersDialogComponent } from './dialogs/followers-dialog/followers-dialog.component';
+import { FollowingsDialogComponent } from './dialogs/followings-dialog/followings-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { EditProfileComponent } from './userprofile/edit-profile/edit-profile.co
     FeedCardComponent,
     CreatePostComponent,
     ProfileComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    FollowersDialogComponent,
+    FollowingsDialogComponent
 
   ],
   imports: [

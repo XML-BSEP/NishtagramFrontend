@@ -59,7 +59,9 @@
                     <div class="comentsection" *ngIf="post.comments.length>=1">
 
                       <div class="d-flex flex-column muted-color text-center" style="cursor:pointer" (click)="toggleComments()">
-                        <span *ngIf="post.comments.length>=2" style="cursor:pointer" > Show more..</span>
+                        <span *ngIf="post.comments.length>=2 && !allComs" style="cursor:pointer" > Show more..</span>
+                        <span *ngIf="allComms" style="cursor:pointer" > Show less..</span>
+
                       </div>
 
                       <div class="comments" *ngFor="let comment of partialComments">

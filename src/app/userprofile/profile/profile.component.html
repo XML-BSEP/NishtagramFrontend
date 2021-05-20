@@ -20,26 +20,34 @@
                     <li class="list-inline-item">
                         <h2 class="font-weight-bold mb-0 d-block">{{profile.posts.length}}</h2><small class="text-muted"> <i class="fas fa-image mr-1"></i>Photos</small>
                     </li>
-                    <li class="list-inline-item">
+                    <li class="list-inline-item" (click)="openFollowersDialog()">
                         <h2 class="font-weight-bold mb-0 d-block">{{profile.followers.length}}</h2><small class="text-muted"> <i class="fas fa-user mr-1"></i>Followers</small>
                     </li>
-                    <li class="list-inline-item">
+                    <li class="list-inline-item" (click)="openFollowingDialog()">
                         <h2 class="font-weight-bold mb-0 d-block">{{profile.following.length}}</h2><small class="text-muted"> <i class="fas fa-user mr-1"></i>Following</small>
                     </li>
                 </ul>
             </div>
-            <div class="description" style="display: flex; flex-direction: row;">
+            <div class="description" style="display: flex; flex-direction: row;" >
               <div class="px-4 py-3">
                 <h2 class="large mt-0 mb-4">{{profile.user.name}} {{profile.user.surname}}</h2>
+                <div class="bio" *ngIf="profile.user.bio!==null">
+                  <h4 class="mb-0">About</h4>
+                  <div class="p-4 rounded shadow-sm bg-light">
+                      <p class="mb-0">{{profile.user.bio}}</p>
 
-                <h4 class="mb-0">About</h4>
-                <div class="p-4 rounded shadow-sm bg-light">
-                    <p class="font-italic mb-0">{{profile.user.bio}}</p>
-
+                  </div>
+                </div>
+                <div class="bio" *ngIf="profile.user.web!==null">
+                  <h4 class="mb-0">Website</h4>
+                  <div class="p-4 rounded shadow-sm bg-light">
+                      <a class="mb-0" href={{web}}>{{profile.user.web}}</a>
+                  </div>
                 </div>
               </div>
 
             </div>
+
 
             <div class="py-2 px-2">
 

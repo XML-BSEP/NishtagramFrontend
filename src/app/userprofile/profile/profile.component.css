@@ -12,6 +12,7 @@
   /* background: #654ea3;
   background: linear-gradient(to right, #e96443, #904e95); */
   min-height: 100vh;
+  width: 100%;
   background-image: linear-gradient( 135deg, #b8fad3 10%, #022457 100%);
 
 }
