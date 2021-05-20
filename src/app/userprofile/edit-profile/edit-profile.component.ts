@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { NewUser } from '../../model/user/newUser';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators, Form } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -11,12 +13,18 @@ export class EditProfileComponent implements OnInit {
   public registrationForm: FormGroup;
   public changePasswordForm : FormGroup;
   fileName : String="";
-  imgFile : string;
+  imgFile : String;
   today : Date;
   changePass : boolean;
-  constructor(private toastr : ToastrService) { }
+  user : NewUser;
+  constructor(private router: Router, private toastr : ToastrService) { }
 
   ngOnInit(): void {
+    if(history.state.data===undefined){
+      this.router.navigate(['/home'])
+    }
+    console.log(history.state.data)
+    this.user = history.state.data;
     this.changePass = false;
     this.today = new Date();
     this.changePasswordForm = new FormGroup({
@@ -25,20 +33,20 @@ export class EditProfileComponent implements OnInit {
   });
 
     this.registrationForm = new FormGroup({
-    'name' : new FormControl(null, Validators.required),
-    'surname' : new FormControl(null, Validators.required),
-    'email' : new FormControl(null, [Validators.required, Validators.email]),
-    'address' : new FormControl(null, Validators.required),
-    'phone' : new FormControl(null, Validators.required),
-    'birthday' : new FormControl(null, Validators.required),
-    'gender' : new FormControl('1', Validators.required),
-    'web' : new FormControl(null),
-    'bio' : new FormControl(null),
-    'username' : new FormControl(null, Validators.required),
+    'name' : new FormControl(this.user.name, Validators.required),
+    'surname' : new FormControl(this.user.surname, Validators.required),
+    'email' : new FormControl(this.user.email, [Validators.required, Validators.email]),
+    'address' : new FormControl(this.user.address, Validators.required),
+    'phone' : new FormControl(this.user.phone, Validators.required),
+    'birthday' : new FormControl(this.user.birthday, Validators.required),
+    'gender' : new FormControl(this.user.gender, Validators.required),
+    'web' : new FormControl(this.user.web),
+    'bio' : new FormControl(this.user.bio),
+    'username' : new FormControl(this.user.username, Validators.required),
     // 'password' : new FormControl(null, [Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9\d$@$!%*?&].{7,}$')]),
     // 'confirmPassword' : new FormControl(null, [Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9\d$@$!%*?&].{7,}$')]),
   });
-  this.imgFile="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg";
+  this.imgFile=this.user.image;
 
   }
   toggleChangePassword(){
@@ -47,7 +55,7 @@ export class EditProfileComponent implements OnInit {
 
   confirmPassword(){
     if( this.checkPasswordValid()){
-      //TODO: BACKEND
+
       this.changePasswordForm.reset();
     }
   }
@@ -75,7 +83,7 @@ export class EditProfileComponent implements OnInit {
   removePhoto(){
 
     this.imgFile="../../assets/emptyprofile.png";
-    this.fileName="";
+    this.fileName="emptyprofile.png";
 
   }
   isEmptyImage(){
@@ -96,9 +104,5 @@ export class EditProfileComponent implements OnInit {
 
 
   }
-  removeImg(){
-    this.imgFile="";
-    this.fileName="";
 
-  }
 }

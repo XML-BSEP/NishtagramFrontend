@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from './../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { HttpClient, XhrFactory } from '@angular/common/http';
 import { ResetMail } from 'src/app/model/user/resetMail';
 import { ResetPass } from 'src/app/model/user/resetPass';

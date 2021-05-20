@@ -1,6 +1,6 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Account } from '../model/user/account';
+import { Account } from '../../model/user/account';
 
 @Component({
   selector: 'app-login',

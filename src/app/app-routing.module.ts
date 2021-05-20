@@ -1,10 +1,10 @@
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './userprofile/edit-profile/edit-profile.component';
+import { ProfileComponent } from './userprofile/profile/profile.component';
 import { HomepageComponent } from './feed/homepage/homepage.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { RegistrationConfirmationComponent } from './registration-confirmation/registration-confirmation.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { ForgotPasswordComponent } from './sign-in/forgot-password/forgot-password.component';
+import { RegistrationConfirmationComponent } from './registration/registration-confirmation/registration-confirmation.component';
+import { RegisterComponent } from './registration/register/register.component';
+import { LoginComponent } from './sign-in/login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreatePostComponent } from './create-post/create-post.component';

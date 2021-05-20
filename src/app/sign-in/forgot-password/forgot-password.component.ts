@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
-import { ResetPasswordService} from '../service/reset-password/reset-password.service'
-import { ResetMail } from '../model/user/resetMail';
-import { ResetPass } from '../model/user/resetPass';
+import { ResetPasswordService} from '../../service/reset-password/reset-password.service'
+import { ResetMail } from '../../model/user/resetMail';
+import { ResetPass } from '../../model/user/resetPass';
 import { Router } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';

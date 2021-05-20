@@ -15,16 +15,16 @@ import {MatSelectModule} from '@angular/material/select';
 import { NotUserNavBarComponent } from './nav-bars/not-user-nav-bar/not-user-nav-bar.component';
 import { ToastrModule } from 'ngx-toastr';
 import {RegularUserComponent} from "./nav-bars/regular-user-nav-bar/regular-user-nav-bar.component";
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component'
-import {RegistrationConfirmationComponent} from './registration-confirmation/registration-confirmation.component'
-import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component"
+import { LoginComponent } from './sign-in/login/login.component';
+import { RegisterComponent } from './registration/register/register.component'
+import {RegistrationConfirmationComponent} from './registration/registration-confirmation/registration-confirmation.component'
+import {ForgotPasswordComponent} from "./sign-in/forgot-password/forgot-password.component"
 import {HomepageComponent} from "./feed/homepage/homepage.component"
 import {FeedCardComponent} from "./feed/feed-card/feed-card.component"
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { CreatePostComponent } from './create-post/create-post.component';
-import { ProfileComponent } from './profile/profile.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ProfileComponent } from './userprofile/profile/profile.component';
+import { EditProfileComponent } from './userprofile/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [

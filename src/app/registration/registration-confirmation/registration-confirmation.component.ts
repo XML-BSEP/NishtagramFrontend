@@ -1,7 +1,7 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { RegistrationService } from '../service/registration/registration.service';
-import {ConfirmRegistration} from '../model/user/confirmRegistration'
+import { RegistrationService } from '../../service/registration/registration.service';
+import {ConfirmRegistration} from '../../model/user/confirmRegistration'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 

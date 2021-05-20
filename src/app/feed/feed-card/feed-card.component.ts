@@ -16,13 +16,22 @@ export class FeedCardComponent implements OnInit {
   @Input()
   post: Post;
 
-
+  partialComments : Comment[];
+  allComms : boolean = false;
   public commentForm: FormGroup;
 
 
   constructor() { }
 
   ngOnInit() {
+
+    if(this.post.comments.length>10){
+      this.partialComments = this.post.comments.slice(0, 10)
+    }else{
+      this.partialComments = this.post.comments;
+
+    }
+
     this.commentForm = new FormGroup({
       'comm' : new FormControl(null),
     });
@@ -50,10 +59,25 @@ export class FeedCardComponent implements OnInit {
   }
   comment(){
     var currUsr = new UserInFeed('randomusr', new Image("https://pbs.twimg.com/media/DnTUtInXsAMG7RI.jpg"))
-    this.post.comments.push(new Comment(currUsr, this.commentForm.controls.comm.value))
+    var newComment = new Comment(currUsr, this.commentForm.controls.comm.value)
+    this.post.comments.push(newComment)
+    this.partialComments.push(newComment)
     this.commentForm.reset();
   }
   click(event){
     console.log(event.offsetX, event.offsetY)
+  }
+  test(){
+    this.partialComments
+  }
+  toggleComments(){
+    if(this.allComms){
+      this.partialComments = this.post.comments.slice(0,10)
+
+    }else{
+
+      this.partialComments = this.post.comments;
+    }
+    this.allComms = !this.allComms
   }
 }
