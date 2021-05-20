@@ -64,7 +64,7 @@ export class HomepageComponent implements OnInit {
 
 
     this.post2 = new Post(this.user2, this.postLocation, "WOOOOOOW AJAO KAKO OVAJ NISHTAGRAM GASIRA #idegasnamax", false, this.images2, this.comments2, date1, a1)
-    this.feed = [this.post1, this.post2, this.post2]
+    this.feed = [this.post1, this.post2]
 	}
 
 
