@@ -4,6 +4,33 @@
       <h1 class="register-text">Sign up</h1>
       <form [formGroup]="registrationForm" >
         <div class="row">
+          <div class="col">
+            <div class="d-flex flex-column align-items-center text-center">
+              <!-- <div class="circular">
+                <img src={{imgFile}}/>
+              </div> -->
+              <img class="circular rounded-circle mt-5 mb-5"  src={{imgFile}}>
+            </div>
+
+          </div>
+          <div class="col d-flex flex-row align-items-center text-center" *ngIf="isEmptyImage()">
+            <input
+              style="display: none"
+              type="file" (change)="onFileChanged($event)"
+              #fileInput accept="image/x-png,image/gif,image/jpeg" >
+            <button mat-fab color="primary" (click)="fileInput.click()" >
+              <mat-icon>add</mat-icon>
+            </button>
+
+          </div>
+
+          <div class="col d-flex flex-row align-items-center text-center" *ngIf="!isEmptyImage()">
+            <button mat-fab color="accent" (click)="removePhoto()" >
+              <mat-icon>remove</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-sm" >
             <mat-form-field appearance="outline" class="name" id="text-ff">
               <mat-label>Name*</mat-label>
@@ -152,7 +179,7 @@
           </div>
 
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col">
             <label class="label-field ml-2">Select picture:</label>
               <input
@@ -169,9 +196,8 @@
             <button mat-fab color="accent" (click)="removeImg()" class="ml-3">
               <mat-icon>remove</mat-icon>
             </button>
-          <!-- <button mat-raised-button id="remove-button" (click)="removeImg()" >Remove</button> -->
           </div>
-        </div>
+        </div> -->
 
 
 
