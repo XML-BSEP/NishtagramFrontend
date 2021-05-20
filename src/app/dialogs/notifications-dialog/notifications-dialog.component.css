@@ -1,0 +1,21 @@
+.rounded-image {
+  border-radius: 50% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px
+}
+.square-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: auto;
+}
+.name {
+  font-weight: 600
+}
+.notif-row{
+  cursor: pointer;
+}

@@ -66,8 +66,7 @@ export class ProfileComponent implements OnInit {
       height: '70vh',
       data: this.profile.followers
     });
-    dialogRef.afterClosed().subscribe(result => {
-    });
+
   }
 
   openFollowingDialog(){
@@ -77,7 +76,6 @@ export class ProfileComponent implements OnInit {
       height: '70vh',
       data: this.profile.following
     });
-    dialogRef.afterClosed().subscribe(result => {
-    });
+
   }
 }

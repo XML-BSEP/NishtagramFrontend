@@ -27,6 +27,7 @@ import { ProfileComponent } from './userprofile/profile/profile.component';
 import { EditProfileComponent } from './userprofile/edit-profile/edit-profile.component';
 import { FollowersDialogComponent } from './dialogs/followers-dialog/followers-dialog.component';
 import { FollowingsDialogComponent } from './dialogs/followings-dialog/followings-dialog.component';
+import { NotificationsDialogComponent } from './dialogs/notifications-dialog/notifications-dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { FollowingsDialogComponent } from './dialogs/followings-dialog/following
     ProfileComponent,
     EditProfileComponent,
     FollowersDialogComponent,
-    FollowingsDialogComponent
+    FollowingsDialogComponent,
+    NotificationsDialogComponent
 
   ],
   imports: [
