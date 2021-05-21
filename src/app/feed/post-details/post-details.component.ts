@@ -1,24 +1,21 @@
-import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { UserInFeed } from './../../model/feed/userInFeed';
 import { Post } from './../../model/feed/post';
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { Image } from 'src/app/model/feed/image';
 import * as moment from 'moment';
-import { Location } from 'src/app/model/utilities/location';
+import { Image } from 'src/app/model/feed/image';
 import { Comment } from 'src/app/model/feed/comment';
+import { Location } from 'src/app/model/utilities/location';
 
 @Component({
-	selector: 'ia-homepage',
-	templateUrl: './homepage.component.html',
-	styleUrls: ['./homepage.component.css']
+  selector: 'app-post-details',
+  templateUrl: './post-details.component.html',
+  styleUrls: ['./post-details.component.css']
 })
-export class HomepageComponent implements OnInit {
-	feedItems = [];
+export class PostDetailsComponent implements OnInit {
   public post1 : Post;
   public post2 : Post;
-
+  public post : Post;
   public user1 : UserInFeed;
   public comment1 : Comment;
   public comment2 : Comment;
@@ -35,40 +32,28 @@ export class HomepageComponent implements OnInit {
   images1 = [this.image1, this.image2, this.image3, this.image4]
   images2 = [this.image4]
   images3 = [this.image4]
+  constructor(private router : Router) { }
 
-  feed : Post[]
-	constructor(
-		private router: Router,
-		private titleService: Title,
-	) {
-		this.titleService.setTitle('Feed');
-	}
+  ngOnInit(): void {
+    if(history.state.data===undefined){
+      this.router.navigate(['/home'])
+    }
+    console.log(history.state.data)
+    this.post = history.state.data;
 
-	ngOnInit(): void {
     this.user1 = new UserInFeed("svijetlana123", new Image('https://pbs.twimg.com/profile_images/653700295395016708/WjGTnKGQ_400x400.png' ))
     this.user2 = new UserInFeed("komentator1", new Image('https://i.imgur.com/1YrCKa1.jpg' ))
     this.user3 = new UserInFeed("komentator2", new Image('https://i.imgur.com/9AZ2QX1.jpg' ))
-    this.comment1 = new Comment(this.user1, "Wow, jako mi se dopada fotka!")
-    this.comment2 = new Comment(this.user2, "Wow, jako mi se dopada slon na fotki ide gas matori!")
     this.postLocation = new Location(19.833549, 45.267136, "Novi Sad", "Serbia")
-    this.comments2 = [new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA")]
 
-    this.comments1 = [this.comment1]
+    this.comments1 = [new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA")]
 
     let date: Date = new Date(2021, 4, 18, 0, 0, 0, 0);
-    let date1: Date = new Date(2021, 4, 18, 22, 0, 0, 0);
 
     let a = moment(date).fromNow();
-    let a1 = moment(date1).fromNow();
 
     this.post1 = new Post(this.user1, this.postLocation, "IDegasnamax luudnica matori, pogle ovog slona i ove ribojzle", true, this.images1, this.comments1, date, a)
 
-
-    this.post2 = new Post(this.user2, this.postLocation, "WOOOOOOW AJAO KAKO OVAJ NISHTAGRAM GASIRA #idegasnamax", false, this.images2, this.comments2, date1, a1)
-    this.feed = [this.post1, this.post2, this.post1]
-	}
-  goToPostDetails(item){
-    this.router.navigate(['/postDetails']);
   }
 
 }

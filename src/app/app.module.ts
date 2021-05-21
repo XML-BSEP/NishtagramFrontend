@@ -28,6 +28,8 @@ import { EditProfileComponent } from './userprofile/edit-profile/edit-profile.co
 import { FollowersDialogComponent } from './dialogs/followers-dialog/followers-dialog.component';
 import { FollowingsDialogComponent } from './dialogs/followings-dialog/followings-dialog.component';
 import { NotificationsDialogComponent } from './dialogs/notifications-dialog/notifications-dialog.component';
+import { PostDetailsComponent } from './feed/post-details/post-details.component';
+import { PostOptionsComponent } from './dialogs/post-options/post-options.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { NotificationsDialogComponent } from './dialogs/notifications-dialog/not
     EditProfileComponent,
     FollowersDialogComponent,
     FollowingsDialogComponent,
-    NotificationsDialogComponent
+    NotificationsDialogComponent,
+    PostDetailsComponent,
+    PostOptionsComponent
 
   ],
   imports: [

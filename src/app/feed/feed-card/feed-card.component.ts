@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { PostOptionsComponent } from '../../dialogs/post-options/post-options.component';
+import { MatDialog } from '@angular/material/dialog';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Comment } from './../../model/feed/comment';
 import { UserInFeed } from './../../model/feed/userInFeed';
@@ -21,7 +24,8 @@ export class FeedCardComponent implements OnInit {
   public commentForm: FormGroup;
 
 
-  constructor() { }
+  constructor(private router : Router,
+    private dialog : MatDialog) { }
 
   ngOnInit() {
 
@@ -67,9 +71,7 @@ export class FeedCardComponent implements OnInit {
   click(event){
     console.log(event.offsetX, event.offsetY)
   }
-  test(){
-    this.partialComments
-  }
+
   toggleComments(){
     if(this.allComms){
       this.partialComments = this.post.comments.slice(0,10)
@@ -79,5 +81,14 @@ export class FeedCardComponent implements OnInit {
       this.partialComments = this.post.comments;
     }
     this.allComms = !this.allComms
+  }
+
+  goToPostDetails(){
+    this.router.navigate(['/postDetails'],
+    {state:
+      {data:
+        this.post
+      }
+    });
   }
 }
