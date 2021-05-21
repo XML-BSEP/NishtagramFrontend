@@ -1,3 +1,4 @@
+import { PostDetailsComponent } from './feed/post-details/post-details.component';
 import { EditProfileComponent } from './userprofile/edit-profile/edit-profile.component';
 import { ProfileComponent } from './userprofile/profile/profile.component';
 import { HomepageComponent } from './feed/homepage/homepage.component';
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'createPost',
     component : CreatePostComponent
+  },
+  {
+    path: 'postDetails',
+    component : PostDetailsComponent
   },
   {
     path: 'profile',

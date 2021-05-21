@@ -7,7 +7,16 @@
                     <div class="d-flex flex-row align-items-center"> <img src="{{post.user.profilePhoto.path}}"  width="50" class="rounded-circle">
                         <div class="d-flex flex-column ml-2"> <span class="font-weight-bold">{{post.user.username}}</span> <small class="text-primary">{{post.location.city}}, {{post.location.state}}</small> </div>
                     </div>
-                    <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2">{{this.post.moment}}</small> <i class="fa fa-ellipsis-h"></i> </div>
+                    <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2 mt-2">{{this.post.moment}}</small>
+                      <!-- <i class="bi bi-three-dots" (click)="openOptionsDialog()"></i> -->
+                      <button mat-icon-button [matMenuTriggerFor]="aboveMenu">  <mat-icon>more_horizont</mat-icon>
+                      </button>
+                      <mat-menu #aboveMenu="matMenu" yPosition="above">
+                        <button mat-menu-item style="color: red;">Unfollow</button>
+                        <mat-divider></mat-divider>
+                        <button mat-menu-item (click)="goToPostDetails()">Go to post</button>
+                      </mat-menu>
+                    </div>
                 </div>
                 <div style="width: 100%; height: 40rem;">
 

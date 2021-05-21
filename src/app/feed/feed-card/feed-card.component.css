@@ -42,7 +42,10 @@ hr {
 }
 
 .karusel{
-  position: inherit;
+  /* FUCKING HELL I DONT KNOW HOW TO FIX THIS FUCKING SHIT
+    EITHER ARROWS ARE RETARDED OR CONTENT SCROLLS OVER NAVBAR FUCKING SHIT AAAAAAA
+  */
+  /* position: inherit; */
   max-height: 40rem;
 }
 .rounded-image {

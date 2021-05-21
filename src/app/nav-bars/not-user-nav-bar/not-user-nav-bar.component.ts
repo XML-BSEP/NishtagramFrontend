@@ -1,6 +1,6 @@
 import { PostInProfile } from './../../model/profile/postInProfile';
 import { NotificationsDialogComponent } from '../../dialogs/notifications-dialog/notifications-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UserInFeed } from './../../model/feed/userInFeed';
 import { Component, OnInit } from '@angular/core';
 import { Notification } from 'src/app/model/utilities/notification';
@@ -35,6 +35,8 @@ export class NotUserNavBarComponent implements OnInit {
 
   }
   openNotificationsDialog(){
+
+
     const dialogRef = this.dialog.open(NotificationsDialogComponent, {
       width: '26vw',
       height: '70vh',

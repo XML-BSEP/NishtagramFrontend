@@ -18,6 +18,7 @@ export class NotificationsDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.notifications = this.data;
+    this.changePosition()
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -27,5 +28,8 @@ export class NotificationsDialogComponent implements OnInit {
     this.dialogRef.close();
 
   }
+  changePosition() {
+    this.dialogRef.updatePosition({ top: '3.9rem', left: '85rem' });
+}
 
 }
