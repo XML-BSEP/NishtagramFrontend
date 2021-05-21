@@ -1,64 +1,67 @@
-<div class="component mt-5">
-  <div class="row py-5 px-4">
-    <div class="col-md-5 mx-auto">
-        <div class="bg-white shadow rounded overflow-hidden">
-            <div class="px-4 pt-0 pb-4 cover">
-                <div class="media align-items-end profile-head">
-                    <div class="profile mr-3">
-                      <img src={{profile.user.image}} alt="..." width="130" class="rounded mb-2 img-thumbnail">
-                      <button mat-raised-button class="btn btn-sm btn-block" (click)="goToEditProfile()">Edit profile</button>
-                    </div>
-                    <div class="media-body mb-5 text-white">
-                        <h2 class="large mt-0 mb-0">{{profile.user.username}}</h2>
+<div class="component">
+  <div class="container">
+    <div class="row py-5 px-4 mt-5">
+      <div class="col-md-8 mx-auto">
+          <div class="bg-white shadow rounded overflow-hidden">
+              <div class="px-4 pt-0 pb-4 cover">
+                  <div class="media align-items-end profile-head">
+                      <div class="profile mr-3">
+                        <img src={{profile.user.image}} alt="..." width="130" class="rounded mb-2 img-thumbnail">
+                        <button mat-raised-button class="btn btn-sm btn-block" (click)="goToEditProfile()">Edit profile</button>
+                      </div>
+                      <div class="media-body mb-5 text-white">
+                          <h2 class="large mt-0 mb-0">{{profile.user.username}}</h2>
 
-                        <p class="large mb-4">{{profile.user.address}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-light p-4 d-flex justify-content-end text-center">
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item">
-                        <h2 class="font-weight-bold mb-0 d-block">{{profile.posts.length}}</h2><small class="text-muted"> <i class="fas fa-image mr-1"></i>Photos</small>
-                    </li>
-                    <li class="list-inline-item" (click)="openFollowersDialog()">
-                        <h2 class="font-weight-bold mb-0 d-block">{{profile.followers.length}}</h2><small class="text-muted"> <i class="fas fa-user mr-1"></i>Followers</small>
-                    </li>
-                    <li class="list-inline-item" (click)="openFollowingDialog()">
-                        <h2 class="font-weight-bold mb-0 d-block">{{profile.following.length}}</h2><small class="text-muted"> <i class="fas fa-user mr-1"></i>Following</small>
-                    </li>
-                </ul>
-            </div>
-            <div class="description" style="display: flex; flex-direction: row;" >
-              <div class="px-4 py-3">
-                <h2 class="large mt-0 mb-4">{{profile.user.name}} {{profile.user.surname}}</h2>
-                <div class="bio" *ngIf="profile.user.bio!==null">
-                  <h4 class="mb-0">About</h4>
-                  <div class="p-4 rounded shadow-sm bg-light">
-                      <p class="mb-0">{{profile.user.bio}}</p>
+                          <p class="large mb-4">{{profile.user.address}}</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="bg-light p-4 d-flex justify-content-end text-center">
+                  <ul class="list-inline mb-0">
+                      <li class="list-inline-item">
+                          <h2 class="font-weight-bold mb-0 d-block">{{profile.posts.length}}</h2><small class="text-muted"> <i class="fas fa-image mr-1"></i>Photos</small>
+                      </li>
+                      <li class="list-inline-item" (click)="openFollowersDialog()">
+                          <h2 class="font-weight-bold mb-0 d-block">{{profile.followers.length}}</h2><small class="text-muted"> <i class="fas fa-user mr-1"></i>Followers</small>
+                      </li>
+                      <li class="list-inline-item" (click)="openFollowingDialog()">
+                          <h2 class="font-weight-bold mb-0 d-block">{{profile.following.length}}</h2><small class="text-muted"> <i class="fas fa-user mr-1"></i>Following</small>
+                      </li>
+                  </ul>
+              </div>
+              <div class="description" style="display: flex; flex-direction: row;" >
+                <div class="px-4 py-3">
+                  <h2 class="large mt-0 mb-4">{{profile.user.name}} {{profile.user.surname}}</h2>
+                  <div class="bio" *ngIf="profile.user.bio!==null">
+                    <h4 class="mb-0">About</h4>
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <p class="mb-0">{{profile.user.bio}}</p>
 
+                    </div>
+                  </div>
+                  <div class="bio" *ngIf="profile.user.web!==null">
+                    <h4 class="mb-0">Website</h4>
+                    <div class="p-4 rounded shadow-sm bg-light">
+                        <a class="mb-0" href={{web}}>{{profile.user.web}}</a>
+                    </div>
                   </div>
                 </div>
-                <div class="bio" *ngIf="profile.user.web!==null">
-                  <h4 class="mb-0">Website</h4>
-                  <div class="p-4 rounded shadow-sm bg-light">
-                      <a class="mb-0" href={{web}}>{{profile.user.web}}</a>
-                  </div>
-                </div>
+
               </div>
 
-            </div>
 
+              <div class="py-2 px-2">
 
-            <div class="py-2 px-2">
-
-                <div class="row" >
-                    <div class="col-lg-6 mb-2 d-flex justify-content-center " *ngFor="let post of profile.posts">
-                      <img src={{post.image.path}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
-                    </div>
-                </div>
-            </div>
-        </div>
+                  <div class="row" >
+                      <div class="col-lg-6 mb-2 d-flex justify-content-center " *ngFor="let post of profile.posts">
+                        <img src={{post.image.path}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
+
   </div>
 
 </div>
