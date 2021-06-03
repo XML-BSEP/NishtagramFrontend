@@ -1,10 +1,13 @@
+import { ToastrService } from 'ngx-toastr';
+import { TestService } from './../../service/test/test.service';
 import { PostInProfile } from './../../model/profile/postInProfile';
 import { NotificationsDialogComponent } from '../../dialogs/notifications-dialog/notifications-dialog.component';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { UserInFeed } from './../../model/feed/userInFeed';
 import { Component, OnInit } from '@angular/core';
 import { Notification } from 'src/app/model/utilities/notification';
 import { Image } from 'src/app/model/feed/image';
+import { ProfileDTO } from 'src/app/model/profile/profileDTO';
 
 @Component({
   selector: 'app-not-user-nav-bar',
@@ -13,8 +16,11 @@ import { Image } from 'src/app/model/feed/image';
 })
 export class NotUserNavBarComponent implements OnInit {
   notifications : Notification[];
+  notificationsOpen : boolean = false;
   constructor(
-    private dialog : MatDialog
+    private dialog : MatDialog,
+    private testServ : TestService,
+    private toastr : ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -35,12 +41,50 @@ export class NotUserNavBarComponent implements OnInit {
 
   }
   openNotificationsDialog(){
+    if(this.notificationsOpen==false){
+
+      this.notificationsOpen=true;
+        const dialogRef = this.dialog.open(NotificationsDialogComponent, {
+        width: '26vw',
+        height: '70vh',
+        data: this.notifications
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+
+        this.notificationsOpen = false;
+      });
+
+    }
+
+  }
 
 
-    const dialogRef = this.dialog.open(NotificationsDialogComponent, {
-      width: '26vw',
-      height: '70vh',
-      data: this.notifications
-    });
+
+  test(){
+    this.testServ.test1(new ProfileDTO("424935b1-766c-4f99-b306-9263731518bc")).subscribe(
+        res=>{
+
+        this.toastr.success("JWT confirmation")
+        console.log(res)
+      },
+      error => {
+        this.toastr.error("Confirmation code is not correct")
+      }
+
+
+        )
+    // this.testServ.test().subscribe(
+    //   res=>{
+
+    //   this.toastr.success("JWT confirmation")
+    //   console.log(res)
+    // },
+    // error => {
+    //   this.toastr.error("Confirmation code is not correct")
+    // }
+
+
+    //   )
   }
 }

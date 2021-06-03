@@ -19,8 +19,32 @@
                     </div>
                 </div>
                 <div style="width: 100%; height: 40rem;">
+                  <mat-carousel
+                    color="accent"
+                    maxWidth="auto"
+                    hideArrows="false"
+                    slides={{post.images.length}}
+                    [hideArrows]="false"
+                    [hideIndicators]="true"
+                    [useKeyboard]="true"
+                    [useMouseWheel]="false"
+                    orientation="ltr"
+                    proportion="100"
 
-                  <carousel
+                    *ngIf="post.isAlbum">
+
+                    <mat-carousel-slide
+                      #matCarouselSlide
+                      id="carouselImg"
+                      *ngFor="let image of post.images"
+                      [image]="image.path"
+                      overlayColor="#00000040"
+                      [hideOverlay]="false"
+                      ></mat-carousel-slide>
+
+                  </mat-carousel>
+
+                  <!-- <carousel
                     class="karusel"
                     *ngIf="post.isAlbum"
                     [images]="post.images"
@@ -32,8 +56,8 @@
                     [dots]="true"
                     [loop]="false"
                     >
-                  </carousel>
-                  <img *ngIf="!post.isAlbum" (click)="click($event)" src="{{post.images[0].path}}" style="width: 100%; height: auto;   max-height: 40rem; object-fit: contain ;">
+                  </carousel> -->
+                  <img *ngIf="!post.isAlbum" src="{{post.images[0].path}}" style="width: 100%; height: auto;   max-height: 40rem; object-fit: contain ;">
                 </div>
 
                 <div class="p-2">

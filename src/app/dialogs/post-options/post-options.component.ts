@@ -1,4 +1,4 @@
-import { Post } from './../../model/feed/post';
+import { Post } from '../../model/feed/post';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
 

@@ -97,3 +97,7 @@ hr {
     outline: 0;
     box-shadow: none
 }
+/* #carouselImg{
+  object-fit: auto;
+  height: 20px;
+} */

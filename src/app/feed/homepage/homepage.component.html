@@ -1,7 +1,23 @@
 <div class="component mt-5" >
   <div class="container">
     <div class="stories">
-
+      <div class="py-2 h-screen px-2">
+        <!-- overflow-x: auto;
+                overflow-y: hidden;
+                white-space: nowrap; -->
+        <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg  md:max-w-lg">
+            <div class="md:flex">
+                <div class="w-full p-2 px-4 py-4">
+                  <div class="d-flex flex-row align-items-center" style=" overflow-x: auto;">
+                    <div class="d-flex flex-column align-items-center" *ngFor="let story of stories">
+                      <img src={{story.user.profilePhoto.path}} class="rounded-image mr-2 ml-2 " (click)="openStory(story)">
+                      <span style="font-size:small">{{story.user.username}}</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
     <div class="feed" *ngFor="let item of feed">
       <feed-card [post]="item"></feed-card>

@@ -8,6 +8,7 @@ import { RegisteredUser } from 'src/app/model/user/registeredUser';
 import { Post } from './../../model/feed/post';
 import { Component, OnInit, Input } from '@angular/core';
 import { Image } from 'src/app/model/feed/image';
+import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
 
 
 @Component({
@@ -67,9 +68,6 @@ export class FeedCardComponent implements OnInit {
     this.post.comments.push(newComment)
     this.partialComments.push(newComment)
     this.commentForm.reset();
-  }
-  click(event){
-    console.log(event.offsetX, event.offsetY)
   }
 
   toggleComments(){
