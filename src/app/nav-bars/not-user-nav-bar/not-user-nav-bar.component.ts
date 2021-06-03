@@ -59,32 +59,34 @@ export class NotUserNavBarComponent implements OnInit {
 
   }
 
+  test1(){
+      this.testServ.test1(new ProfileDTO("424935b1-766c-4f99-b306-9263731518bc")).subscribe(
+              res=>{
 
+              this.toastr.success("JWT confirmation")
+              console.log(res)
+            },
+            error => {
+              this.toastr.error("Confirmation code is not correct")
+            }
+
+
+              )
+  }
 
   test(){
-    this.testServ.test1(new ProfileDTO("424935b1-766c-4f99-b306-9263731518bc")).subscribe(
-        res=>{
 
-        this.toastr.success("JWT confirmation")
-        console.log(res)
-      },
-      error => {
-        this.toastr.error("Confirmation code is not correct")
-      }
+    this.testServ.test().subscribe(
+      res=>{
 
-
-        )
-    // this.testServ.test().subscribe(
-    //   res=>{
-
-    //   this.toastr.success("JWT confirmation")
-    //   console.log(res)
-    // },
-    // error => {
-    //   this.toastr.error("Confirmation code is not correct")
-    // }
+      this.toastr.success("JWT confirmation")
+      console.log(res)
+    },
+    error => {
+      this.toastr.error("Confirmation code is not correct")
+    }
 
 
-    //   )
+      )
   }
 }
