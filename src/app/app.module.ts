@@ -32,6 +32,8 @@ import { PostDetailsComponent } from './feed/post-details/post-details.component
 import { PostOptionsComponent } from './dialogs/post-options/post-options.component';
 import { StoryDialogComponent } from './dialogs/story-dialog/story-dialog.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { StoryHighlightDialogComponent } from './dialogs/story-highlight-dialog/story-highlight-dialog.component';
+import { NewhighlightDialogComponent } from './dialogs/newhighlight-dialog/newhighlight-dialog.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     NotificationsDialogComponent,
     PostDetailsComponent,
     PostOptionsComponent,
-    StoryDialogComponent
+    StoryDialogComponent,
+    StoryHighlightDialogComponent,
+    NewhighlightDialogComponent,
 
   ],
   imports: [

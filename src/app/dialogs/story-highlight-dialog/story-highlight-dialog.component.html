@@ -1,0 +1,41 @@
+<div class="component">
+  <div class="d-flex flex-column align-items-left">
+    <div class="d-flex flex-row align-items-left">
+      <img src="{{data.storyhighlight.highlightPhoto.path}}" class="rounded-image mr-2">
+      <span class="font-weight-bold mt-3 mr-5">{{data.storyhighlight.name}}</span>
+      <button mat-fab style="background-color: transparent; color:gray;" *ngIf="highs && isLoggedInUser" (click)="addNewStoryToHighlights()" >
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <button mat-fab style="background-color: transparent; color:gray;" *ngIf="!highs && isLoggedInUser" (click)="back()" >
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+
+      <button mat-fab class="ml-3" style="background-color: transparent; color:rgb(9, 255, 71);" (click)="done()" >
+        <mat-icon>done</mat-icon>
+      </button>
+
+    </div>
+
+    <div class="d-flex flex-column align-content-center" *ngIf="highs">
+      <div class="d-flex flex-row" class="mt-2 mb-2" *ngFor="let s of storiesInHighlight.stories">
+        <img src="{{s.story.path}}" class="mr-3" style="width: 80%; height: auto; max-height: 66vh; object-fit: contain;">
+        <button mat-fab color="accent" (click)="removeStoryFromHighloght(s)" *ngIf="isLoggedInUser">
+          <mat-icon>remove</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="d-flex flex-column align-content-center" *ngIf="!highs">
+      <div class="d-flex flex-row" class="mt-2 mb-2" *ngFor="let s of notAddedStories">
+        <img src="{{s.story.path}}" class="mr-3" style="width: 80%; height: auto; max-height: 66vh; object-fit: contain;">
+        <button mat-fab color="primary" (click)="addStoryToHighlights(s)" *ngIf="isLoggedInUser">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+
+
+
+
+</div>

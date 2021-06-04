@@ -1,0 +1,68 @@
+<div class="component">
+
+  <form [formGroup]="highlightForm">
+
+    <div class="d-flex flex-column align-items-left">
+      <div class="d-flex flex-row align-items-left">
+        <div class="row">
+          <div class="col">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img class="circular rounded-circle mt-5 mb-5"  src={{imgFile}}>
+            </div>
+          </div>
+          <div class="col d-flex flex-row align-items-center text-center" *ngIf="isEmptyImage()">
+            <input
+              style="display: none"
+              type="file" (change)="onFileChanged($event)"
+              #fileInput accept="image/x-png,image/gif,image/jpeg" >
+            <button mat-fab color="primary" (click)="fileInput.click()" >
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div class="col d-flex flex-row align-items-center text-center" *ngIf="!isEmptyImage()">
+            <button mat-fab color="accent" (click)="removePhoto()" >
+              <mat-icon>remove</mat-icon>
+            </button>
+          </div>
+          <div class="col d-flex flex-row align-items-center text-center">
+            <mat-form-field appearance="outline" class="name ml-2 mr-2 mt-3" >
+              <mat-label>Highlight name*</mat-label>
+              <input matInput placeholder="Highlight name"
+                    formControlName="name">
+              <mat-error
+                *ngIf="!highlightForm.get('name').valid && highlightForm.get('name').touched && highlightForm.get('name').errors['required']">
+                Please enter highlight name</mat-error>
+
+            </mat-form-field>
+
+          </div>
+          <div class="col d-flex flex-row align-items-center text-center">
+            <button mat-fab style="background-color: transparent; color:gray;" (click)="done()" >
+              <mat-icon>done</mat-icon>
+            </button>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="d-flex flex-column align-content-center" >
+        <div class="d-flex flex-row" class="mt-2 mb-2" *ngFor="let s of data">
+          <img src="{{s.story.path}}" class="mr-3" style="width: 80%; height: auto; max-height: 66vh; object-fit: contain;">
+
+          <button mat-mini-fab color="primary" (click)="addStoryToHighlights(s)" *ngIf="!isSelected(s)">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-mini-fab color="accent" (click)="removeFromHighlight(s)" *ngIf="isSelected(s)">
+            <mat-icon>remove</mat-icon>
+          </button>
+        </div>
+      </div>
+      </div>
+
+  </form>
+
+
+
+
+
+</div>

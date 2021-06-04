@@ -63,7 +63,7 @@ export class FeedCardComponent implements OnInit {
     //TODO: BACKEND!
   }
   comment(){
-    var currUsr = new UserInFeed('randomusr', new Image("https://pbs.twimg.com/media/DnTUtInXsAMG7RI.jpg"))
+    var currUsr = new UserInFeed('randomusr', new Image('1',"https://pbs.twimg.com/media/DnTUtInXsAMG7RI.jpg"))
     var newComment = new Comment(currUsr, this.commentForm.controls.comm.value)
     this.post.comments.push(newComment)
     this.partialComments.push(newComment)

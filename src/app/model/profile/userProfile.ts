@@ -8,10 +8,12 @@ export class UserProfile{
   followers : UserInFeed[];
   following : UserInFeed[];
   posts : PostInProfile[];
-  constructor(user : NewUser, followers : UserInFeed[], following : UserInFeed[], posts : PostInProfile[]){
+  private : boolean;
+  constructor(user : NewUser, followers : UserInFeed[], following : UserInFeed[], posts : PostInProfile[], priv : boolean){
     this.user = user;
     this.followers = followers;
     this.following = following;
     this.posts = posts;
+    this.private = priv;
   }
 }
