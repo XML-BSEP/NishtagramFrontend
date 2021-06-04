@@ -18,10 +18,15 @@ export class JwtInterceptor implements HttpInterceptor {
             request = request.clone({
                 setHeaders: {
                     Authorization: `Bearer ${currentUser.access_token}`
+
                 }
             });
-        }
 
+
+        }
+        request = request.clone({
+          withCredentials:true
+      });
         return next.handle(request);
     }
 }

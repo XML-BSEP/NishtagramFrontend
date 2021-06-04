@@ -30,6 +30,8 @@ import { FollowingsDialogComponent } from './dialogs/followings-dialog/following
 import { NotificationsDialogComponent } from './dialogs/notifications-dialog/notifications-dialog.component';
 import { PostDetailsComponent } from './feed/post-details/post-details.component';
 import { PostOptionsComponent } from './dialogs/post-options/post-options.component';
+import { StoryDialogComponent } from './dialogs/story-dialog/story-dialog.component';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { PostOptionsComponent } from './dialogs/post-options/post-options.compon
     FollowingsDialogComponent,
     NotificationsDialogComponent,
     PostDetailsComponent,
-    PostOptionsComponent
+    PostOptionsComponent,
+    StoryDialogComponent
 
   ],
   imports: [
@@ -65,7 +68,7 @@ import { PostOptionsComponent } from './dialogs/post-options/post-options.compon
     MatSelectModule,
     IvyCarouselModule,
     ToastrModule.forRoot(),
-
+    MatCarouselModule.forRoot(),
   ],
   providers: [
     {provide : HTTP_INTERCEPTORS, useClass : JwtInterceptor, multi : true},

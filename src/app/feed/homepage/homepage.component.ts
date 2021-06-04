@@ -1,3 +1,6 @@
+import { StoryDialogComponent } from './../../dialogs/story-dialog/story-dialog.component';
+import { StoryContent } from './../../model/feed/storyContent';
+import { Story } from './../../model/feed/story';
 import { MatDialog } from '@angular/material/dialog';
 import { UserInFeed } from './../../model/feed/userInFeed';
 import { Post } from './../../model/feed/post';
@@ -27,7 +30,7 @@ export class HomepageComponent implements OnInit {
   public postLocation : Location;
   public comments1 : Comment[];
   public comments2 : Comment[];
-
+  public stories : Story[]
   image1 = new Image('https://i.imgur.com/1YrCKa1.jpg')
   image2 = new Image('https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg')
   image3 = new Image('https://i.imgur.com/9AZ2QX1.jpg')
@@ -40,6 +43,8 @@ export class HomepageComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private titleService: Title,
+    private dialog : MatDialog,
+
 	) {
 		this.titleService.setTitle('Feed');
 	}
@@ -55,8 +60,15 @@ export class HomepageComponent implements OnInit {
 
     this.comments1 = [this.comment1]
 
-    let date: Date = new Date(2021, 4, 18, 0, 0, 0, 0);
-    let date1: Date = new Date(2021, 4, 18, 22, 0, 0, 0);
+    let date: Date = new Date(2021, 5, 18, 0, 0, 0, 0);
+    let date1: Date = new Date(2021,5, 18, 22, 0, 0, 0);
+
+    let newDate1 : Date = new Date(2021, 6,3,12,0,0,0)
+    let newDate2 : Date = new Date(2021, 6,3,10,0,0,0)
+    let newDate3 : Date = new Date(2021, 6,3,12,0,0,0)
+    let newDate4 : Date = new Date(2021, 6,3,11,0,0,0)
+    let newDate5 : Date = new Date(2021, 6,3,10,0,0,0)
+    let newDate6 : Date = new Date(2021, 6,3,9,0,0,0)
 
     let a = moment(date).fromNow();
     let a1 = moment(date1).fromNow();
@@ -66,9 +78,22 @@ export class HomepageComponent implements OnInit {
 
     this.post2 = new Post(this.user2, this.postLocation, "WOOOOOOW AJAO KAKO OVAJ NISHTAGRAM GASIRA #idegasnamax", false, this.images2, this.comments2, date1, a1)
     this.feed = [this.post1, this.post2, this.post1]
-	}
+    var story1 = new Story(this.user1,new StoryContent(false,'https://i.imgur.com/1YrCKa1.jpg' ),newDate1)
+    var story2 = new Story(this.user2,new StoryContent(false,'https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg' ),newDate2)
+    var story3 = new Story(this.user3,new StoryContent(false,'https://i.imgur.com/9AZ2QX1.jpg' ),newDate3)
+    var story4 = new Story(this.user1,new StoryContent(false,'https://pbs.twimg.com/profile_images/653700295395016708/WjGTnKGQ_400x400.png' ),newDate4)
+    var story5 = new Story(this.user2,new StoryContent(false,'https://scontent.fbeg2-1.fna.fbcdn.net/v/t1.15752-9/186472462_509117580122979_233512009969789842_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=ae9488&_nc_ohc=Pvaojs405SsAX-svZ9a&_nc_ht=scontent.fbeg2-1.fna&oh=846315e00aa5c71b410eeaabae6c0e4e&oe=60C698CD' ),newDate5)
+    var story6 = new Story(this.user1,new StoryContent(false,'https://i.imgur.com/1YrCKa1.jpg' ),newDate6)
+    this.stories =[story1, story2, story3, story4, story5, story6, story1, story2]
+  }
   goToPostDetails(item){
     this.router.navigate(['/postDetails']);
   }
-
+  openStory(story){
+    const dialogRef = this.dialog.open(StoryDialogComponent, {
+      width: '26vw',
+      height: '70vh',
+      data: story
+    });
+  }
 }
