@@ -34,6 +34,7 @@ import { StoryDialogComponent } from './dialogs/story-dialog/story-dialog.compon
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { StoryHighlightDialogComponent } from './dialogs/story-highlight-dialog/story-highlight-dialog.component';
 import { NewhighlightDialogComponent } from './dialogs/newhighlight-dialog/newhighlight-dialog.component';
+import { NewstoryDialogComponent } from './dialogs/newstory-dialog/newstory-dialog.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { NewhighlightDialogComponent } from './dialogs/newhighlight-dialog/newhi
     StoryDialogComponent,
     StoryHighlightDialogComponent,
     NewhighlightDialogComponent,
+    NewstoryDialogComponent,
 
   ],
   imports: [

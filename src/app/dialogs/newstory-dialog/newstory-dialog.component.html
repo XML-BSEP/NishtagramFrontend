@@ -1,0 +1,31 @@
+<div class="component">
+  <div class="d-flex flex-row justify-content-center" *ngIf="!selected">
+       <input
+      style="display: none"
+      type="file" (change)="onFileChanged($event)"
+      #fileInput accept="image/x-png,image/gif,image/jpeg" >
+      <button mat-fab color="primary" (click)="fileInput.click()" >
+        <mat-icon>add</mat-icon>
+      </button>
+  </div>
+
+  <div *ngIf="selected">
+    <div class="row">
+      <button mat-fab class="ml-12" style="background-color: transparent; color:rgb(9, 255, 71);" (click)="done()" >
+        <mat-icon>done</mat-icon>
+      </button>
+    </div>
+    <div class="row">
+      <div class="d-flex flex-column align-content-center mt-4">
+        <img src="{{img}}" style="width: 100%; height: auto;   max-height: 66vh; object-fit: contain;">
+
+      </div>
+
+    </div>
+
+
+
+
+  </div>
+
+</div>
