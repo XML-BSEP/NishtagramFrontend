@@ -4,11 +4,14 @@
       <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg  md:max-w-lg">
         <div class="md:flex">
           <div class="w-full p-2 px-4 py-4">
+            <form [formGroup]="searchForm">
+
             <div class="d-flex flex-row align-items-center" style=" overflow-x: auto;">
+
               <div class="col-5">
                 <mat-form-field appearance="outline" style="width: 100%;">
                   <mat-label>Search category</mat-label>
-                  <mat-select>
+                  <mat-select formControlName="category">
                     <mat-option value="profile">Profile</mat-option>
                     <mat-option value="location">Location</mat-option>
                     <mat-option value="tag">Tag</mat-option>
@@ -18,15 +21,19 @@
               <div class="col-5">
                 <mat-form-field style="width: 100%;" appearance="outline">
                   <mat-label>Search...</mat-label>
-                  <input matInput >
+                  <input matInput formControlName="query">
 
                 </mat-form-field>
               </div>
+
+
               <div class="col-2 mb-4">
-                <button mat-fab color="primary" style="height: 100%;" (click)="search()"><mat-icon>search</mat-icon>
+                <button mat-fab color="primary" style="height: 100%;" (click)="search()" [disabled]="!searchForm.valid"><mat-icon>search</mat-icon>
                 </button>
               </div>
             </div>
+          </form>
+
           </div>
         </div>
       </div>
