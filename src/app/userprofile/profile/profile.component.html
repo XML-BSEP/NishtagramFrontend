@@ -1,6 +1,6 @@
 <div class="component">
   <div class="container">
-    <div class="row py-5 px-4 mt-5">
+    <div class="row py-5 mt-5">
       <div class="col-md-8 mx-auto">
           <div class="bg-white shadow rounded overflow-hidden">
               <div class="px-4 pt-0 pb-4 cover">
@@ -29,7 +29,7 @@
                       </li>
                   </ul>
               </div>
-              <div class="description" style="display: flex; flex-direction: row;" >
+              <div class="description d-flex flex-row" >
                 <div class="px-4 py-3">
                   <h2 class="large mt-0 mb-4">{{profile.user.name}} {{profile.user.surname}}</h2>
                   <div class="bio" *ngIf="profile.user.bio!==null">
@@ -45,37 +45,46 @@
                         <a class="mb-0" href={{web}}>{{profile.user.web}}</a>
                     </div>
                   </div>
-
-                  <div class="stories" >
-                    <h4 class="mb-0">Stories</h4>
-                    <div class="rounded shadow-sm bg-light">
-                      <div class="py-2 h-screen">
-                          <div class="md:flex">
-                            <div class="w-full p-2 py-4">
-                              <div class="d-flex flex-row align-items-center" style=" overflow-x: auto;">
-                                <button mat-fab class="mr-3" color="primary" (click)="createNewHighlight()" *ngIf="isLoggedInUser">
-                                  <mat-icon>add</mat-icon>
-                                </button>
-                                <div class="d-flex flex-column align-items-center" *ngFor="let high of storyHighlights">
-                                  <img src={{high.highlightPhoto.path}} class="rounded-image mr-3 " (click)="openStoryHighlightDialog(high)">
-                                  <span style="font-size:small">{{high.name}}</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                      </div>
-                    </div>
-                  </div>
-
                 </div>
 
               </div>
 
+              <div class="p-4 rounded shadow-sm bg-light" *ngIf="!profile.private">
+                <div >
+                  <h4 class="mb-0">Stories</h4>
+                  <div class="rounded shadow-sm bg-light">
+                    <div class="py-2 h-screen">
+                        <div class="md:flex">
+                          <div class="w-full p-2 py-4">
+                            <div class="d-flex flex-row align-items-center" style=" overflow-x: auto;">
+                              <button mat-fab class="mr-3" color="primary" (click)="createNewHighlight()" *ngIf="isLoggedInUser">
+                                <mat-icon>add</mat-icon>
+                              </button>
+                              <div class="d-flex flex-column align-items-center" *ngFor="let high of storyHighlights"  >
+                                <img src={{high.highlightPhoto.path}} class="rounded-image mr-3 " (click)="openStoryHighlightDialog(high)">
+                                <span style="font-size:small">{{high.name}}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
 
-              <div class="py-2 px-2">
-                  <div class="row" *ngIf="profile.private">
-                    <p>Sorry, this profile is private</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="d-flex flex-row justify-content-between align-items-center">
+                <div class="col align-items-center">
+                  <button mat-raised-button class="btn btn-sm btn-block" (click)="seePosts()">Posts</button>
+                </div>
+                <div class="col align-items-center">
+                  <button mat-raised-button class="btn btn-sm btn-block" (click)="seeStories()">Stories</button>
+                </div>
+              </div>
+              <div class="py-2 px-2" *ngIf="arePosts">
+                  <div class="d-flex flex-row justify-content-center " *ngIf="profile.private">
+                    <mat-icon class="mr-2">lock</mat-icon><p>Sorry, this profile is private</p>
                   </div>
                   <div class="row" *ngIf="!profile.private">
                       <div class="col-lg-6 mb-2 d-flex justify-content-center " *ngFor="let post of profile.posts">
@@ -83,6 +92,17 @@
                       </div>
                   </div>
               </div>
+
+              <div class="py-2 px-2" *ngIf="!arePosts && !profile.private">
+
+
+                <div class="row" *ngIf="!profile.private">
+                    <div class="col-lg-6 mb-2 d-flex justify-content-center " *ngFor="let s of allStories">
+                      <img src={{s.story.path}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;">
+                    </div>
+                </div>
+            </div>
+
           </div>
       </div>
     </div>

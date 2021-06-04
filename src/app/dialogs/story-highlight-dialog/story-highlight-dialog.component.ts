@@ -41,4 +41,8 @@ export class StoryHighlightDialogComponent implements OnInit {
   back(){
     this.highs = true;
   }
+  done(){
+    this.dialogRef.close();
+
+  }
 }

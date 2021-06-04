@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
   storyHighlights : StoryHighlightOnProfile[]
   allStories : ProfileStory[];
   storyHighsAndStories : StoryHighlightAndStories
+  arePosts : boolean = true;
   constructor(
     private newHighlightDialog: MatDialog,
     private router: Router,
@@ -72,7 +73,7 @@ export class ProfileComponent implements OnInit {
     let newDate5 : Date = new Date(2021, 6,3,10,0,0,0)
     let newDate6 : Date = new Date(2021, 6,3,9,0,0,0)
 
-    this.storyHighlights = [storyHighlight3, storyHighlight2, storyHighlight3]
+    this.storyHighlights = [storyHighlight3, storyHighlight2, storyHighlight3,storyHighlight3, storyHighlight2, storyHighlight3,storyHighlight3, storyHighlight2, storyHighlight3,storyHighlight3, storyHighlight2,storyHighlight2]
     let story1 = new ProfileStory('1', new Image('1',"https://cdn-1.motorsport.com/images/amp/24vV83g6/s6/pol-espargaro-repsol-honda-tea.jpg"))
     let story2 = new ProfileStory('1',new Image('2',"https://ca-times.brightspotcdn.com/dims4/default/757b00f/2147483647/strip/true/crop/3402x2300+0+0/resize/1486x1005!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F68%2F57%2F8b8001bd479d899193713a8c62b2%2Fmonaco-f1-gp-auto-racing-37308.jpg"))
     let story3 = new ProfileStory('1', new Image('3',"https://phantom-marca.unidadeditorial.es/d5d06c35184d312f171c99a3135dcdae/resize/1320/f/jpg/assets/multimedia/imagenes/2021/05/19/16214125179177.jpg"))
@@ -93,22 +94,27 @@ export class ProfileComponent implements OnInit {
     console.log(post)
   }
   openFollowersDialog(){
+    if(!this.profile.private){
+      const dialogRef = this.dialog.open(FollowersDialogComponent, {
+        width: '26vw',
+        height: '70vh',
+        data: this.profile.followers
+      });
+    }
 
-    const dialogRef = this.dialog.open(FollowersDialogComponent, {
-      width: '26vw',
-      height: '70vh',
-      data: this.profile.followers
-    });
 
   }
 
   openFollowingDialog(){
+    if(!this.profile.private){
+      const dialogRef = this.dialog.open(FollowingsDialogComponent, {
+        width: '26vw',
+        height: '70vh',
+        data: this.profile.following
+      });
 
-    const dialogRef = this.dialog.open(FollowingsDialogComponent, {
-      width: '26vw',
-      height: '70vh',
-      data: this.profile.following
-    });
+    }
+
 
   }
 
@@ -138,5 +144,11 @@ export class ProfileComponent implements OnInit {
         }
       });
 
+  }
+  seePosts(){
+    this.arePosts=true;
+  }
+  seeStories(){
+    this.arePosts=false;
   }
 }

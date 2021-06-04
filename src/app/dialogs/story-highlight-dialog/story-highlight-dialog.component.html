@@ -10,6 +10,11 @@
       <button mat-fab style="background-color: transparent; color:gray;" *ngIf="!highs && isLoggedInUser" (click)="back()" >
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>
+
+      <button mat-fab class="ml-3" style="background-color: transparent; color:rgb(9, 255, 71);" (click)="done()" >
+        <mat-icon>done</mat-icon>
+      </button>
+
     </div>
 
     <div class="d-flex flex-column align-content-center" *ngIf="highs">
