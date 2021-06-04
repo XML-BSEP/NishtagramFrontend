@@ -45,14 +45,39 @@
                         <a class="mb-0" href={{web}}>{{profile.user.web}}</a>
                     </div>
                   </div>
+
+                  <div class="stories" >
+                    <h4 class="mb-0">Stories</h4>
+                    <div class="rounded shadow-sm bg-light">
+                      <div class="py-2 h-screen">
+                          <div class="md:flex">
+                            <div class="w-full p-2 py-4">
+                              <div class="d-flex flex-row align-items-center" style=" overflow-x: auto;">
+                                <button mat-fab class="mr-3" color="primary" (click)="createNewHighlight()" *ngIf="isLoggedInUser">
+                                  <mat-icon>add</mat-icon>
+                                </button>
+                                <div class="d-flex flex-column align-items-center" *ngFor="let high of storyHighlights">
+                                  <img src={{high.highlightPhoto.path}} class="rounded-image mr-3 " (click)="openStoryHighlightDialog(high)">
+                                  <span style="font-size:small">{{high.name}}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
 
               </div>
 
 
               <div class="py-2 px-2">
-
-                  <div class="row" >
+                  <div class="row" *ngIf="profile.private">
+                    <p>Sorry, this profile is private</p>
+                  </div>
+                  <div class="row" *ngIf="!profile.private">
                       <div class="col-lg-6 mb-2 d-flex justify-content-center " *ngFor="let post of profile.posts">
                         <img src={{post.image.path}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
                       </div>
