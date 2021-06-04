@@ -4,9 +4,11 @@ export class NewStory{
   userId : String
   story : ProfileStory
   timestamp : Date;
-  constructor(userId : String, story : ProfileStory, timestamp : Date){
+  closeFriends : boolean
+  constructor(userId : String, story : ProfileStory, timestamp : Date, closefriends : boolean){
     this.userId= userId;
     this.story = story;
     this.timestamp = timestamp
+    this.closeFriends = closefriends
   }
 }

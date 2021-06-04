@@ -38,7 +38,13 @@ export class NewstoryDialogComponent implements OnInit {
 
   done(){
     var newProfileStory = new ProfileStory(null,new Image(null, this.img))
-    var newUserStory = new NewStory(null,newProfileStory, new Date())
+    var newUserStory = new NewStory(null,newProfileStory, new Date(), false)
+    //POZIV BEKENDU
+    this.close()
+  }
+  doneCF(){
+    var newProfileStory = new ProfileStory(null,new Image(null, this.img))
+    var newUserStory = new NewStory(null,newProfileStory, new Date(), true)
     //POZIV BEKENDU
     this.close()
   }

@@ -16,6 +16,7 @@ import { Image } from 'src/app/model/feed/image';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { StoryContent } from 'src/app/model/feed/storyContent';
 import { NewhighlightDialogComponent } from 'src/app/dialogs/newhighlight-dialog/newhighlight-dialog.component';
+import { Following } from 'src/app/model/profile/following';
 
 @Component({
   selector: 'app-profile',
@@ -25,11 +26,11 @@ import { NewhighlightDialogComponent } from 'src/app/dialogs/newhighlight-dialog
 export class ProfileComponent implements OnInit {
   profile : UserProfile;
   followers : UserInFeed[];
-  following : UserInFeed[];
+  following : Following[];
   posts : PostInProfile[];
   web: String;
   user : NewUser;
-  public isLoggedInUser : boolean =true;
+  public isLoggedInUser : boolean =false;
   storyHighlights : StoryHighlightOnProfile[]
   allStories : ProfileStory[];
   storyHighsAndStories : StoryHighlightAndStories
@@ -47,8 +48,13 @@ export class ProfileComponent implements OnInit {
     let follow3 = new UserInFeed('treciFollower', new Image('3','https://i.imgur.com/XKIdf2g.jpeg'))
     let follow4 = new UserInFeed('cetvrtiFollower', new Image('4','https://i.imgur.com/s7fMnMg.jpeg'))
 
+    let following1 = new Following('prviFollower' , new Image('1','https://i.imgur.com/VQkoalX.jpeg'),true);
+    let following2 = new Following('drugiFollower', new Image('2','https://i.imgur.com/G8p9qBk.jpeg'),true)
+    let following3 = new Following('treciFollower', new Image('2','https://i.imgur.com/XKIdf2g.jpeg'),false)
+    let following4 = new Following('cetvrtiFollower', new Image('4','https://i.imgur.com/s7fMnMg.jpeg'),true)
+
     this.followers = [follow1, follow2, follow3, follow4,follow1, follow2, follow3, follow4,follow1, follow2, follow3, follow4,follow1, follow2, follow3, follow4]
-    this.following = [follow1, follow2, follow3]
+    this.following = [following1, following2, following3, following4]
     let post1 = new PostInProfile('pera123', new Image('1','https://images.unsplash.com/photo-1493571716545-b559a19edd14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80'),'123')
     let post2 = new PostInProfile('pera123', new Image('2','https://images.unsplash.com/photo-1453791052107-5c843da62d97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'),'1234')
     let post3 = new PostInProfile('pera123', new Image('3','https://i.imgur.com/1YrCKa1.jpg'),'12345')
@@ -108,7 +114,7 @@ export class ProfileComponent implements OnInit {
   openFollowingDialog(){
     if(!this.profile.private){
       const dialogRef = this.dialog.open(FollowingsDialogComponent, {
-        width: '26vw',
+        width: '40vw',
         height: '70vh',
         data: this.profile.following
       });
