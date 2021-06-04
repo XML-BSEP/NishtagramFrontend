@@ -96,4 +96,5 @@ export class HomepageComponent implements OnInit {
       data: story
     });
   }
+
 }

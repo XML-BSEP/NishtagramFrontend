@@ -1,0 +1,36 @@
+<div class="component">
+  <div class="d-flex flex-row justify-content-center" style="margin-top:50%" *ngIf="!selected">
+       <input
+      style="display: none"
+      type="file" (change)="onFileChanged($event)"
+      #fileInput accept="image/x-png,image/gif,image/jpeg" >
+      <button mat-fab color="primary" style="width: 100px; height: 100px;" (click)="fileInput.click()" >
+        <mat-icon>add</mat-icon>
+      </button>
+  </div>
+
+  <div *ngIf="selected">
+    <div class="d-flex flex-row justify-content-between align-items-center">
+      <div class="col align-items-center">
+        <button mat-raised-button class="btn btn-sm btn-block" style="border: 3px solid rgb(14, 250, 14)" (click)="doneCF()">Close friends</button>
+      </div>
+      <div class="col align-items-center">
+        <button mat-raised-button class="btn btn-sm btn-block" (click)="done()">Everyone</button>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="d-flex flex-column align-content-center mt-4">
+        <img src="{{img}}" style="width: 100%; height: auto;   max-height: 66vh; object-fit: contain;">
+
+      </div>
+
+    </div>
+
+
+
+
+  </div>
+
+</div>

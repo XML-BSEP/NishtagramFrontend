@@ -1,3 +1,5 @@
+import { NewstoryDialogComponent } from './../../dialogs/newstory-dialog/newstory-dialog.component';
+import { ProfileStory } from './../../model/profile/profileStory';
 import { ToastrService } from 'ngx-toastr';
 import { TestService } from './../../service/test/test.service';
 import { PostInProfile } from './../../model/profile/postInProfile';
@@ -17,6 +19,7 @@ import { ProfileDTO } from 'src/app/model/profile/profileDTO';
 export class NotUserNavBarComponent implements OnInit {
   notifications : Notification[];
   notificationsOpen : boolean = false;
+  story : ProfileStory;
   constructor(
     private dialog : MatDialog,
     private testServ : TestService,
@@ -89,4 +92,11 @@ export class NotUserNavBarComponent implements OnInit {
 
       )
   }
+  openNewStoryDialog(){
+    const dialogRef = this.dialog.open(NewstoryDialogComponent, {
+      width: '35vw',
+      height: '90vh'
+    });
+  }
+
 }
