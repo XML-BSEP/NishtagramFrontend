@@ -6,9 +6,9 @@ export class StoryHighlightOnProfile{
   highlightPhoto : Image;
   stories: ProfileStory[]
   name : String;
-  constructor(id : string, photo : Image, stories : ProfileStory[], name : String){
+  constructor(id : string, highlightPhoto : Image, stories : ProfileStory[], name : String){
     this.id = id;
-    this.highlightPhoto = photo;
+    this.highlightPhoto = highlightPhoto;
     this.stories = stories
     this.name = name
   }

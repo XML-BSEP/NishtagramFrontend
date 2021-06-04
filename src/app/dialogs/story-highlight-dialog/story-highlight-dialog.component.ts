@@ -37,7 +37,6 @@ export class StoryHighlightDialogComponent implements OnInit {
     this.highs = false;
     this.storiesInHighlight.stories.push(story)
     this.notAddedStories = this.notAddedStories.filter(obj => obj !== story);
-
   }
   back(){
     this.highs = true;

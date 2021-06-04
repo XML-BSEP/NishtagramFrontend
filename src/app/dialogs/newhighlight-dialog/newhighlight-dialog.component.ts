@@ -1,7 +1,9 @@
+import { StoryHighlightOnProfile } from 'src/app/model/profile/storyHighlightOnProfile';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProfileStory } from './../../model/profile/profileStory';
 import { Component, OnInit, Inject } from '@angular/core';
+import { Image } from 'src/app/model/feed/image';
 
 @Component({
   selector: 'app-newhighlight-dialog',
@@ -11,6 +13,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 export class NewhighlightDialogComponent implements OnInit {
   public imgFile
   public fileName
+  public hajlajt : StoryHighlightOnProfile;
   public newHighStories : ProfileStory[] = new Array()
   public highlightForm: FormGroup;
 
@@ -56,7 +59,13 @@ export class NewhighlightDialogComponent implements OnInit {
     }
   }
   done(){
-
+    // id : string;
+    // highlightPhoto : Image;
+    // stories: ProfileStory[]
+    // name : String;
+    this.hajlajt= new StoryHighlightOnProfile(null, new Image(null,this.imgFile), this.newHighStories,this.highlightForm.controls.name.value)
+    console.log(this.highlightForm.controls.name.value)
+    this.onSubmit(this.hajlajt)
   }
 
   isSelected(s){
