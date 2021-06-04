@@ -30,6 +30,11 @@ export class SearchComponent implements OnInit {
   }
   search(){
     console.log(this.searchForm.controls.category.value + " " + this.searchForm.controls.query.value)
+    if(this.searchForm.controls.category.value==="location"){
+      this.isSearchedUsers = false;
+    }else{
+      this.isSearchedUsers = true;
+    }
   }
   follow(item){
 
