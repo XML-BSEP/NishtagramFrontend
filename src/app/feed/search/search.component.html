@@ -1,0 +1,64 @@
+<div class="component mt-5">
+  <div class="searcharea mt-5" style="width: 50%; margin-left: 25%;">
+    <div class="py-2 h-screen px-2">
+      <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg  md:max-w-lg">
+        <div class="md:flex">
+          <div class="w-full p-2 px-4 py-4">
+            <form [formGroup]="searchForm">
+
+            <div class="d-flex flex-row align-items-center" style=" overflow-x: auto;">
+
+              <div class="col-5">
+                <mat-form-field appearance="outline" style="width: 100%;">
+                  <mat-label>Search category</mat-label>
+                  <mat-select formControlName="category">
+                    <mat-option value="profile">Profile</mat-option>
+                    <mat-option value="location">Location</mat-option>
+                    <mat-option value="tag">Tag</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-5">
+                <mat-form-field style="width: 100%;" appearance="outline">
+                  <mat-label>Search...</mat-label>
+                  <input matInput formControlName="query">
+
+                </mat-form-field>
+              </div>
+
+
+              <div class="col-2 mb-4">
+                <button mat-fab color="primary" style="height: 100%;" (click)="search()" [disabled]="!searchForm.valid"><mat-icon>search</mat-icon>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="resultsposts"  *ngIf="!isSearchedUsers">
+    <div class="feed" *ngFor="let item of searchedPosts" >
+      <feed-card [post]="item"></feed-card>
+
+    </div>
+  </div>
+
+  <mat-card class="resultsusers" style="width: 98%; margin-left: 1%;" *ngIf="isSearchedUsers">
+    <div class="row" *ngFor="let item of searchedProfiles" >
+      <!-- <feed-card [post]="item"></feed-card> -->
+      <div class="col mt-2 mb-2">
+        <img src={{item.profilePhoto.path}}  class="rounded-image">
+      </div>
+      <div class="col-6 mt-4 mb-2">
+        <span class="name ">{{item.username}}</span>
+      </div>
+      <div class="col mt-4 mb-2">
+          <button mat-raised-button class="mt-2" color="primary" (click)="follow(item)">Follow</button>
+      </div>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-card>
+
+</div>

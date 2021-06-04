@@ -9,6 +9,7 @@ import { LoginComponent } from './sign-in/login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { SearchComponent } from './feed/search/search.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'editProfile',
     component : EditProfileComponent
+  },
+  {
+    path:'search',
+    component : SearchComponent
   }
 
 ];
