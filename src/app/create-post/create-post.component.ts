@@ -1,3 +1,4 @@
+import { NewPost } from './../model/createPost/newPost';
 import { User } from './../model/profile/user';
 import { UserTag } from './../model/createPost/userTag';
 import { UserInFeed } from './../model/feed/userInFeed';
@@ -15,14 +16,14 @@ import { FileInput } from 'ngx-material-file-input';
 })
 export class CreatePostComponent implements OnInit {
   newPostForm : FormGroup
-  imgFile : String
-  album: Image[] = new Array();
+  imgFile : string
+  album: string[] = new Array();
   isImage: boolean = true;
   isVideo : boolean = true;
   isVideoSelected : boolean = false;
   isAlbum : boolean = true;
   current : number;
-  video : String
+  video : string
   isSelected : boolean = false;
   myControl = new FormControl();
   tagControl = new FormControl();
@@ -31,11 +32,15 @@ export class CreatePostComponent implements OnInit {
   // options: string[] = ['One', 'Two', 'Three'];
   // filteredOptions: Observable<string[]>;
   filteredUsers : Observable<UserTag[]>;
+  hashtags : string[] = new Array()
+  hash : string =''
   ngOnInit(): void {
     this.current=0;
     this.newPostForm = new FormGroup({
      'caption' : new FormControl(null, [Validators.required]),
      'location' : new FormControl(null, [Validators.required]),
+     'hash' : new FormControl(null, []),
+
    });
    this.filteredUsers = this.tagControl.valueChanges.pipe(startWith(''),map(value=>this._filterUsers(value)));
   //  this.filteredOptions = this.myControl.valueChanges
@@ -46,6 +51,17 @@ export class CreatePostComponent implements OnInit {
   }
   checkIfUserIsTagged(tag){
     return this.taggedUsers.some(element => element === tag)
+  }
+  checkIfHashtagIsTagged(tag){
+    return this.hashtags.some(element => element === tag)
+  }
+  hashtag(){
+    if(!this.checkIfHashtagIsTagged(this.newPostForm.controls.hash.value)){
+      this.hashtags.push(this.newPostForm.controls.hash.value)
+      this.newPostForm.setValue({
+        hash: ""
+      });
+    }
   }
   tag(){
     console.log(this.tagControl.value)
@@ -71,7 +87,21 @@ export class CreatePostComponent implements OnInit {
 
   post(){
     console.log(this.video)
+    var image = ""
+    var album : string[] = new Array()
+    var video = ""
+    if(this.isVideo){
+      video = this.video
+    }
+    if(this.isAlbum){
+      album = this.album
+    }
+    if(this.isImage){
+      image = this.imgFile
+    }
 
+    var newPost = new NewPost(new UserTag(null,'ulogovaniuser'), this.taggedUsers, this.isVideo, this.isAlbum, this.isImage, image, album, video, this.newPostForm.controls.location.value, this.newPostForm.controls.caption.value,this.hashtags)
+    console.log(newPost)
   }
 
   onFileChangedAlbum(e) {
@@ -87,7 +117,7 @@ export class CreatePostComponent implements OnInit {
 
           reader.onload = () => {
             var img = reader.result as string;
-            this.album.push(new Image(null, img));
+            this.album.push(img);
             this.current++;
             console.log(this.current);
             if(this.current==4){

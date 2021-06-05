@@ -44,12 +44,12 @@
         </div>
         <div class="row mt-2" style="max-height: 30rem;" *ngIf="isAlbum">
           <div class="col-6" *ngFor="let image of album.slice(0, 2)">
-            <img  style="width: 100%; height: auto;  max-height: 29rem; object-fit: contain ;" src={{image.path}}>
+            <img  style="width: 100%; height: auto;  max-height: 29rem; object-fit: contain ;" src={{image}}>
           </div>
         </div>
         <div class="row mt-2" style="max-height: 30rem;" *ngIf="album.length > 2 && isAlbum" >
           <div class="col-6" *ngFor="let image of album.slice(2, 4)">
-            <img  style="width: 100%; height: auto;   max-height: 29rem; object-fit: contain ;" src={{image.path}}>
+            <img  style="width: 100%; height: auto;   max-height: 29rem; object-fit: contain ;" src={{image}}>
           </div>
         </div>
 
@@ -69,9 +69,9 @@
             </mat-form-field>
           </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
           <div class="col">
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="mr-2">
               <mat-label>Tag</mat-label>
               <input type="text"
                      placeholder="Tag"
@@ -84,13 +84,29 @@
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>
-            <button mat-raised-button (click)="tag()">
+            <button mat-raised-button color="primary" (click)="tag()">
               Tag
             </button>
           </div>
           <div class="col">
             <div class="row" *ngFor="let tag of taggedUsers">
               <p>@{{tag.username}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col">
+            <mat-form-field appearance="outline" class="mr-2">
+              <mat-label>Hashtags</mat-label>
+              <input matInput placeholder="Hashtag" formControlName = 'hash' width="30vh">
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="hashtag()">
+              Hashtag
+            </button>
+          </div>
+          <div class="col">
+            <div class="row" *ngFor="let tag of hashtags">
+              <p>#{{tag}}</p>
             </div>
           </div>
         </div>
