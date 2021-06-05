@@ -1,54 +1,61 @@
 <!--Navbar -->
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-primary fixed-top" >
-    <a class="navbar-brand" style="margin-left: 20px;" href="#">DukeStrategic</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-      aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item ">
-          <a class="nav-link" routerLink="/home">Home
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link" routerLink="/home">
-              <span class="sr-only">(current)</span>
-            </a>
-        </li>
-      </ul>
-
-      <ul class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item">
-          <i class="nav-link bi bi-plus-square"></i>
+  <a class="navbar-brand" style="margin-left: 20px;" href="/">Nishtagram</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" routerLink="/">Home
           <span class="sr-only">(current)</span>
-        </li>
-        <li class="nav-item">
-          <i class="nav-link bi bi-bell"></i>
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <!-- <li class="nav-item">
+        <i class="nav-link bi-plus-square"  (click)="test1()"></i>
+        <span class="sr-only">(current)</span>
+      </li>
+      <li class="nav-item">
+        <i class="nav-link bi-person-circle" (click)="test()"></i>
+        <span class="sr-only">(current)</span>
+      </li> -->
+
+      <li class="nav-item" (click)="openNewStoryDialog()">
+        <!--  (click)="fileInput.click()"  -->
+        <!-- <input
+        style="display: none"
+        type="file" (change)="onFileChanged($event)"
+        #fileInput accept="image/x-png,image/gif,image/jpeg" > -->
+        <i class="nav-link bi-clock-history"></i>
+        <span class="sr-only">(current)</span>
+      </li>
+
+      <li class="nav-item">
+        <i class="nav-link bi-plus-square" routerLink="/createPost"></i>
+        <span class="sr-only">(current)</span>
+      </li>
+      <li class="nav-item" (click)="openNotificationsDialog()">
+        <i class="nav-link bi bi-bell"></i>
+        <span class="sr-only">(current)</span>
+      </li>
+      <li class="nav-item">
+        <i class="nav-link bi-person-circle" routerLink="/profile"></i>
+        <span class="sr-only">(current)</span>
+      </li>
+      <li class="nav-item" (click)="logout()">
+          <a class="nav-link" >Logout</a>
           <span class="sr-only">(current)</span>
-        </li>
+      </li>
 
-        <li class="nav-item">
-          <i class="bi bi-person-circle"></i>
-          <span class="sr-only">(current)</span>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" (click)="logout()" routerLink="/login" >Logout</a>
-            <span class="sr-only">(current)</span>
-        </li>
-        <li>
-          <div class="input-group rounded">
-            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-              aria-describedby="search-addon" />
-            <span class="input-group-text border-0" id="search-addon">
-              <i class="fas fa-search"></i>
-            </span>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <!--/.Navbar -->
-
-
+      <li>
+        <div class="input-group rounded">
+          <button mat-raised-button style="background-color: white;" routerLink="/search"><mat-icon>search</mat-icon>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

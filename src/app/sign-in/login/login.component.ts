@@ -1,9 +1,10 @@
+import { AuthenticationService } from './../../service/authentication/authentication.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Account } from '../../model/user/account';
-import { LoginService } from 'src/app/service/login/login.service';
 import { Router } from '@angular/router';
 import { Toast, ToastrService } from 'ngx-toastr';
+import { Authentication } from 'src/app/model/security/authentication';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { Toast, ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService : LoginService, private router : Router, private toastr : ToastrService) { }
+  constructor(private router : Router, private toastr : ToastrService, private authService : AuthenticationService) { }
   public loginForm: FormGroup;
 
   ngOnInit(): void {
@@ -22,8 +23,8 @@ export class LoginComponent implements OnInit {
     });
   }
   login(){
-    var account = new Account(this.loginForm.controls.username.value, this.loginForm.controls.password.value)
-    this.loginService.login(account).subscribe(
+    var account = new Authentication(this.loginForm.controls.username.value, this.loginForm.controls.password.value)
+    this.authService.login(account).subscribe(
       success => {
         this.router.navigate(['/home'])
       },
