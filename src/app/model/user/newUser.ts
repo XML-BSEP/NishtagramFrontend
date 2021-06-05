@@ -12,8 +12,9 @@ export class NewUser{
   password : String;
   confirmPassword : String;
   image : String;
+  private : boolean
   constructor(name : String, surname : String, email : String, address : String, phone : String, birthday : Date, gender : String,
-     web : String, bio : String, username : String, password : String, confirmPassword : String, image : String){
+     web : String, bio : String, username : String, password : String, confirmPassword : String, image : String, priv : boolean){
     this.name = name;
     this.surname = surname
     this.email = email
@@ -27,6 +28,6 @@ export class NewUser{
     this.password = password
     this.confirmPassword = confirmPassword
     this.image = image
-
+    this.private = priv
   }
 }
