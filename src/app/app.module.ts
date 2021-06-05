@@ -77,6 +77,7 @@ import { SearchComponent } from './feed/search/search.component';
     IvyCarouselModule,
     ToastrModule.forRoot(),
     MatCarouselModule.forRoot(),
+
   ],
   providers: [
     {provide : HTTP_INTERCEPTORS, useClass : JwtInterceptor, multi : true},

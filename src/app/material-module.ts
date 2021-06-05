@@ -34,6 +34,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatFormFieldControl, MatFormFieldModule} from '@angular/material/form-field';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import {MatFormFieldControl, MatFormFieldModule} from '@angular/material/form-fi
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MaterialFileInputModule
     ]
 })
 export class MaterialModule {}
