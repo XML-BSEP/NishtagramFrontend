@@ -14,7 +14,7 @@ export class RegistrationConfirmationComponent implements OnInit {
 
   constructor(private router : Router, private registrationService : RegistrationService, private toastr : ToastrService) { }
   public codeForm : FormGroup;
-  private userMail : string;
+  private username : string;
   private confirmRegistration : ConfirmRegistration
 
 
@@ -23,16 +23,17 @@ export class RegistrationConfirmationComponent implements OnInit {
       //maybe add pattern for code validation on frontend
       'code' : new FormControl(null, [Validators.required])
     });
+
     if(history.state.data === undefined){
       this.router.navigate(['/home'])
     }else{
-      this.userMail = history.state.data;
+      this.username = history.state.data;
 
     }
   }
   confirm(){
-    console.log(this.userMail)
-    this.confirmRegistration = new ConfirmRegistration(this.userMail, this.codeForm.controls.code.value)
+    console.log(this.username)
+    this.confirmRegistration = new ConfirmRegistration(this.username, this.codeForm.controls.code.value)
 
     this.registrationService.confAcc(this.confirmRegistration).subscribe(
       res=>{

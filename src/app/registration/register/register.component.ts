@@ -81,7 +81,12 @@ export class RegisterComponent implements OnInit {
 
       this.registrationService.register(newUser).subscribe(
         success => {
-          this.router.navigate(['/confirmRegistration'])
+          this.router.navigate(['/confirmRegistration'],
+      {state:
+        {data:
+          username
+        }
+      });
         },
         error => {
           this.router.navigate(['/home'])
