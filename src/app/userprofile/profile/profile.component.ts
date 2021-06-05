@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 import { PostInProfile } from './../../model/profile/postInProfile';
 import { Post } from './../../model/feed/post';
 import { UserInFeed } from './../../model/feed/userInFeed';
-import { NewUser } from './../../model/user/newUser';
 import { UserProfile } from './../../model/profile/userProfile';
 import { Component, OnInit } from '@angular/core';
 import { Image } from 'src/app/model/feed/image';
@@ -17,6 +16,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { StoryContent } from 'src/app/model/feed/storyContent';
 import { NewhighlightDialogComponent } from 'src/app/dialogs/newhighlight-dialog/newhighlight-dialog.component';
 import { Following } from 'src/app/model/profile/following';
+import { User } from 'src/app/model/profile/user';
 
 @Component({
   selector: 'app-profile',
@@ -29,8 +29,8 @@ export class ProfileComponent implements OnInit {
   following : Following[];
   posts : PostInProfile[];
   web: String;
-  user : NewUser;
-  public isLoggedInUser : boolean =false;
+  user : User;
+  public isLoggedInUser : boolean = true;
   storyHighlights : StoryHighlightOnProfile[]
   allStories : ProfileStory[];
   storyHighsAndStories : StoryHighlightAndStories
@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.user = new NewUser("Pera", "Peric", "peroslav@gmail.com", "Novi Sad, Srbija", "0211231", new Date(1999,4,16,0,0,0,0), '1', 'www.aleksandarignjatijevic.com', "Ovo je moj kao neki opis. Hm ovde nesto pametno treba da pise? hmmm aj ovako. Cekam dok ne docekam kraj ovog mrtvog faksa", 'pera123', null, null, 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80');
+    this.user = new User("Pera", "Peric", "peroslav@gmail.com", "Novi Sad, Srbija", "0211231", new Date(1999,4,16,0,0,0,0), '1', 'www.aleksandarignjatijevic.com', "Ovo je moj kao neki opis. Hm ovde nesto pametno treba da pise? hmmm aj ovako. Cekam dok ne docekam kraj ovog mrtvog faksa", 'pera123', 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80');
     let follow1 = new UserInFeed('prviFollower' , new Image('1','https://i.imgur.com/VQkoalX.jpeg'));
     let follow2 = new UserInFeed('drugiFollower', new Image('2','https://i.imgur.com/G8p9qBk.jpeg'))
     let follow3 = new UserInFeed('treciFollower', new Image('3','https://i.imgur.com/XKIdf2g.jpeg'))
