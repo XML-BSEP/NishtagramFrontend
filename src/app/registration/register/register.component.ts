@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
   fileName : String="";
   today : Date;
   imgFile="../../assets/emptyprofile.png";
-
+  isChecked : boolean = true
   constructor(private router: Router, private toastr : ToastrService) { }
   public registrationForm: FormGroup;
   ngOnInit(): void {
@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
     'username' : new FormControl(null, Validators.required),
     'password' : new FormControl(null, [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9\d$@$!%*?&].{7,}$')]),
     'confirmPassword' : new FormControl(null, [Validators.required,    Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9\d$@$!%*?&].{7,}$')]),
+    'private' : new FormControl(false, Validators.required)
   });
 
   }
@@ -52,6 +53,9 @@ export class RegisterComponent implements OnInit {
     }
 
   }
+  test(){
+    console.log(this.registrationForm.controls.private.value)
+  }
   register(){
     var name = this.registrationForm.controls.name.value;
     var surname = this.registrationForm.controls.surname.value;
@@ -65,10 +69,10 @@ export class RegisterComponent implements OnInit {
     var birthday = this.registrationForm.controls.birthday.value;
     var phone = this.registrationForm.controls.phone.value;
     var gender = this.registrationForm.controls.gender.value;
-
+    var priv = this.registrationForm.controls.private.value
     console.log(password);
     if(password===confirmPassword){
-      var newUser = new NewUser(name, surname,email, address, phone, birthday, gender, web, bio, username, password, confirmPassword, this.imgFile)
+      var newUser = new NewUser(name, surname,email, address, phone, birthday, gender, web, bio, username, password, confirmPassword, this.imgFile, priv)
       console.log(newUser)
     }
 

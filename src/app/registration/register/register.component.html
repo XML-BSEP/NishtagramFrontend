@@ -179,31 +179,17 @@
           </div>
 
         </div>
-        <!-- <div class="row">
-          <div class="col">
-            <label class="label-field ml-2">Select picture:</label>
-              <input
-              style="display: none"
-              type="file" (change)="onFileChanged($event)"
-              #fileInput accept="image/x-png,image/gif,image/jpeg" multiple>
-            <button mat-fab color="primary" (click)="fileInput.click()" class="ml-3">
-              <mat-icon>add</mat-icon>
-            </button>
+        <div class="row">
+          <div class="col d-flex justify-content-center mt-4 mb-3">
+            <mat-slide-toggle formControlName="private" (click)="test()"><mat-icon>lock</mat-icon>Private</mat-slide-toggle>
           </div>
-          <div class="col">
-            <img [src]="imgFile" style="height: 10vh; max-width: 15vh;" />
-
-            <button mat-fab color="accent" (click)="removeImg()" class="ml-3">
-              <mat-icon>remove</mat-icon>
-            </button>
-          </div>
-        </div> -->
+        </div>
 
 
 
         </form>
         <div class="d-flex justify-content-center">
-          <button mat-raised-button id="register" [disabled]="!registrationForm.valid" (click)="register()">Register</button>
+          <button mat-raised-button id="register" (click)="register()">Register</button>
 
         </div>
 
