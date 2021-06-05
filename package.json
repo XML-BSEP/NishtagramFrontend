@@ -28,6 +28,7 @@
     "js-base64": "^3.6.0",
     "mdb-ui-kit": "^3.5.0",
     "moment": "^2.29.1",
+    "ngx-material-file-input": "^2.1.1",
     "ngx-toastr": "^13.2.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

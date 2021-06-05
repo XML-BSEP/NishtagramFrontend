@@ -9,7 +9,6 @@ import { UserInFeed } from './../../model/feed/userInFeed';
 import { Component, OnInit } from '@angular/core';
 import { Notification } from 'src/app/model/utilities/notification';
 import { Image } from 'src/app/model/feed/image';
-import { ProfileDTO } from 'src/app/model/profile/profileDTO';
 
 @Component({
   selector: 'app-not-user-nav-bar',
@@ -62,20 +61,20 @@ export class NotUserNavBarComponent implements OnInit {
 
   }
 
-  test1(){
-      this.testServ.test1(new ProfileDTO("424935b1-766c-4f99-b306-9263731518bc")).subscribe(
-              res=>{
+  // test1(){
+  //     this.testServ.test1(new ProfileDTO("424935b1-766c-4f99-b306-9263731518bc")).subscribe(
+  //             res=>{
 
-              this.toastr.success("JWT confirmation")
-              console.log(res)
-            },
-            error => {
-              this.toastr.error("Confirmation code is not correct")
-            }
+  //             this.toastr.success("JWT confirmation")
+  //             console.log(res)
+  //           },
+  //           error => {
+  //             this.toastr.error("Confirmation code is not correct")
+  //           }
 
 
-              )
-  }
+  //             )
+  // }
 
   test(){
 
