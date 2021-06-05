@@ -1,3 +1,4 @@
+import { ConfirmRegHistory } from './../../model/user/confirmRegHistory';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { RegistrationService } from '../../service/registration/registration.service';
@@ -14,7 +15,9 @@ export class RegistrationConfirmationComponent implements OnInit {
 
   constructor(private router : Router, private registrationService : RegistrationService, private toastr : ToastrService) { }
   public codeForm : FormGroup;
-  private username : string;
+  private mail : string;
+  private username : string
+  private confirmRegHistory : ConfirmRegHistory
   private confirmRegistration : ConfirmRegistration
 
 
@@ -27,13 +30,13 @@ export class RegistrationConfirmationComponent implements OnInit {
     if(history.state.data === undefined){
       this.router.navigate(['/home'])
     }else{
-      this.username = history.state.data;
+      this.confirmRegHistory = history.state.data;
 
     }
   }
   confirm(){
-    console.log(this.username)
-    this.confirmRegistration = new ConfirmRegistration(this.username, this.codeForm.controls.code.value)
+    console.log(this.mail)
+    this.confirmRegistration = new ConfirmRegistration(this.confirmRegHistory.username, this.codeForm.controls.code.value)
 
     this.registrationService.confAcc(this.confirmRegistration).subscribe(
       res=>{
@@ -50,7 +53,7 @@ export class RegistrationConfirmationComponent implements OnInit {
   }
   resend(){
     let sendData = {
-      "email" : this.userMail
+      "email" : this.confirmRegHistory.email
     }
     this.registrationService.resend(sendData).subscribe(
       res => {
