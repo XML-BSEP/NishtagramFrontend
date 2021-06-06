@@ -18,7 +18,8 @@ export const environment = {
   resendPassCode : "resendPassCode",
   resendRegCode : "resendRegistrationCode",
   following : "following",
-  usersFollowings : "usersFollowings"
+  usersFollowings : "usersFollowings",
+  checkLoggedUser : "checkLoggedUser"
 };
 
 /*

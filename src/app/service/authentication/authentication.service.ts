@@ -29,8 +29,6 @@ public getUserValue() : AuthenticatedUser {
 }
 
 login(credentials: Authentication){
-
-
     return this.http.post<AuthenticatedUser>(`${environment.baseUrl}/${environment.login}`, credentials)
     .pipe(map(response => {
       localStorage.setItem('currentUser', JSON.stringify(response));

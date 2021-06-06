@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../service/authentication/authentication.service';
 import { NewstoryDialogComponent } from './../../dialogs/newstory-dialog/newstory-dialog.component';
 import { ProfileStory } from './../../model/profile/profileStory';
 import { ToastrService } from 'ngx-toastr';
@@ -22,7 +23,8 @@ export class NotUserNavBarComponent implements OnInit {
   constructor(
     private dialog : MatDialog,
     private testServ : TestService,
-    private toastr : ToastrService
+    private toastr : ToastrService,
+    private authService : AuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -60,7 +62,9 @@ export class NotUserNavBarComponent implements OnInit {
     }
 
   }
-
+  logout(){
+    this.authService.logout()
+  }
   // test1(){
   //     this.testServ.test1(new ProfileDTO("424935b1-766c-4f99-b306-9263731518bc")).subscribe(
   //             res=>{

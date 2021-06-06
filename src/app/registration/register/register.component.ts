@@ -1,3 +1,4 @@
+import { ConfirmRegHistory } from './../../model/user/confirmRegHistory';
 import { RegistrationService } from './../../service/registration/registration.service';
 import { NewUser } from '../../model/user/newUser';
 import { Router } from '@angular/router';
@@ -81,7 +82,14 @@ export class RegisterComponent implements OnInit {
 
       this.registrationService.register(newUser).subscribe(
         success => {
-          this.router.navigate(['/confirmRegistration'])
+          this.router.navigate(['/confirmRegistration'],
+          {state:
+            {data:
+              new ConfirmRegHistory(username, email)
+          }
+
+      });
+      this.toastr.success('Please check your email!')
         },
         error => {
           this.router.navigate(['/home'])
