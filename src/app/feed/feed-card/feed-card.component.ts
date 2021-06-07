@@ -14,6 +14,7 @@ import { LikePost } from 'src/app/model/feed/likepost';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/model/profile/user';
 import { PostDTO } from 'src/app/model/feed/postdto';
+import { Add2collectionDialogComponent } from 'src/app/dialogs/add2collection-dialog/add2collection-dialog.component';
 
 
 @Component({
@@ -42,13 +43,13 @@ export class FeedCardComponent implements OnInit {
 
     }
 
-  
+
     this.commentForm = new FormGroup({
       'comm' : new FormControl(null),
     });
 
   }
-  like(){   
+  like(){
     let like = new LikePost();
     like.postBy = this.post.user.id;
     like.postId = this.post.id;
@@ -64,9 +65,9 @@ export class FeedCardComponent implements OnInit {
           this.toastr.error("Post unavailable")
         }
       )
-      
+
     } else {
-    
+
       this.postService.likePost(like).subscribe(
         res => {
           this.toastr.info("Post liked")
@@ -80,12 +81,12 @@ export class FeedCardComponent implements OnInit {
       )
 
     }
-    
+
 
 
   }
   dislike(){
-    
+
     let like = new LikePost();
     like.postBy = this.post.user.id;
     like.postId = this.post.id;
@@ -102,10 +103,10 @@ export class FeedCardComponent implements OnInit {
           this.toastr.error("Post unavailable")
         }
       )
-      
-    }else 
+
+    }else
     {
-    
+
       this.postService.dislikePost(like).subscribe(
         res => {
           if (this.post.isLiked) {
@@ -130,12 +131,20 @@ export class FeedCardComponent implements OnInit {
             }
           )
           }
-        } 
+        }
       )
 
     }
 
   }
+  saveToCollectionDialog(item){
+    const dialogRef = this.dialog.open(Add2collectionDialogComponent, {
+      width: '35vw',
+      height: '90vh',
+      data: item
+    });
+  }
+
   bookmark(){
     this.post.isBookmarked = !this.post.isBookmarked;
     //TODO: BACKEND!
@@ -180,12 +189,12 @@ export class FeedCardComponent implements OnInit {
         }
       )
     }
-    }    
-    
+    }
 
-    
-    
-  
+
+
+
+
 
   goToPostDetails(){
     this.router.navigate(['/postDetails'],
