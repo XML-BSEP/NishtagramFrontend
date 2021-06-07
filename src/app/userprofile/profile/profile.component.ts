@@ -35,9 +35,13 @@ export class ProfileComponent implements OnInit {
   public isLoggedInUser : boolean = true;
   storyHighlights : StoryHighlightOnProfile[]
   allStories : ProfileStory[];
+  allFavorites : PostInProfile[]
   storyHighsAndStories : StoryHighlightAndStories
   arePosts : boolean = true;
+  areStories : boolean = false;
+  areFavorites : boolean = false;
   showUser : boolean = false;
+
   constructor(
     private newHighlightDialog: MatDialog,
     private router: Router,
@@ -75,8 +79,8 @@ export class ProfileComponent implements OnInit {
     let following4 = new Following('cetvrtiFollower', new Image('4','https://i.imgur.com/s7fMnMg.jpeg'),true)*/
 
     this.followers = [follow1, follow2, follow3, follow4,follow1, follow2, follow3, follow4,follow1, follow2, follow3, follow4,follow1, follow2, follow3, follow4]
-    
-    
+
+
     this.web = "https://"+this.user.web
     console.log(this.posts)
 
@@ -94,6 +98,7 @@ export class ProfileComponent implements OnInit {
     this.storyHighlights = []
 
     this.allStories=[]
+    this.allFavorites=[]
 
   }
   goToEditProfile(){
@@ -110,7 +115,7 @@ export class ProfileComponent implements OnInit {
     console.log(post.postid)
     postDTO.PostId = post.postid;
     postDTO.UserId = post.user;
-    
+
     this.postService.getPostById(postDTO).subscribe(
       res => {
         console.log(res)
@@ -172,11 +177,19 @@ export class ProfileComponent implements OnInit {
 
   }
   seePosts(){
-    console.log("asdas")
     console.log(this.profile.posts)
     this.arePosts=true;
+    this.areStories=false;
+    this.areFavorites=false;
   }
   seeStories(){
     this.arePosts=false;
+    this.areStories=true;
+    this.areFavorites=false;
+  }
+  seeFavorites(){
+    this.arePosts=false;
+    this.areStories=false;
+    this.areFavorites=true;
   }
 }
