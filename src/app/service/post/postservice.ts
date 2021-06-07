@@ -7,6 +7,9 @@ import { ConfirmRegistration} from 'src/app/model/user/confirmRegistration'
 import { NewPost } from 'src/app/model/createPost/newPost';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/model/feed/post';
+import { LikePost } from 'src/app/model/feed/likepost';
+import { Comment } from 'src/app/model/feed/comment';
+import { PostDTO } from 'src/app/model/feed/postdto';
 
 @Injectable({
   providedIn: 'root'
@@ -22,4 +25,29 @@ export class PostService {
   generateFeed() : Observable<Post[]> {
     return this.https.get<Post[]>(`${environment.baseUrl}/${environment.feed}`)
   }
+
+  likePost(likePost : LikePost) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.like}`, likePost);
+  }
+
+  dislikePost(likePost : LikePost) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.dislike}`, likePost);
+  }
+  removeLike(likePost : LikePost) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.removeLike}`, likePost);
+
+  }
+  removeDislike(likePost : LikePost) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.removeDislike}`, likePost);
+  }
+
+  comment(comment : Comment) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.comment}`, comment)
+  }
+
+  getAllComments(post : PostDTO) : Observable<Comment[]> {
+    return this.https.post<Comment[]>(`${environment.baseUrl}/${environment.getComments}`, post);
+  }
+
+  
 }

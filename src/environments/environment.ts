@@ -21,7 +21,15 @@ export const environment = {
   usersFollowings : "usersFollowings",
   checkLoggedUser : "checkLoggedUser",
   createPost : "addPost",
-  feed : "feed"
+  feed : "feed",
+  like : "like",
+  dislike : "dislike",
+  comment : "comment",
+  favorite : "favorite",
+  addToCollection : "addToCollection",
+  removeLike : "removeLike",
+  removeDislike : "removeDislike", 
+  getComments : "getAllComments"
 };
 
 /*

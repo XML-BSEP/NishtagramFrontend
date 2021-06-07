@@ -4,6 +4,7 @@ import { Location } from '../utilities/location';
 import { Comment} from '../feed/comment'
 import { Time } from '@angular/common';
 export class Post{
+  public id : String;
   user : UserInFeed;
   location : Location;
   description : String;
@@ -16,6 +17,9 @@ export class Post{
   collection : String;
   time : Date;
   moment : String;
+  public numOfComments : number;
+  public numOfLikes : number;
+  public numOfDislikes : number;
   constructor(user : UserInFeed, location : Location, description : String, isAlbum : boolean, images : string[], comments : Comment[], time : Date, moment : String){
     this.user = user;
     this.location = location;

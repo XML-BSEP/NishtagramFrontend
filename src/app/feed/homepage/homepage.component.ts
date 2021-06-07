@@ -22,7 +22,8 @@ export class HomepageComponent implements OnInit {
 	feedItems = [];
   public post1 : Post;
   public post2 : Post;
-
+  public stories : Story[]
+/*
   public user1 : UserInFeed;
   public comment1 : Comment;
   public comment2 : Comment;
@@ -38,7 +39,7 @@ export class HomepageComponent implements OnInit {
   image4 = 'https://scontent.fbeg2-1.fna.fbcdn.net/v/t1.15752-9/186472462_509117580122979_233512009969789842_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=ae9488&_nc_ohc=Pvaojs405SsAX-svZ9a&_nc_ht=scontent.fbeg2-1.fna&oh=846315e00aa5c71b410eeaabae6c0e4e&oe=60C698CD'
   images1 = [this.image1, this.image2, this.image3, this.image4]
   images2 = [this.image4]
-  images3 = [this.image4]
+  images3 = [this.image4]*/
 
   feed : Post[]
 	constructor(
@@ -52,7 +53,7 @@ export class HomepageComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-    this.user1 = new UserInFeed("svijetlana123", new Image('1','https://pbs.twimg.com/profile_images/653700295395016708/WjGTnKGQ_400x400.png' ))
+  /*  this.user1 = new UserInFeed("svijetlana123", new Image('1','https://pbs.twimg.com/profile_images/653700295395016708/WjGTnKGQ_400x400.png' ))
     this.user2 = new UserInFeed("komentator1", new Image('2','https://i.imgur.com/1YrCKa1.jpg' ))
     this.user3 = new UserInFeed("komentator2", new Image('3','https://i.imgur.com/9AZ2QX1.jpg' ))
     this.comment1 = new Comment(this.user1, "Wow, jako mi se dopada fotka!")
@@ -76,31 +77,35 @@ export class HomepageComponent implements OnInit {
     let a1 = moment(date1).fromNow();
 
     this.post1 = new Post(this.user1, this.postLocation, "IDegasnamax luudnica matori, pogle ovog slona i ove ribojzle", true, this.images1, this.comments1, date, a)
-
+*/
     this.postService.generateFeed().subscribe(
       res => {
         console.log(res)
         let feeds = []
         for (let f of res) {
           f.comments = []
-          f.user = new UserInFeed("username", new Image("1", 'https://pbs.twimg.com/profile_images/653700295395016708/WjGTnKGQ_400x400.png'));
+          console.log(f.user)
+          console.log(f.user.id)
+          f.user = f.user
 
         }
         this.feed = res;
+        console.log(this.feed)
       
       }
     )
 
-    this.post2 = new Post(this.user2, this.postLocation, "WOOOOOOW AJAO KAKO OVAJ NISHTAGRAM GASIRA #idegasnamax", false, this.images2, this.comments2, date1, a1)
+  //  this.post2 = new Post(this.user2, this.postLocation, "WOOOOOOW AJAO KAKO OVAJ NISHTAGRAM GASIRA #idegasnamax", false, this.images2, this.comments2, date1, a1)
    // this.feed = [this.post1, this.post2, this.post1]
-   /*var story1 = new Story(this.user1,new StoryContent(false, 'https://i.imgur.com/1YrCKa1.jpg'), newDate1)
+    /*var story1 = new Story(this.user1,new StoryContent(false, 'https://i.imgur.com/1YrCKa1.jpg'), newDate1)
     var story2 = new Story(this.user2,new StoryContent(false,  'https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg'), newDate2)
     var story3 = new Story(this.user3,new StoryContent(false, 'https://i.imgur.com/9AZ2QX1.jpg') ,newDate3)
     var story4 = new Story(this.user1,new StoryContent(false, 'https://pbs.twimg.com/profile_images/653700295395016708/WjGTnKGQ_400x400.png'), newDate3)
     var story5 = new Story(this.user2,new StoryContent(false,  'https://scontent.fbeg2-1.fna.fbcdn.net/v/t1.15752-9/186472462_509117580122979_233512009969789842_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=ae9488&_nc_ohc=Pvaojs405SsAX-svZ9a&_nc_ht=scontent.fbeg2-1.fna&oh=846315e00aa5c71b410eeaabae6c0e4e&oe=60C698CD') ,newDate5)
-    var story6 = new Story(this.user1,new StoryContent(false,'https://i.imgur.com/1YrCKa1.jpg'),newDate6)
-    this.stories =[story1, story2, story3, story4, story5, story6, story1, story2]*/
+    var story6 = new Story(this.user1,new StoryContent(false,'https://i.imgur.com/1YrCKa1.jpg'),newDate6)*/
+    this.stories = []
   }
+  
   goToPostDetails(item){
     this.router.navigate(['/postDetails']);
   }

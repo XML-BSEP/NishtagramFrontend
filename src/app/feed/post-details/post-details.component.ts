@@ -40,13 +40,13 @@ export class PostDetailsComponent implements OnInit {
     }
     console.log(history.state.data)
     this.post = history.state.data;
-
+/*
     this.user1 = new UserInFeed("svijetlana123", new Image('1','https://pbs.twimg.com/profile_images/653700295395016708/WjGTnKGQ_400x400.png' ))
     this.user2 = new UserInFeed("komentator1", new Image('2','https://i.imgur.com/1YrCKa1.jpg' ))
-    this.user3 = new UserInFeed("komentator2", new Image('3','https://i.imgur.com/9AZ2QX1.jpg' ))
+    this.user3 = new UserInFeed("komentator2", new Image('3','https://i.imgur.com/9AZ2QX1.jpg' ))*/
     this.postLocation = new Location(19.833549, 45.267136, "Novi Sad", "Serbia")
 
-    this.comments1 = [new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA")]
+    //this.comments1 = [new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA"),new Comment(this.user1, "IDEGASNAMAX"), new Comment(this.user3, "LOREM IPSUM WISHE U AAAAAAA")]
 
     let date: Date = new Date(2021, 4, 18, 0, 0, 0, 0);
 
