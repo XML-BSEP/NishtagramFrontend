@@ -70,6 +70,9 @@
           },
           "configurations": {
             "production": {
+              "ssl": true,
+              "sslCert": "ssl/cert.pem",
+              "sslKey": "ssl/key.pem",
               "browserTarget": "nishtagramfronend:build:production"
             }
           }

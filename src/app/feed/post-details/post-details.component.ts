@@ -54,7 +54,6 @@ export class PostDetailsComponent implements OnInit {
 
     let a = moment(date).fromNow();
 
-    this.post1 = new Post(this.user1, this.postLocation, "IDegasnamax luudnica matori, pogle ovog slona i ove ribojzle", true, this.images1, this.comments1, date, a)
 
   }
 

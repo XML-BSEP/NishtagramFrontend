@@ -44,6 +44,10 @@ export class HomepageComponent implements OnInit {
         let feeds = []
         for (let f of res) {
           f.comments = []
+          if (f.isVideo) {
+            console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+            console.log(f.images)
+          }
           console.log(f.user)
           console.log(f.user.id)
           f.user = f.user

@@ -1,13 +1,16 @@
-#STAGE 1
+FROM node:10-alpine as build-step
 
-FROM node:alpine as build
+RUN mkdir -p /app
+
 WORKDIR /app
-COPY . .
-RUN npm ci && npm run build
 
+COPY package.json /app
+RUN npm install
 
-#STAGE 2
+RUN npm install -g @angular/cli@7.3.9
 
-FROM nginx:alpine
-COPY --from=build /app/dist/nishtagramfronend /usr/share/nginx/html
-EXPOSE 80
+COPY . /app
+
+EXPOSE 4200
+
+CMD ng serve --ssl --host 0.0.0.0

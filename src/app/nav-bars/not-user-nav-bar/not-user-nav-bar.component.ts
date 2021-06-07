@@ -24,7 +24,6 @@ export class NotUserNavBarComponent implements OnInit {
     private dialog : MatDialog,
     private testServ : TestService,
     private toastr : ToastrService,
-    private authService : AuthenticationService
   ) { }
 
   ngOnInit(): void {/*
@@ -62,9 +61,7 @@ export class NotUserNavBarComponent implements OnInit {
     }
 
   }
-  logout(){
-    this.authService.logout()
-  }
+  
   // test1(){
   //     this.testServ.test1(new ProfileDTO("424935b1-766c-4f99-b306-9263731518bc")).subscribe(
   //             res=>{

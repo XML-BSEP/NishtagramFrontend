@@ -18,7 +18,7 @@
                       </mat-menu>
                     </div>
                 </div>
-                <div style="width: 100%; height: 40rem;">
+                <div style="width: 100%; max-height: 40rem; height: fit-content;">
                   <mat-carousel
                     color="accent"
                     maxWidth="auto"
@@ -32,7 +32,7 @@
                     orientation="ltr"
                     proportion="100"
 
-                    *ngIf="post.isAlbum">
+                    *ngIf="post.isAlbum && !post.isVideo">
 
                     <mat-carousel-slide
                       #matCarouselSlide
@@ -58,7 +58,15 @@
                     [loop]="false"
                     >
                   </carousel> -->
-                  <img *ngIf="!post.isAlbum" src="{{post.images[0]}}" style="width: 100%; height: auto;   max-height: 40rem; object-fit: contain ;">
+                  <img *ngIf="!post.isAlbum && !post.isVideo" src="{{post.images[0]}}" style="width: 100%; height: auto;   max-height: 40rem; object-fit: contain ;">
+                  <div class="row d-flex flex-column justify-content-center"  *ngIf="post.isVideo && !post.isAlbum">
+                    <div class="col">
+                      <video controls disabled="true" style="object-fit: contain; max-width: 100%; max-height: 100%; justify-content: center;" #videoPlayer>
+                        <source src={{post.images[0]}} type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+
                 </div>
 
                 <div class="p-2">
