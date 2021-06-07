@@ -32,7 +32,8 @@ export const environment = {
   getComments : "getAllComments",
   getMyPosts : "getPostsOnProfile",
   getPostById : "getPostById",
-  getStories : "getStories"
+  getStories : "getStories",
+  addStory : "addStory"
 };
 
 /*
