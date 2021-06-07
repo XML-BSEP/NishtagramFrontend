@@ -40,6 +40,7 @@ export class PostDetailsComponent implements OnInit {
     }
     console.log(history.state.data)
     this.post = history.state.data;
+    
     console.log(this.post)
     this.post.comments = []
 /*

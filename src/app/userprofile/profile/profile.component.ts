@@ -57,9 +57,10 @@ export class ProfileComponent implements OnInit {
     this.postService.getAllPostsInProfile(userInFeed).subscribe(
       res => {
         this.posts = []
-        console.log(res.length)
         for (let p of res) {
-          this.posts.push(p)
+          console.log(p)
+          this.posts.push(new PostInProfile(p.user, p.image, p.postid, p.isVideo))
+          console.log(p.postid)
         }
         this.profile = new UserProfile(this.user, this.followers, this.following, this.posts, false)
         console.log(this.posts)
@@ -106,8 +107,8 @@ export class ProfileComponent implements OnInit {
 
   showImage(post : PostInProfile){
     let postDTO = new GetPostDTO();
-    console.log(post.postId)
-    postDTO.PostId = post.postId;
+    console.log(post.postid)
+    postDTO.PostId = post.postid;
     postDTO.UserId = post.user;
     
     this.postService.getPostById(postDTO).subscribe(

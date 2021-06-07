@@ -3,10 +3,12 @@ import { Image } from "../feed/image";
 export class PostInProfile{
   user : String;
   image : string;
-  postId : String;
-  constructor(user : String, image : string, postId : String){
+  postid : String;
+  isVideo : boolean;
+  constructor(user : String, image : string, postId : String, isVideo : boolean){
     this.user = user;
+    this.isVideo = isVideo;
     this.image = image;
-    this.postId =postId;
+    this.postid =postId;
   }
 }
