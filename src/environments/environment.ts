@@ -31,7 +31,8 @@ export const environment = {
   removeDislike : "removeDislike", 
   getComments : "getAllComments",
   getMyPosts : "getPostsOnProfile",
-  getPostById : "getPostById"
+  getPostById : "getPostById",
+  getStories : "getStories"
 };
 
 /*

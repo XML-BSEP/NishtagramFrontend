@@ -13,6 +13,7 @@ import { PostDTO } from 'src/app/model/feed/postdto';
 import { UserInFeed } from 'src/app/model/feed/userInFeed';
 import { PostInProfile } from 'src/app/model/profile/postInProfile';
 import { GetPostDTO } from 'src/app/model/getpost'
+import { Story } from 'src/app/model/feed/story';
 @Injectable({
   providedIn: 'root'
 })
@@ -57,6 +58,10 @@ export class PostService {
 
   getPostById(getPost : GetPostDTO) : Observable<Post[]> {
     return this.https.post<Post[]>(`${environment.baseUrl}/${environment.getPostById}`, getPost)
+  }
+
+  getStories() : Observable<Story[]> {
+    return this.https.get<Story[]>(`${environment.baseUrl}/${environment.getStories}`)
   }
 
   
