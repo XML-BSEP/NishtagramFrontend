@@ -41,7 +41,7 @@ login(credentials: Authentication){
 logout() {
       // remove user from local storage to log user out
 
-      this.http.post(`${environment.baseUrl}/${environment.login}`, null);
+      this.http.post(`${environment.baseUrl}/${environment.logout}`, null).subscribe();
       localStorage.removeItem('currentUser');
       localStorage.removeItem('userId');
       localStorage.removeItem('role');
