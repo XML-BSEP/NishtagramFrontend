@@ -47,7 +47,7 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService,
     private toastr: ToastrService
     ) {    
-         this.profileService.getUserById("12334414214133").subscribe(
+         this.profileService.getUserById("23ddb1dd-4303-428b-b506-ff313071d5d7").subscribe(
       (data) => {
         this.user = data;     
         this.jeldobavio = true;

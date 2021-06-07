@@ -127,7 +127,7 @@ export class EditProfileComponent implements OnInit {
     
     
     var editUser = new EditUser(name, surname, email, address, phone, date, gender, web, bio, username, this.imgFile, true)
-    editUser.id = "12334414214133" //getcurrUserValue
+    editUser.id = "a2c2f993-dc32-4a82-82ed-a5f6866f7d03" //getcurrUserValue
     this.privateService.editProfile(editUser).subscribe(
       res => {
         this.toastr.success("Edited!");
