@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProfileStory } from './../../model/profile/profileStory';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Image } from 'src/app/model/feed/image';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-newhighlight-dialog',
@@ -17,7 +18,7 @@ export class NewhighlightDialogComponent implements OnInit {
   public newHighStories : ProfileStory[] = new Array()
   public highlightForm: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<NewhighlightDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<NewhighlightDialogComponent>, private toastr : ToastrService,
     @Inject(MAT_DIALOG_DATA) public data: ProfileStory[]) { }
 
   ngOnInit(): void {
@@ -63,9 +64,18 @@ export class NewhighlightDialogComponent implements OnInit {
     // highlightPhoto : Image;
     // stories: ProfileStory[]
     // name : String;
-    this.hajlajt= new StoryHighlightOnProfile(null, new Image(null,this.imgFile), this.newHighStories,this.highlightForm.controls.name.value)
-    console.log(this.highlightForm.controls.name.value)
-    this.onSubmit(this.hajlajt)
+
+    if (this.newHighStories.length === 0) {
+      this.toastr.warning("Please select a story to continue")
+    } else {
+      let storyIds = []
+      for (let s of this.newHighStories) {
+        storyIds.push(s.id)
+      }
+      this.hajlajt= new StoryHighlightOnProfile(null, this.imgFile, this.newHighStories,this.highlightForm.controls.name.value, storyIds)
+      console.log(this.highlightForm.controls.name.value)
+      this.onSubmit(this.hajlajt)
+    }
   }
 
   isSelected(s){

@@ -47,7 +47,7 @@
       </div>
       <div class="d-flex flex-column align-content-center" >
         <div class="d-flex flex-row" class="mt-2 mb-2" *ngFor="let s of data">
-          <img src="{{s.story.path}}" class="mr-3" style="width: 80%; height: auto; max-height: 66vh; object-fit: contain;">
+          <img src="{{s.story}}" class="mr-3" style="width: 80%; height: auto; max-height: 66vh; object-fit: contain;">
 
           <button mat-mini-fab color="primary" (click)="addStoryToHighlights(s)" *ngIf="!isSelected(s)">
             <mat-icon>add</mat-icon>

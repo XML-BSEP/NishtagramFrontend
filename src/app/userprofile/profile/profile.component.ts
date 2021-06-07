@@ -67,6 +67,18 @@ export class ProfileComponent implements OnInit {
         this.showUser = true;
       }
     )
+    let userInfo = new UserInFeed("1", "", "")
+    this.postService.getAllStories(userInfo).subscribe(
+      res => {
+        this.allStories = res;
+      }
+    )
+
+    this.postService.getAllHighlightsByUser(userInfo).subscribe(
+      res => {
+        this.storyHighlights = res
+      }
+    )
 
 /*
     let following1 = new Following('prviFollower' , new Image('1','https://i.imgur.com/VQkoalX.jpeg'),true);
@@ -79,21 +91,11 @@ export class ProfileComponent implements OnInit {
     
     this.web = "https://"+this.user.web
     console.log(this.posts)
-
-    /*let storyHighlight1 = new StoryHighlightOnProfile(null,new Image('1',"https://cdn-1.motorsport.com/images/amp/YW74PKxY/s6/motogp-doha-gp-2021-valentino--2.jpg") , [s1, s2, s3], "motogp")
-    let storyHighlight2 = new StoryHighlightOnProfile(null,new Image('2',"https://cdn-1.motorsport.com/images/amp/YW74PKxY/s6/motogp-doha-gp-2021-valentino--2.jpg") , [s1, s2, s3], "motogp")
-    let storyHighlight3 = new StoryHighlightOnProfile(null,new Image('3',"https://cdn-1.motorsport.com/images/amp/YW74PKxY/s6/motogp-doha-gp-2021-valentino--2.jpg") , [s1, s2, s3], "motogp")*/
-
-    let newDate1 : Date = new Date(2021, 6,3,12,0,0,0)
-    let newDate2 : Date = new Date(2021, 6,3,10,0,0,0)
-    let newDate3 : Date = new Date(2021, 6,3,12,0,0,0)
-    let newDate4 : Date = new Date(2021, 6,3,11,0,0,0)
-    let newDate5 : Date = new Date(2021, 6,3,10,0,0,0)
     let newDate6 : Date = new Date(2021, 6,3,9,0,0,0)
+    
+    //this.storyHighlights = []
+    console.log(this.allStories)
 
-    this.storyHighlights = []
-
-    this.allStories=[]
 
   }
   goToEditProfile(){

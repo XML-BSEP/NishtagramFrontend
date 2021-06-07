@@ -15,6 +15,7 @@ import { PostInProfile } from 'src/app/model/profile/postInProfile';
 import { GetPostDTO } from 'src/app/model/getpost'
 import { Story } from 'src/app/model/feed/story';
 import { ProfileStory } from 'src/app/model/profile/profileStory';
+import { StoryHighlightOnProfile } from 'src/app/model/profile/storyHighlightOnProfile';
 @Injectable({
   providedIn: 'root'
 })
@@ -69,5 +70,12 @@ export class PostService {
     return this.https.post<Response>(`${environment.baseUrl}/${environment.addStory}`, story)
   }
 
+  getAllStories(userDTO : UserInFeed) : Observable<ProfileStory[]> {
+    return this.https.post<ProfileStory[]>(`${environment.baseUrl}/${environment.getAllStoriesOnProfile}`, userDTO)
+  }
+
+  getAllHighlightsByUser(userDTO : UserInFeed) : Observable<StoryHighlightOnProfile[]> {
+    return this.https.post<StoryHighlightOnProfile[]>(`${environment.baseUrl}/${environment.getAllHighlights}`, userDTO)
+  }
   
 }
