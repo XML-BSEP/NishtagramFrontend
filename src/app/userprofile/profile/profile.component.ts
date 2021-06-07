@@ -1,3 +1,4 @@
+import { UsersCollection } from './../../model/feed/usersCollection';
 import { ProfileStory } from './../../model/profile/profileStory';
 import { StoryHighlightAndStories } from './../../model/profile/storyHighlightAndStories';
 import { Story } from './../../model/feed/story';
@@ -40,8 +41,11 @@ export class ProfileComponent implements OnInit {
   arePosts : boolean = true;
   areStories : boolean = false;
   areFavorites : boolean = false;
+  areCollections : boolean = false;
   showUser : boolean = false;
-
+  allCollections : UsersCollection[]
+  isCollectionChosen : boolean = false
+  chosenCollection : PostInProfile[]
   constructor(
     private newHighlightDialog: MatDialog,
     private router: Router,
@@ -55,6 +59,7 @@ export class ProfileComponent implements OnInit {
     let follow2 = new UserInFeed("", 'drugiFollower', 'https://i.imgur.com/G8p9qBk.jpeg')
     let follow3 = new UserInFeed("", 'treciFollower', 'https://i.imgur.com/XKIdf2g.jpeg')
     let follow4 = new UserInFeed("", 'cetvrtiFollower','https://i.imgur.com/s7fMnMg.jpeg')
+    this.allCollections = [new UsersCollection("1", "Moja prva k0lekcija", null), new UsersCollection('2', "Moja druga kolekcija", null), new UsersCollection('3',"formula1", null)]
 
     let userInFeed = new UserInFeed("1", "1", "1")
     this.following = []
@@ -181,15 +186,31 @@ export class ProfileComponent implements OnInit {
     this.arePosts=true;
     this.areStories=false;
     this.areFavorites=false;
+    this.areCollections=false;
   }
   seeStories(){
     this.arePosts=false;
     this.areStories=true;
     this.areFavorites=false;
+    this.areCollections=false;
   }
   seeFavorites(){
     this.arePosts=false;
     this.areStories=false;
     this.areFavorites=true;
+    this.areCollections=false;
+  }
+  seeCollections(){
+    this.arePosts=false;
+    this.areStories=false;
+    this.areFavorites=false;
+    this.areCollections=true;
+  }
+  openCollection(collection){
+    this.isCollectionChosen = true;
+    this.chosenCollection = collection
+  }
+  backToProfile(){
+    this.isCollectionChosen=false;
   }
 }
