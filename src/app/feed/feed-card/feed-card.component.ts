@@ -48,12 +48,7 @@ export class FeedCardComponent implements OnInit {
     });
 
   }
-  like(){
-    if(this.post.isDisliked){
-      this.dislike();
-    }
-
-    
+  like(){   
     let like = new LikePost();
     like.postBy = this.post.user.id;
     like.postId = this.post.id;
@@ -62,8 +57,9 @@ export class FeedCardComponent implements OnInit {
     if (this.post.isLiked) {
       this.postService.removeLike(like).subscribe(
         res => {
-          this.toastr.info("Post unliked")
+          this.toastr.info("Like removed")
           this.post.isLiked = !this.post.isLiked;
+
         } , error => {
           this.toastr.error("Post unavailable")
         }
@@ -75,6 +71,9 @@ export class FeedCardComponent implements OnInit {
         res => {
           this.toastr.info("Post liked")
           this.post.isLiked = !this.post.isLiked;
+          if (this.post.isDisliked) {
+            this.post.isDisliked = false;
+          }
         } , error => {
           this.toastr.error("Post unavailable")
         }
@@ -86,35 +85,52 @@ export class FeedCardComponent implements OnInit {
 
   }
   dislike(){
-    if(this.post.isLiked){
-      this.like();
-    }
-
     
     let like = new LikePost();
     like.postBy = this.post.user.id;
     like.postId = this.post.id;
-
-
     if (this.post.isDisliked) {
       this.postService.removeDislike(like).subscribe(
         res => {
           this.toastr.info("Dislike removed")
-          this.post.isLiked = !this.post.isLiked;
+          this.post.isDisliked = !this.post.isDisliked;
+          if (this.post.isLiked) {
+            this.post.isLiked = false;
+          }
+
         } , error => {
           this.toastr.error("Post unavailable")
         }
       )
       
-    } else {
+    }else 
+    {
     
       this.postService.dislikePost(like).subscribe(
         res => {
-          this.toastr.info("Post disliked")
-          this.post.isDisliked = !this.post.isDisliked;
-        } , error => {
-          this.toastr.error("Post unavailable")
-        }
+          if (this.post.isLiked) {
+            this.postService.removeLike(like).subscribe(
+              res => {
+                this.post.isDisliked = true;
+                this.toastr.info("Post disliked")
+                this.post.isLiked = false;
+              } , error => {
+                this.toastr.error("Post unavailable")
+              }
+            )
+          } else {
+
+          this.postService.removeLike(like).subscribe(
+            res => {
+              this.post.isDisliked = true;
+              this.toastr.info("Post disliked")
+              this.post.isLiked = false;
+            } , error => {
+              this.toastr.error("Post unavailable")
+            }
+          )
+          }
+        } 
       )
 
     }

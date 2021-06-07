@@ -1,3 +1,4 @@
+<div *ngIf="showUser">
 <div class="component">
   <div class="container">
     <div class="row py-5 mt-5">
@@ -90,7 +91,7 @@
                   </div>
                   <div class="row" *ngIf="!profile.private">
                       <div class="col-lg-6 mb-2 d-flex justify-content-center " *ngFor="let post of profile.posts">
-                        <img src={{post.image.path}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
+                        <img src={{post.image}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
                       </div>
                   </div>
               </div>
@@ -111,4 +112,5 @@
 
   </div>
 
+</div>
 </div>

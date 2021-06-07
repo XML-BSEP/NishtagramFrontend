@@ -32,5 +32,6 @@ export class Post{
     this.isBookmarked = false;
     this.time = time;
     this.moment = moment;
+    this.comments = []
   }
 }

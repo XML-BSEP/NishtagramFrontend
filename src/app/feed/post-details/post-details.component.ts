@@ -40,6 +40,8 @@ export class PostDetailsComponent implements OnInit {
     }
     console.log(history.state.data)
     this.post = history.state.data;
+    console.log(this.post)
+    this.post.comments = []
 /*
     this.user1 = new UserInFeed("svijetlana123", new Image('1','https://pbs.twimg.com/profile_images/653700295395016708/WjGTnKGQ_400x400.png' ))
     this.user2 = new UserInFeed("komentator1", new Image('2','https://i.imgur.com/1YrCKa1.jpg' ))

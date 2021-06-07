@@ -10,7 +10,9 @@ import { Post } from 'src/app/model/feed/post';
 import { LikePost } from 'src/app/model/feed/likepost';
 import { Comment } from 'src/app/model/feed/comment';
 import { PostDTO } from 'src/app/model/feed/postdto';
-
+import { UserInFeed } from 'src/app/model/feed/userInFeed';
+import { PostInProfile } from 'src/app/model/profile/postInProfile';
+import { GetPostDTO } from 'src/app/model/getpost'
 @Injectable({
   providedIn: 'root'
 })
@@ -47,6 +49,14 @@ export class PostService {
 
   getAllComments(post : PostDTO) : Observable<Comment[]> {
     return this.https.post<Comment[]>(`${environment.baseUrl}/${environment.getComments}`, post);
+  }
+
+  getAllPostsInProfile(user : UserInFeed) : Observable<PostInProfile[]> {
+    return this.https.post<PostInProfile[]>(`${environment.baseUrl}/${environment.getMyPosts}`, user)
+  }
+
+  getPostById(getPost : GetPostDTO) : Observable<Post[]> {
+    return this.https.post<Post[]>(`${environment.baseUrl}/${environment.getPostById}`, getPost)
   }
 
   

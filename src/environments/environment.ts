@@ -29,7 +29,9 @@ export const environment = {
   addToCollection : "addToCollection",
   removeLike : "removeLike",
   removeDislike : "removeDislike", 
-  getComments : "getAllComments"
+  getComments : "getAllComments",
+  getMyPosts : "getPostsOnProfile",
+  getPostById : "getPostById"
 };
 
 /*

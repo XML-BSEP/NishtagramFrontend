@@ -21,12 +21,12 @@ export class SearchComponent implements OnInit {
       'category' : new FormControl(null, Validators.required),
       'query' : new FormControl(null, Validators.required)
     });
-/*
-    let u1 = new UserInFeed('prviFollower' , new Image('1','https://i.imgur.com/VQkoalX.jpeg'));
-    let u2 = new UserInFeed('drugiFollower', new Image('2','https://i.imgur.com/G8p9qBk.jpeg'))
-    let u3 = new UserInFeed('treciFollower', new Image('3','https://i.imgur.com/XKIdf2g.jpeg'))
-    let u4 = new UserInFeed('cetvrtiFollower', new Image('4','https://i.imgur.com/s7fMnMg.jpeg'))
-    this.searchedProfiles=[u1,u2,u3,u4]*/
+
+    let u1 = new UserInFeed('1', '1' , 'https://i.imgur.com/VQkoalX.jpeg');
+    let u2 = new UserInFeed('2', '2', 'https://i.imgur.com/G8p9qBk.jpeg')
+    let u3 = new UserInFeed('3', 'treciFollower', 'https://i.imgur.com/XKIdf2g.jpeg')
+    let u4 = new UserInFeed('4', 'cetvrtiFollower', 'https://i.imgur.com/s7fMnMg.jpeg')
+    this.searchedProfiles=[u1,u2,u3,u4]
   }
   search(){
     console.log(this.searchForm.controls.category.value + " " + this.searchForm.controls.query.value)
