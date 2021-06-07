@@ -36,6 +36,7 @@ import { StoryHighlightDialogComponent } from './dialogs/story-highlight-dialog/
 import { NewhighlightDialogComponent } from './dialogs/newhighlight-dialog/newhighlight-dialog.component';
 import { NewstoryDialogComponent } from './dialogs/newstory-dialog/newstory-dialog.component';
 import { SearchComponent } from './feed/search/search.component';
+import { Add2collectionDialogComponent } from './dialogs/add2collection-dialog/add2collection-dialog.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { SearchComponent } from './feed/search/search.component';
     NewhighlightDialogComponent,
     NewstoryDialogComponent,
     SearchComponent,
+    Add2collectionDialogComponent,
 
   ],
   imports: [

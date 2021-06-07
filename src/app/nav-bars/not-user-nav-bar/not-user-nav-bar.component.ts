@@ -26,7 +26,7 @@ export class NotUserNavBarComponent implements OnInit {
     private toastr : ToastrService,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {/*
     let follow1 = new UserInFeed('prviFollower' , new Image('1','https://i.imgur.com/VQkoalX.jpeg'));
     let follow2 = new UserInFeed('drugiFollower', new Image('2','https://i.imgur.com/G8p9qBk.jpeg'))
     let follow3 = new UserInFeed('treciFollower', new Image('3','https://i.imgur.com/XKIdf2g.jpeg'))
@@ -40,7 +40,7 @@ export class NotUserNavBarComponent implements OnInit {
     let not2 = new Notification(new Date(), "Primer druge test notifikacije hahahaha", '/login', follow2, true, post2);
     let not3 = new Notification(new Date(), "Primer trece test notifikacije hahahaha", '/home', follow3, true, post3);
     let not4 = new Notification(new Date(), "Primer cetvrte test notifikacije hahahaha", '/', follow4, false, null);
-    this.notifications = [not1, not2, not3, not4]
+    this.notifications = [not1, not2, not3, not4]*/
 
   }
   openNotificationsDialog(){

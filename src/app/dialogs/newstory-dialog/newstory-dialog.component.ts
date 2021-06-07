@@ -3,6 +3,8 @@ import { ProfileStory } from './../../model/profile/profileStory';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Image } from 'src/app/model/feed/image';
+import { PostService } from 'src/app/service/post/postservice';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-newstory-dialog',
@@ -13,7 +15,8 @@ export class NewstoryDialogComponent implements OnInit {
   s : ProfileStory
   img : String
   selected:boolean = false;
-  constructor(public dialogRef: MatDialogRef<NewstoryDialogComponent>) { }
+
+  constructor(public dialogRef: MatDialogRef<NewstoryDialogComponent>, private postService : PostService, private toastr : ToastrService) { }
 
   ngOnInit(): void {
 
@@ -29,7 +32,10 @@ export class NewstoryDialogComponent implements OnInit {
           };
           this.selected=true;
 
+
     }
+
+
   }
 
   close() {
@@ -37,15 +43,31 @@ export class NewstoryDialogComponent implements OnInit {
   }
 
   done(){
-    var newProfileStory = new ProfileStory(null,new Image(null, this.img))
+    var newProfileStory = new ProfileStory("", this.img, false, false)
     var newUserStory = new NewStory(null,newProfileStory, new Date(), false)
-    //POZIV BEKENDU
+
+    this.postService.addStory(newProfileStory).subscribe(
+      res => {
+        this.toastr.success("Successfully added story.")
+      }, error => {
+        
+        this.toastr.error("Service unavailable.")
+      }
+    )
     this.close()
   }
   doneCF(){
-    var newProfileStory = new ProfileStory(null,new Image(null, this.img))
+    var newProfileStory = new ProfileStory("", this.img, true, false)
     var newUserStory = new NewStory(null,newProfileStory, new Date(), true)
     //POZIV BEKENDU
+    this.postService.addStory(newProfileStory).subscribe(
+      res => {
+        this.toastr.success("Successfully added story.")
+      }, error => {
+        
+        this.toastr.error("Service unavailable.")
+      }
+    )
     this.close()
   }
 }

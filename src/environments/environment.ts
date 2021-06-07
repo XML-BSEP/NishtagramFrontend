@@ -22,8 +22,21 @@ export const environment = {
   checkLoggedUser : "checkLoggedUser",
   getUserById : "getUserById",
   getUserProfileById : "getUserProfileById",
-  editUser : "editUser"
-  
+  editUser : "editUser",
+  createPost : "addPost",
+  feed : "feed",
+  like : "like",
+  dislike : "dislike",
+  comment : "comment",
+  favorite : "favorite",
+  addToCollection : "addToCollection",
+  removeLike : "removeLike",
+  removeDislike : "removeDislike", 
+  getComments : "getAllComments",
+  getMyPosts : "getPostsOnProfile",
+  getPostById : "getPostById",
+  getStories : "getStories",
+  addStory : "addStory"
 };
 
 /*

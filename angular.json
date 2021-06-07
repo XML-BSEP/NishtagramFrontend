@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "nishtagramfronend"
+  "defaultProject": "nishtagramfronend",
+  "cli": {
+    "analytics": false
+  }
 }
