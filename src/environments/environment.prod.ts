@@ -17,5 +17,6 @@ export const environment = {
   usersFollowings : "usersFollowings",
   checkLoggedUser : "checkLoggedUser",
   getUserById : "getUserById",
-  getUserProfileById : "getUserProfileById"
+  getUserProfileById : "getUserProfileById",
+  editUser : "editUser"
 };

@@ -3,6 +3,9 @@ import { NewUser } from '../../model/user/newUser';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators, Form } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/model/profile/user';
+import {EditUser} from 'src/app/model/user/editUser';
+import {ProfileService} from 'src/app/service/profile/profile.service'
 
 @Component({
   selector: 'app-edit-profile',
@@ -17,7 +20,9 @@ export class EditProfileComponent implements OnInit {
   today : Date;
   changePass : boolean;
   user : NewUser;
-  constructor(private router: Router, private toastr : ToastrService) { }
+  editUser : User;
+  
+  constructor(private router: Router, private toastr : ToastrService, private privateService : ProfileService) { }
 
   ngOnInit(): void {
     if(history.state.data===undefined){
@@ -33,12 +38,13 @@ export class EditProfileComponent implements OnInit {
   });
 
     this.registrationForm = new FormGroup({
+  
     'name' : new FormControl(this.user.name, Validators.required),
     'surname' : new FormControl(this.user.surname, Validators.required),
     'email' : new FormControl(this.user.email, [Validators.required, Validators.email]),
     'address' : new FormControl(this.user.address, Validators.required),
     'phone' : new FormControl(this.user.phone, Validators.required),
-    'birthday' : new FormControl(this.user.birthday, Validators.required),
+    'birthday' : new FormControl(new Date(this.user.birthday), Validators.required),
     'gender' : new FormControl(this.user.gender, Validators.required),
     'web' : new FormControl(this.user.web),
     'bio' : new FormControl(this.user.bio),
@@ -102,6 +108,35 @@ export class EditProfileComponent implements OnInit {
 
     }
 
+  }
+
+  confirmEdit() {
+   
+    var name = this.registrationForm.controls.name.value;
+    var surname = this.registrationForm.controls.surname.value;
+    var email = this.registrationForm.controls.email.value;
+    var address = this.registrationForm.controls.address.value;
+    var phone = this.registrationForm.controls.phone.value;
+    var birthday = this.registrationForm.controls.birthday.value;
+    var gender = this.registrationForm.controls.gender.value;
+    var web = this.registrationForm.controls.web.value;
+    var bio = this.registrationForm.controls.bio.value;
+    var username = this.registrationForm.controls.username.value;
+
+    var date =  (new Date(new Date(birthday).toString().split('GMT')[0]+' UTC').toISOString());
+    
+    
+    var editUser = new EditUser(name, surname, email, address, phone, date, gender, web, bio, username, this.imgFile, true)
+    editUser.id = "12334414214133" //getcurrUserValue
+    this.privateService.editProfile(editUser).subscribe(
+      res => {
+        this.toastr.success("Edited!");
+        location.reload();
+      },
+      err => {
+        this.toastr.error(err);
+      }
+    );
 
   }
 
