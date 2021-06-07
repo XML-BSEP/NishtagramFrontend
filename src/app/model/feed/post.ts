@@ -8,6 +8,7 @@ export class Post{
   location : Location;
   description : String;
   isAlbum : boolean;
+  isVideo : boolean
   images: Image[];
   comments : Comment[];
   isLiked : boolean;
@@ -16,7 +17,8 @@ export class Post{
   collection : String;
   time : Date;
   moment : String;
-  constructor(user : UserInFeed, location : Location, description : String, isAlbum : boolean, images : Image[], comments : Comment[], time : Date, moment : String){
+  video : String;
+  constructor(user : UserInFeed, location : Location, description : String, isAlbum : boolean, images : Image[], comments : Comment[], time : Date, moment : String, isVideo : boolean, video : String){
     this.user = user;
     this.location = location;
     this.description = description;
@@ -28,5 +30,7 @@ export class Post{
     this.isBookmarked = false;
     this.time = time;
     this.moment = moment;
+    this.isVideo = isVideo;
+    this.video = video
   }
 }

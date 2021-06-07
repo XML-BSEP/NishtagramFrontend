@@ -31,6 +31,7 @@ export class HomepageComponent implements OnInit {
   public comments1 : Comment[];
   public comments2 : Comment[];
   public stories : Story[]
+
   image1 = new Image('1','https://i.imgur.com/1YrCKa1.jpg')
   image2 = new Image('2','https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg')
   image3 = new Image('3','https://i.imgur.com/9AZ2QX1.jpg')
@@ -73,10 +74,10 @@ export class HomepageComponent implements OnInit {
     let a = moment(date).fromNow();
     let a1 = moment(date1).fromNow();
 
-    this.post1 = new Post(this.user1, this.postLocation, "IDegasnamax luudnica matori, pogle ovog slona i ove ribojzle", true, this.images1, this.comments1, date, a)
+    this.post1 = new Post(this.user1, this.postLocation, "IDegasnamax luudnica matori, pogle ovog slona i ove ribojzle", true, this.images1, this.comments1, date, a, false, null)
 
 
-    this.post2 = new Post(this.user2, this.postLocation, "WOOOOOOW AJAO KAKO OVAJ NISHTAGRAM GASIRA #idegasnamax", false, this.images2, this.comments2, date1, a1)
+    this.post2 = new Post(this.user2, this.postLocation, "WOOOOOOW AJAO KAKO OVAJ NISHTAGRAM GASIRA #idegasnamax", false, null, this.comments2, date1, a1, true, "../../../assets/test.mp4")
     this.feed = [this.post1, this.post2, this.post1]
     var story1 = new Story(this.user1,new StoryContent(false,new Image('1','https://i.imgur.com/1YrCKa1.jpg') ),newDate1)
     var story2 = new Story(this.user2,new StoryContent(false,new Image('1','https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg') ),newDate2)
