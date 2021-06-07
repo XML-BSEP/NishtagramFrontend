@@ -8,7 +8,7 @@ export class Post{
   location : Location;
   description : String;
   isAlbum : boolean;
-  images: Image[];
+  images: string[];
   comments : Comment[];
   isLiked : boolean;
   isDisliked : boolean;
@@ -16,7 +16,7 @@ export class Post{
   collection : String;
   time : Date;
   moment : String;
-  constructor(user : UserInFeed, location : Location, description : String, isAlbum : boolean, images : Image[], comments : Comment[], time : Date, moment : String){
+  constructor(user : UserInFeed, location : Location, description : String, isAlbum : boolean, images : string[], comments : Comment[], time : Date, moment : String){
     this.user = user;
     this.location = location;
     this.description = description;

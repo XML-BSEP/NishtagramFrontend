@@ -6,6 +6,7 @@ import { RegisteredUser } from 'src/app/model/user/registeredUser';
 import { ConfirmRegistration} from 'src/app/model/user/confirmRegistration'
 import { NewPost } from 'src/app/model/createPost/newPost';
 import { Observable } from 'rxjs';
+import { Post } from 'src/app/model/feed/post';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,9 @@ export class PostService {
 
   postMedia(newPost : NewPost) : Observable<Response> {
      return this.https.post<Response>(`${environment.baseUrl}/${environment.createPost}`, newPost)
+  }
+
+  generateFeed() : Observable<Post[]> {
+    return this.https.get<Post[]>(`${environment.baseUrl}/${environment.feed}`)
   }
 }

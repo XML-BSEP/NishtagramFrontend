@@ -9,6 +9,7 @@ import { Post } from './../../model/feed/post';
 import { Component, OnInit, Input } from '@angular/core';
 import { Image } from 'src/app/model/feed/image';
 import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
+import { PostService } from 'src/app/service/post/postservice';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class FeedCardComponent implements OnInit {
   public commentForm: FormGroup;
 
 
-  constructor(private router : Router,
+  constructor(private router : Router, private postService : PostService,
     private dialog : MatDialog) { }
 
   ngOnInit() {
@@ -37,6 +38,7 @@ export class FeedCardComponent implements OnInit {
 
     }
 
+  
     this.commentForm = new FormGroup({
       'comm' : new FormControl(null),
     });

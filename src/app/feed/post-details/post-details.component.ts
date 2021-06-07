@@ -25,10 +25,10 @@ export class PostDetailsComponent implements OnInit {
   public comments1 : Comment[];
   public comments2 : Comment[];
 
-  image1 = new Image('1','https://i.imgur.com/1YrCKa1.jpg')
-  image2 = new Image('2','https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg')
-  image3 = new Image('3','https://i.imgur.com/9AZ2QX1.jpg')
-  image4 = new Image('4','https://scontent.fbeg2-1.fna.fbcdn.net/v/t1.15752-9/186472462_509117580122979_233512009969789842_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=ae9488&_nc_ohc=Pvaojs405SsAX-svZ9a&_nc_ht=scontent.fbeg2-1.fna&oh=846315e00aa5c71b410eeaabae6c0e4e&oe=60C698CD')
+  image1 = 'https://i.imgur.com/1YrCKa1.jpg'
+  image2 = 'https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg'
+  image3 = 'https://i.imgur.com/9AZ2QX1.jpg'
+  image4 = 'https://scontent.fbeg2-1.fna.fbcdn.net/v/t1.15752-9/186472462_509117580122979_233512009969789842_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=ae9488&_nc_ohc=Pvaojs405SsAX-svZ9a&_nc_ht=scontent.fbeg2-1.fna&oh=846315e00aa5c71b410eeaabae6c0e4e&oe=60C698CD'
   images1 = [this.image1, this.image2, this.image3, this.image4]
   images2 = [this.image4]
   images3 = [this.image4]

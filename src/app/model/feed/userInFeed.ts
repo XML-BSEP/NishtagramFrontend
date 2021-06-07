@@ -1,8 +1,9 @@
 import { Image } from "./image";
 
 export class UserInFeed{
-  username : String;
-  profilePhoto : Image;
+  public id : String;
+  public username : String;
+  public profilePhoto : Image;
   constructor(username : String, profilPhoto : Image)
   {
     this.username = username;

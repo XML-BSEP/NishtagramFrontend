@@ -11,6 +11,7 @@ import { Image } from 'src/app/model/feed/image';
 import * as moment from 'moment';
 import { Location } from 'src/app/model/utilities/location';
 import { Comment } from 'src/app/model/feed/comment';
+import { PostService } from 'src/app/service/post/postservice';
 
 @Component({
 	selector: 'ia-homepage',
@@ -31,10 +32,10 @@ export class HomepageComponent implements OnInit {
   public comments1 : Comment[];
   public comments2 : Comment[];
   public stories : Story[]
-  image1 = new Image('1','https://i.imgur.com/1YrCKa1.jpg')
-  image2 = new Image('2','https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg')
-  image3 = new Image('3','https://i.imgur.com/9AZ2QX1.jpg')
-  image4 = new Image('4','https://scontent.fbeg2-1.fna.fbcdn.net/v/t1.15752-9/186472462_509117580122979_233512009969789842_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=ae9488&_nc_ohc=Pvaojs405SsAX-svZ9a&_nc_ht=scontent.fbeg2-1.fna&oh=846315e00aa5c71b410eeaabae6c0e4e&oe=60C698CD')
+  image1 = 'https://i.imgur.com/1YrCKa1.jpg'
+  image2 = 'https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg'
+  image3 = 'https://i.imgur.com/9AZ2QX1.jpg'
+  image4 = 'https://scontent.fbeg2-1.fna.fbcdn.net/v/t1.15752-9/186472462_509117580122979_233512009969789842_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=ae9488&_nc_ohc=Pvaojs405SsAX-svZ9a&_nc_ht=scontent.fbeg2-1.fna&oh=846315e00aa5c71b410eeaabae6c0e4e&oe=60C698CD'
   images1 = [this.image1, this.image2, this.image3, this.image4]
   images2 = [this.image4]
   images3 = [this.image4]
@@ -44,6 +45,7 @@ export class HomepageComponent implements OnInit {
 		private router: Router,
 		private titleService: Title,
     private dialog : MatDialog,
+    private postService : PostService
 
 	) {
 		this.titleService.setTitle('Feed');
@@ -75,16 +77,29 @@ export class HomepageComponent implements OnInit {
 
     this.post1 = new Post(this.user1, this.postLocation, "IDegasnamax luudnica matori, pogle ovog slona i ove ribojzle", true, this.images1, this.comments1, date, a)
 
+    this.postService.generateFeed().subscribe(
+      res => {
+        console.log(res)
+        let feeds = []
+        for (let f of res) {
+          f.comments = []
+          f.user = new UserInFeed("username", new Image("1", 'https://pbs.twimg.com/profile_images/653700295395016708/WjGTnKGQ_400x400.png'));
+
+        }
+        this.feed = res;
+      
+      }
+    )
 
     this.post2 = new Post(this.user2, this.postLocation, "WOOOOOOW AJAO KAKO OVAJ NISHTAGRAM GASIRA #idegasnamax", false, this.images2, this.comments2, date1, a1)
-    this.feed = [this.post1, this.post2, this.post1]
-    var story1 = new Story(this.user1,new StoryContent(false,new Image('1','https://i.imgur.com/1YrCKa1.jpg') ),newDate1)
-    var story2 = new Story(this.user2,new StoryContent(false,new Image('1','https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg') ),newDate2)
-    var story3 = new Story(this.user3,new StoryContent(false,new Image('1','https://i.imgur.com/9AZ2QX1.jpg') ),newDate3)
-    var story4 = new Story(this.user1,new StoryContent(false,new Image('1','https://pbs.twimg.com/profile_images/653700295395016708/WjGTnKGQ_400x400.png') ),newDate4)
-    var story5 = new Story(this.user2,new StoryContent(false,new Image('1','https://scontent.fbeg2-1.fna.fbcdn.net/v/t1.15752-9/186472462_509117580122979_233512009969789842_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=ae9488&_nc_ohc=Pvaojs405SsAX-svZ9a&_nc_ht=scontent.fbeg2-1.fna&oh=846315e00aa5c71b410eeaabae6c0e4e&oe=60C698CD') ),newDate5)
-    var story6 = new Story(this.user1,new StoryContent(false,new Image('1','https://i.imgur.com/1YrCKa1.jpg') ),newDate6)
-    this.stories =[story1, story2, story3, story4, story5, story6, story1, story2]
+   // this.feed = [this.post1, this.post2, this.post1]
+   /*var story1 = new Story(this.user1,new StoryContent(false, 'https://i.imgur.com/1YrCKa1.jpg'), newDate1)
+    var story2 = new Story(this.user2,new StoryContent(false,  'https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg'), newDate2)
+    var story3 = new Story(this.user3,new StoryContent(false, 'https://i.imgur.com/9AZ2QX1.jpg') ,newDate3)
+    var story4 = new Story(this.user1,new StoryContent(false, 'https://pbs.twimg.com/profile_images/653700295395016708/WjGTnKGQ_400x400.png'), newDate3)
+    var story5 = new Story(this.user2,new StoryContent(false,  'https://scontent.fbeg2-1.fna.fbcdn.net/v/t1.15752-9/186472462_509117580122979_233512009969789842_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=ae9488&_nc_ohc=Pvaojs405SsAX-svZ9a&_nc_ht=scontent.fbeg2-1.fna&oh=846315e00aa5c71b410eeaabae6c0e4e&oe=60C698CD') ,newDate5)
+    var story6 = new Story(this.user1,new StoryContent(false,'https://i.imgur.com/1YrCKa1.jpg'),newDate6)
+    this.stories =[story1, story2, story3, story4, story5, story6, story1, story2]*/
   }
   goToPostDetails(item){
     this.router.navigate(['/postDetails']);

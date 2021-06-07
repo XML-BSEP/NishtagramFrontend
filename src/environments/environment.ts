@@ -20,7 +20,8 @@ export const environment = {
   following : "following",
   usersFollowings : "usersFollowings",
   checkLoggedUser : "checkLoggedUser",
-  createPost : "addPost"
+  createPost : "addPost",
+  feed : "feed"
 };
 
 /*
