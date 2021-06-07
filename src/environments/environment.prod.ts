@@ -15,5 +15,7 @@ export const environment = {
   resendRegCode : "resendRegistrationCode",
   following : "following",
   usersFollowings : "usersFollowings",
-  checkLoggedUser : "checkLoggedUser"
+  checkLoggedUser : "checkLoggedUser",
+  getUserById : "getUserById",
+  getUserProfileById : "getUserProfileById"
 };

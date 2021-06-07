@@ -3,6 +3,8 @@ import { CheckLoggedUser } from './../../model/user/checkLoggedUser';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import {User} from './../../model/profile/user';
+import {UserProfile} from './../../model/profile/userProfile'
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +20,14 @@ export class ProfileService {
   // checkUserLogged(data : CheckLoggedUser):Observable<>{
   //   return this.http.post<Response>(`${environment.baseUrl}/${environment.checkLoggedUser}`,data, {responseType : 'json'});
   // }
+
+  getUserById(id : String) : Observable<User>{ 
+    return this.http.get<User>(`${environment.baseUrl}/${environment.getUserById}?userId=${id}`);
+  }
+
+  getUserProfileById(id : String) : Observable<UserProfile> {
+    return this.http.get<UserProfile>(`${environment.baseUrl}/${environment.getUserById}?userId=${id}`);
+  }
+
 
 }

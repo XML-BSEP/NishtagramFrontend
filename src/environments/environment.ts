@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://localhost:8080',
+  baseUrl: 'https://localhost:8082',
   login:"login",
   auth:"auth",
   refresh:"refresh",
@@ -19,7 +19,10 @@ export const environment = {
   resendRegCode : "resendRegistrationCode",
   following : "following",
   usersFollowings : "usersFollowings",
-  checkLoggedUser : "checkLoggedUser"
+  checkLoggedUser : "checkLoggedUser",
+  getUserById : "getUserById",
+  getUserProfileById : "getUserProfileById"
+  
 };
 
 /*

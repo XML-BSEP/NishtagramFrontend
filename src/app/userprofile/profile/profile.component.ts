@@ -17,6 +17,8 @@ import { StoryContent } from 'src/app/model/feed/storyContent';
 import { NewhighlightDialogComponent } from 'src/app/dialogs/newhighlight-dialog/newhighlight-dialog.component';
 import { Following } from 'src/app/model/profile/following';
 import { User } from 'src/app/model/profile/user';
+import { ProfileService } from 'src/app/service/profile/profile.service';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -24,24 +26,53 @@ import { User } from 'src/app/model/profile/user';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  profile : UserProfile;
+  public profile : UserProfile;
   followers : UserInFeed[];
   following : Following[];
   posts : PostInProfile[];
-  web: String;
-  user : User;
+  public web: String;
+  public user : User;
   public isLoggedInUser : boolean = true;
   storyHighlights : StoryHighlightOnProfile[]
   allStories : ProfileStory[];
   storyHighsAndStories : StoryHighlightAndStories
   arePosts : boolean = true;
+  public profile2 : UserProfile;
+  public user2 : User;
   constructor(
     private newHighlightDialog: MatDialog,
     private router: Router,
     public dialog: MatDialog,
-    ) { }
+    private profileService: ProfileService,
+    private toastr: ToastrService
+    ) {    
+         this.profileService.getUserById("12334414214133").subscribe(
+      (data) => {
+        this.user2 = data;     
+      },
+      err => {
+        this.toastr.error(err);
+      }
+    );
+
+    this.profileService.getUserProfileById("12334414214133").subscribe(
+      data => {
+        this.profile = data;
+      },
+      err => {
+        this.toastr.error(err);
+      }
+    );
+     
+    }
+    
+
+      
 
   ngOnInit(): void {
+ 
+
+    
     this.user = new User("Pera", "Peric", "peroslav@gmail.com", "Novi Sad, Srbija", "0211231", new Date(1999,4,16,0,0,0,0), '1', 'www.aleksandarignjatijevic.com', "Ovo je moj kao neki opis. Hm ovde nesto pametno treba da pise? hmmm aj ovako. Cekam dok ne docekam kraj ovog mrtvog faksa", 'pera123', 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80');
     let follow1 = new UserInFeed('prviFollower' , new Image('1','https://i.imgur.com/VQkoalX.jpeg'));
     let follow2 = new UserInFeed('drugiFollower', new Image('2','https://i.imgur.com/G8p9qBk.jpeg'))
@@ -62,8 +93,10 @@ export class ProfileComponent implements OnInit {
     let post6 = new PostInProfile('pera123', new Image('5','https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg'),'12345678')
     let post5 = new PostInProfile('pera123', new Image('6','https://i.imgur.com/9AZ2QX1.jpg'),'123456789')
     this.web = "https://"+this.user.web
+
     this.posts = [post1, post2, post3, post4, post5, post6]
     this.profile = new UserProfile(this.user, this.followers, this.following, this.posts, false)
+    
     let s1 = new ProfileStory('1', new Image('1','https://cdn-1.motorsport.com/images/amp/0rGEw9P2/s6/motogp-italian-gp-2021-frances-2.jpg'))
     let s2 = new ProfileStory('2',new Image('2','https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/3/25/y0deko1jnokvnulhoiw0/motogp-peliculas'))
     let s3 = new ProfileStory('3', new Image('3','https://cdn.crash.net/styles/article/s3/image_importer/MotoGP/2802581.0008.jpg?itok=HvSDcpy1'))
