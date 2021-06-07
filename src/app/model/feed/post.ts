@@ -4,7 +4,7 @@ import { Location } from '../utilities/location';
 import { Comment} from '../feed/comment'
 import { Time } from '@angular/common';
 export class Post{
-  public id : String;
+  public id : string;
   public user : UserInFeed;
   public location : Location;
   public isVideo : boolean;

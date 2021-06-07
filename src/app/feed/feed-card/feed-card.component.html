@@ -82,7 +82,7 @@
 
                           <i *ngIf="!post.isBookmarked" class="bi bi-bookmark" (click)="bookmark()"></i>
                           <i *ngIf="post.isBookmarked" class="bi bi-bookmark-fill" (click)="bookmark()"></i>
-                          <i  class="bi bi-bookmark-plus"></i>
+                          <i  class="bi bi-bookmark-plus" (click)="saveToCollectionDialog(post)"> </i>
 
                          </div>
                         <div class="d-flex flex-row muted-color" (click)="toggleComments()"> <span *ngIf="post.numOfComments>1">{{post.numOfComments}} comments</span><span *ngIf="post.numOfComments==1">{{post.numOfComments}} comment</span></div>
