@@ -4,21 +4,24 @@ import { Location } from '../utilities/location';
 import { Comment} from '../feed/comment'
 import { Time } from '@angular/common';
 export class Post{
-  user : UserInFeed;
-  location : Location;
-  description : String;
-  isAlbum : boolean;
-  isVideo : boolean
-  images: Image[];
-  comments : Comment[];
-  isLiked : boolean;
-  isDisliked : boolean;
-  isBookmarked : boolean;
-  collection : String;
-  time : Date;
-  moment : String;
-  video : String;
-  constructor(user : UserInFeed, location : Location, description : String, isAlbum : boolean, images : Image[], comments : Comment[], time : Date, moment : String, isVideo : boolean, video : String){
+  public id : String;
+  public user : UserInFeed;
+  public location : Location;
+  public isVideo : boolean;
+  public description : String;
+  public isAlbum : boolean;
+  public images: string[];
+  public comments : Comment[];
+  public isLiked : boolean;
+  public isDisliked : boolean;
+  public isBookmarked : boolean;
+  public collection : String;
+  public time : Date;
+  public moment : String;
+  public numOfComments : number;
+  public numOfLikes : number;
+  public numOfDislikes : number;
+  constructor(user : UserInFeed, location : Location, description : String, isAlbum : boolean, images : string[], comments : Comment[], time : Date, moment : String){
     this.user = user;
     this.location = location;
     this.description = description;
@@ -30,7 +33,6 @@ export class Post{
     this.isBookmarked = false;
     this.time = time;
     this.moment = moment;
-    this.isVideo = isVideo;
-    this.video = video
+    this.comments = []
   }
 }

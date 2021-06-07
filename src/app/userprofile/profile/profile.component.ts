@@ -17,6 +17,8 @@ import { StoryContent } from 'src/app/model/feed/storyContent';
 import { NewhighlightDialogComponent } from 'src/app/dialogs/newhighlight-dialog/newhighlight-dialog.component';
 import { Following } from 'src/app/model/profile/following';
 import { User } from 'src/app/model/profile/user';
+import { PostService } from 'src/app/service/post/postservice';
+import { GetPostDTO } from 'src/app/model/getpost';
 
 @Component({
   selector: 'app-profile',
@@ -35,42 +37,52 @@ export class ProfileComponent implements OnInit {
   allStories : ProfileStory[];
   storyHighsAndStories : StoryHighlightAndStories
   arePosts : boolean = true;
+  showUser : boolean = false;
   constructor(
     private newHighlightDialog: MatDialog,
     private router: Router,
     public dialog: MatDialog,
+    private postService : PostService
     ) { }
 
   ngOnInit(): void {
     this.user = new User("Pera", "Peric", "peroslav@gmail.com", "Novi Sad, Srbija", "0211231", new Date(1999,4,16,0,0,0,0), '1', 'www.aleksandarignjatijevic.com', "Ovo je moj kao neki opis. Hm ovde nesto pametno treba da pise? hmmm aj ovako. Cekam dok ne docekam kraj ovog mrtvog faksa", 'pera123', 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80');
-    let follow1 = new UserInFeed('prviFollower' , new Image('1','https://i.imgur.com/VQkoalX.jpeg'));
-    let follow2 = new UserInFeed('drugiFollower', new Image('2','https://i.imgur.com/G8p9qBk.jpeg'))
-    let follow3 = new UserInFeed('treciFollower', new Image('3','https://i.imgur.com/XKIdf2g.jpeg'))
-    let follow4 = new UserInFeed('cetvrtiFollower', new Image('4','https://i.imgur.com/s7fMnMg.jpeg'))
+    let follow1 = new UserInFeed("", 'prviFollower' , 'https://i.imgur.com/VQkoalX.jpeg');
+    let follow2 = new UserInFeed("", 'drugiFollower', 'https://i.imgur.com/G8p9qBk.jpeg')
+    let follow3 = new UserInFeed("", 'treciFollower', 'https://i.imgur.com/XKIdf2g.jpeg')
+    let follow4 = new UserInFeed("", 'cetvrtiFollower','https://i.imgur.com/s7fMnMg.jpeg')
 
+    let userInFeed = new UserInFeed("1", "1", "1")
+    this.following = []
+    this.postService.getAllPostsInProfile(userInFeed).subscribe(
+      res => {
+        this.posts = []
+        for (let p of res) {
+          console.log(p)
+          this.posts.push(new PostInProfile(p.user, p.image, p.postid, p.isVideo))
+          console.log(p.postid)
+        }
+        this.profile = new UserProfile(this.user, this.followers, this.following, this.posts, false)
+        console.log(this.posts)
+        this.showUser = true;
+      }
+    )
+
+/*
     let following1 = new Following('prviFollower' , new Image('1','https://i.imgur.com/VQkoalX.jpeg'),true);
     let following2 = new Following('drugiFollower', new Image('2','https://i.imgur.com/G8p9qBk.jpeg'),true)
     let following3 = new Following('treciFollower', new Image('2','https://i.imgur.com/XKIdf2g.jpeg'),false)
-    let following4 = new Following('cetvrtiFollower', new Image('4','https://i.imgur.com/s7fMnMg.jpeg'),true)
+    let following4 = new Following('cetvrtiFollower', new Image('4','https://i.imgur.com/s7fMnMg.jpeg'),true)*/
 
     this.followers = [follow1, follow2, follow3, follow4,follow1, follow2, follow3, follow4,follow1, follow2, follow3, follow4,follow1, follow2, follow3, follow4]
-    this.following = [following1, following2, following3, following4]
-    let post1 = new PostInProfile('pera123', new Image('1','https://images.unsplash.com/photo-1493571716545-b559a19edd14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80'),'123')
-    let post2 = new PostInProfile('pera123', new Image('2','https://images.unsplash.com/photo-1453791052107-5c843da62d97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'),'1234')
-    let post3 = new PostInProfile('pera123', new Image('3','https://i.imgur.com/1YrCKa1.jpg'),'12345')
-    let post4 = new PostInProfile('pera123', new Image('4','https://scontent.fbeg2-1.fna.fbcdn.net/v/t1.15752-9/186472462_509117580122979_233512009969789842_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=ae9488&_nc_ohc=Pvaojs405SsAX-svZ9a&_nc_ht=scontent.fbeg2-1.fna&oh=846315e00aa5c71b410eeaabae6c0e4e&oe=60C698CD'),'1234567')
-    let post6 = new PostInProfile('pera123', new Image('5','https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg'),'12345678')
-    let post5 = new PostInProfile('pera123', new Image('6','https://i.imgur.com/9AZ2QX1.jpg'),'123456789')
+    
+    
     this.web = "https://"+this.user.web
-    this.posts = [post1, post2, post3, post4, post5, post6]
-    this.profile = new UserProfile(this.user, this.followers, this.following, this.posts, false)
-    let s1 = new ProfileStory('1', new Image('1','https://cdn-1.motorsport.com/images/amp/0rGEw9P2/s6/motogp-italian-gp-2021-frances-2.jpg'))
-    let s2 = new ProfileStory('2',new Image('2','https://img.redbull.com/images/c_limit,w_1500,h_1000,f_auto,q_auto/redbullcom/2020/3/25/y0deko1jnokvnulhoiw0/motogp-peliculas'))
-    let s3 = new ProfileStory('3', new Image('3','https://cdn.crash.net/styles/article/s3/image_importer/MotoGP/2802581.0008.jpg?itok=HvSDcpy1'))
+    console.log(this.posts)
 
-    let storyHighlight1 = new StoryHighlightOnProfile(null,new Image('1',"https://cdn-1.motorsport.com/images/amp/YW74PKxY/s6/motogp-doha-gp-2021-valentino--2.jpg") , [s1, s2, s3], "motogp")
+    /*let storyHighlight1 = new StoryHighlightOnProfile(null,new Image('1',"https://cdn-1.motorsport.com/images/amp/YW74PKxY/s6/motogp-doha-gp-2021-valentino--2.jpg") , [s1, s2, s3], "motogp")
     let storyHighlight2 = new StoryHighlightOnProfile(null,new Image('2',"https://cdn-1.motorsport.com/images/amp/YW74PKxY/s6/motogp-doha-gp-2021-valentino--2.jpg") , [s1, s2, s3], "motogp")
-    let storyHighlight3 = new StoryHighlightOnProfile(null,new Image('3',"https://cdn-1.motorsport.com/images/amp/YW74PKxY/s6/motogp-doha-gp-2021-valentino--2.jpg") , [s1, s2, s3], "motogp")
+    let storyHighlight3 = new StoryHighlightOnProfile(null,new Image('3',"https://cdn-1.motorsport.com/images/amp/YW74PKxY/s6/motogp-doha-gp-2021-valentino--2.jpg") , [s1, s2, s3], "motogp")*/
 
     let newDate1 : Date = new Date(2021, 6,3,12,0,0,0)
     let newDate2 : Date = new Date(2021, 6,3,10,0,0,0)
@@ -79,12 +91,9 @@ export class ProfileComponent implements OnInit {
     let newDate5 : Date = new Date(2021, 6,3,10,0,0,0)
     let newDate6 : Date = new Date(2021, 6,3,9,0,0,0)
 
-    this.storyHighlights = [storyHighlight3, storyHighlight2, storyHighlight3,storyHighlight3, storyHighlight2, storyHighlight3,storyHighlight3, storyHighlight2, storyHighlight3,storyHighlight3, storyHighlight2,storyHighlight2]
-    let story1 = new ProfileStory('1', new Image('1',"https://cdn-1.motorsport.com/images/amp/24vV83g6/s6/pol-espargaro-repsol-honda-tea.jpg"))
-    let story2 = new ProfileStory('1',new Image('2',"https://ca-times.brightspotcdn.com/dims4/default/757b00f/2147483647/strip/true/crop/3402x2300+0+0/resize/1486x1005!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F68%2F57%2F8b8001bd479d899193713a8c62b2%2Fmonaco-f1-gp-auto-racing-37308.jpg"))
-    let story3 = new ProfileStory('1', new Image('3',"https://phantom-marca.unidadeditorial.es/d5d06c35184d312f171c99a3135dcdae/resize/1320/f/jpg/assets/multimedia/imagenes/2021/05/19/16214125179177.jpg"))
-    let story4 = new ProfileStory('1',new Image('4',"https://cdn.crash.net/styles/large_article/s3/image_importer/F1/2784382.0064.jpg?itok=f3aOaJs8"))
-    this.allStories=[story1, story2, story3, story4]
+    this.storyHighlights = []
+
+    this.allStories=[]
 
   }
   goToEditProfile(){
@@ -96,7 +105,18 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  showImage(post){
+  showImage(post : PostInProfile){
+    let postDTO = new GetPostDTO();
+    console.log(post.postid)
+    postDTO.PostId = post.postid;
+    postDTO.UserId = post.user;
+    
+    this.postService.getPostById(postDTO).subscribe(
+      res => {
+        console.log(res)
+        this.router.navigate(["/postDetails"], {state: {data: res}})
+      }
+    )
     console.log(post)
   }
   openFollowersDialog(){
@@ -152,6 +172,8 @@ export class ProfileComponent implements OnInit {
 
   }
   seePosts(){
+    console.log("asdas")
+    console.log(this.profile.posts)
     this.arePosts=true;
   }
   seeStories(){

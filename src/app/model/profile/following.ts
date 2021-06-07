@@ -1,10 +1,11 @@
 import { Image } from 'src/app/model/feed/image';
 
 export class Following{
-  username : String;
-  profilePhoto : Image;
-  close_friend : boolean;
-  constructor(username : String, profilPhoto : Image, close_friend : boolean)
+  public id : String;
+  public username : String;
+  public profilePhoto : string;
+  public close_friend : boolean;
+  constructor(username : String, profilPhoto : string, close_friend : boolean)
   {
     this.username = username;
     this.profilePhoto = profilPhoto;

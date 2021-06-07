@@ -8,6 +8,8 @@ import { Image } from 'src/app/model/feed/image';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { FileInput } from 'ngx-material-file-input';
+import { PostService } from '../service/post/postservice';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-post',
@@ -34,6 +36,10 @@ export class CreatePostComponent implements OnInit {
   filteredUsers : Observable<UserTag[]>;
   hashtags : string[] = new Array()
   hash : string =''
+
+  constructor(private postService : PostService, private toastr : ToastrService) {
+
+  }
   ngOnInit(): void {
     this.current=0;
     this.newPostForm = new FormGroup({
@@ -102,6 +108,13 @@ export class CreatePostComponent implements OnInit {
 
     var newPost = new NewPost(new UserTag(null,'ulogovaniuser'), this.taggedUsers, this.isVideo, this.isAlbum, this.isImage, image, album, video, this.newPostForm.controls.location.value, this.newPostForm.controls.caption.value,this.hashtags)
     console.log(newPost)
+    this.postService.postMedia(newPost).subscribe(
+      res => {
+        this.toastr.success("Successfully added media!")
+      }, error => {
+        this.toastr.error(error)
+      }      
+    )
   }
 
   onFileChangedAlbum(e) {

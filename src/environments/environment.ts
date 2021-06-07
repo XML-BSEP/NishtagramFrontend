@@ -19,7 +19,21 @@ export const environment = {
   resendRegCode : "resendRegistrationCode",
   following : "following",
   usersFollowings : "usersFollowings",
-  checkLoggedUser : "checkLoggedUser"
+  checkLoggedUser : "checkLoggedUser",
+  createPost : "addPost",
+  feed : "feed",
+  like : "like",
+  dislike : "dislike",
+  comment : "comment",
+  favorite : "favorite",
+  addToCollection : "addToCollection",
+  removeLike : "removeLike",
+  removeDislike : "removeDislike", 
+  getComments : "getAllComments",
+  getMyPosts : "getPostsOnProfile",
+  getPostById : "getPostById",
+  getStories : "getStories",
+  addStory : "addStory"
 };
 
 /*
