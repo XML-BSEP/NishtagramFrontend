@@ -18,6 +18,9 @@ import { ProfileStory } from 'src/app/model/profile/profileStory';
 import { StoryHighlightOnProfile } from 'src/app/model/profile/storyHighlightOnProfile';
 import { ViewHighlight } from 'src/app/model/highlight/viewhighlight';
 import { SaveHighlight } from 'src/app/model/newhighlight';
+import { UsersCollection } from 'src/app/model/feed/usersCollection';
+import { CollectionDTO } from 'src/app/userprofile/profile/collectiondto';
+import { PostInfo } from 'src/app/feed/feed-card/postinfo';
 @Injectable({
   providedIn: 'root'
 })
@@ -86,6 +89,26 @@ export class PostService {
 
   updateHighlight(highlight : SaveHighlight) : Observable<Response> {
     return this.https.post<Response>(`${environment.baseUrl}/${environment.saveHighlight}`, highlight)
+  }
+
+  getAllCollections() : Observable<UsersCollection[]> {
+    return this.https.get<UsersCollection[]>(`${environment.baseUrl}/${environment.getCollections}`);
+  }
+
+  getCollection(collectionName : CollectionDTO) : Observable<UsersCollection> {
+    return this.https.post<UsersCollection>(`${environment.baseUrl}/${environment.getPostsInCollection}`, collectionName)
+  }
+
+  getAllFavorites() : Observable<PostInProfile[]> {
+    return this.https.get<PostInProfile[]>(`${environment.baseUrl}/${environment.getFavorites}`)
+  }
+
+  addToFavorite(postInfo : PostInfo) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.addToFavorites}`, postInfo)
+  }
+
+  addToCollection(postInfo : PostInfo) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.addToCollection}`, postInfo)
   }
   
 }

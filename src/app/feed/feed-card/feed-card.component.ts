@@ -15,6 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/model/profile/user';
 import { PostDTO } from 'src/app/model/feed/postdto';
 import { Add2collectionDialogComponent } from 'src/app/dialogs/add2collection-dialog/add2collection-dialog.component';
+import { PostInfo } from './postinfo';
 
 
 @Component({
@@ -146,6 +147,17 @@ export class FeedCardComponent implements OnInit {
   }
 
   bookmark(){
+    let postInfo = new PostInfo();
+    postInfo.postBy = this.post.user.id;
+    postInfo.postId = this.post.id;
+
+    this.postService.addToFavorite(postInfo).subscribe(
+      res => {
+        this.toastr.info("Saved to favorites")
+      }, err => {
+        this.toastr.error("Service unavailable")
+      }
+    )
     this.post.isBookmarked = !this.post.isBookmarked;
     //TODO: BACKEND!
   }

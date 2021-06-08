@@ -21,6 +21,7 @@ import { User } from 'src/app/model/profile/user';
 import { PostService } from 'src/app/service/post/postservice';
 import { GetPostDTO } from 'src/app/model/getpost';
 import { ViewHighlight } from 'src/app/model/highlight/viewhighlight';
+import { CollectionDTO } from './collectiondto';
 
 @Component({
   selector: 'app-profile',
@@ -46,7 +47,7 @@ export class ProfileComponent implements OnInit {
   showUser : boolean = false;
   allCollections : UsersCollection[]
   isCollectionChosen : boolean = false
-  chosenCollection : PostInProfile[]
+  chosenCollection : UsersCollection
   constructor(
     private newHighlightDialog: MatDialog,
     private router: Router,
@@ -69,7 +70,7 @@ export class ProfileComponent implements OnInit {
         this.posts = []
         for (let p of res) {
           console.log(p)
-          this.posts.push(new PostInProfile(p.user, p.image, p.postid, p.isVideo))
+          this.posts.push(new PostInProfile(p.user, p.images, p.postid, p.isVideo))
           console.log(p.postid)
         }
         this.profile = new UserProfile(this.user, this.followers, this.following, this.posts, false)
@@ -122,7 +123,14 @@ export class ProfileComponent implements OnInit {
     let postDTO = new GetPostDTO();
     console.log(post.postid)
     postDTO.PostId = post.postid;
-    postDTO.UserId = post.user;
+    
+    if (post.postBy === "" || post.postBy === undefined) {
+      console.log(post.postBy)
+      postDTO.UserId = post.user;
+    } else {
+      console.log(post.postBy)
+      postDTO.UserId = post.postBy
+    }
 
     this.postService.getPostById(postDTO).subscribe(
       res => {
@@ -206,20 +214,41 @@ export class ProfileComponent implements OnInit {
     this.areCollections=false;
   }
   seeFavorites(){
+    this.postService.getAllFavorites().subscribe(
+      rest => {
+        this.allFavorites = rest
+        //this.chosenCollection = collection.posts
+      }
+    )
     this.arePosts=false;
     this.areStories=false;
     this.areFavorites=true;
     this.areCollections=false;
   }
   seeCollections(){
+    this.postService.getAllCollections().subscribe(
+      rest => {
+        this.allCollections = rest
+        //this.chosenCollection = collection.posts
+      }
+    )
     this.arePosts=false;
     this.areStories=false;
     this.areFavorites=false;
     this.areCollections=true;
   }
   openCollection(collection){
-    this.isCollectionChosen = true;
-    this.chosenCollection = collection
+    console.log(collection.name)
+    let req = new CollectionDTO()
+    req.name = collection.name
+    this.postService.getCollection(req).subscribe(
+      rest => {
+        this.isCollectionChosen = true;
+        this.chosenCollection = rest
+        console.log(this.chosenCollection)
+        console.log(rest)
+      }
+    )
   }
   backToProfile(){
     this.isCollectionChosen=false;

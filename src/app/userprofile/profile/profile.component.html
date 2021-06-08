@@ -109,11 +109,11 @@
                   <div class="row" *ngIf="!profile.private">
                       <div class="col-lg-6 mb-2 d-flex justify-content-center " *ngFor="let post of profile.posts">
                         <div *ngIf="!post.isVideo">
-                          <img src={{post.image}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
+                          <img src={{post.images}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
                         </div>
                         <div *ngIf="post.isVideo" >
                           <video controls disabled="true" style="object-fit: contain; max-width: 100%; max-height: 100%; justify-content: center;" #videoPlayer>
-                            <source src={{post.image}} type="video/mp4">
+                            <source src={{post.images} type="video/mp4">
                           </video>
                           <button mat-fab class="mr-3" color="primary" (click)="showImage(post)" *ngIf="isLoggedInUser">
                             <mat-icon>open_with</mat-icon>
@@ -134,11 +134,11 @@
               <div class="py-2 px-2" *ngIf="areFavorites">
                 <div class="col-lg-6 mb-2 d-flex justify-content-center " *ngFor="let post of allFavorites">
                   <div *ngIf="!post.isVideo">
-                    <img src={{post.image}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
+                    <img src={{post.images}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
                   </div>
                   <div *ngIf="post.isVideo" >
                     <video controls disabled="true" style="object-fit: contain; max-width: 100%; max-height: 100%; justify-content: center;" #videoPlayer>
-                      <source src={{post.image}} type="video/mp4">
+                      <source src={{post.images}} type="video/mp4">
                     </video>
                     <button mat-fab class="mr-3" color="primary" (click)="showImage(post)" *ngIf="isLoggedInUser">
                       <mat-icon>open_with</mat-icon>
@@ -164,11 +164,11 @@
               <div class="py-2 px-2" *ngIf="isCollectionChosen">
                 <div class="row d-flex justify-content-center mt-2 mb-3" *ngFor="let post of chosenCollection.posts">
                   <div *ngIf="!post.isVideo">
-                    <img src={{post.image}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
+                    <img src={{post.images}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
                   </div>
                   <div *ngIf="post.isVideo" >
                     <video controls disabled="true" style="object-fit: contain; max-width: 100%; max-height: 100%; justify-content: center;" #videoPlayer>
-                      <source src={{post.image}} type="video/mp4">
+                      <source src={{post.images}} type="video/mp4">
                     </video>
                     <button mat-fab class="mr-3" color="primary" (click)="showImage(post)" *ngIf="isLoggedInUser">
                       <mat-icon>open_with</mat-icon>

@@ -39,7 +39,11 @@ export const environment = {
   addHighlights : "addToHighlight",
   getAllHighlightStories : "getStoriesHighlight",
   removeHighlight : "removeFromHighlight",
-  saveHighlight : "saveHighlight"
+  saveHighlight : "saveHighlight",
+  getCollections : "getAllCollections",
+  getPostsInCollection : "getPostsInCollection",
+  getFavorites : "getFavorites",
+  addToFavorites : "addFavorite"
 };
 
 /*
