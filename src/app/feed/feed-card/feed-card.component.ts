@@ -54,6 +54,7 @@ export class FeedCardComponent implements OnInit {
     });
 
   }
+
   like(){
     let like = new LikePost();
     like.postBy = this.post.user.id;
@@ -151,18 +152,34 @@ export class FeedCardComponent implements OnInit {
   }
 
   bookmark(){
-    let postInfo = new PostInfo();
-    postInfo.postBy = this.post.user.id;
-    postInfo.postId = this.post.id;
-
-    this.postService.addToFavorite(postInfo).subscribe(
-      res => {
-        this.toastr.info("Saved to favorites")
-      }, err => {
-        this.toastr.error("Service unavailable")
-      }
-    )
-    this.post.isBookmarked = !this.post.isBookmarked;
+    if (this.post.isBookmarked) {
+      let postInfo = new PostInfo();
+      postInfo.postBy = this.post.user.id;
+      postInfo.postId = this.post.id;
+  
+      this.postService.removeFromFavorites(postInfo).subscribe(
+        res => {
+          this.toastr.info("Post removed")
+        }, err => {
+          this.toastr.error("Service unavailable")
+        }
+      )
+      this.post.isBookmarked = !this.post.isBookmarked;
+    } else {
+      let postInfo = new PostInfo();
+      postInfo.postBy = this.post.user.id;
+      postInfo.postId = this.post.id;
+  
+      this.postService.addToFavorite(postInfo).subscribe(
+        res => {
+          this.toastr.info("Saved to favorites")
+        }, err => {
+          this.toastr.error("Service unavailable")
+        }
+      )
+      this.post.isBookmarked = !this.post.isBookmarked;
+    }
+    
     //TODO: BACKEND!
   }
   comment(){
@@ -190,6 +207,9 @@ export class FeedCardComponent implements OnInit {
       )
 
     }
+  }
+  goToProfile(){
+    this.router.navigate(['/profile'], { queryParams: { id: this.post.user.id } });
   }
 
   toggleComments(){

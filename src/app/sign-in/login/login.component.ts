@@ -17,18 +17,22 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
 
   ngOnInit(): void {
+    console.log("sdfsdf")
+
     this.loginForm = new FormGroup({
       'username' : new FormControl(null, Validators.required),
       'password' : new FormControl(null, [Validators.required])
     });
   }
   login(){
+  
     var account = new Authentication(this.loginForm.controls.username.value, this.loginForm.controls.password.value)
     this.authService.login(account).subscribe(
       success => {
         this.router.navigate(['/home'])
       },
       error => {
+        console.log(error)
         this.router.navigate(['/login'])
         this.toastr.error(error)
       }

@@ -110,5 +110,9 @@ export class PostService {
   addToCollection(postInfo : PostInfo) : Observable<Response> {
     return this.https.post<Response>(`${environment.baseUrl}/${environment.addToCollection}`, postInfo)
   }
-  
+
+  removeFromFavorites(postInfo : PostInfo) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.removeFavorite}`, postInfo)
+  }
+
 }

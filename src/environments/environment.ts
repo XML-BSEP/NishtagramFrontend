@@ -20,6 +20,9 @@ export const environment = {
   following : "following",
   usersFollowings : "usersFollowings",
   checkLoggedUser : "checkLoggedUser",
+  getUserById : "getUserById",
+  getUserProfileById : "getUserProfileById",
+  editUser : "editUser",
   createPost : "addPost",
   feed : "feed",
   like : "like",
@@ -28,7 +31,7 @@ export const environment = {
   favorite : "favorite",
   addToCollection : "addToCollection",
   removeLike : "removeLike",
-  removeDislike : "removeDislike", 
+  removeDislike : "removeDislike",
   getComments : "getAllComments",
   getMyPosts : "getPostsOnProfile",
   getPostById : "getPostById",
@@ -43,7 +46,13 @@ export const environment = {
   getCollections : "getAllCollections",
   getPostsInCollection : "getPostsInCollection",
   getFavorites : "getFavorites",
-  addToFavorites : "addFavorite"
+  addToFavorites : "addFavorite",
+  isUserAllowedToFollow : "isAllowedToFollow",
+  follow : "follow",
+  cancelFollowRequest: "cancelFollowRequest",
+  followers : "getAllUsersFollowersFront",
+  followingFront : "getAllUsersFollowingFront", 
+  removeFavorite : "removeFavorite"
 };
 
 /*

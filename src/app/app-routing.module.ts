@@ -15,7 +15,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home',
     pathMatch: 'full'
   },{
     path: 'login',

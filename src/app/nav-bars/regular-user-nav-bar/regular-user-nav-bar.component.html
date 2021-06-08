@@ -14,21 +14,7 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
-      <!-- <li class="nav-item">
-        <i class="nav-link bi-plus-square"  (click)="test1()"></i>
-        <span class="sr-only">(current)</span>
-      </li>
-      <li class="nav-item">
-        <i class="nav-link bi-person-circle" (click)="test()"></i>
-        <span class="sr-only">(current)</span>
-      </li> -->
-
       <li class="nav-item" (click)="openNewStoryDialog()">
-        <!--  (click)="fileInput.click()"  -->
-        <!-- <input
-        style="display: none"
-        type="file" (change)="onFileChanged($event)"
-        #fileInput accept="image/x-png,image/gif,image/jpeg" > -->
         <i class="nav-link bi-clock-history"></i>
         <span class="sr-only">(current)</span>
       </li>
@@ -42,7 +28,7 @@
         <span class="sr-only">(current)</span>
       </li>
       <li class="nav-item">
-        <i class="nav-link bi-person-circle" routerLink="/profile"></i>
+        <i class="nav-link bi-person-circle" (click)="userProfile()"></i>
         <span class="sr-only">(current)</span>
       </li>
       <li class="nav-item" (click)="logout()">

@@ -1,6 +1,6 @@
 <div *ngIf="showUser">
 <div class="component">
-  <div class="container">
+  <div *ngIf="jeldobavio" class="container">
     <div class="row py-5 mt-5">
       <div class="col-md-8 mx-auto">
           <div class="bg-white shadow rounded overflow-hidden">
@@ -9,8 +9,9 @@
                       <div class="profile mr-3">
                         <img src={{profile.user.image}} alt="..." width="130" class="rounded mb-2 img-thumbnail">
                         <button mat-raised-button class="btn btn-sm btn-block" (click)="goToEditProfile()" *ngIf="isLoggedInUser">Edit profile</button>
-                        <button mat-raised-button class="btn btn-sm btn-block" (click)="goToEditProfile()" color="primary" *ngIf="!isLoggedInUser">Follow</button>
-
+                        <button mat-raised-button class="btn btn-sm btn-block" (click)="follow()" color="primary" *ngIf="!canBeUnfollowed && !requestSent && !isLoggedInUser">Follow</button>
+                        <button mat-raised-button class="btn btn-sm btn-block" (click)="unfollow()" color="accent" *ngIf="canBeUnfollowed">Unfollow</button>
+                        <button mat-raised-button class="btn btn-sm btn-block" (click)="cancelRequest()" *ngIf="requestSent">Cancel follow request</button>
                       </div>
                       <div class="media-body mb-5 text-white">
                           <h2 class="large mt-0 mb-0">{{profile.user.username}}</h2>
@@ -25,10 +26,10 @@
                           <h2 class="font-weight-bold mb-0 d-block">{{profile.posts.length}}</h2><small class="text-muted"> <i class="fas fa-image mr-1"></i>Photos</small>
                       </li>
                       <li class="list-inline-item" (click)="openFollowersDialog()">
-                          <h2 class="font-weight-bold mb-0 d-block">{{profile.followers.length}}</h2><small class="text-muted"> <i class="fas fa-user mr-1"></i>Followers</small>
+                          <h2 class="font-weight-bold mb-0 d-block">{{followers.length}}</h2><small class="text-muted"> <i class="fas fa-user mr-1"></i>Followers</small>
                       </li>
                       <li class="list-inline-item" (click)="openFollowingDialog()">
-                          <h2 class="font-weight-bold mb-0 d-block">{{profile.following.length}}</h2><small class="text-muted"> <i class="fas fa-user mr-1"></i>Following</small>
+                          <h2 class="font-weight-bold mb-0 d-block">{{following.length}}</h2><small class="text-muted"> <i class="fas fa-user mr-1"></i>Following</small>
                       </li>
                   </ul>
               </div>
@@ -52,7 +53,7 @@
 
               </div>
 
-              <div class="p-4 rounded shadow-sm bg-light" *ngIf="!profile.private">
+              <div class="p-4 rounded shadow-sm bg-light" *ngIf="showDetails">
                 <div >
                   <h4 class="mb-0">Stories</h4>
                   <div class="rounded shadow-sm bg-light">
@@ -103,11 +104,12 @@
                 </div>
               </div>
               <div class="py-2 px-2" *ngIf="arePosts">
-                  <div class="d-flex flex-row justify-content-center " *ngIf="profile.private">
+                  <div class="d-flex flex-row justify-content-center " *ngIf="!showDetails">
                     <mat-icon class="mr-2">lock</mat-icon><p>Sorry, this profile is private</p>
                   </div>
-                  <div class="row" *ngIf="!profile.private">
+                  <div class="row" *ngIf="showDetails">
                       <div class="col-lg-6 mb-2 d-flex justify-content-center " *ngFor="let post of profile.posts">
+                        
                         <div *ngIf="!post.isVideo">
                           <img src={{post.images}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
                         </div>

@@ -9,7 +9,7 @@ import { Following } from 'src/app/model/profile/following';
   styleUrls: ['./followings-dialog.component.css']
 })
 export class FollowingsDialogComponent implements OnInit {
-  following : UserInFeed[];
+  following : Following[];
   constructor(public dialogRef: MatDialogRef<FollowingsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Following[]) { }
 

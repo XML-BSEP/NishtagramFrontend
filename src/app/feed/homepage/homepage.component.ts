@@ -42,7 +42,7 @@ export class HomepageComponent implements OnInit {
 	ngOnInit(): void {
     console.log(this.authenticationService.currentUserValue)
     if (this.authenticationService.currentUserValue === undefined || this.authenticationService.currentUserValue === null) {
-      this.router.navigate(['/forbidden'])
+      this.router.navigate(['/login'])
     }
     this.postService.generateFeed().subscribe(
       res => {

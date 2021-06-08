@@ -1,11 +1,19 @@
 <div class="component">
   <h2 class="d-flex flex-column text-center">Followers</h2>
     <div class="row" *ngFor="let follower of followers">
-        <div class="d-flex flex-row mb-2 mt-2"> <img src={{follower.profilePhoto.path}} width="40" class="rounded-image">
+        <div class="d-flex flex-row mb-2 mt-2"> <img src={{follower.profilePhoto}} width="40" class="rounded-image">
             <div class="d-flex flex-column ml-2 mt-3"> <span class="name">{{follower.username}}</span>
 
             </div>
+            <div class="col mt-2 mb-2">
+              <div class="d-flex flex-row justify-content-end">
+                <button mat-raised-button class="mt-2" color="accent" (click)="removeCF(follow)" style="font-size: 14px; width: 10rem;" *ngIf="follower.close_friend">Remove close friend</button>
+                <button mat-raised-button class="mt-2" color="primary" (click)="addToCf(follow)" style="font-size: 14px;width: 10rem;" *ngIf="!follower.close_friend">Add to close friends</button>
 
+
+              </div>
+
+            </div>
         </div>
         <mat-divider></mat-divider>
 
