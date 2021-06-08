@@ -13,12 +13,12 @@ export class FollowService {
   constructor(private http: HttpClient) { }
 
   isUserAllowedToFollow(followDTO : FollowDTO) {
-    return this.http.post(`${"http://localhost:8089"}/${environment.isUserAllowedToFollow}`, followDTO);
+    return this.http.post(`${environment.baseUrl}/${environment.isUserAllowedToFollow}`, followDTO);
   }
   follow(followDTO : FollowDTO) : Observable<Response>{
-    return this.http.post<Response>(`${"http://localhost:8089"}/${environment.follow}`, followDTO, {responseType : 'json'});
+    return this.http.post<Response>(`${environment.baseUrl}/${environment.follow}`, followDTO, {responseType : 'json'});
   }
   cancelFollowRequest(followReq : FollowReq){
-    return this.http.post(`${"http://localhost:8089"}/${environment.cancelFollowRequest}`, followReq);
+    return this.http.post(`${environment.baseUrl}/${environment.cancelFollowRequest}`, followReq);
   }
 }

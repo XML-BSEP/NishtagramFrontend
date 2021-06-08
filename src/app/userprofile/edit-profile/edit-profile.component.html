@@ -94,9 +94,9 @@
           <div class="col mt-3">
             <mat-label class="mr-3">Gender*</mat-label>
             <mat-radio-group class="mt-4  " formControlName="gender">
-              <mat-radio-button class="mr-3" value="1">Male</mat-radio-button>
-              <mat-radio-button class="mr-3" value="2">Female</mat-radio-button>
-              <mat-radio-button class="mr-3" value="3">Other</mat-radio-button>
+              <mat-radio-button class="mr-3" value="Male">Male</mat-radio-button>
+              <mat-radio-button class="mr-3" value="Female">Female</mat-radio-button>
+              <mat-radio-button class="mr-3" value="Other">Other</mat-radio-button>
 
             </mat-radio-group>
           </div>
@@ -196,7 +196,7 @@
           <div class="col d-flex flex-row justify-content-center align-items-center">
             <button mat-raised-button class="mr-5" color="accent">Cancel</button>
 
-            <button mat-raised-button color="primary" [disabled]="!registrationForm.valid">Confirm</button>
+            <button mat-raised-button color="primary" [disabled]="!registrationForm.valid" (click)="confirmEdit()">Confirm</button>
           </div>
         </div>
     </mat-card>
