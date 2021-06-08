@@ -22,6 +22,7 @@ body h1 {
   width: 400px;
   height: 400px;
   margin: 0 auto;
+  margin-top: 200px;
   top: 1rem;
   animation: floating 1s infinite alternate ease-in-out;
 }

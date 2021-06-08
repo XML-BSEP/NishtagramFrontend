@@ -13,6 +13,7 @@ import { Location } from 'src/app/model/utilities/location';
 import { Comment } from 'src/app/model/feed/comment';
 import { PostService } from 'src/app/service/post/postservice';
 import { Add2collectionDialogComponent } from 'src/app/dialogs/add2collection-dialog/add2collection-dialog.component';
+import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 
 @Component({
 	selector: 'ia-homepage',
@@ -31,14 +32,18 @@ export class HomepageComponent implements OnInit {
 		private router: Router,
 		private titleService: Title,
     private dialog : MatDialog,
-    private postService : PostService
+    private postService : PostService,
+    private authenticationService : AuthenticationService
 
 	) {
 		this.titleService.setTitle('Feed');
 	}
 
 	ngOnInit(): void {
-
+    console.log(this.authenticationService.currentUserValue)
+    if (this.authenticationService.currentUserValue === undefined || this.authenticationService.currentUserValue === null) {
+      this.router.navigate(['/forbidden'])
+    }
     this.postService.generateFeed().subscribe(
       res => {
         console.log(res)

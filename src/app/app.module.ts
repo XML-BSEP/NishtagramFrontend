@@ -37,7 +37,7 @@ import { NewhighlightDialogComponent } from './dialogs/newhighlight-dialog/newhi
 import { NewstoryDialogComponent } from './dialogs/newstory-dialog/newstory-dialog.component';
 import { SearchComponent } from './feed/search/search.component';
 import { Add2collectionDialogComponent } from './dialogs/add2collection-dialog/add2collection-dialog.component';
-
+import { ForbiddenComponent } from './forbidden/forbidden.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +52,7 @@ import { Add2collectionDialogComponent } from './dialogs/add2collection-dialog/a
     FeedCardComponent,
     CreatePostComponent,
     ProfileComponent,
+    ForbiddenComponent,
     EditProfileComponent,
     FollowersDialogComponent,
     FollowingsDialogComponent,

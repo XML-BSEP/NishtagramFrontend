@@ -16,6 +16,7 @@ import { User } from 'src/app/model/profile/user';
 import { PostDTO } from 'src/app/model/feed/postdto';
 import { Add2collectionDialogComponent } from 'src/app/dialogs/add2collection-dialog/add2collection-dialog.component';
 import { PostInfo } from './postinfo';
+import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 
 
 @Component({
@@ -32,11 +33,14 @@ export class FeedCardComponent implements OnInit {
   public commentForm: FormGroup;
 
 
-  constructor(private router : Router, private postService : PostService, private toastr : ToastrService,
+  constructor(private router : Router, private postService : PostService, private toastr : ToastrService, private authenticationService : AuthenticationService,
     private dialog : MatDialog) { }
 
   ngOnInit() {
-
+    console.log(this.authenticationService.currentUserValue)
+    if (this.authenticationService.currentUserValue === undefined) {
+      this.router.navigate(['/forbidden'])
+    }
     if(this.post.comments.length>10){
       this.partialComments = this.post.comments.slice(0, 10)
     }else{
