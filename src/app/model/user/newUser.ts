@@ -4,7 +4,7 @@ export class NewUser{
   email : String;
   address : String;
   phone : String;
-  birthday : Date;
+  birthday : string;
   gender : String;
   web : String;
   bio : String;
@@ -13,7 +13,7 @@ export class NewUser{
   confirmPassword : String;
   image : String;
   private : boolean
-  constructor(name : String, surname : String, email : String, address : String, phone : String, birthday : Date, gender : String,
+  constructor(name : String, surname : String, email : String, address : String, phone : String, birthday : string, gender : String,
      web : String, bio : String, username : String, password : String, confirmPassword : String, image : String, priv : boolean){
     this.name = name;
     this.surname = surname

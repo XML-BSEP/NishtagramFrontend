@@ -18,6 +18,8 @@ import { StoryContent } from 'src/app/model/feed/storyContent';
 import { NewhighlightDialogComponent } from 'src/app/dialogs/newhighlight-dialog/newhighlight-dialog.component';
 import { Following } from 'src/app/model/profile/following';
 import { User } from 'src/app/model/profile/user';
+import { ProfileService } from 'src/app/service/profile/profile.service';
+import { Toast, ToastrService } from 'ngx-toastr';
 import { PostService } from 'src/app/service/post/postservice';
 import { GetPostDTO } from 'src/app/model/getpost';
 
@@ -27,18 +29,21 @@ import { GetPostDTO } from 'src/app/model/getpost';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  profile : UserProfile;
+  public profile : UserProfile;
   followers : UserInFeed[];
   following : Following[];
   posts : PostInProfile[];
-  web: String;
-  user : User;
+  public web: String;
+  public user : User;
   public isLoggedInUser : boolean = true;
   storyHighlights : StoryHighlightOnProfile[]
   allStories : ProfileStory[];
   allFavorites : PostInProfile[]
   storyHighsAndStories : StoryHighlightAndStories
   arePosts : boolean = true;
+  
+  public jeldobavio : Boolean = false;
+
   areStories : boolean = false;
   areFavorites : boolean = false;
   areCollections : boolean = false;
@@ -50,11 +55,18 @@ export class ProfileComponent implements OnInit {
     private newHighlightDialog: MatDialog,
     private router: Router,
     public dialog: MatDialog,
-    private postService : PostService
+    private postService : PostService,
+    private profileService : ProfileService
     ) { }
 
   ngOnInit(): void {
-    this.user = new User("Pera", "Peric", "peroslav@gmail.com", "Novi Sad, Srbija", "0211231", new Date(1999,4,16,0,0,0,0), '1', 'www.aleksandarignjatijevic.com', "Ovo je moj kao neki opis. Hm ovde nesto pametno treba da pise? hmmm aj ovako. Cekam dok ne docekam kraj ovog mrtvog faksa", 'pera123', 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80');
+    this.profileService.getUserById("23ddb1dd-4303-428b-b506-ff313071d5d7").subscribe(
+      (data) => {
+        this.user = data;     
+        this.jeldobavio = true;
+        this.profile = new UserProfile(this.user, [], [], [], this.user.private)
+        console.log(this.jeldobavio)
+        //this.user = new User("Pera", "Peric", "peroslav@gmail.com", "Novi Sad, Srbija", "0211231", new Date(1999,4,16,0,0,0,0), '1', 'www.aleksandarignjatijevic.com', "Ovo je moj kao neki opis. Hm ovde nesto pametno treba da pise? hmmm aj ovako. Cekam dok ne docekam kraj ovog mrtvog faksa", 'pera123', 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80');
     let follow1 = new UserInFeed("", 'prviFollower' , 'https://i.imgur.com/VQkoalX.jpeg');
     let follow2 = new UserInFeed("", 'drugiFollower', 'https://i.imgur.com/G8p9qBk.jpeg')
     let follow3 = new UserInFeed("", 'treciFollower', 'https://i.imgur.com/XKIdf2g.jpeg')
@@ -104,6 +116,8 @@ export class ProfileComponent implements OnInit {
 
     this.allStories=[]
     this.allFavorites=[]
+      });
+    
 
   }
   goToEditProfile(){
