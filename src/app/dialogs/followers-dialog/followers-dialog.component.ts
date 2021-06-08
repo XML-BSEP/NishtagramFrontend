@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./followers-dialog.component.css']
 })
 export class FollowersDialogComponent implements OnInit {
-  public followers : Follower[];
+  public followers : UserInFeed[];
   constructor( public dialogRef: MatDialogRef<FollowersDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Follower[]) { }
 

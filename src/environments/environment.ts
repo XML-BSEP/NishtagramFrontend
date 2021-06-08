@@ -37,9 +37,22 @@ export const environment = {
   getPostById : "getPostById",
   getStories : "getStories",
   addStory : "addStory",
+  getAllStoriesOnProfile : "getAllStoriesOnUserProfile",
+  getAllHighlights : "getHighlights",
+  addHighlights : "addToHighlight",
+  getAllHighlightStories : "getStoriesHighlight",
+  removeHighlight : "removeFromHighlight",
+  saveHighlight : "saveHighlight",
+  getCollections : "getAllCollections",
+  getPostsInCollection : "getPostsInCollection",
+  getFavorites : "getFavorites",
+  addToFavorites : "addFavorite",
   isUserAllowedToFollow : "isAllowedToFollow",
   follow : "follow",
-  cancelFollowRequest: "cancelFollowRequest"
+  cancelFollowRequest: "cancelFollowRequest",
+  followers : "getAllUsersFollowersFront",
+  followingFront : "getAllUsersFollowingFront", 
+  removeFavorite : "removeFavorite"
 };
 
 /*

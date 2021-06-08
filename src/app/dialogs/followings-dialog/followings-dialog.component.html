@@ -2,8 +2,8 @@
   <h2 class="d-flex flex-column text-center">Following</h2>
     <div class="row" *ngFor="let follow of following">
       <div class="col mt-2 mb-2">
-        <img src={{follow.profilePhoto.path}}  class="rounded-image-cf" *ngIf="follow.close_friend">
-        <img src={{follow.profilePhoto.path}}  class="rounded-image" *ngIf="!follow.close_friend">
+        <img src={{follow.profilePhoto}}  class="rounded-image-cf" *ngIf="follow.close_friend">
+        <img src={{follow.profilePhoto}}  class="rounded-image" *ngIf="!follow.close_friend">
       </div>
       <div class="col-6 mt-4 mb-2">
         <span class="name ">{{follow.username}}</span>

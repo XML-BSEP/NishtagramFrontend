@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../service/authentication/authentication.service';
 import { Image } from 'src/app/model/feed/image';
 import { Notification } from 'src/app/model/utilities/notification';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-nav-bar',
@@ -23,7 +24,8 @@ export class RegularUserComponent implements OnInit {
   constructor(
     private dialog : MatDialog,
     private toastr : ToastrService,
-    private authService : AuthenticationService
+    private authService : AuthenticationService,
+    private router : Router
 
   ) { }
 
@@ -46,6 +48,7 @@ export class RegularUserComponent implements OnInit {
 
   }
   logout(){
+    console.log("ASdasas")
     this.authService.logout()
   }
   openNotificationsDialog(){
@@ -66,7 +69,11 @@ export class RegularUserComponent implements OnInit {
     }
 
   }
+  userProfile() {
+    console.log(this.router.url)
+    window.location.href = "/profile"
 
+  }
   openNewStoryDialog(){
     const dialogRef = this.dialog.open(NewstoryDialogComponent, {
       width: '35vw',

@@ -46,7 +46,7 @@ logout() {
       localStorage.removeItem('userId');
       localStorage.removeItem('role');
       this.currentUserSubject.next(null);
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
 }
 
 refresh(refreshToken : string) {

@@ -15,6 +15,8 @@ import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/model/profile/user';
 import { PostDTO } from 'src/app/model/feed/postdto';
 import { Add2collectionDialogComponent } from 'src/app/dialogs/add2collection-dialog/add2collection-dialog.component';
+import { PostInfo } from './postinfo';
+import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 
 
 @Component({
@@ -31,11 +33,14 @@ export class FeedCardComponent implements OnInit {
   public commentForm: FormGroup;
 
 
-  constructor(private router : Router, private postService : PostService, private toastr : ToastrService,
+  constructor(private router : Router, private postService : PostService, private toastr : ToastrService, private authenticationService : AuthenticationService,
     private dialog : MatDialog) { }
 
   ngOnInit() {
-
+    console.log(this.authenticationService.currentUserValue)
+    if (this.authenticationService.currentUserValue === undefined) {
+      this.router.navigate(['/forbidden'])
+    }
     if(this.post.comments.length>10){
       this.partialComments = this.post.comments.slice(0, 10)
     }else{
@@ -147,7 +152,34 @@ export class FeedCardComponent implements OnInit {
   }
 
   bookmark(){
-    this.post.isBookmarked = !this.post.isBookmarked;
+    if (this.post.isBookmarked) {
+      let postInfo = new PostInfo();
+      postInfo.postBy = this.post.user.id;
+      postInfo.postId = this.post.id;
+  
+      this.postService.removeFromFavorites(postInfo).subscribe(
+        res => {
+          this.toastr.info("Post removed")
+        }, err => {
+          this.toastr.error("Service unavailable")
+        }
+      )
+      this.post.isBookmarked = !this.post.isBookmarked;
+    } else {
+      let postInfo = new PostInfo();
+      postInfo.postBy = this.post.user.id;
+      postInfo.postId = this.post.id;
+  
+      this.postService.addToFavorite(postInfo).subscribe(
+        res => {
+          this.toastr.info("Saved to favorites")
+        }, err => {
+          this.toastr.error("Service unavailable")
+        }
+      )
+      this.post.isBookmarked = !this.post.isBookmarked;
+    }
+    
     //TODO: BACKEND!
   }
   comment(){
@@ -177,7 +209,7 @@ export class FeedCardComponent implements OnInit {
     }
   }
   goToProfile(){
-    this.router.navigate(['/profile'], { queryParams: { id: 'sranjecijijepost' } });
+    this.router.navigate(['/profile'], { queryParams: { id: this.post.user.id } });
   }
 
   toggleComments(){

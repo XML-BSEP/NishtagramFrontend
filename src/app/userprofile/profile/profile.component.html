@@ -26,10 +26,10 @@
                           <h2 class="font-weight-bold mb-0 d-block">{{profile.posts.length}}</h2><small class="text-muted"> <i class="fas fa-image mr-1"></i>Photos</small>
                       </li>
                       <li class="list-inline-item" (click)="openFollowersDialog()">
-                          <h2 class="font-weight-bold mb-0 d-block">{{profile.followers.length}}</h2><small class="text-muted"> <i class="fas fa-user mr-1"></i>Followers</small>
+                          <h2 class="font-weight-bold mb-0 d-block">{{followers.length}}</h2><small class="text-muted"> <i class="fas fa-user mr-1"></i>Followers</small>
                       </li>
                       <li class="list-inline-item" (click)="openFollowingDialog()">
-                          <h2 class="font-weight-bold mb-0 d-block">{{profile.following.length}}</h2><small class="text-muted"> <i class="fas fa-user mr-1"></i>Following</small>
+                          <h2 class="font-weight-bold mb-0 d-block">{{following.length}}</h2><small class="text-muted"> <i class="fas fa-user mr-1"></i>Following</small>
                       </li>
                   </ul>
               </div>
@@ -53,7 +53,7 @@
 
               </div>
 
-              <div class="p-4 rounded shadow-sm bg-light" *ngIf="!profile.private">
+              <div class="p-4 rounded shadow-sm bg-light" *ngIf="showDetails">
                 <div >
                   <h4 class="mb-0">Stories</h4>
                   <div class="rounded shadow-sm bg-light">
@@ -65,7 +65,7 @@
                                 <mat-icon>add</mat-icon>
                               </button>
                               <div class="d-flex flex-column align-items-center" *ngFor="let high of storyHighlights"  >
-                                <img src={{high.highlightPhoto.path}} class="rounded-image mr-3 " (click)="openStoryHighlightDialog(high)">
+                                <img src={{high.highlightPhoto}} class="rounded-image mr-3 " (click)="openStoryHighlightDialog(high)">
                                 <span style="font-size:small">{{high.name}}</span>
                               </div>
                             </div>
@@ -104,17 +104,18 @@
                 </div>
               </div>
               <div class="py-2 px-2" *ngIf="arePosts">
-                  <div class="d-flex flex-row justify-content-center " *ngIf="profile.private">
+                  <div class="d-flex flex-row justify-content-center " *ngIf="!showDetails">
                     <mat-icon class="mr-2">lock</mat-icon><p>Sorry, this profile is private</p>
                   </div>
-                  <div class="row" *ngIf="!profile.private">
+                  <div class="row" *ngIf="showDetails">
                       <div class="col-lg-6 mb-2 d-flex justify-content-center " *ngFor="let post of profile.posts">
+                        
                         <div *ngIf="!post.isVideo">
-                          <img src={{post.image}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
+                          <img src={{post.images}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
                         </div>
                         <div *ngIf="post.isVideo" >
                           <video controls disabled="true" style="object-fit: contain; max-width: 100%; max-height: 100%; justify-content: center;" #videoPlayer>
-                            <source src={{post.image}} type="video/mp4">
+                            <source src={{post.images} type="video/mp4">
                           </video>
                           <button mat-fab class="mr-3" color="primary" (click)="showImage(post)" *ngIf="isLoggedInUser">
                             <mat-icon>open_with</mat-icon>
@@ -127,7 +128,7 @@
               <div class="py-2 px-2" *ngIf="areStories">
                 <div class="row">
                     <div class="col-lg-6 mb-2 d-flex justify-content-center " *ngFor="let s of allStories">
-                      <img src={{s.story.path}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;">
+                      <img src={{s.story}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;">
                     </div>
                 </div>
               </div>
@@ -135,11 +136,11 @@
               <div class="py-2 px-2" *ngIf="areFavorites">
                 <div class="col-lg-6 mb-2 d-flex justify-content-center " *ngFor="let post of allFavorites">
                   <div *ngIf="!post.isVideo">
-                    <img src={{post.image}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
+                    <img src={{post.images}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
                   </div>
                   <div *ngIf="post.isVideo" >
                     <video controls disabled="true" style="object-fit: contain; max-width: 100%; max-height: 100%; justify-content: center;" #videoPlayer>
-                      <source src={{post.image}} type="video/mp4">
+                      <source src={{post.images}} type="video/mp4">
                     </video>
                     <button mat-fab class="mr-3" color="primary" (click)="showImage(post)" *ngIf="isLoggedInUser">
                       <mat-icon>open_with</mat-icon>
@@ -165,11 +166,11 @@
               <div class="py-2 px-2" *ngIf="isCollectionChosen">
                 <div class="row d-flex justify-content-center mt-2 mb-3" *ngFor="let post of chosenCollection.posts">
                   <div *ngIf="!post.isVideo">
-                    <img src={{post.image}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
+                    <img src={{post.images}} alt="" class="img-fluid rounded shadow-sm" style="max-height: 20rem; height: auto; width: 100%; object-fit: contain;" (click)="showImage(post)">
                   </div>
                   <div *ngIf="post.isVideo" >
                     <video controls disabled="true" style="object-fit: contain; max-width: 100%; max-height: 100%; justify-content: center;" #videoPlayer>
-                      <source src={{post.image}} type="video/mp4">
+                      <source src={{post.images}} type="video/mp4">
                     </video>
                     <button mat-fab class="mr-3" color="primary" (click)="showImage(post)" *ngIf="isLoggedInUser">
                       <mat-icon>open_with</mat-icon>

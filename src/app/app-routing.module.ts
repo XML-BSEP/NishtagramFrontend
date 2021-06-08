@@ -10,6 +10,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { SearchComponent } from './feed/search/search.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path:'search',
     component : SearchComponent
+  },
+  {
+    path : "forbidden",
+    component: ForbiddenComponent
   }
 
 ];

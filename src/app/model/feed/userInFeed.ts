@@ -7,6 +7,7 @@ export class UserInFeed{
 
   constructor(id : String, username : String, profilPhoto : string)
   {
+    this.id = id
     this.username = username;
     this.profilePhoto = profilPhoto;
   }

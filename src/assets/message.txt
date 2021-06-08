@@ -1,0 +1,109 @@
+RUN go build -o main .:
+#11 2.277 executor.go:11:2: no required module provides package github.com/devopsfaith/bloomfilter/krakend; to add it:
+#11 2.277       go get github.com/devopsfaith/bloomfilter/krakend
+#11 2.277 backend_factory.go:6:2: no required module provides package github.com/devopsfaith/krakend-amqp; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-amqp
+#11 2.277 handler_factory.go:4:2: no required module provides package github.com/devopsfaith/krakend-botdetector/gin; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-botdetector/gin
+#11 2.277 main.go:6:2: no required module provides package github.com/devopsfaith/krakend-ce/http; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-ce/http
+#11 2.277 backend_factory.go:7:2: no required module provides package github.com/devopsfaith/krakend-cel; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-cel
+#11 2.277 backend_factory.go:8:2: no required module provides package github.com/devopsfaith/krakend-circuitbreaker/gobreaker/proxy; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-circuitbreaker/gobreaker/proxy
+#11 2.277 executor.go:13:2: no required module provides package github.com/devopsfaith/krakend-cobra; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-cobra
+#11 2.277 sd.go:7:2: no required module provides package github.com/devopsfaith/krakend-consul; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-consul
+#11 2.277 executor.go:14:2: no required module provides package github.com/devopsfaith/krakend-cors/gin; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-cors/gin
+#11 2.277 executor.go:15:2: no required module provides package github.com/devopsfaith/krakend-gelf; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-gelf
+#11 2.277 executor.go:16:2: no required module provides package github.com/devopsfaith/krakend-gologging; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-gologging
+#11 2.277 backend_factory.go:9:2: no required module provides package github.com/devopsfaith/krakend-httpcache; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-httpcache
+#11 2.277 router_engine.go:7:2: no required module provides package github.com/devopsfaith/krakend-httpsecure/gin; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-httpsecure/gin
+#11 2.277 executor.go:17:2: no required module provides package github.com/devopsfaith/krakend-jose; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-jose
+#11 2.277 handler_factory.go:6:2: no required module provides package github.com/devopsfaith/krakend-jose/gin; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-jose/gin
+#11 2.277 proxy_factory.go:5:2: no required module provides package github.com/devopsfaith/krakend-jsonschema; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-jsonschema
+#11 2.277 backend_factory.go:10:2: no required module provides package github.com/devopsfaith/krakend-lambda; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-lambda
+#11 2.277 executor.go:18:2: no required module provides package github.com/devopsfaith/krakend-logstash; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-logstash
+#11 2.277 backend_factory.go:11:2: no required module provides package github.com/devopsfaith/krakend-lua/proxy; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-lua/proxy
+#11 2.277 handler_factory.go:7:2: no required module provides package github.com/devopsfaith/krakend-lua/router/gin; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-lua/router/gin
+#11 2.277 backend_factory.go:12:2: no required module provides package github.com/devopsfaith/krakend-martian; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-martian
+#11 2.277 backend_factory.go:13:2: no required module provides package github.com/devopsfaith/krakend-metrics/gin; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-metrics/gin
+#11 2.277 backend_factory.go:14:2: no required module provides package github.com/devopsfaith/krakend-oauth2-clientcredentials; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-oauth2-clientcredentials
+#11 2.277 backend_factory.go:15:2: no required module provides package github.com/devopsfaith/krakend-opencensus; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-opencensus
+#11 2.277 executor.go:21:2: no required module provides package github.com/devopsfaith/krakend-opencensus/exporter/datadog; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-opencensus/exporter/datadog
+#11 2.277 executor.go:22:2: no required module provides package github.com/devopsfaith/krakend-opencensus/exporter/influxdb; to add it:
+#11 2.277       go get github.com/devopsfaith/krakend-opencensus/exporter/influxdb
+#11 2.278 executor.go:23:2: no required module provides package github.com/devopsfaith/krakend-opencensus/exporter/jaeger; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend-opencensus/exporter/jaeger
+#11 2.278 executor.go:24:2: no required module provides package github.com/devopsfaith/krakend-opencensus/exporter/ocagent; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend-opencensus/exporter/ocagent
+#11 2.278 executor.go:25:2: no required module provides package github.com/devopsfaith/krakend-opencensus/exporter/prometheus; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend-opencensus/exporter/prometheus
+#11 2.278 executor.go:26:2: no required module provides package github.com/devopsfaith/krakend-opencensus/exporter/stackdriver; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend-opencensus/exporter/stackdriver
+#11 2.278 executor.go:27:2: no required module provides package github.com/devopsfaith/krakend-opencensus/exporter/xray; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend-opencensus/exporter/xray
+#11 2.278 executor.go:28:2: no required module provides package github.com/devopsfaith/krakend-opencensus/exporter/zipkin; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend-opencensus/exporter/zipkin
+#11 2.278 handler_factory.go:9:2: no required module provides package github.com/devopsfaith/krakend-opencensus/router/gin; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend-opencensus/router/gin
+#11 2.278 backend_factory.go:16:2: no required module provides package github.com/devopsfaith/krakend-pubsub; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend-pubsub
+#11 2.278 backend_factory.go:17:2: no required module provides package github.com/devopsfaith/krakend-ratelimit/juju/proxy; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend-ratelimit/juju/proxy
+#11 2.278 handler_factory.go:10:2: no required module provides package github.com/devopsfaith/krakend-ratelimit/juju/router/gin; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend-ratelimit/juju/router/gin
+#11 2.278 encoding.go:4:2: no required module provides package github.com/devopsfaith/krakend-rss; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend-rss
+#11 2.278 executor.go:30:2: no required module provides package github.com/devopsfaith/krakend-usage/client; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend-usage/client
+#11 2.278 encoding.go:5:2: no required module provides package github.com/devopsfaith/krakend-xml; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend-xml
+#11 2.278 encoding.go:6:2: no required module provides package github.com/devopsfaith/krakend-xml/gin; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend-xml/gin
+#11 2.278 backend_factory.go:18:2: no required module provides package github.com/devopsfaith/krakend/config; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend/config
+#11 2.278 backend_factory.go:19:2: no required module provides package github.com/devopsfaith/krakend/logging; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend/logging
+#11 2.278 backend_factory.go:20:2: no required module provides package github.com/devopsfaith/krakend/proxy; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend/proxy
+#11 2.278 executor.go:34:2: no required module provides package github.com/devopsfaith/krakend/router; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend/router
+#11 2.278 encoding.go:7:2: no required module provides package github.com/devopsfaith/krakend/router/gin; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend/router/gin
+#11 2.278 sd.go:10:2: no required module provides package github.com/devopsfaith/krakend/sd/dnssrv; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend/sd/dnssrv
+#11 2.278 backend_factory.go:21:2: no required module provides package github.com/devopsfaith/krakend/transport/http/client; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend/transport/http/client
+#11 2.278 backend_factory.go:22:2: no required module provides package github.com/devopsfaith/krakend/transport/http/client/plugin; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend/transport/http/client/plugin
+#11 2.278 executor.go:36:2: no required module provides package github.com/devopsfaith/krakend/transport/http/server/plugin; to add it:
+#11 2.278       go get github.com/devopsfaith/krakend/transport/http/server/plugin
+#11 2.278 executor.go:37:2: no required module provides package github.com/gin-gonic/gin; to add it:
+#11 2.278       go get github.com/gin-gonic/gin
+#11 2.278 executor.go:38:2: no required module provides package github.com/go-contrib/uuid; to add it:
+#11 2.278       go get github.com/go-contrib/uuid
+#11 2.278 executor.go:39:2: no required module provides package github.com/letgoapp/krakend-influx; to add it:
+#11 2.278       go get github.com/letgoapp/krakend-influx
+#11 2.278 main.go:7:2: no required module provides package github.com/spf13/viper; to add it:
+#11 2.278       go get github.com/spf13/viper
+------
+executor failed running [/bin/sh -c go build -o main .]: exit code: 1
