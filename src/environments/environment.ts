@@ -28,12 +28,15 @@ export const environment = {
   favorite : "favorite",
   addToCollection : "addToCollection",
   removeLike : "removeLike",
-  removeDislike : "removeDislike", 
+  removeDislike : "removeDislike",
   getComments : "getAllComments",
   getMyPosts : "getPostsOnProfile",
   getPostById : "getPostById",
   getStories : "getStories",
-  addStory : "addStory"
+  addStory : "addStory",
+  isUserAllowedToFollow : "isAllowedToFollow",
+  follow : "follow",
+  cancelFollowRequest: "cancelFollowRequest"
 };
 
 /*

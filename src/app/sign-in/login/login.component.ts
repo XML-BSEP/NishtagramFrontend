@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home'])
       },
       error => {
+        console.log(error)
         this.router.navigate(['/login'])
         this.toastr.error(error)
       }

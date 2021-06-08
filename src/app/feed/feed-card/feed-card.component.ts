@@ -49,6 +49,7 @@ export class FeedCardComponent implements OnInit {
     });
 
   }
+
   like(){
     let like = new LikePost();
     like.postBy = this.post.user.id;
@@ -174,6 +175,9 @@ export class FeedCardComponent implements OnInit {
       )
 
     }
+  }
+  goToProfile(){
+    this.router.navigate(['/profile'], { queryParams: { id: 'sranjecijijepost' } });
   }
 
   toggleComments(){
