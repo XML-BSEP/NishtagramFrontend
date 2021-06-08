@@ -8,18 +8,7 @@
       <div class="col-6 mt-4 mb-2">
         <span class="name ">{{follow.username}}</span>
       </div>
-      <div class="col mt-2 mb-2">
-        <div class="row">
-          <button mat-raised-button class="mt-2" color="accent" (click)="removeCF(follow)" style="font-size: 14px;" *ngIf="follow.close_friend">Remove close friend</button>
-          <button mat-raised-button class="mt-2" color="primary" (click)="addToCf(follow)" style="font-size: 14px;" *ngIf="!follow.close_friend">Add to close friends</button>
 
-
-          <button mat-raised-button class="mt-2" color="primary" (click)="unfollow(follow)">Unfollow</button>
-
-
-        </div>
-
-      </div>
       <mat-divider></mat-divider>
 
 
