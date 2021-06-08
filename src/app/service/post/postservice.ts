@@ -16,6 +16,8 @@ import { GetPostDTO } from 'src/app/model/getpost'
 import { Story } from 'src/app/model/feed/story';
 import { ProfileStory } from 'src/app/model/profile/profileStory';
 import { StoryHighlightOnProfile } from 'src/app/model/profile/storyHighlightOnProfile';
+import { ViewHighlight } from 'src/app/model/highlight/viewhighlight';
+import { SaveHighlight } from 'src/app/model/newhighlight';
 @Injectable({
   providedIn: 'root'
 })
@@ -76,6 +78,14 @@ export class PostService {
 
   getAllHighlightsByUser(userDTO : UserInFeed) : Observable<StoryHighlightOnProfile[]> {
     return this.https.post<StoryHighlightOnProfile[]>(`${environment.baseUrl}/${environment.getAllHighlights}`, userDTO)
+  }
+
+  getStoriesInOneHighlight(highlightDTO : ViewHighlight) : Observable<StoryHighlightOnProfile> {
+    return this.https.post<StoryHighlightOnProfile>(`${environment.baseUrl}/${environment.getAllHighlightStories}`, highlightDTO)
+  }
+
+  updateHighlight(highlight : SaveHighlight) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.saveHighlight}`, highlight)
   }
   
 }

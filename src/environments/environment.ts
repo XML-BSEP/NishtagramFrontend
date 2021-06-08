@@ -35,7 +35,11 @@ export const environment = {
   getStories : "getStories",
   addStory : "addStory",
   getAllStoriesOnProfile : "getAllStoriesOnUserProfile",
-  getAllHighlights : "getHighlights"
+  getAllHighlights : "getHighlights",
+  addHighlights : "addToHighlight",
+  getAllHighlightStories : "getStoriesHighlight",
+  removeHighlight : "removeFromHighlight",
+  saveHighlight : "saveHighlight"
 };
 
 /*

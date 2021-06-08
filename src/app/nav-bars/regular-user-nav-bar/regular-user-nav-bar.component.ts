@@ -46,6 +46,7 @@ export class RegularUserComponent implements OnInit {
 
   }
   logout(){
+    console.log("ASdasas")
     this.authService.logout()
   }
   openNotificationsDialog(){

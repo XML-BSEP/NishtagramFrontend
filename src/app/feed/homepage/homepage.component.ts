@@ -12,6 +12,7 @@ import * as moment from 'moment';
 import { Location } from 'src/app/model/utilities/location';
 import { Comment } from 'src/app/model/feed/comment';
 import { PostService } from 'src/app/service/post/postservice';
+import { Add2collectionDialogComponent } from 'src/app/dialogs/add2collection-dialog/add2collection-dialog.component';
 
 @Component({
 	selector: 'ia-homepage',
@@ -55,7 +56,7 @@ export class HomepageComponent implements OnInit {
         }
         this.feed = res;
         console.log(this.feed)
-      
+
       }
     )
 
@@ -66,7 +67,7 @@ export class HomepageComponent implements OnInit {
     )
 
   }
-  
+
   goToPostDetails(item){
     this.router.navigate(['/postDetails']);
   }
@@ -77,5 +78,6 @@ export class HomepageComponent implements OnInit {
       data: story
     });
   }
+
 
 }
