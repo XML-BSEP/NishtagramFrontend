@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import {User} from './../../model/profile/user';
 import {UserProfile} from './../../model/profile/userProfile';
 import {EditUser} from 'src/app/model/user/editUser';
+import { SearchedUser } from 'src/app/model/profile/searchedProfile';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,8 @@ export class ProfileService {
   editProfile(user : EditUser) : Observable<EditUser> {
     return this.http.post<EditUser>(`${environment.baseUrl}/${environment.editUser}`, user, {responseType : `json`});
   }
-
-
+  
+  searchUser(search : String) : Observable<SearchedUser[]> {
+    return this.http.get<SearchedUser[]>(`${environment.baseUrl}/${environment.searchUser}?search=${search}`);
+  }
 }
