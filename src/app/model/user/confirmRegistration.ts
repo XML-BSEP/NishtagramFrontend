@@ -1,10 +1,10 @@
 export class ConfirmRegistration{
-  public username : String;
+  public email : String;
   public code : String;
 
 
-  constructor(username : String, code : String){
-    this.username = username;
+  constructor(email : String, code : String){
+    this.email = email;
     this.code = code;
   }
 
