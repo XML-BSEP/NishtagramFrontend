@@ -36,8 +36,9 @@ export class RegistrationConfirmationComponent implements OnInit {
   }
   confirm(){
     console.log(this.mail)
-    this.confirmRegistration = new ConfirmRegistration(this.confirmRegHistory.username, this.codeForm.controls.code.value)
+    this.confirmRegistration = new ConfirmRegistration(this.confirmRegHistory.email, this.codeForm.controls.code.value)
 
+    console.log(this.confirmRegistration)
     this.registrationService.confAcc(this.confirmRegistration).subscribe(
       res=>{
         this.toastr.success("Successful confirmation")
@@ -55,6 +56,7 @@ export class RegistrationConfirmationComponent implements OnInit {
     let sendData = {
       "email" : this.confirmRegHistory.email
     }
+    console.log(sendData)
     this.registrationService.resend(sendData).subscribe(
       res => {
         this.toastr.success("Resend successful, check your email!")

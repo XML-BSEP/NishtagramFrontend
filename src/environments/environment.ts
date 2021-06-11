@@ -51,8 +51,9 @@ export const environment = {
   follow : "follow",
   cancelFollowRequest: "cancelFollowRequest",
   followers : "getAllUsersFollowersFront",
-  followingFront : "getAllUsersFollowingFront", 
-  removeFavorite : "removeFavorite"
+  followingFront : "getAllUsersFollowingFront",
+  removeFavorite : "removeFavorite",
+  unfollow : "unfollow"
 };
 
 /*
