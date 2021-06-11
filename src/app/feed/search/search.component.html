@@ -45,15 +45,16 @@
     </div>
   </div>
 
-  <mat-card class="resultsusers" style="width: 98%; margin-left: 1%;" *ngIf="isSearchedUsers">
+  <mat-card class="resultsusers" style="width: 98%; margin-left: 1%;" *ngIf="isSearchedUsers && isSearched" >
     <div class="row" *ngFor="let item of searchedProfiles" >
       <!-- <feed-card [post]="item"></feed-card> -->
-      <div class="col mt-2 mb-2">
-        <img src={{item.profilePhoto.path}}  class="rounded-image">
+      <div class="col mt-2 mb-2" (click)="goToProfile(item.id)">
+        <img src={{item.image}}  class="rounded-image">
       </div>
       <div class="col-6 mt-4 mb-2">
-        <span class="name ">{{item.username}}</span>
+        <span class="name ">{{item.username}} <br> {{item.name}} {{item.surname}}</span>
       </div>
+     
       <div class="col mt-4 mb-2">
           <button mat-raised-button class="mt-2" color="primary" (click)="follow(item)">Follow</button>
       </div>
