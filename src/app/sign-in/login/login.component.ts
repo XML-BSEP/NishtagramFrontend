@@ -7,6 +7,7 @@ import { Toast, ToastrService } from 'ngx-toastr';
 import { Authentication } from 'src/app/model/security/authentication';
 import { ProfileService } from 'src/app/service/profile/profile.service';
 import { isTotpEnabled } from 'src/app/model/istotpenabled';
+import { Role } from 'src/app/model/user/role';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,18 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
 
   ngOnInit(): void {
-    console.log("sdfsdf")
+
+    let curUsr = JSON.parse(localStorage.getItem('currentUser'))
+    if (curUsr != null) {
+      if (curUsr.role == Role.RegularUser) {
+        this.router.navigate(['/home'])
+      }
+      else if (curUsr.role == Role.Admin) {
+        this.router.navigate(['/admin'])
+      }
+    }
+
+    
 
     this.loginForm = new FormGroup({
       'username' : new FormControl(null, Validators.required),
