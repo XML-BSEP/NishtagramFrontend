@@ -1,0 +1,26 @@
+<div class="component">
+  <mat-card  class="login-card mat-elevation-z8">
+
+    <div class='content-div' style="width: 70%; margin-left: 15%; margin-top: 20%;">
+      <h1 class="register-text">Enter your passcode from Google Authenticator</h1>
+
+          <!-- Default form login -->
+      <form class="text-center border border-light p-5" [formGroup]="loginForm">
+
+        <!-- Email -->
+        <input type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Passcode" formControlName = "passcode">
+
+    
+        <div class="d-flex justify-content-around">
+        </div>
+
+        <!-- Sign in button -->
+        <button mat-raised-button id="register" class="mb-3" [disabled]="!loginForm.valid" (click)="login()">Continue</button>
+
+
+
+      </form>
+<!-- Default form login -->
+    </div>
+  </mat-card>
+</div>

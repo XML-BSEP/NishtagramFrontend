@@ -52,7 +52,12 @@ export const environment = {
   cancelFollowRequest: "cancelFollowRequest",
   followers : "getAllUsersFollowersFront",
   followingFront : "getAllUsersFollowingFront", 
-  removeFavorite : "removeFavorite"
+  removeFavorite : "removeFavorite",
+  isTotpEnabled : "isTotpEnabled",
+  generateSecret : "generateSecret",
+  verifySecret : "verifySecret",
+  disableTwoFactor : "disableTotp",
+  validateTotp : "validateTotp"
 };
 
 /*

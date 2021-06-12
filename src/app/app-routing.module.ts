@@ -11,6 +11,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { SearchComponent } from './feed/search/search.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { TotpLoginComponent } from './sign-in/totpsignin/login.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path : "forbidden",
     component: ForbiddenComponent
+  },
+  {
+    path: "verify",
+    component: TotpLoginComponent  
   }
 
 ];
