@@ -57,7 +57,9 @@ export const environment = {
   generateSecret : "generateSecret",
   verifySecret : "verifySecret",
   disableTwoFactor : "disableTotp",
-  validateTotp : "validateTotp"
+  validateTotp : "validateTotp",
+  unfollow : "unfollow",
+  searchUser : "searchUser"
 };
 
 /*

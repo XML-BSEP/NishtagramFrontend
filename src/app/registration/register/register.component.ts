@@ -92,7 +92,7 @@ export class RegisterComponent implements OnInit {
       this.toastr.success('Please check your email!')
         },
         error => {
-          this.router.navigate(['/home'])
+          // this.router.navigate(['/home'])
           this.toastr.error(error)
         }
       )

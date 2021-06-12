@@ -21,6 +21,9 @@ export class FollowService {
   follow(followDTO : FollowDTO) : Observable<Response>{
     return this.http.post<Response>(`${environment.baseUrl}/${environment.follow}`, followDTO, {responseType : 'json'});
   }
+  unfollow(followDTO : FollowDTO) : Observable<Response>{
+    return this.http.post<Response>(`${environment.baseUrl}/${environment.unfollow}`, followDTO, {responseType : 'json'});
+  }
   cancelFollowRequest(followReq : FollowReq){
     return this.http.post(`${environment.baseUrl}/${environment.cancelFollowRequest}`, followReq);
   }

@@ -88,8 +88,8 @@ export class ProfileComponent implements OnInit {
 
     this.allStories=[]
     this.allFavorites=[]
-    
- 
+
+
 
     this.route.queryParams
     .subscribe(params => {
@@ -100,12 +100,12 @@ export class ProfileComponent implements OnInit {
     console.log(this.userId)
     if (this.userId === undefined) {
       console.log("SADOGOGOGOGOG")
-    
+
       console.log(this.userId)
-      if(this.userId === undefined) { 
-      
+      if(this.userId === undefined) {
+
       this.isLoggedInUser=true;
-      
+
 
       let userInFeed = new UserInFeed(this.curUsr.id, this.curUsr.username, "")
       this.followService.getFollowers(userInFeed).subscribe(
@@ -135,12 +135,12 @@ export class ProfileComponent implements OnInit {
           console.log(this.jeldobavio)
           this.web = "https://"+this.user.web
           console.log(this.posts)
-          
+
           //this.storyHighlights = []
           console.log(this.allStories)
-        
-        
-   
+
+
+
             this.isLoggedInUser=true;
             this.requestSent = false;
             this.canBeUnfollowed =false;
@@ -158,7 +158,7 @@ export class ProfileComponent implements OnInit {
                 }
                 // console.log(this.posts)
                 this.profile.posts = this.posts
-                
+
 
               }
             )
@@ -168,7 +168,7 @@ export class ProfileComponent implements OnInit {
                 this.allStories = res;
               }
             )
-        
+
             this.postService.getAllHighlightsByUser(userInFeed).subscribe(
               res => {
                 this.storyHighlights = res
@@ -180,9 +180,9 @@ export class ProfileComponent implements OnInit {
             this.showDetails = true;
 
          })
-      } 
+      }
     }
-    
+
 
     if (this.userId !== undefined) {
       let userInFeed = new UserInFeed(this.userId, this.curUsr.username, "")
@@ -212,12 +212,12 @@ export class ProfileComponent implements OnInit {
           console.log(this.jeldobavio)
           this.web = "https://"+this.user.web
           console.log(this.posts)
-          
+
           //this.storyHighlights = []
           console.log(this.allStories)
-          
+
           this.isLoggedInUser = false;
-        
+
           this.followService.isUserAllowedToFollow(this.followDTO).subscribe(
             res=>{
               this.isLoggedInUser=false;
@@ -230,15 +230,15 @@ export class ProfileComponent implements OnInit {
                 this.requestSent = true;
                 this.isLoggedInUser = false;
                 this.canBeUnfollowed =false;
-    
-    
+
+
               }else if(err==="Its you, you moron!"){
                 console.log("FOFOFOOFFO")
                 this.isLoggedInUser=true;
                 this.requestSent = false;
                 this.canBeUnfollowed =false;
                 this.user.private = false;
-    
+
                 let userInFeed = new UserInFeed(this.curUsr.id, this.curUsr.username, "")
                 this.postService.getAllPostsInProfile(userInFeed).subscribe(
                   res => {
@@ -246,23 +246,23 @@ export class ProfileComponent implements OnInit {
                     for (let p of res) {
                       // console.log(p)
                       this.posts.push(new PostInProfile(p.user, p.images, p.postid, p.isVideo))
-                      
+
                       // console.log(p.postid)
                     }
                     // console.log(this.posts)
                     this.profile.posts = this.posts
-      
-                    
-    
+
+
+
                   }
                 )
-    
+
                 this.postService.getAllStories(userInFeed).subscribe(
                   res => {
                     this.allStories = res;
                   }
                 )
-            
+
                 this.postService.getAllHighlightsByUser(userInFeed).subscribe(
                   res => {
                     this.storyHighlights = res
@@ -271,8 +271,8 @@ export class ProfileComponent implements OnInit {
                 )
 
                 this.showDetails = true;
-    
-    
+
+
               }else if(err ==="You are already following user"){
                 this.isLoggedInUser=false;
                 this.requestSent= false;
@@ -285,36 +285,36 @@ export class ProfileComponent implements OnInit {
                     for (let p of res) {
                       // console.log(p)
                       this.posts.push(new PostInProfile(p.user, p.images, p.postid, p.isVideo))
-                      
+
                       // console.log(p.postid)
                     }
                     // console.log(this.posts)
                     this.profile.posts = this.posts
 
-                    
-                    
+
+
                     this.showDetails = true;
                   }
-                ) 
-    
+                )
+
                 this.postService.getAllStories(userInFeed).subscribe(
                   res => {
                     this.allStories = res;
                   }
                 )
-            
+
                 this.postService.getAllHighlightsByUser(userInFeed).subscribe(
                   res => {
                     this.storyHighlights = res
                     console.log(res)
                   }
                 )
-    
+
                 this.showUser = true;
                 this.showDetails = true;
               } else {
                 if (this.user.private) {
-                  
+
                   this.user.private = false;
                   this.showUser = true;
                   this.showDetails = false;
@@ -333,23 +333,23 @@ export class ProfileComponent implements OnInit {
                   for (let p of res) {
                     // console.log(p)
                     this.posts.push(new PostInProfile(p.user, p.images, p.postid, p.isVideo))
-                    
+
                     // console.log(p.postid)
                   }
                   // console.log(this.posts)
                   this.profile.posts = this.posts
-    
-                  
-  
+
+
+
                 }
               )
-  
+
               this.postService.getAllStories(userInFeed).subscribe(
                 res => {
                   this.allStories = res;
                 }
               )
-          
+
               this.postService.getAllHighlightsByUser(userInFeed).subscribe(
                 res => {
                   this.storyHighlights = res
@@ -359,8 +359,8 @@ export class ProfileComponent implements OnInit {
 
               this.showDetails = true;
             }
-          }) 
-          
+          })
+
         }
       }
   goToEditProfile(){
@@ -376,7 +376,7 @@ export class ProfileComponent implements OnInit {
     let postDTO = new GetPostDTO();
     console.log(post.postid)
     postDTO.PostId = post.postid;
-    
+
     if (post.postBy === "" || post.postBy === undefined) {
       console.log(post.postBy)
       postDTO.UserId = post.user;
@@ -422,7 +422,7 @@ export class ProfileComponent implements OnInit {
     let highlightDTO = new ViewHighlight();
     highlightDTO.name = high.name;
     highlightDTO.userId = high.id;
-    this.postService.getStoriesInOneHighlight(highlightDTO).subscribe( 
+    this.postService.getStoriesInOneHighlight(highlightDTO).subscribe(
       res => {
         high.stories = res.stories;
       }
@@ -461,7 +461,7 @@ export class ProfileComponent implements OnInit {
     this.areCollections=false;
   }
   seeStories(){
-    
+
     this.arePosts=false;
     this.areStories=true;
     this.areFavorites=false;
@@ -508,7 +508,13 @@ export class ProfileComponent implements OnInit {
     this.isCollectionChosen=false;
   }
   unfollow(){
-
+    this.followService.unfollow(this.followDTO).subscribe(res=>{
+      this.toastr.success('Successfully followed!')
+      this.isFollowed=false;
+    },error=>{
+      this.toastr.error('OOOOOOOOpppsss something went wrong :(')
+      console.log(error)
+    });
   }
   cancelRequest(){
      var followReq = new FollowReq(this.curUsr.id,this.userId)
@@ -523,6 +529,7 @@ export class ProfileComponent implements OnInit {
     });
   }
   follow(){
+
     this.followService.follow(this.followDTO).subscribe(res=>{
       this.toastr.success('Successfully followed!')
       this.isFollowed=true;

@@ -10,6 +10,7 @@ import { ScanTotp } from 'src/app/model/scan_totp';
 import { VerifySecret } from 'src/app/model/verifysecret';
 import { AuthenticatedUser } from 'src/app/model/security/authenticatedUser';
 import { isTotpEnabled } from 'src/app/model/istotpenabled';
+import { SearchedUser } from 'src/app/model/profile/searchedProfile';
 
 @Injectable({
   providedIn: 'root'
@@ -58,4 +59,8 @@ export class ProfileService {
     return this.http.post<AuthenticatedUser>(`${environment.baseUrl}/${environment.validateTotp}`, verifySecret)
   }
 
+  
+  searchUser(search : String) : Observable<SearchedUser[]> {
+    return this.http.get<SearchedUser[]>(`${environment.baseUrl}/${environment.searchUser}?search=${search}`);
+  }
 }
