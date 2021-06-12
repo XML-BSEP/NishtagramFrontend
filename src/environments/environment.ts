@@ -51,8 +51,13 @@ export const environment = {
   follow : "follow",
   cancelFollowRequest: "cancelFollowRequest",
   followers : "getAllUsersFollowersFront",
-  followingFront : "getAllUsersFollowingFront",
+  followingFront : "getAllUsersFollowingFront", 
   removeFavorite : "removeFavorite",
+  isTotpEnabled : "isTotpEnabled",
+  generateSecret : "generateSecret",
+  verifySecret : "verifySecret",
+  disableTwoFactor : "disableTotp",
+  validateTotp : "validateTotp",
   unfollow : "unfollow",
   searchUser : "searchUser"
 };
