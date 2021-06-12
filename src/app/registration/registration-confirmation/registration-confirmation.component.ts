@@ -5,6 +5,7 @@ import { RegistrationService } from '../../service/registration/registration.ser
 import {ConfirmRegistration} from '../../model/user/confirmRegistration'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Role } from 'src/app/model/user/role';
 
 @Component({
   selector: 'app-registration-confirmation',
@@ -22,6 +23,16 @@ export class RegistrationConfirmationComponent implements OnInit {
 
 
   ngOnInit(): void {
+    let curUsr = JSON.parse(localStorage.getItem('currentUser'))
+    if (curUsr != null) {
+      if (curUsr.role == Role.RegularUser) {
+        this.router.navigate(['/home'])
+      }
+      else if (curUsr.role == Role.Admin) {
+        this.router.navigate(['/admin'])
+      }
+    }
+
     this.codeForm = new FormGroup({
       //maybe add pattern for code validation on frontend
       'code' : new FormControl(null, [Validators.required])

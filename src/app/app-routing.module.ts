@@ -12,12 +12,18 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { SearchComponent } from './feed/search/search.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { TotpLoginComponent } from './sign-in/totpsignin/login.component';
+import { AuthGuard } from './helpers';
+import { Role } from './model/user/role';
+import {AdminComponent} from './admin/admin.component'
+
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate : [AuthGuard],
+    data : {roles: [Role.RegularUser]}
   },{
     path: 'login',
     component: LoginComponent
@@ -33,23 +39,33 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component : HomepageComponent
+    component : HomepageComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.RegularUser]}
   },
   {
     path: 'createPost',
-    component : CreatePostComponent
+    component : CreatePostComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.RegularUser]}
   },
   {
     path: 'postDetails',
-    component : PostDetailsComponent
+    component : PostDetailsComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.RegularUser]}
   },
   {
     path: 'profile',
-    component : ProfileComponent
+    component : ProfileComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.RegularUser]}
   },
   {
     path: 'editProfile',
-    component : EditProfileComponent
+    component : EditProfileComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.RegularUser]}
   },
   {
     path:'search',
@@ -62,6 +78,13 @@ const routes: Routes = [
   {
     path: "verify",
     component: TotpLoginComponent  
+  },
+  {
+    path: "admin",
+    component: AdminComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.Admin]}
+
   }
 
 ];

@@ -1,5 +1,6 @@
 export enum Role {
   Admin = 'admin',
   RegularUser = 'user',
-  Anonymous = "anonymous"
+  Anonymous = "anonymous",
+  TemporaryUser = "temporary_user"
 }
