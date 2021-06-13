@@ -77,7 +77,9 @@ const routes: Routes = [
   },
   {
     path: "verify",
-    component: TotpLoginComponent  
+    component: TotpLoginComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.TemporaryUser]}
   },
   {
     path: "admin",

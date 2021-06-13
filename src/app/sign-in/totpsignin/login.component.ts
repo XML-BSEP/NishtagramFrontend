@@ -33,9 +33,16 @@ export class TotpLoginComponent implements OnInit {
     verifySecret.user_id = curUsr.id;
     this.profileService.validateTotp(verifySecret).subscribe(
       success => {
-        this.router.navigate(['/home'])
         localStorage.setItem('currentUser', JSON.stringify(success));
-        console.log(success);
+        
+        let newUsr = JSON.parse(localStorage.getItem('currentUser'))
+
+        setTimeout(() => 
+          {
+          },
+          5000);
+          this.router.navigate(['/home'])
+
       },
       error => {
         this.toastr.error("Passcode not valid")
