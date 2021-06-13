@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { error } from 'selenium-webdriver';
+import { Role } from 'src/app/model/user/role';
 
 @Component({
   selector: 'app-forgot-password',
@@ -27,6 +28,16 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder, private resetPasswordSerivce : ResetPasswordService, private router : Router, private toastr : ToastrService) { }
 
   ngOnInit() {
+    let curUsr = JSON.parse(localStorage.getItem('currentUser'))
+    if (curUsr != null) {
+      if (curUsr.role == Role.RegularUser) {
+        this.router.navigate(['/home'])
+      }
+      else if (curUsr.role == Role.Admin) {
+        this.router.navigate(['/admin'])
+      }
+    }
+
     this.firstFormGroup = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email])
     });

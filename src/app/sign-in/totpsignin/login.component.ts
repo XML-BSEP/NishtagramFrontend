@@ -7,6 +7,7 @@ import { Toast, ToastrService } from 'ngx-toastr';
 import { Authentication } from 'src/app/model/security/authentication';
 import { ProfileService } from 'src/app/service/profile/profile.service';
 import { VerifySecret } from 'src/app/model/verifysecret';
+import { Role } from 'src/app/model/user/role';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,6 @@ export class TotpLoginComponent implements OnInit {
   public loginForm: FormGroup;
 
   ngOnInit(): void {
-    console.log("sdfsdf")
 
     this.loginForm = new FormGroup({
       'passcode' : new FormControl(null, Validators.required),
