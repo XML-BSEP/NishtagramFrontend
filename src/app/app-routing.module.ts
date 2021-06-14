@@ -21,9 +21,10 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'full',
-    canActivate : [AuthGuard],
-    data : {roles: [Role.RegularUser]}
+    pathMatch: 'full'
+    // ,
+    // canActivate : [AuthGuard],
+    // data : {roles: [Role.RegularUser]}
   },{
     path: 'login',
     component: LoginComponent
@@ -40,8 +41,8 @@ const routes: Routes = [
   {
     path: 'home',
     component : HomepageComponent,
-    canActivate : [AuthGuard],
-    data : {roles: [Role.RegularUser]}
+    // canActivate : [AuthGuard],
+    // data : {roles: [Role.RegularUser]}
   },
   {
     path: 'createPost',
@@ -77,7 +78,9 @@ const routes: Routes = [
   },
   {
     path: "verify",
-    component: TotpLoginComponent  
+    component: TotpLoginComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.TemporaryUser]}
   },
   {
     path: "admin",

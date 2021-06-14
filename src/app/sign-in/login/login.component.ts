@@ -26,12 +26,16 @@ export class LoginComponent implements OnInit {
       if (curUsr.role == Role.RegularUser) {
         this.router.navigate(['/home'])
       }
-      else if (curUsr.role == Role.Admin) {
+      console.log('askfnasf')
+
+      if (curUsr.role == Role.Admin) {
+        console.log('askfnasf')
+
         this.router.navigate(['/admin'])
       }
     }
 
-    
+
 
     this.loginForm = new FormGroup({
       'username' : new FormControl(null, Validators.required),
@@ -39,7 +43,7 @@ export class LoginComponent implements OnInit {
     });
   }
   login(){
-  
+
     var account = new Authentication(this.loginForm.controls.username.value, this.loginForm.controls.password.value)
     this.authService.login(account).subscribe(
       success => {
@@ -49,12 +53,19 @@ export class LoginComponent implements OnInit {
 
         this.profileService.isTotpEnabled(dto).subscribe(
           res => {
-            this.router.navigate(['/home'])
+            if (curUsr != null) {
+              if (curUsr.role == Role.RegularUser) {
+                this.router.navigate(['/home'])
+              }
+              if (curUsr.role == Role.Admin) {
+                this.router.navigate(['/admin'])
+              }
+            }
           }, err => {
             if (err === "Two factor authentication is already enabled") {
               this.router.navigate(['/verify'])
             }
-          } 
+          }
         )
       },
       error => {

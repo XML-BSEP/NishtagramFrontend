@@ -26,15 +26,20 @@ export class AppComponent {
   }
 
   public isAdmin() {
-    return this.authService.getUserValue() && this.authService.getUserValue().role === Role.Admin;
+    if( localStorage.getItem('currentUser')!=null){
+      var role = JSON.parse(localStorage.getItem('currentUser')).role
+      return this.authService.getUserValue() && role === Role.Admin;
+    }
+    else return false;
   }
 
 
   public isRegularUser() {
-    if (this.router.url === '/forbidden') {
-      return false;
+    if( localStorage.getItem('currentUser')!=null){
+      var role = JSON.parse(localStorage.getItem('currentUser')).role
+      return this.authService.getUserValue() && role === Role.RegularUser;
     }
-    return this.authService.getUserValue() && this.authService.getUserValue().role === Role.RegularUser;
+    else return false;
   }
 
 }

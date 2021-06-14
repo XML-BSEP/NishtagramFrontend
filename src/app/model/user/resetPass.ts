@@ -3,7 +3,7 @@ export class ResetPass {
 	password : String;
 	confirmedpassword : String;
 	code : String;
- 
+
     constructor(email : String, password : String, confirmedPassword : String, code : String) {
         this.email = email;
         this.password = password;
