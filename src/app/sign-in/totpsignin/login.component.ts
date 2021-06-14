@@ -25,22 +25,30 @@ export class TotpLoginComponent implements OnInit {
       'passcode' : new FormControl(null, Validators.required),
     });
   }
-  login(){
+  async login(){
     var passcode = this.loginForm.controls.passcode.value;
     let verifySecret = new VerifySecret();
     verifySecret.passcode = passcode;
     let curUsr = JSON.parse(localStorage.getItem('currentUser'))
     verifySecret.user_id = curUsr.id;
-    this.profileService.validateTotp(verifySecret).subscribe(
-      success => {
-        this.router.navigate(['/home'])
-        localStorage.setItem('currentUser', JSON.stringify(success));
-        console.log(success);
-      },
-      error => {
-        this.toastr.error("Passcode not valid")
-      }
-    )
+    const t = await this.profileService.validateTotp(verifySecret).toPromise();
+    // this.profileService.validateTotp(verifySecret).subscribe(
+    //   success => {
+    localStorage.setItem('currentUser', JSON.stringify(t));
+    //     setTimeout(() =>
+    //     {
+    //         this.router.navigate(['/']);
+    //     },
+    //     5000);
+    //   },
+    //   error => {
+    //     this.toastr.error("Passcode not valid")
+    //   }
+
+    // )
+    if(JSON.parse(localStorage.getItem('currentUser')).role==='user'){
+      this.router.navigate(['/home'])
+    }
     console.log(verifySecret)
   }
 }

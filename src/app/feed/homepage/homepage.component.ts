@@ -40,36 +40,44 @@ export class HomepageComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+
     console.log(this.authenticationService.currentUserValue)
-    // if (this.authenticationService.currentUserValue === undefined || this.authenticationService.currentUserValue === null) {
-    //   this.router.navigate(['/login'])
-    // }
-    this.postService.generateFeed().subscribe(
-      res => {
-        console.log(res)
-        let feeds = []
-        for (let f of res) {
-          f.comments = []
-          if (f.isVideo) {
-            console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-            console.log(f.images)
+
+    if(JSON.parse(localStorage.getItem('currentUser'))==null){
+        this.router.navigate(['/forbidden'])
+    }
+    if(JSON.parse(localStorage.getItem('currentUser')).role=="temporary_user" || JSON.parse(localStorage.getItem('currentUser')).role=="admin"){
+      this.router.navigate(['/forbidden'])
+    }else{
+      this.postService.generateFeed().subscribe(
+        res => {
+          console.log(res)
+          let feeds = []
+          for (let f of res) {
+            f.comments = []
+            if (f.isVideo) {
+              console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+              console.log(f.images)
+            }
+            console.log(f.user)
+            console.log(f.user.id)
+            f.user = f.user
+
           }
-          console.log(f.user)
-          console.log(f.user.id)
-          f.user = f.user
+          this.feed = res;
+          console.log(this.feed)
 
         }
-        this.feed = res;
-        console.log(this.feed)
+      )
 
-      }
-    )
+      this.postService.getStories().subscribe(
+        res => {
+          this.stories = res;
+        }
+      )
 
-    this.postService.getStories().subscribe(
-      res => {
-        this.stories = res;
-      }
-    )
+    }
+
 
   }
 
