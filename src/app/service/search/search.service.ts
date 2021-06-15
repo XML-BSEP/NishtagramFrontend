@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import {PostLocations} from '../../model/search/postLocations'
 import {PostIds} from '../../model/search/PostIds';
 import { PostForSearch } from 'src/app/model/search/postForSearch';
+import { PostProfileId } from 'src/app/model/search/postProfileId';
 
 @Injectable({
   providedIn: 'root'

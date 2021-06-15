@@ -1,9 +1,10 @@
+import {PostProfileId} from '../search/postProfileId'
 export class PostLocations {
-    postIds: String[];
+    PostProfileId: PostProfileId[];
     Location: String;
 
-    constructor(postIds : String[], location : String) {
-        this.postIds = postIds,
+    constructor(postIds : PostProfileId[], location : String) {
+        this.PostProfileId = postIds,
         this.Location = location
     }
 }

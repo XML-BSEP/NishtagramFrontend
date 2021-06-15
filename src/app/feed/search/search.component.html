@@ -82,7 +82,11 @@
 
     <div style="width: 100%; max-height: 40rem; height: fit-content;" *ngIf="arePostsSearchedByLocation">
       
-      <div *ngFor="let post of postsForSearch">
+      <div *ngFor="let post of postsForSearch, let i = index">
+        <mat-divider fxFlex="1 0"></mat-divider>
+        <div style="text-align: center;"> <b>{{i+1}}.</b></div>
+        <mat-divider fxFlex="1 0"></mat-divider>
+
           <mat-carousel
           color="accent"
           maxWidth="auto"
@@ -117,9 +121,7 @@
             </video>
           </div>
         </div>
-        <mat-divider fxFlex="1 0"></mat-divider>
-        <div style="text-align: center;"></div>
-        <mat-divider fxFlex="1 0"></mat-divider>
+        
     </div>
     </div>
   </div>

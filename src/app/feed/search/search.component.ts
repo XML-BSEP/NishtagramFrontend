@@ -12,6 +12,7 @@ import { PostLocations } from 'src/app/model/search/postLocations';
 import { SearchService } from 'src/app/service/search/search.service';
 import { PostIds } from 'src/app/model/search/PostIds';
 import { PostForSearch } from 'src/app/model/search/postForSearch';
+import { PostProfileId } from 'src/app/model/search/postProfileId';
 
 @Component({
   selector: 'app-search',
@@ -61,7 +62,6 @@ export class SearchComponent implements OnInit {
       this.arePostsSearchedByLocation = false;
       this.searchService.searchPostLocations(this.searchForm.controls.query.value).subscribe(
         data => {
-          console.log(data)
           this.searchedPostLocations = data;
           this.isSearchedLocation = true;
       
@@ -100,20 +100,15 @@ export class SearchComponent implements OnInit {
   }
 
   chooseLocation(location) {
-    var postIds = new PostIds(location.post_id)
+    var postIds = new PostIds(location.post_profile_id)
+    
     this.searchService.getPostByIdForSearch(postIds).subscribe(
       data => {
         this.arePostsSearchedByLocation = true;
         this.postsForSearch = data;
         this.isSearchedLocation = false;
         this.isSearchedLocations = false;
-        console.log(this.postsForSearch)
-        var i;
-        for (i = 0; i < this.postsForSearch.length; i++) {
-          console.log(this.postsForSearch[i].type)
-          console.log(this.postsForSearch[i].id)
-          console.log(this.postsForSearch[i].image)
-        }
+        
       },
       err => {
         this.toastr.error("e nzm")

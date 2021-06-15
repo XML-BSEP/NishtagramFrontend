@@ -1,7 +1,9 @@
-export class PostIds {
-    Ids: String[];
+import { PostProfileId } from "./postProfileId";
 
-    constructor(postIds : String[]) {
+export class PostIds {
+    Ids: PostProfileId[];
+
+    constructor(postIds : PostProfileId[]) {
         this.Ids = postIds
     }
         
