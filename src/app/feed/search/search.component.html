@@ -45,21 +45,83 @@
     </div>
   </div>
 
-  <mat-card class="resultsusers" style="width: 98%; margin-left: 1%;" *ngIf="isSearchedUsers && isSearched" >
-    <div class="row" *ngFor="let item of searchedProfiles" >
-      <!-- <feed-card [post]="item"></feed-card> -->
-      <div class="col mt-2 mb-2" (click)="goToProfile(item.id)">
-        <img src={{item.image}}  class="rounded-image">
+    <mat-card class="resultsusers" style="width: 98%; margin-left: 1%;" *ngIf="isSearchedUsers && isSearched" >
+      <div class="row" *ngFor="let item of searchedProfiles" >
+        <!-- <feed-card [post]="item"></feed-card> -->
+        <div class="col mt-2 mb-2" (click)="goToProfile(item.id)">
+          <img src={{item.image}}  class="rounded-image">
+        </div>
+        <div class="col-6 mt-4 mb-2">
+          <span class="name ">{{item.username}} <br> {{item.name}} {{item.surname}}</span>
+        </div>
+      
+        <div class="col mt-4 mb-2">
+            <button mat-raised-button class="mt-2" color="primary" (click)="follow(item)">Follow</button>
+        </div>
+        <mat-divider></mat-divider>
       </div>
-      <div class="col-6 mt-4 mb-2">
-        <span class="name ">{{item.username}} <br> {{item.name}} {{item.surname}}</span>
+    </mat-card>
+
+  
+    <mat-card class="resultsusers" style="width: 98%; margin-left: 1%;" *ngIf="isSearchedLocations && isSearchedLocation" >
+      <div class="row" *ngFor="let item of searchedPostLocations" >
+        <!-- <feed-card [post]="item"></feed-card> -->
+        <div class="col mt-1 mb-1" > 
+          <img src="https://i.imgur.com/gkAfgTk.png" class="sim-image">
+        </div>
+        <div class="col-5 mt-4">
+          <span class="name ">{{item.location}}</span>
+        </div>
+      
+        <div class="col mt-4 mb-2">
+            <button mat-raised-button class="mt-2" color="primary" (click)="chooseLocation(item)">Choose location</button>
+        </div>
+        <mat-divider></mat-divider>
       </div>
-     
-      <div class="col mt-4 mb-2">
-          <button mat-raised-button class="mt-2" color="primary" (click)="follow(item)">Follow</button>
-      </div>
-      <mat-divider></mat-divider>
+    </mat-card>
+
+    <div style="width: 100%; max-height: 40rem; height: fit-content;" *ngIf="arePostsSearchedByLocation">
+      
+      <div *ngFor="let post of postsForSearch">
+          <mat-carousel
+          color="accent"
+          maxWidth="auto"
+          hideArrows="false"
+          autoplay ="false"
+          slides={{post.image.length}}
+          [hideArrows]="false"
+          [hideIndicators]="true"
+          [useKeyboard]="true"
+          [useMouseWheel]="false"
+          orientation="ltr"
+          proportion="100"
+
+          *ngIf="post.type === 'ALBUM' && post.tpye !=='VIDEO'">
+
+            <mat-carousel-slide
+              #matCarouselSlide
+              id="carouselImg"
+              *ngFor="let image of post.image"
+              [image]="image"
+              overlayColor="#00000040"
+              [hideOverlay]="false"
+              ></mat-carousel-slide>
+
+        </mat-carousel>
+
+      <img *ngIf="post.type !== 'ALBUM' && post.type !== 'VIDEO'" src="{{post.image[0]}}" style="width: 100%; height: auto;   max-height: 40rem; object-fit: contain ;">
+        <div class="row d-flex flex-column justify-content-center"  *ngIf="post.type === 'VIDEO' && post.type !== 'ALBUM'">
+          <div class="col">
+            <video controls disabled="true" style="object-fit: contain; max-width: 100%; max-height: 100%; justify-content: center;" #videoPlayer>
+              <source src={{post.image[0]}} type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <mat-divider fxFlex="1 0"></mat-divider>
+        <div style="text-align: center;"></div>
+        <mat-divider fxFlex="1 0"></mat-divider>
     </div>
-  </mat-card>
+    </div>
+  </div>
 
 </div>

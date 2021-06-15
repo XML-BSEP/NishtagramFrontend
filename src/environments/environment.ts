@@ -59,7 +59,9 @@ export const environment = {
   disableTwoFactor : "disableTotp",
   validateTotp : "validateTotp",
   unfollow : "unfollow",
-  searchUser : "searchUser"
+  searchUser : "searchUser",
+  getPostLocationsByLocationContaining : "getPostLocationsByLocationContaining",
+  getPostByIdForSearch : "getPostByIdForSearch"
 };
 
 /*
