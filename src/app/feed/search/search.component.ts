@@ -8,6 +8,12 @@ import {User} from '../../model/profile/user';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SearchedUser } from 'src/app/model/profile/searchedProfile';
+import { PostLocations } from 'src/app/model/search/postLocations';
+import { SearchService } from 'src/app/service/search/search.service';
+import { PostIds } from 'src/app/model/search/PostIds';
+import { PostForSearch } from 'src/app/model/search/postForSearch';
+import { PostProfileId } from 'src/app/model/search/postProfileId';
+import { PostTags } from 'src/app/model/search/postTags';
 
 @Component({
   selector: 'app-search',
@@ -19,9 +25,23 @@ export class SearchComponent implements OnInit {
   searchedProfiles: SearchedUser[];
   isSearchedUsers = true;
   searchForm : FormGroup
+  
+  searchedPostLocations : PostLocations[];
+  searchedPostTags : PostTags[];
+  public imageForLocations : String;
+  public postsForSearch : PostForSearch[];
+
   public isAnonym : Boolean = true;
   public isSearched : Boolean = false;
-  constructor(private profileService : ProfileService, private router : Router, private toastr : ToastrService) { }
+  public isSearchedLocation : Boolean = false;
+  public isSearchedTag : Boolean = false;
+  isSearchedLocations = false;
+  isSearchedTags = false;
+  public arePostsSearchedByLocation : Boolean = false;
+  public arePostsSearchedByTag : Boolean = false;
+
+
+  constructor(private profileService : ProfileService, private router : Router, private toastr : ToastrService, private searchService : SearchService) { }
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
@@ -29,11 +49,6 @@ export class SearchComponent implements OnInit {
       'query' : new FormControl(null, Validators.required)
     });
 
-   // let u1 = new UserInFeed('1', '1' , 'https://i.imgur.com/VQkoalX.jpeg');
-   // let u2 = new UserInFeed('2', '2', 'https://i.imgur.com/G8p9qBk.jpeg')
-   // let u3 = new UserInFeed('3', 'treciFollower', 'https://i.imgur.com/XKIdf2g.jpeg')
-    //let u4 = new UserInFeed('4', 'cetvrtiFollower', 'https://i.imgur.com/s7fMnMg.jpeg')
-    //this.searchedProfiles=[u1,u2,u3,u4]
 
     if (localStorage.getItem("currentUser") == null) {
         this.isAnonym = true;
@@ -42,17 +57,32 @@ export class SearchComponent implements OnInit {
     }
   }
   search(){
-    console.log(this.searchForm.controls.category.value + " " + this.searchForm.controls.query.value)
+  
     if(this.searchForm.controls.category.value==="location"){
+      this.isSearchedLocations = true;
       this.isSearchedUsers = false;
-    }else{
-      this.isSearchedUsers = true;
+      this.arePostsSearchedByLocation = false;
+      this.searchService.searchPostLocations(this.searchForm.controls.query.value).subscribe(
+        data => {
+          this.searchedPostLocations = data;
+          this.isSearchedLocation = true;
+      
+        },
+        err => {
+          this.toastr.error("No locations with that query!")
+        }
+      );
+
     }
 
     if(this.searchForm.controls.category.value==="profile") {
       this.isSearchedUsers = true;
+      this.arePostsSearchedByLocation = false;
+      this.isSearchedLocation = false;
+      this.isSearchedLocations = false;
       this.profileService.searchUser(this.searchForm.controls.query.value).subscribe(
         data => {
+          
           this.searchedProfiles = data;
           this.isSearched = true;
         },
@@ -62,6 +92,28 @@ export class SearchComponent implements OnInit {
       );
     }
 
+    if(this.searchForm.controls.category.value==="tag") {
+      this.isSearchedUsers = false;
+      this.arePostsSearchedByLocation = false;
+      this.isSearchedLocation = false;
+      this.isSearchedLocations = false;
+      this.isSearchedTag = true;
+      this.isSearchedTags = true;
+
+      this.searchService.searchPostTags(this.searchForm.controls.query.value).subscribe(
+        data => {
+          
+          this.searchedPostTags = data;
+          this.isSearched = true;
+        },
+        err => {
+          this.toastr.error("No tags with that query!")
+        }
+      );
+    }
+
+
+
   }
   follow(item){
 
@@ -69,5 +121,24 @@ export class SearchComponent implements OnInit {
 
   goToProfile(id : String){
     this.router.navigate(['/profile'], { queryParams: { id: id} });
+  }
+
+  chooseLocation(location) {
+    var postIds = new PostIds(location.post_profile_id)
+    
+    this.searchService.getPostByIdForSearch(postIds).subscribe(
+      data => {
+        this.arePostsSearchedByLocation = true;
+        this.postsForSearch = data;
+        this.isSearchedLocation = false;
+        this.isSearchedLocations = false;
+        this.isSearchedTag = false;
+        this.isSearchedTags = false;
+        
+      },
+      err => {
+        this.toastr.error("e nzm")
+      }
+    )
   }
 }

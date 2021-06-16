@@ -62,7 +62,10 @@ export const environment = {
   searchUser : "searchUser",
   removeFromCloseFriends : "removeFromCloseFriends",
   addToCloseFriends : "addToCloseFriends",
-  isUserFollowingUser : "isUserFollowingUser"
+  isUserFollowingUser : "isUserFollowingUser",
+  getPostLocationsByLocationContaining : "getPostLocationsByLocationContaining",
+  getPostByIdForSearch : "getPostByIdForSearch",
+  getPostsByTag : "getPostsByTag"
 };
 
 /*
