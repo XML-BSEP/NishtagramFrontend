@@ -61,7 +61,8 @@ export const environment = {
   unfollow : "unfollow",
   searchUser : "searchUser",
   getPostLocationsByLocationContaining : "getPostLocationsByLocationContaining",
-  getPostByIdForSearch : "getPostByIdForSearch"
+  getPostByIdForSearch : "getPostByIdForSearch",
+  getPostsByTag : "getPostsByTag"
 };
 
 /*

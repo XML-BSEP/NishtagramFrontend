@@ -80,12 +80,37 @@
       </div>
     </mat-card>
 
-    <div style="width: 100%; max-height: 40rem; height: fit-content;" *ngIf="arePostsSearchedByLocation">
+    
+    <mat-card class="resultsusers" style="width: 98%; margin-left: 1%;" *ngIf="isSearchedTags && isSearchedTag" >
+      <div class="row" *ngFor="let item of searchedPostTags" >
+        <!-- <feed-card [post]="item"></feed-card> -->
+        <div class="col mt-1 mb-1" > 
+          <img src="https://i.imgur.com/db8nHVG.png" class="sim-image">
+        </div>
+        <div class="col-5 mt-4">
+          <span class="name ">#{{item.hashtag}}</span>
+        </div>
       
+        <div class="col mt-4 mb-2">
+            <button mat-raised-button class="mt-2" color="primary" (click)="chooseLocation(item)">Choose tag</button>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-card>
+
+
+ 
+    <div style="width: 100%; max-height: 40rem; height: fit-content;" *ngIf="arePostsSearchedByLocation">
+  
       <div *ngFor="let post of postsForSearch, let i = index">
         <mat-divider fxFlex="1 0"></mat-divider>
         <div style="text-align: center;"> <b>{{i+1}}.</b></div>
         <mat-divider fxFlex="1 0"></mat-divider>
+        <div class="d-flex justify-content-between p-2 px-3" *ngIf="arePostsSearchedByLocation">
+          <div class="d-flex flex-row align-items-center" > <img src="{{post.profile_photo}}"  width="50" class="rounded-circle">
+              <div class="d-flex flex-column ml-2"> <span class="font-weight-bold"></span> {{post.username}} <small class="text-primary"></small> </div>
+          </div>
+        </div>
 
           <mat-carousel
           color="accent"

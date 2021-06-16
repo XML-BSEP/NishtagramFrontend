@@ -6,6 +6,7 @@ import {PostLocations} from '../../model/search/postLocations'
 import {PostIds} from '../../model/search/PostIds';
 import { PostForSearch } from 'src/app/model/search/postForSearch';
 import { PostProfileId } from 'src/app/model/search/postProfileId';
+import { PostTags } from 'src/app/model/search/postTags';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,14 @@ export class SearchService {
     return this.http.get<PostLocations[]>(`${environment.baseUrl}/${environment.getPostLocationsByLocationContaining}?searchedLocation=${searchedLocation}`);
   }
 
+  searchPostTags(searchedTag: String) : Observable<PostTags[]>{ 
+    return this.http.get<PostTags[]>(`${environment.baseUrl}/${environment.getPostsByTag}?searchedTag=${searchedTag}`);
+  }
+
   getPostByIdForSearch(ids : PostIds) : Observable<PostForSearch[]> {
     return this.http.post<PostForSearch[]>(`${environment.baseUrl}/post/${environment.getPostByIdForSearch}`, ids)
   }
+
+  
 
 }
