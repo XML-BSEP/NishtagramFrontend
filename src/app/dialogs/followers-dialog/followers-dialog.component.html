@@ -7,8 +7,8 @@
             </div>
             <div class="col mt-2 mb-2">
               <div class="d-flex flex-row justify-content-end">
-                <button mat-raised-button class="mt-2" color="accent" (click)="removeCF(follow)" style="font-size: 14px; width: 10rem;" *ngIf="follower.close_friend">Remove close friend</button>
-                <button mat-raised-button class="mt-2" color="primary" (click)="addToCf(follow)" style="font-size: 14px;width: 10rem;" *ngIf="!follower.close_friend">Add to close friends</button>
+                <button mat-raised-button class="mt-2" color="accent" (click)="removeCF(follower)" style="font-size: 14px; width: 10rem;" *ngIf="follower.close_friend && loggedIn">Remove close friend</button>
+                <button mat-raised-button class="mt-2" color="primary" (click)="addToCf(follower)" style="font-size: 14px;width: 10rem;" *ngIf="!follower.close_friend && loggedIn">Add to close friends</button>
 
 
               </div>

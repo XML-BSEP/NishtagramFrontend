@@ -8,7 +8,14 @@
       <div class="col-6 mt-4 mb-2">
         <span class="name ">{{follow.username}}</span>
       </div>
+      <div class="col mt-2 mb-2">
+        <div class="d-flex flex-row justify-content-end">
+          <button mat-raised-button class="mt-2" (click)="unfollow(follow)" style="font-size: 14px; width: 10rem;" *ngIf="loggedIn">Unfollow</button>
 
+
+        </div>
+
+      </div>
       <mat-divider></mat-divider>
 
 
