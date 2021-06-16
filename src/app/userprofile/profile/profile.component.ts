@@ -1,3 +1,5 @@
+import { Unfollow } from './../../model/follow/unfollow';
+import { ProfileDTO } from './../../model/profile/profileDTO';
 import { Follower } from './../../model/follow/follower';
 import { UserDTO } from './../../model/follow/userDTO';
 import { FollowService } from './../../service/follow/follow.service';
@@ -39,7 +41,7 @@ import { FollowReq } from 'src/app/model/follow/followReq';
 })
 export class ProfileComponent implements OnInit {
   public profile : UserProfile;
-  followers : UserInFeed[] = [];
+  followers : Follower[] = [];
   following : Following[] = [];
   posts : PostInProfile[];
   public web: String;
@@ -69,6 +71,7 @@ export class ProfileComponent implements OnInit {
   requestSent : boolean
   canBeUnfollowed : boolean
   curUsr
+  isFollowing : boolean;
   constructor(
     private newHighlightDialog: MatDialog,
     private router: Router,
@@ -95,7 +98,20 @@ export class ProfileComponent implements OnInit {
     .subscribe(params => {
       this.userId = params.id;
     });
+
     this.curUsr = JSON.parse(localStorage.getItem('currentUser'))
+    if(this.userId==undefined){
+      this.userId = this.curUsr.id
+    }else{
+      if(this.userId !=this.curUsr.id){
+      var follow = new FollowDTO(new UserDTO(this.curUsr.id), new UserDTO(this.userId))
+      this.followService.isUserFollowingUser(follow).subscribe(
+        res=>{
+          this.isFollowing = res;
+        }
+      )
+      }
+    }
     this.followDTO = new FollowDTO( new UserDTO(this.userId),new UserDTO(this.curUsr.id))
     console.log(this.userId)
     if (this.userId === undefined) {
@@ -108,7 +124,8 @@ export class ProfileComponent implements OnInit {
 
 
       let userInFeed = new UserInFeed(this.curUsr.id, this.curUsr.username, "")
-      this.followService.getFollowers(userInFeed).subscribe(
+      let profileDTO = new ProfileDTO(this.userId)
+      this.followService.getFollowers(profileDTO).subscribe(
         res => {
           this.followers = res
           if (this.followers === null) {
@@ -118,7 +135,7 @@ export class ProfileComponent implements OnInit {
         }
       )
 
-      this.followService.getFollowing(userInFeed).subscribe(
+      this.followService.getFollowing(profileDTO).subscribe(
         res => {
           this.following = res
           console.log(this.following)
@@ -393,8 +410,9 @@ export class ProfileComponent implements OnInit {
     )
     console.log(post)
   }
+
   openFollowersDialog(){
-    if(!this.profile.private || this.isLoggedInUser){
+    if(!this.profile.private || this.isLoggedInUser || this.isFollowing){
       const dialogRef = this.dialog.open(FollowersDialogComponent, {
         width: '26vw',
         height: '70vh',
@@ -406,12 +424,12 @@ export class ProfileComponent implements OnInit {
   }
 
   openFollowingDialog(){
-    if(!this.profile.private || this.isLoggedInUser){
+    if(!this.profile.private || this.isLoggedInUser || this.isFollowing){
       const dialogRef = this.dialog.open(FollowingsDialogComponent, {
         width: '40vw',
         height: '70vh',
         data: this.following
-      });
+      }).afterClosed().subscribe(response=>{location.reload();})
 
     }
 
@@ -508,9 +526,11 @@ export class ProfileComponent implements OnInit {
     this.isCollectionChosen=false;
   }
   unfollow(){
-    this.followService.unfollow(this.followDTO).subscribe(res=>{
+    var unfollow = new Unfollow(this.userId, this.curUsr.id)
+    this.followService.unfollow(unfollow).subscribe(res=>{
       this.toastr.success('Successfully followed!')
       this.isFollowed=false;
+      location.reload();
     },error=>{
       this.toastr.error('OOOOOOOOpppsss something went wrong :(')
       console.log(error)
@@ -523,6 +543,8 @@ export class ProfileComponent implements OnInit {
       this.isFollowed = false;
       this.canBeUnfollowed = false;
       this.requestSent = false;
+      location.reload();
+
     },error=>{
       this.toastr.error('OOOOOOOOpppsss something went wrong :(')
       console.log(error)
@@ -533,6 +555,8 @@ export class ProfileComponent implements OnInit {
     this.followService.follow(this.followDTO).subscribe(res=>{
       this.toastr.success('Successfully followed!')
       this.isFollowed=true;
+      location.reload();
+
     },error=>{
       this.toastr.error('OOOOOOOOpppsss something went wrong :(')
       console.log(error)

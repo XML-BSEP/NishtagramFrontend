@@ -20,7 +20,7 @@ import {AdminComponent} from './admin/admin.component'
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
     // ,
     // canActivate : [AuthGuard],

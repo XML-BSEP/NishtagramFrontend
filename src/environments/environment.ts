@@ -50,8 +50,8 @@ export const environment = {
   isUserAllowedToFollow : "isAllowedToFollow",
   follow : "follow",
   cancelFollowRequest: "cancelFollowRequest",
-  followers : "getAllUsersFollowersFront",
-  followingFront : "getAllUsersFollowingFront", 
+  getAllUsersFollowersFront : "getAllUsersFollowersFront",
+  followingFront : "getAllUsersFollowingFront",
   removeFavorite : "removeFavorite",
   isTotpEnabled : "isTotpEnabled",
   generateSecret : "generateSecret",
@@ -59,7 +59,10 @@ export const environment = {
   disableTwoFactor : "disableTotp",
   validateTotp : "validateTotp",
   unfollow : "unfollow",
-  searchUser : "searchUser"
+  searchUser : "searchUser",
+  removeFromCloseFriends : "removeFromCloseFriends",
+  addToCloseFriends : "addToCloseFriends",
+  isUserFollowingUser : "isUserFollowingUser"
 };
 
 /*
