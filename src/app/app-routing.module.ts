@@ -15,6 +15,7 @@ import { TotpLoginComponent } from './sign-in/totpsignin/login.component';
 import { AuthGuard } from './helpers';
 import { Role } from './model/user/role';
 import {AdminComponent} from './admin/admin.component'
+import { UserSettingsComponent } from './userprofile/user-settings/user-settings.component';
 
 
 const routes: Routes = [
@@ -59,6 +60,12 @@ const routes: Routes = [
   {
     path: 'profile',
     component : ProfileComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.RegularUser]}
+  },
+  {
+    path: 'settings',
+    component : UserSettingsComponent,
     canActivate : [AuthGuard],
     data : {roles: [Role.RegularUser]}
   },

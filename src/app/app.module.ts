@@ -38,7 +38,8 @@ import { NewstoryDialogComponent } from './dialogs/newstory-dialog/newstory-dial
 import { SearchComponent } from './feed/search/search.component';
 import { Add2collectionDialogComponent } from './dialogs/add2collection-dialog/add2collection-dialog.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component'
-import {TotpLoginComponent} from './sign-in/totpsignin/login.component'
+import {TotpLoginComponent} from './sign-in/totpsignin/login.component';
+import { UserSettingsComponent } from './userprofile/user-settings/user-settings.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +67,8 @@ import {TotpLoginComponent} from './sign-in/totpsignin/login.component'
     NewstoryDialogComponent,
     SearchComponent,
     Add2collectionDialogComponent,
-    TotpLoginComponent
+    TotpLoginComponent,
+    UserSettingsComponent
 
   ],
   imports: [
