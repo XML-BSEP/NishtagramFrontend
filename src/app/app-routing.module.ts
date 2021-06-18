@@ -15,6 +15,7 @@ import { TotpLoginComponent } from './sign-in/totpsignin/login.component';
 import { AuthGuard } from './helpers';
 import { Role } from './model/user/role';
 import {AdminComponent} from './admin/admin.component'
+import { AdminRequestVerificationComponent } from './admin-request-verification/admin-request-verification/admin-request-verification.component';
 import { UserSettingsComponent } from './userprofile/user-settings/user-settings.component';
 
 
@@ -95,6 +96,12 @@ const routes: Routes = [
     canActivate : [AuthGuard],
     data : {roles: [Role.Admin]}
 
+  }, 
+  {
+    path: "admin/verifications",
+    component: AdminRequestVerificationComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.Admin]}
   }
 
 ];

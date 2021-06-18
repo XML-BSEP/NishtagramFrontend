@@ -39,6 +39,7 @@ import { SearchComponent } from './feed/search/search.component';
 import { Add2collectionDialogComponent } from './dialogs/add2collection-dialog/add2collection-dialog.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component'
 import {TotpLoginComponent} from './sign-in/totpsignin/login.component';
+import { AdminRequestVerificationComponent } from './admin-request-verification/admin-request-verification/admin-request-verification.component'
 import { UserSettingsComponent } from './userprofile/user-settings/user-settings.component'
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { UserSettingsComponent } from './userprofile/user-settings/user-settings
     SearchComponent,
     Add2collectionDialogComponent,
     TotpLoginComponent,
+    AdminRequestVerificationComponent,
     UserSettingsComponent
 
   ],
