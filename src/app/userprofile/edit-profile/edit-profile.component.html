@@ -1,13 +1,10 @@
-<div class="component">
+<!-- <div class="component">
   <div class="content">
     <mat-card class="main-card mat-elevation-z4">
       <form [formGroup]="registrationForm" >
         <div class="row">
           <div class="col">
             <div class="d-flex flex-column align-items-center text-center">
-              <!-- <div class="circular">
-                <img src={{imgFile}}/>
-              </div> -->
               <img class="circular rounded-circle mt-5 mb-5"  src={{imgFile}}>
             </div>
 
@@ -114,8 +111,6 @@
               <mat-label>Bio</mat-label>
               <textarea matInput placeholder="Biography" formControlName='bio'></textarea>
 
-              <!-- <input matInput type="text" placeholder="Biography"
-                    formControlName="bio" > -->
             </mat-form-field>
           </div>
         </div>
@@ -201,7 +196,7 @@
         </div>
     </mat-card>
     <mat-card class="main-card mat-elevation-z4" style="margin-left: 30px; width: 500px;">
-      
+
       <div class="row">
         <div class="col d-flex justify-content-left mt-4 mb-3">
           <mat-label style="margin-right: 10px;">Enable two factor authentication</mat-label>
@@ -210,7 +205,7 @@
       </div>
 
       <form [formGroup]="passcodeForm">
-      
+
       <div *ngIf="showQRCodeDetails" style="justify-content: center; align-content: center;">
         <mat-label>Scan your QR code using Google Authenticator</mat-label>
         <img [src]="qrCodeImg">
@@ -233,12 +228,12 @@
           <div *ngIf="!isEnabled2fa">
             <button mat-raised-button color="primary" style="margin-left: 15px;" (click)="confirm2FA()">Enable</button>
           </div>
-      
+
         </div>
       </div>
 
       <div *ngIf="showDisabledPassCode">
-            
+
         <mat-label>Enter your code using Google Authenticator to disable</mat-label>
         <mat-form-field appearance="outline" class="passcode" id="text-ff">
           <mat-label>Passcode*</mat-label>
@@ -263,8 +258,417 @@
 
   </div>
 
+</div> -->
+<div class="component">
+  <div class="container">
+
+    <div class="row gutters-sm">
+      <div class="col-md-4 d-none d-md-block">
+        <div class="card">
+          <div class="card-body">
+            <nav class="nav flex-column nav-pills nav-gap-y-1">
+              <!-- <button mat-flat-button data-toggle="tab" style="background-color: transparent;" class="nav-item nav-link has-icon nav-link-faded active">
+
+              </button> -->
+              <button mat-flat-button data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded"(click)="goToProfileInfo()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile Information
+              </button>
+              <button mat-flat-button data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded" (click)="goToAccSettings()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings mr-2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>Account Settings
+              </button>
+              <button mat-flat-button data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded" (click)="goToSecurity()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield mr-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Security
+              </button>
+              <button mat-flat-button data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded" (click)="goToNotifications()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell mr-2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>Notification
+              </button>
+
+            </nav>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <!-- <div class="card-header border-bottom mb-3 d-flex d-md-none">
+            <ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">
+              <li class="nav-item">
+                <a href="#profile" data-toggle="tab" class="nav-link has-icon active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
+              </li>
+              <li class="nav-item">
+                <a href="#account" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a>
+              </li>
+              <li class="nav-item">
+                <a href="#security" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></a>
+              </li>
+              <li class="nav-item">
+                <a href="#notification" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></a>
+              </li>
+              <li class="nav-item">
+                <a href="#billing" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></a>
+              </li>
+            </ul>
+          </div> -->
+          <div class="card-body tab-content">
+            <div id="profile" *ngIf="profileInfo">
+              <h6>YOUR PROFILE INFORMATION</h6>
+              <hr>
+              <form [formGroup]="registrationForm" >
+                <div class="row">
+                  <div class="col">
+                    <div class="d-flex flex-column align-items-center text-center">
+                      <img class="circular rounded-circle mt-5 mb-5"  src={{imgFile}}>
+                    </div>
+
+                  </div>
+                  <div class="col d-flex flex-row align-items-center text-center" *ngIf="isEmptyImage()">
+                    <input
+                      style="display: none"
+                      type="file" (change)="onFileChanged($event)"
+                      #fileInput accept="image/x-png,image/gif,image/jpeg" >
+                    <button mat-fab color="primary" (click)="fileInput.click()" >
+                      <mat-icon>add</mat-icon>
+                    </button>
+
+                  </div>
+
+                  <div class="col d-flex flex-row align-items-center text-center" *ngIf="!isEmptyImage()">
+                    <button mat-fab color="accent" (click)="removePhoto()" >
+                      <mat-icon>remove</mat-icon>
+                    </button>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-sm" >
+                    <mat-form-field appearance="outline" class="name" id="text-ff">
+                      <mat-label>Name*</mat-label>
+                      <input matInput placeholder="Name"
+                            formControlName="name">
+                      <mat-error
+                        *ngIf="!registrationForm.get('name').valid && registrationForm.get('name').touched && registrationForm.get('name').errors['required']">
+                        Please enter name</mat-error>
+
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm">
+                    <mat-form-field appearance="outline" class="name" id="text-ff">
+                      <mat-label>Lastname*</mat-label>
+                      <input matInput placeholder="Lastname"
+                            formControlName="surname">
+                      <mat-error
+                        *ngIf="!registrationForm.get('surname').valid && registrationForm.get('surname').touched && registrationForm.get('surname').errors['required']">
+                        Please enter lastname</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <mat-form-field appearance="outline" class="name" id="text-ff">
+                      <mat-label>Address*</mat-label>
+                      <input matInput type="text" placeholder="Address"
+                            formControlName="address" >
+                      <mat-error
+                        *ngIf="!registrationForm.get('address').valid && registrationForm.get('address').touched && registrationForm.get('address').errors['required']">
+                        Please enter address</mat-error>
+
+                    </mat-form-field>
+                  </div>
+                  <div class="col">
+                    <mat-form-field appearance="outline" class="name" id="text-ff">
+                      <mat-label>Phone*</mat-label>
+                      <input matInput type="text" placeholder="Phone"
+                            formControlName="phone" >
+                      <mat-error
+                        *ngIf="!registrationForm.get('phone').valid && registrationForm.get('phone').touched && registrationForm.get('phone').errors['required']">
+                        Please enter phone number</mat-error>
+
+                    </mat-form-field>
+
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <mat-form-field appearance="outline" class="name">
+                      <mat-label>Birthday*</mat-label>
+                      <input matInput [matDatepicker]="dp3" [max]="today" formControlName="birthday">
+                      <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                      <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                      <mat-error
+                      *ngIf="!registrationForm.get('birthday').valid && registrationForm.get('birthday').touched && registrationForm.get('birthday').errors['required']">
+                      Please enter birthday</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col mt-3">
+                    <mat-label class="mr-3">Gender*</mat-label>
+                    <mat-radio-group class="mt-4  " formControlName="gender">
+                      <mat-radio-button class="mr-3" value="Male">Male</mat-radio-button>
+                      <mat-radio-button class="mr-3" value="Female">Female</mat-radio-button>
+                      <mat-radio-button class="mr-3" value="Other">Other</mat-radio-button>
+
+                    </mat-radio-group>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <mat-form-field appearance="outline" class="name" id="text-ff">
+                      <mat-label>Website</mat-label>
+                      <input matInput type="text" placeholder="Website"
+                            formControlName="web" >
+                    </mat-form-field>
+                  </div>
+                  <div class="col">
+                    <mat-form-field appearance="outline" class="name" id="text-ff">
+                      <mat-label>Bio</mat-label>
+                      <textarea matInput placeholder="Biography" formControlName='bio'></textarea>
+
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+
+                  <div class="col">
+                    <mat-form-field appearance="outline" class="name" id="text-ff">
+                      <mat-label>Email*</mat-label>
+                      <input matInput placeholder="Email"
+                            formControlName="email">
+                      <mat-error
+                        *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched && registrationForm.get('email').errors['required']">
+                        Please enter email</mat-error>
+                        <mat-error
+                        *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched && registrationForm.get('email').errors['email']">
+                        Please enter email</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col">
+                    <mat-form-field appearance="outline" class="name" id="text-ff">
+                      <mat-label>Username*</mat-label>
+                      <input matInput placeholder="Username"
+                            formControlName="username">
+                      <mat-error
+                        *ngIf="!registrationForm.get('username').valid && registrationForm.get('username').touched && registrationForm.get('username').errors['required']">
+                        Please enter username</mat-error>
+
+                    </mat-form-field>
+                  </div>
+
+                </div>
+              </form>
+
+            </div>
+            <div id="account" *ngIf="accSettings">
+              <h6>ACCOUNT SETTINGS</h6>
+              <hr>
+              <form [formGroup]="accountSettingsForm">
+                <label class="d-block">Privacy</label>
+                <mat-slide-toggle formControlName="private">Private</mat-slide-toggle>
+                <hr>
+                <label class="d-block">Recieve messages from not following accounts</label>
+                <mat-slide-toggle formControlName="messages">Messages</mat-slide-toggle>
+                <hr>
+                <label class="d-block">Get tagged by people in posts, stories and comments</label>
+                <mat-slide-toggle formControlName="tags">Taggable</mat-slide-toggle>
+                <div class="row mt-2 mb-2 ml-1" style="width:10rem">
+                  <button mat-raised-button color="primary">
+                    Save
+                  </button>
+                </div>
+
+              </form>
+
+            </div>
+
+            <div id="security" *ngIf="security">
+              <h6>SECURITY SETTINGS</h6>
+              <hr>
+              <form [formGroup]="changePasswordForm" >
+
+                <div class="row">
+                    <mat-form-field appearance="outline" class="name"  id="text-ff">
+                      <mat-label>Password*</mat-label>
+                      <input matInput type="password" placeholder="Password"
+                            formControlName="password" (change)="checkPassword()">
+                            <mat-hint>Password must have minimum 1 uppercase letter, 1 lowercase letter, 1 digit and 1 special character</mat-hint>
+
+                      <mat-error
+                        *ngIf="!changePasswordForm.get('password').valid && changePasswordForm.get('password').touched && changePasswordForm.get('password').errors['required']">
+                        Please enter password</mat-error>
+                        <mat-error
+                        *ngIf="!changePasswordForm.get('password').valid && changePasswordForm.get('password').touched && changePasswordForm.get('password').errors['pattern']">
+                        Password must have minimum 1 uppercase letter, 1 lowercase letter, 1 digit and 1 special character and needs to be minimum 8 characters long.</mat-error>
+                    </mat-form-field>
+                    </div>
+                    <div class="row">
 
 
+                    <mat-form-field appearance="outline" class="name" id="text-ff">
+                      <mat-label>Confirm password*</mat-label>
+                      <input matInput type="password" placeholder="Password"
+                            formControlName="confirmPassword" >
+                            <mat-hint>Password must have minimum 1 uppercase letter, 1 lowercase letter, 1 digit and 1 special character</mat-hint>
 
+                      <mat-error
+                        *ngIf="!changePasswordForm.get('confirmPassword').valid && changePasswordForm.get('confirmPassword').touched && changePasswordForm.get('confirmPassword').errors['required']">
+                        Please confirm password</mat-error>
+                        <mat-error
+                        *ngIf="!changePasswordForm.get('confirmPassword').valid && changePasswordForm.get('confirmPassword').touched && changePasswordForm.get('confirmPassword').errors['pattern']">
+                        Password must have minimum 1 uppercase letter, 1 lowercase letter, 1 digit and 1 special character and needs to be minimum 8 characters long.</mat-error>
 
+                    </mat-form-field>
+
+                </div>
+                <div class="row justify-content-left ml-2">
+                  <button mat-raised-button color="primary" style="width: 10rem;"  (click)="confirmPassword()" [disabled]="!changePasswordForm.valid">Confirm</button>
+                </div>
+
+              </form>
+              <hr>
+                <div class="form-group">
+                  <label class="d-block">Two Factor Authentication</label>
+                  <div class="row">
+                    <div class="col d-flex justify-content-left mt-4 mb-3">
+                      <mat-label style="margin-right: 10px;">Enable two factor authentication</mat-label>
+                      <mat-slide-toggle (click)="enable2fa()" [(ngModel)]="isEnabled2fa"></mat-slide-toggle>
+                    </div>
+                  </div>
+
+                  <p class="small text-muted mt-2">Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.</p>
+                  <form [formGroup]="passcodeForm">
+
+                  <div *ngIf="showQRCodeDetails" class="d-flex flex-column justify-content-center">
+                    <div class="row justify-content-center" style="width: 18rem;">
+                      <img [src]="qrCodeImg">
+                    </div>
+                    <div class="row">
+                      <mat-label>Scan your QR code using Google Authenticator</mat-label>
+                    </div>
+                    <div class="row" *ngIf="!isEnabled2fa">
+                      <div class="col">
+                        <mat-form-field appearance="outline" class="passcode" id="text-ff">
+                        <mat-label>Passcode*</mat-label>
+                        <input matInput type="text" placeholder="Passcode"
+                              formControlName="passcode" >
+                              <mat-hint>Please enter your passcode from Google Authenticator to continue</mat-hint>
+
+                        <mat-error
+                          *ngIf="!passcodeForm.get('passcode').valid && passcodeForm.get('passcode').touched && passcodeForm.get('passcode').errors['required']">
+                          You must enter your passcode to continue.</mat-error>
+                          <mat-error
+                          *ngIf="!passcodeForm.get('passcode').valid && passcodeForm.get('passcode').touched && passcodeForm.get('passcode').errors['pattern']">
+                          You must enter your passcode to continue.</mat-error>
+
+                      </mat-form-field>
+                      </div>
+                      <div class="col" *ngIf="!isEnabled2fa">
+                        <button mat-raised-button color="primary" style="margin-left: 15px;" (click)="confirm2FA()">Enable</button>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div *ngIf="showDisabledPassCode">
+                    <mat-label>Enter your code using Google Authenticator to disable</mat-label>
+                    <mat-form-field appearance="outline" class="passcode" id="text-ff">
+                      <mat-label>Passcode*</mat-label>
+                      <input matInput type="text" placeholder="Passcode"
+                            formControlName="passcode" >
+                            <mat-hint>Please enter your passcode from Google Authenticator to continue</mat-hint>
+
+                      <mat-error
+                        *ngIf="!passcodeForm.get('passcode').valid && passcodeForm.get('passcode').touched && passcodeForm.get('passcode').errors['required']">
+                        You must enter your passcode to continue.</mat-error>
+                        <mat-error
+                        *ngIf="!passcodeForm.get('passcode').valid && passcodeForm.get('passcode').touched && passcodeForm.get('passcode').errors['pattern']">
+                        You must enter your passcode to continue.</mat-error>
+
+                    </mat-form-field>
+                    <div *ngIf="isEnabled2fa">
+                      <button mat-raised-button color="primary" style="margin-left: 15px;" (click)="disable2FA()">Disable</button>
+                    </div>
+                    </div>
+                </form>
+
+                </div>
+
+            </div>
+
+            <div *ngIf="notifications">
+              <h6>NOTIFICATION SETTINGS</h6>
+              <hr>
+              <form>
+                <div class="form-group">
+                  <label class="d-block mb-0">Security Alerts</label>
+                  <div class="small text-muted mb-3">Receive security alert notifications via email</div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
+                    <label class="custom-control-label" for="customCheck1">Email each time a vulnerability is found</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck2" checked="">
+                    <label class="custom-control-label" for="customCheck2">Email a digest summary of vulnerability</label>
+                  </div>
+                </div>
+                <div class="form-group mb-0">
+                  <label class="d-block">SMS Notifications</label>
+                  <ul class="list-group list-group-sm">
+                    <li class="list-group-item has-icon">
+                      Comments
+                      <div class="custom-control custom-control-nolabel custom-switch ml-auto">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
+                        <label class="custom-control-label" for="customSwitch1"></label>
+                      </div>
+                    </li>
+                    <li class="list-group-item has-icon">
+                      Updates From People
+                      <div class="custom-control custom-control-nolabel custom-switch ml-auto">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                        <label class="custom-control-label" for="customSwitch2"></label>
+                      </div>
+                    </li>
+                    <li class="list-group-item has-icon">
+                      Reminders
+                      <div class="custom-control custom-control-nolabel custom-switch ml-auto">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch3" checked="">
+                        <label class="custom-control-label" for="customSwitch3"></label>
+                      </div>
+                    </li>
+                    <li class="list-group-item has-icon">
+                      Events
+                      <div class="custom-control custom-control-nolabel custom-switch ml-auto">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch4" checked="">
+                        <label class="custom-control-label" for="customSwitch4"></label>
+                      </div>
+                    </li>
+                    <li class="list-group-item has-icon">
+                      Pages You Follow
+                      <div class="custom-control custom-control-nolabel custom-switch ml-auto">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch5">
+                        <label class="custom-control-label" for="customSwitch5"></label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </form>
+            </div>
+            <div class="tab-pane" id="billing">
+              <h6>BILLING SETTINGS</h6>
+              <hr>
+              <form>
+                <div class="form-group">
+                  <label class="d-block mb-0">Payment Method</label>
+                  <div class="small text-muted mb-3">You have not added a payment method</div>
+                  <button class="btn btn-info" type="button">Add Payment Method</button>
+                </div>
+                <div class="form-group mb-0">
+                  <label class="d-block">Payment History</label>
+                  <div class="border border-gray-500 bg-gray-200 p-3 text-center font-size-sm">You have not made any payment.</div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>

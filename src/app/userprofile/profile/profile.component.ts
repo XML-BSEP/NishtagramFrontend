@@ -429,7 +429,19 @@ export class ProfileComponent implements OnInit {
         width: '40vw',
         height: '70vh',
         data: this.following
-      }).afterClosed().subscribe(response=>{location.reload();})
+      }).afterClosed().subscribe(response=>{
+        // location.reload();
+        let profileDTO = new ProfileDTO(this.userId)
+        this.followService.getFollowing(profileDTO).subscribe(
+          res => {
+            this.following = res
+            console.log(this.following)
+            if (this.following === null) {
+              this.following = []
+            }
+          }
+        )
+      })
 
     }
 

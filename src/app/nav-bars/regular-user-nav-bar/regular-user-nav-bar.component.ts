@@ -69,6 +69,10 @@ export class RegularUserComponent implements OnInit {
     }
 
   }
+  settings(){
+    window.location.href = "/settings"
+
+  }
   userProfile() {
     console.log(this.router.url)
     window.location.href = "/profile"

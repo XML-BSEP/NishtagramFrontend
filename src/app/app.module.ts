@@ -40,6 +40,7 @@ import { Add2collectionDialogComponent } from './dialogs/add2collection-dialog/a
 import { ForbiddenComponent } from './forbidden/forbidden.component'
 import {TotpLoginComponent} from './sign-in/totpsignin/login.component';
 import { AdminRequestVerificationComponent } from './admin-request-verification/admin-request-verification/admin-request-verification.component'
+import { UserSettingsComponent } from './userprofile/user-settings/user-settings.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +69,8 @@ import { AdminRequestVerificationComponent } from './admin-request-verification/
     SearchComponent,
     Add2collectionDialogComponent,
     TotpLoginComponent,
-    AdminRequestVerificationComponent
+    AdminRequestVerificationComponent,
+    UserSettingsComponent
 
   ],
   imports: [

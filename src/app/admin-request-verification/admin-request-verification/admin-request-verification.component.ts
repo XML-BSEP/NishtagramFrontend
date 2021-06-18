@@ -30,7 +30,7 @@ export class AdminRequestVerificationComponent implements OnInit {
   reject(verification) {
    this.rejectVerification = new RequestVerificationToChangeState();
    this.rejectVerification.id = verification.id
-   this.rejectVerification.profileId = verification.profile_id;
+   this.rejectVerification.profile_id = verification.profile_id;
    
    this.requestVerificationService.rejectVerification(this.rejectVerification).subscribe(
      res => {
