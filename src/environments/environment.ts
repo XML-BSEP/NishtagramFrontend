@@ -65,7 +65,10 @@ export const environment = {
   isUserFollowingUser : "isUserFollowingUser",
   getPostLocationsByLocationContaining : "getPostLocationsByLocationContaining",
   getPostByIdForSearch : "getPostByIdForSearch",
-  getPostsByTag : "getPostsByTag"
+  getPostsByTag : "getPostsByTag",
+  getAllRequestVerifications : "getAllRequestVerifications",
+  approveRequestVerification : "approveRequestVerification",
+  rejectRequestVerification : "rejectRequestVerification"
 };
 
 /*
