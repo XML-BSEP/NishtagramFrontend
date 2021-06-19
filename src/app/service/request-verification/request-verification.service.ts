@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { RequestVerification } from 'src/app/model/request-verification/requestVerification';
 import { RequestVerificationToChangeState } from 'src/app/model/request-verification/requestVerificationToChangeState';
+import { NewRequestVerification } from 'src/app/model/request-verification/newRequestVerification';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,9 @@ export class RequestVerificationService {
 
   approveVerification(verification : RequestVerificationToChangeState) { 
     return this.http.post(`${environment.baseUrl}/${environment.approveRequestVerification}`, verification);
+  }
+
+  saveNewRequestVerification(verification : NewRequestVerification){
+    return this.http.post(`${environment.baseUrl}/${environment.saveNewRequestVerification}`, verification);
   }
 }
