@@ -97,8 +97,8 @@ export class EditProfileComponent implements OnInit {
     "passcode" : new FormControl("", [Validators.required])
   });
   this.verificationForm = new FormGroup({
-    'name' : new FormControl("", Validators.required),
-    'surname' : new FormControl("", Validators.required),
+    'name' : new FormControl(this.user.name, Validators.required),
+    'surname' : new FormControl(this.user.surname, Validators.required),
     'reqVerification' : new FormControl("", Validators.required),
   })
 
