@@ -19,6 +19,7 @@ export class EditProfileComponent implements OnInit {
   public registrationForm: FormGroup;
   public changePasswordForm : FormGroup;
   public accountSettingsForm : FormGroup;
+  public verificationForm : FormGroup;
 
   fileName : String="";
   imgFile : String;
@@ -28,6 +29,7 @@ export class EditProfileComponent implements OnInit {
   editUser : User;
   public isEnabled2fa : boolean;
   public privateStatus : boolean;
+  fileNameVerifiaction : String = "";
 
   public showQRCodeDetails : boolean = false;
   public passCode : String;
@@ -39,9 +41,16 @@ export class EditProfileComponent implements OnInit {
   public profileInfo : boolean = true;
   public security : boolean = false;
   public notifications : boolean = false;
+  public requestVerification : boolean = false;
+  public requestVerifications : String[] = ["Influencer", "Sports", "NewMedia", "Business", "Brand", "Organization"];
+  public selectedRequsetVerification : String;
+  public selectedRequestValue : String;
+  public imageVerification: String;
+ 
+
   constructor(private router: Router, private toastr : ToastrService, private privateService : ProfileService, private authenticationService : AuthenticationService) { }
   emptyImg="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAMFBMVEXFxcX////CwsLGxsb7+/vT09PJycn19fXq6urb29ve3t7w8PDOzs7n5+f5+fnt7e30nlkBAAAFHUlEQVR4nO2dC5qqMAyFMTwUBdz/bq+VYYrKKJCkOfXmXwHna5uTpA+KwnEcx3Ecx3Ecx3Ecx3Ecx3Ecx3Ecx3Ecx3EcA2iO9cdIc5PUdO257y+BU39u66b4HplE3fk6VIcnqmNfl1+gksr6+iIucjl3WYukor7+re6Hoe1y1UhNO3zUd+fUFRmKpOa0Tt6dY5ubRCrOG/QFLk1WGmnt/JxzykcjdZ/jyxJDLlOV2l36AtcsJJb9boG3YcR3DuqODIE3ztYKPkDdmwRmpUToUaSaq++AvRgZMWbOpbQW8hdCAm8ZDugoikzREdCJ2okJPBx6azFLNOwoOgcxojJ98JkaTSJxMpklKrCAKhZGI0drTY/wU5lXoJYibannV9NYy4oozNEAkPHTjop+DTDxVGkIgYJNoyQQJtiIW+EMjGAjm649AjGIaqswcEFQKJ2QPlJbqytki6ZXAAZRJ52J2McaUowzAfs+uFzrYhnzaapphiPWdaJWShqxjqa6kTTQ205TVbsfMa6htL0iYOsXpJrQjHSmCkv1QGPtiHqlYcQ21Gj7fcDU8xOEUuNgSltPzexh+HqFlanCBHZ4OLhCV+gK/3OF6vWvucLv98MUOY2pwu/PS/+D2qJU7pYGbOvDFDW+bbON9p3o3oRxn0bfLgZTgSn6pSfrtr56qLHemtHPTK2319SzGvtjQ9qeb39WgS66Cm073nd0U1PzDdJCO3Gzn6TKpl9Zq7ujGWsQhlA3NwWIMwG9zM08Y/tBrR9VWeczv5CSQuuUNKIUTk23ZJ5RKfVhjnkXotfWIlgX2BSCDYbZR+QTcLhb3dKZDUY2M0d4KWItwhHRah/zsrOgKw4wycwjcgEVcgQDQo23CqSiWEJkFAfod2oE1uIFdA1OsCPqFXYNTjCfb8Ez+iX2x5sKLlVbhtqdDcar9ZevhnbZxoBUD35k23t0d304LYs1ELVbnfFaZ/REJJX9niP8Q19moZGo3m8XR/yBvOnjFfsXcI2c8ZuNo7WMP5HQh6yRGrlmFOJTnyTcT+zRlqPUBI2gTVWNUzUna1ERgecgF4GpNBQ38jGqxVLzQA1A31Rrhk6Yz9QEh/WND0GnuG9huhiTXJkxfAizTHLr6cbJKN6UCU6x/2DTRE1xEeEXi3O0ZUqBN4nJRzHhFB1JPlFTBZlI2kQ8zc3KJ1Le8DIRmFJiknuVS6RK4Ej/JtBfJErDSzOBiY4wJHX6Z1I4v1GUmdCPNirnLLeg3oJLcbX5PcpHNbRvOa1A956QmRPOUXVF+zkaUJynpkYR0bOMJH2nNej1pqyV/aKkz9jr5yj5vrXXz1F5SQLACiMapmierj2ikLyleKdlA/I/2oFxiglxx9B+mHwz0lf34IZQfhDRhlD6bhvgEAoPYooHkTczSIZTLC+cEExsoNKZiGBiY9cCfo/Y/SjIOBMQizWWTe73CMUasJx7jlD+DdKdWUKoY4PRYFtGpO0G1Lx4RaadgTtJhf4fiGqGIwKWCGuGIwKWqP+7IxYCzygjR9IAO5pC7Da9g70TBVpWRNgFBlgT8RV2WxHbKwJMv4BOaEaYaU2K16yZMN/qgV+G7IWIvwyZCxHeDQMsR8wg0DBDDXB5H2EV+hkEGmaoySHQsEJNFoGGFWrAq98JRhUMX1iMMMqLLEIpK5jCbd4vw9nSt/72lewXiN6jmdjfq8Hdknlk92ZwJnbIMMRM7JBhiFlUFoHd1UWaP1QKsPsHA5mkNB+Smn9JqV3wskatnQAAAABJRU5ErkJggg=="
-
+  
 
   ngOnInit(): void {
     if(history.state.data===undefined){
@@ -86,6 +95,11 @@ export class EditProfileComponent implements OnInit {
  });
   this.passcodeForm = new FormGroup({
     "passcode" : new FormControl("", [Validators.required])
+  });
+  this.verificationForm = new FormGroup({
+    'name' : new FormControl("", Validators.required),
+    'surname' : new FormControl("", Validators.required),
+    'reqVerification' : new FormControl("", Validators.required),
   })
 
 
@@ -107,6 +121,9 @@ export class EditProfileComponent implements OnInit {
   });
   this.imgFile=this.user.image;
   this.privateStatus = this.user.private;
+
+  this.imageVerification = this.emptyImg;
+
   }
 
   setPrivateStatus(){
@@ -208,6 +225,9 @@ export class EditProfileComponent implements OnInit {
       return false;
     }
   }
+
+  
+
   checkPassword() {
     var password =  this.registrationForm.controls.password.value;
     var regex = new RegExp('^[A-Z][A-Za-z0-9]+[$@$!%*?&]{1}$')
@@ -255,23 +275,75 @@ export class EditProfileComponent implements OnInit {
     this.profileInfo = false;
     this.notifications = false;
     this.security = false;
+    this.requestVerification = false;
   }
   goToProfileInfo(){
     this.accSettings = false;
     this.profileInfo = true;
     this.notifications = false;
     this.security = false;
+    this.requestVerification = false;
   }
   goToSecurity(){
     this.accSettings = false;
     this.profileInfo = false;
     this.notifications = false;
     this.security = true;
+    this.requestVerification = false;
   }
   goToNotifications(){
     this.accSettings = false;
     this.profileInfo = false;
     this.notifications = true;
     this.security = false;
+    this.requestVerification = false;
   }
+
+  goToRequestVerification() {
+    this.accSettings = false;
+    this.profileInfo = false;
+    this.notifications = false;
+    this.security = false;
+    this.requestVerification = true;
+  }
+
+  comboChangeVerification(event){
+    if(!event) {
+      this.selectedRequsetVerification = this.selectedRequestValue;
+      console.log(this.selectedRequsetVerification);
+    }
+  }
+
+  isEmptyVerificationImage(){
+    if(this.imageVerification===this.emptyImg){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  onFileChangedVerification(e) {
+    const reader = new FileReader();
+      if(e.target.files && e.target.files.length) {
+        const [file] = e.target.files;
+          reader.readAsDataURL(file);
+
+          reader.onload = () => {
+            this.imageVerification = reader.result as string;
+            this.fileNameVerifiaction = file.name;
+          };
+
+    }
+
+  }
+
+  removePhotoVerification(){
+
+    this.imageVerification=this.emptyImg;
+    this.fileNameVerifiaction="emptyprofile.png";
+
+  }
+
+
+
 }
