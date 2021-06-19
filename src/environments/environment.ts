@@ -70,7 +70,8 @@ export const environment = {
   approveRequestVerification : "approveRequestVerification",
   rejectRequestVerification : "rejectRequestVerification",
   getLikedMedia : "likedMedia",
-  getDislikedMedia : "dislikedMedia"
+  getDislikedMedia : "dislikedMedia",
+  saveNewRequestVerification : "saveNewRequestVerification"
 };
 
 /*
