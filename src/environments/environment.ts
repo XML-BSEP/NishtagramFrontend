@@ -68,7 +68,8 @@ export const environment = {
   getPostsByTag : "getPostsByTag",
   getAllRequestVerifications : "getAllRequestVerifications",
   approveRequestVerification : "approveRequestVerification",
-  rejectRequestVerification : "rejectRequestVerification"
+  rejectRequestVerification : "rejectRequestVerification",
+  saveNewRequestVerification : "saveNewRequestVerification"
 };
 
 /*

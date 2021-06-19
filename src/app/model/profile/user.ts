@@ -11,6 +11,8 @@ export class User{
     username : String;
     image : String;
     private : boolean;
+    catergory : String;
+    
     constructor(name : String, surname : String, email : String, address : String, phone : String, birthday : Date, gender : String,
        web : String, bio : String, username : String, image : String){
       this.name = name;
