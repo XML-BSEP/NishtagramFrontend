@@ -282,6 +282,9 @@
               <button mat-flat-button data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded" (click)="goToNotifications()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell mr-2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>Notification
               </button>
+               <button mat-flat-button data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded" (click)="goToRequestVerification()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle mr-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Request verification
+              </button>
 
             </nav>
           </div>
@@ -665,6 +668,76 @@
                 </div>
               </form>
             </div>
+            <div class="card-body tab-content">
+              <div id="profile" *ngIf="requestVerification">
+                <h6>YOUR NEW REQUEST VERIFICATION</h6>
+                <hr>
+                <form [formGroup]="verificationForm" >  
+                  <div class="row">
+                    <div class="col">
+                      <div class="d-flex flex-column align-items-center text-center">
+                        <img class="circular rounded-circle mt-5 mb-5"  src={{imageVerification}}>
+                      </div>
+  
+                    </div>
+                    <div class="col d-flex flex-row align-items-center text-center" *ngIf="isEmptyVerificationImage()">
+                      <input
+                        style="display: none"
+                        type="file" (change)="onFileChangedVerification($event)"
+                        #fileInput accept="image/x-png,image/gif,image/jpeg" >
+                      <button mat-fab color="primary" (click)="fileInput.click()" >
+                        <mat-icon>add</mat-icon>
+                      </button>
+  
+                    </div>
+  
+                    <div class="col d-flex flex-row align-items-center text-center" *ngIf="!isEmptyVerificationImage()">
+                      <button mat-fab color="accent" (click)="removePhotoVerification()">
+                        <mat-icon>remove</mat-icon>
+                      </button>
+                    </div>
+  
+                  </div>
+                  <div class="row">
+                    <div class="col-sm" >
+                      <mat-form-field appearance="outline" class="name" id="text-ff">
+                        <mat-label>Name*</mat-label>
+                        <input matInput placeholder="Name"
+                              formControlName="name">
+                        <mat-error
+                          *ngIf="!verificationForm.get('name').valid && verificationForm.get('name').touched && verificationForm.get('name').errors['required']">
+                          Please enter name</mat-error>
+  
+                      </mat-form-field>
+                    </div>
+                    <div class="col-sm">
+                      <mat-form-field appearance="outline" class="name" id="text-ff">
+                        <mat-label>Lastname*</mat-label>
+                        <input matInput placeholder="Lastname"
+                              formControlName="surname">
+                        <mat-error
+                          *ngIf="!verificationForm.get('surname').valid && verificationForm.get('surname').touched && verificationForm.get('surname').errors['required']">
+                          Please enter lastname</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm">
+                      <mat-form-field appearance="outline" class="name" id="text-ff">
+                        <mat-label>Choose new category:</mat-label>
+                        <mat-select placeholder="New request verification" [(ngModel)]="selectedRequestValue" (openedChange)="comboChangeVerification($event)" formControlName="reqVerification" >
+                        <mat-option *ngFor="let r of requestVerifications" [value]="r">{{r}}</mat-option>
+                        </mat-select>
+                    </mat-form-field> 
+                    </div>                              
+                  </div>
+                  <div class="row">
+                    <button mat-raised-button color="primary">Send verification request</button>
+                  </div>
+                </form>
+  
+              </div>
+
           </div>
         </div>
       </div>
