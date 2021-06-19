@@ -17,6 +17,7 @@ import { PostDTO } from 'src/app/model/feed/postdto';
 import { Add2collectionDialogComponent } from 'src/app/dialogs/add2collection-dialog/add2collection-dialog.component';
 import { PostInfo } from './postinfo';
 import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
+import { ReportPostDialogComponent } from 'src/app/dialogs/report-post-dialog/report-post-dialog.component';
 
 
 @Component({
@@ -90,6 +91,14 @@ export class FeedCardComponent implements OnInit {
 
 
 
+  }
+
+  reportPost() {
+    const dialogRef = this.dialog.open(ReportPostDialogComponent, {
+      width: '35vw',
+      height: '90vh',
+      data: ""
+    });
   }
   dislike(){
 

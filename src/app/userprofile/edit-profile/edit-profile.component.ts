@@ -50,7 +50,7 @@ export class EditProfileComponent implements OnInit {
   public requestVerification : boolean = false;
   public postsWithInteractions : boolean = false;
   public requestVerifications : String[] = ["Influencer", "Sports", "NewMedia", "Business", "Brand", "Organization"];
-  public interactionCriteria : String[] = ["Liked posts", "Disliked posts", "Commented posts"];
+  public interactionCriteria : String[] = ["Liked posts", "Disliked posts"];
 
   public selectedRequsetVerification : String;
 
@@ -350,13 +350,21 @@ export class EditProfileComponent implements OnInit {
     //TODO: A CALL TOWARDS BACKEND JUST MOCKED SO NEEDS IMPLEMENTATION
 
     if(this.interactionForm.controls.criteria.value==="Liked posts"){
-      this.mockPosts();
+      //this.mockPosts();
+      this.postService.getLikedMedia().subscribe(
+        res => {
+          this.posts = res;
+        }
+      )
     }else if(this.interactionForm.controls.criteria.value==="Disliked posts"){
       // this.mockPosts();
-      this.posts=[];
-    }else{
-      // this.mockPosts();
-      this.posts=[]
+      this.postService.getDisikedMedia().subscribe(
+        res => {
+          this.posts = res;
+          console.log(this.posts)
+          console.log(res)
+        }
+      )
     }
   }
 
