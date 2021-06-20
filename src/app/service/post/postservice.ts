@@ -21,6 +21,9 @@ import { SaveHighlight } from 'src/app/model/newhighlight';
 import { UsersCollection } from 'src/app/model/feed/usersCollection';
 import { CollectionDTO } from 'src/app/userprofile/profile/collectiondto';
 import { PostInfo } from 'src/app/feed/feed-card/postinfo';
+import { ReportPost } from 'src/app/model/reports/reportPost';
+import { StoryReport } from 'src/app/model/reports/reportStory';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -120,5 +123,17 @@ export class PostService {
   }
   getDisikedMedia() : Observable<PostInProfile[]> {
     return this.https.get<PostInProfile[]>(`${environment.baseUrl}/${environment.getDislikedMedia}`)
+  }
+
+  getAllReportTypes() : Observable<String[]> {
+    return this.https.get<String[]>(`${environment.baseUrl}/${environment.getAllReportTypes}`)
+  }
+
+  reportPost(reportPost : ReportPost) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.reportPost}`, reportPost)
+  }
+
+  reportStory(reportStory : StoryReport) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.reportStory}`, reportStory)
   }
 }

@@ -1,38 +1,24 @@
 <div class="component">
-    <div class="d-flex flex-column align-items-left">
-      <div class="d-flex flex-row align-items-left">
-        <img src="{{data.storyhighlight.highlightPhoto}}" class="rounded-image mr-2">
-        <span class="font-weight-bold mt-3 mr-5">{{data.storyhighlight.name}}</span>
-        <button mat-fab style="background-color: transparent; color:gray;" *ngIf="highs && isLoggedInUser" (click)="addNewStoryToHighlights()" >
-          <mat-icon>add</mat-icon>
-        </button>
-  
-        <button mat-fab style="background-color: transparent; color:gray;" *ngIf="!highs && isLoggedInUser" (click)="back()" >
-          <mat-icon>keyboard_arrow_left</mat-icon>
-        </button>
-  
-        <button mat-fab class="ml-3" style="background-color: transparent; color:rgb(9, 255, 71);" (click)="done()" >
-          <mat-icon>done</mat-icon>
-        </button>
-  
+    <div class="d-flex flex-column align-items-center">
+      <div class="d-flex flex-row align-items-center align-content-center text-center">
+        
+            Thank you for contributing to our community!<br>If you think this media should be reported, please tell us why. From the given selection, to what is your reason closest?
+        
       </div>
-  
-      <div class="d-flex flex-column align-content-center" *ngIf="highs">
-        <div class="d-flex flex-row" class="mt-2 mb-2" *ngFor="let s of storiesInHighlight.stories">
-          <img src="{{s.story}}" class="mr-3" style="width: 80%; height: auto; max-height: 66vh; object-fit: contain;">
-          <button mat-fab color="accent" (click)="removeStoryFromHighloght(s)" *ngIf="isLoggedInUser">
-            <mat-icon>remove</mat-icon>
-          </button>
+      <form [formGroup]="reportForm">
+        <div class="row">
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline" class="name" id="text-ff">
+              <mat-label>Report type:</mat-label>
+              <mat-select style="width: 210px;" placeholder="New request verification"formControlName="criteria" >
+              <mat-option *ngFor="let r of possibleTypes" [value]="r">{{r}}</mat-option>
+              </mat-select>
+          </mat-form-field>
+          </div>
         </div>
-      </div>
-  
-      <div class="d-flex flex-column align-content-center" *ngIf="!highs">
-        <div class="d-flex flex-row" class="mt-2 mb-2" *ngFor="let s of notAddedStories">
-          <img src="{{s.story}}" class="mr-3" style="width: 80%; height: auto; max-height: 66vh; object-fit: contain;">
-          <button mat-fab color="primary" (click)="addStoryToHighlights(s)" *ngIf="isLoggedInUser">
-            <mat-icon>add</mat-icon>
-          </button>
-        </div>
+        
+        <button mat-raised-button style="width: 210px;" color="primary" (click)="reportPost()" [disabled]="!reportForm.valid">Report</button>
+      </form>
       </div>
   
   

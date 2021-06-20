@@ -28,6 +28,7 @@ import { ReportPostDialogComponent } from 'src/app/dialogs/report-post-dialog/re
 export class FeedCardComponent implements OnInit {
   @Input()
   post: Post;
+  public canReport : boolean = true;
 
   partialComments : Comment[];
   allComms : boolean = false;
@@ -38,6 +39,13 @@ export class FeedCardComponent implements OnInit {
     private dialog : MatDialog) { }
 
   ngOnInit() {
+
+    let curUsr = JSON.parse(localStorage.getItem('currentUser'))
+    if(curUsr.id==this.post.user.id){
+      this.canReport = false;
+    }
+
+
     console.log(this.authenticationService.currentUserValue)
     if (this.authenticationService.currentUserValue === undefined) {
       this.router.navigate(['/forbidden'])
@@ -94,10 +102,11 @@ export class FeedCardComponent implements OnInit {
   }
 
   reportPost() {
+    this.post.isStory = false;
     const dialogRef = this.dialog.open(ReportPostDialogComponent, {
       width: '35vw',
-      height: '90vh',
-      data: ""
+      height: 'fit-content',
+      data: this.post
     });
   }
   dislike(){

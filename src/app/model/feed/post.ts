@@ -21,6 +21,7 @@ export class Post{
   public numOfComments : number;
   public numOfLikes : number;
   public numOfDislikes : number;
+  public isStory : boolean;
   constructor(user : UserInFeed, location : Location, description : String, isAlbum : boolean, images : string[], comments : Comment[], time : Date, moment : String){
     this.user = user;
     this.location = location;
