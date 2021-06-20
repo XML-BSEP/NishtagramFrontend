@@ -19,6 +19,7 @@ import { PostInfo } from './postinfo';
 import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 
 
+
 @Component({
   selector: 'feed-card',
   templateUrl: './feed-card.component.html',
@@ -31,6 +32,7 @@ export class FeedCardComponent implements OnInit {
   partialComments : Comment[];
   allComms : boolean = false;
   public commentForm: FormGroup;
+  
 
 
   constructor(private router : Router, private postService : PostService, private toastr : ToastrService, private authenticationService : AuthenticationService,
@@ -53,12 +55,16 @@ export class FeedCardComponent implements OnInit {
       'comm' : new FormControl(null),
     });
 
+  
+
   }
 
   like(){
-    let like = new LikePost();
+    var like = new LikePost();
     like.postBy = this.post.user.id;
     like.postId = this.post.id;
+    
+    
 
 
     if (this.post.isLiked) {
@@ -77,10 +83,12 @@ export class FeedCardComponent implements OnInit {
       this.postService.likePost(like).subscribe(
         res => {
           this.toastr.info("Post liked")
+          
           this.post.isLiked = !this.post.isLiked;
           if (this.post.isDisliked) {
             this.post.isDisliked = false;
           }
+         
         } , error => {
           this.toastr.error("Post unavailable")
         }
