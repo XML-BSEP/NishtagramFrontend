@@ -1,7 +1,7 @@
 import { StoryContent } from './storyContent';
 import { UserInFeed } from './userInFeed';
 export class Story{
-  public id : Number;
+  public id : string;
   user : UserInFeed
   storyContent : StoryContent
   timestamp : Date
