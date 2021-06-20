@@ -9,6 +9,8 @@ import { ProfileService } from 'src/app/service/profile/profile.service';
 import { isTotpEnabled } from 'src/app/model/istotpenabled';
 import { Role } from 'src/app/model/user/role';
 import { PusherService } from 'src/app/service/pusher/pusher.service';
+import { AppComponent } from 'src/app/app.component';
+
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,8 @@ import { PusherService } from 'src/app/service/pusher/pusher.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router : Router, private toastr : ToastrService, private authService : AuthenticationService, private profileService : ProfileService, private pusherService : PusherService) { }
+  constructor(private router : Router, private toastr : ToastrService, private authService : AuthenticationService, private profileService : ProfileService, private pusherService : PusherService,
+    private appComponent : AppComponent) { }
   public loginForm: FormGroup;
 
   ngOnInit(): void {
@@ -35,12 +38,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/admin'])
       }
     }
-    var handler = function() { alert('testing'); };
-    this.pusherService.channel1.bind('notification', data => {
-      alert(data);
-    }
-    );
-
 
 
     this.loginForm = new FormGroup({

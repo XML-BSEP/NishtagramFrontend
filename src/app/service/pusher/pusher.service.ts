@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http'
   providedIn: 'root'
 })
 export class PusherService {
-  pusher: any;
-  channel1: any;
+  public pusher: any;
+  public channel1: any;
   
   constructor(private http: HttpClient) {
 
@@ -16,7 +16,9 @@ export class PusherService {
       cluster: environment.pusher.cluster,
       encrypted: true
     });
-    this.channel1 = this.pusher.subscribe('1234');
+
+    //var curUsr = JSON.parse(localStorage.getItem('currentUser'))
+    //this.channel = this.pusher.subscribe(curUsr.id);
   }
 
 

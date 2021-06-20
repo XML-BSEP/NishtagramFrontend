@@ -32,7 +32,9 @@ export class PostDetailsComponent implements OnInit {
   images1 = [this.image1, this.image2, this.image3, this.image4]
   images2 = [this.image4]
   images3 = [this.image4]
-  constructor(private router : Router) { }
+  constructor(private router : Router) { 
+
+  }
 
   ngOnInit(): void {
     if(history.state.data===undefined){

@@ -41,6 +41,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component'
 import {TotpLoginComponent} from './sign-in/totpsignin/login.component';
 import { AdminRequestVerificationComponent } from './admin-request-verification/admin-request-verification/admin-request-verification.component'
 import { UserSettingsComponent } from './userprofile/user-settings/user-settings.component'
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +71,8 @@ import { UserSettingsComponent } from './userprofile/user-settings/user-settings
     Add2collectionDialogComponent,
     TotpLoginComponent,
     AdminRequestVerificationComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    
 
   ],
   imports: [
@@ -86,6 +88,7 @@ import { UserSettingsComponent } from './userprofile/user-settings/user-settings
     IvyCarouselModule,
     ToastrModule.forRoot(),
     MatCarouselModule.forRoot(),
+    MatSnackBarModule
 
   ],
   providers: [
