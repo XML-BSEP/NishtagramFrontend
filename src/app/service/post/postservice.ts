@@ -115,4 +115,10 @@ export class PostService {
     return this.https.post<Response>(`${environment.baseUrl}/${environment.removeFavorite}`, postInfo)
   }
 
+  getLikedMedia() : Observable<PostInProfile[]> {
+    return this.https.get<PostInProfile[]>(`${environment.baseUrl}/${environment.getLikedMedia}`)
+  }
+  getDisikedMedia() : Observable<PostInProfile[]> {
+    return this.https.get<PostInProfile[]>(`${environment.baseUrl}/${environment.getDislikedMedia}`)
+  }
 }

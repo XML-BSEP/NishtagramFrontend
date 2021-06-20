@@ -1,0 +1,76 @@
+import { ProfileStory } from './../../model/profile/profileStory';
+import { StoryHighlightAndStories } from './../../model/profile/storyHighlightAndStories';
+import { NewUser } from './../../model/user/newUser';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import { StoryHighlightOnProfile } from 'src/app/model/profile/storyHighlightOnProfile';
+import { Image } from 'src/app/model/feed/image';
+import { PostService } from 'src/app/service/post/postservice';
+import { ToastrService } from 'ngx-toastr';
+import { SaveHighlight } from 'src/app/model/newhighlight';
+
+@Component({
+  selector: 'app-story-highlight-dialog',
+  templateUrl: './report-post-dialog.component.html',
+  styleUrls: ['./report-post-dialog.component.css']
+})
+export class ReportPostDialogComponent implements OnInit {
+  highs : boolean = true;
+  notAddedStories : ProfileStory[];
+  storiesInHighlight : StoryHighlightOnProfile;
+  public isLoggedInUser : boolean =true;
+
+  constructor(public dialogRef: MatDialogRef<ReportPostDialogComponent>, private postService : PostService, private toastr : ToastrService,
+    @Inject(MAT_DIALOG_DATA) public data: StoryHighlightAndStories) { }
+
+  ngOnInit(): void {
+    this.notAddedStories=this.data.stories
+    this.storiesInHighlight = this.data.storyhighlight
+  }
+  removeStoryFromHighloght(story){
+    this.storiesInHighlight.stories = this.storiesInHighlight.stories.filter(obj => obj !== story);
+    this.notAddedStories.push(story)
+
+  }
+
+  addNewStoryToHighlights(){
+    this.highs = false;
+  }
+  addStoryToHighlights(story){
+    console.log(this.storiesInHighlight)
+    this.highs = false;
+    this.storiesInHighlight.stories.push(story)
+    this.notAddedStories = this.notAddedStories.filter(obj => obj !== story);
+  }
+  back(){
+    this.highs = true;
+  }
+  done(){
+    console.log(this.storiesInHighlight)
+    let stories = []
+    let storiesString = []
+    let userDTO = new SaveHighlight()
+    userDTO.highlightName = this.storiesInHighlight.name;
+    
+    for (let s of this.storiesInHighlight.stories) {
+      stories.push(s.id)
+    }
+    
+    userDTO.stories = stories
+
+    this.storiesInHighlight.stories = stories
+    console.log("ASDASDASDASDA")
+    console.log(userDTO)    
+    this.postService.updateHighlight(userDTO).subscribe(
+      res => {
+        this.toastr.success("Successfully updated highlight")
+        this.dialogRef.close();
+        window.location.reload
+      }, error => {
+        this.toastr.error("Operation unavailable")
+        this.dialogRef.close();
+      }
+    )
+
+  }
+}

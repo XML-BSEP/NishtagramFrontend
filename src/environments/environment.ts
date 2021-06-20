@@ -69,6 +69,8 @@ export const environment = {
   getAllRequestVerifications : "getAllRequestVerifications",
   approveRequestVerification : "approveRequestVerification",
   rejectRequestVerification : "rejectRequestVerification",
+  getLikedMedia : "likedMedia",
+  getDislikedMedia : "dislikedMedia",
   saveNewRequestVerification : "saveNewRequestVerification"
 };
 
