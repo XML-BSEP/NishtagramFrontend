@@ -71,9 +71,13 @@ export const environment = {
   rejectRequestVerification : "rejectRequestVerification",
   getLikedMedia : "likedMedia",
   getDislikedMedia : "dislikedMedia",
+
   getAllReportTypes : "getAllReportTypes",
   reportPost : "reportPost",
-  reportStory : "reportStory"
+  reportStory : "reportStory",
+
+  saveNewRequestVerification : "saveNewRequestVerification"
+
 };
 
 /*

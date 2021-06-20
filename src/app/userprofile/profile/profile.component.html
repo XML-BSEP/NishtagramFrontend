@@ -14,9 +14,10 @@
                         <button mat-raised-button class="btn btn-sm btn-block" (click)="cancelRequest()" *ngIf="requestSent">Cancel follow request</button>
                       </div>
                       <div class="media-body mb-5 text-white">
-                          <h2 class="large mt-0 mb-0">{{profile.user.username}}</h2>
-
-                          <p class="large mb-4">{{profile.user.address}}</p>
+                          <h2 class="large mt-0 mb-0">{{profile.user.username}} <i *ngIf="profile.user.category !== 'Others'" class="bi bi-patch-check-fill"></i></h2>
+                       
+                          <p class="large mb-4">  <label *ngIf="profile.user.category !== 'Others'" class="font-weight-light font-italic" >{{profile.user.category}}</label> <br>{{profile.user.address}}</p>
+                          
                       </div>
                   </div>
               </div>
