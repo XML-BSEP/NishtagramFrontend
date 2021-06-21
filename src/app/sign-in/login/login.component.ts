@@ -8,6 +8,9 @@ import { Authentication } from 'src/app/model/security/authentication';
 import { ProfileService } from 'src/app/service/profile/profile.service';
 import { isTotpEnabled } from 'src/app/model/istotpenabled';
 import { Role } from 'src/app/model/user/role';
+import { PusherService } from 'src/app/service/pusher/pusher.service';
+import { AppComponent } from 'src/app/app.component';
+
 
 @Component({
   selector: 'app-login',
@@ -16,7 +19,8 @@ import { Role } from 'src/app/model/user/role';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router : Router, private toastr : ToastrService, private authService : AuthenticationService, private profileService : ProfileService) { }
+  constructor(private router : Router, private toastr : ToastrService, private authService : AuthenticationService, private profileService : ProfileService, private pusherService : PusherService,
+    private appComponent : AppComponent) { }
   public loginForm: FormGroup;
 
   ngOnInit(): void {
@@ -36,13 +40,14 @@ export class LoginComponent implements OnInit {
     }
 
 
-
     this.loginForm = new FormGroup({
       'username' : new FormControl(null, Validators.required),
       'password' : new FormControl(null, [Validators.required])
     });
   }
   login(){
+
+   
 
     var account = new Authentication(this.loginForm.controls.username.value, this.loginForm.controls.password.value)
     this.authService.login(account).subscribe(

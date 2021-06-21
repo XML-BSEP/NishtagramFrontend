@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Notification } from 'src/app/model/utilities/notification';
+import Pusher from 'pusher-js';
 
 @Component({
   selector: 'app-notifications-dialog',
@@ -10,11 +11,18 @@ import { Notification } from 'src/app/model/utilities/notification';
 })
 export class NotificationsDialogComponent implements OnInit {
   public notifications : Notification[]
+  private pusherClient: Pusher;
+
+
   constructor(
     public router : Router,
     public dialogRef: MatDialogRef<NotificationsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Notification[]
-  ) { }
+  ) { 
+
+   
+
+  }
 
   ngOnInit(): void {
     this.notifications = this.data;

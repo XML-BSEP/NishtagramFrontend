@@ -41,6 +41,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component'
 import {TotpLoginComponent} from './sign-in/totpsignin/login.component';
 import { AdminRequestVerificationComponent } from './admin-request-verification/admin-request-verification/admin-request-verification.component'
 import { UserSettingsComponent } from './userprofile/user-settings/user-settings.component'
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ReportPostDialogComponent } from './dialogs/report-post-dialog/report-post-dialog.component'
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { ReportPostDialogComponent } from './dialogs/report-post-dialog/report-p
     IvyCarouselModule,
     ToastrModule.forRoot(),
     MatCarouselModule.forRoot(),
+    MatSnackBarModule
 
   ],
   providers: [

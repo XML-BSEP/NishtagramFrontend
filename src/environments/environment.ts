@@ -69,14 +69,17 @@ export const environment = {
   getAllRequestVerifications : "getAllRequestVerifications",
   approveRequestVerification : "approveRequestVerification",
   rejectRequestVerification : "rejectRequestVerification",
+  saveNewRequestVerification : "saveNewRequestVerification",
+  pusher: {
+    key: 'dd3ce2a9c4a58e3577a4',
+    cluster: 'eu',
+  },
   getLikedMedia : "likedMedia",
   getDislikedMedia : "dislikedMedia",
 
   getAllReportTypes : "getAllReportTypes",
   reportPost : "reportPost",
-  reportStory : "reportStory",
-
-  saveNewRequestVerification : "saveNewRequestVerification"
+  reportStory : "reportStory"
 
 };
 
