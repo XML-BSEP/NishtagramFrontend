@@ -20,6 +20,7 @@ import { AuthenticationService } from 'src/app/service/authentication/authentica
 import { ReportPostDialogComponent } from 'src/app/dialogs/report-post-dialog/report-post-dialog.component';
 
 
+
 @Component({
   selector: 'feed-card',
   templateUrl: './feed-card.component.html',
@@ -57,18 +58,22 @@ export class FeedCardComponent implements OnInit {
 
 
 
+
+
   }
 
   like(){
-    let like = new LikePost();
+    var like = new LikePost();
     like.postBy = this.post.user.id;
     like.postId = this.post.id;
+
+
 
 
     if (this.post.isLiked) {
       this.postService.removeLike(like).subscribe(
         res => {
-          this.toastr.info("Like removed")
+          //this.toastr.info("Like removed")
           this.post.isLiked = !this.post.isLiked;
 
         } , error => {
@@ -80,11 +85,13 @@ export class FeedCardComponent implements OnInit {
 
       this.postService.likePost(like).subscribe(
         res => {
-          this.toastr.info("Post liked")
+         // this.toastr.info("Post liked")
+
           this.post.isLiked = !this.post.isLiked;
           if (this.post.isDisliked) {
             this.post.isDisliked = false;
           }
+
         } , error => {
           this.toastr.error("Post unavailable")
         }
@@ -112,7 +119,7 @@ export class FeedCardComponent implements OnInit {
     if (this.post.isDisliked) {
       this.postService.removeDislike(like).subscribe(
         res => {
-          this.toastr.info("Dislike removed")
+          //this.toastr.info("Dislike removed")
           this.post.isDisliked = !this.post.isDisliked;
           if (this.post.isLiked) {
             this.post.isLiked = false;
@@ -132,7 +139,7 @@ export class FeedCardComponent implements OnInit {
             this.postService.removeLike(like).subscribe(
               res => {
                 this.post.isDisliked = true;
-                this.toastr.info("Post disliked")
+              //  this.toastr.info("Post disliked")
                 this.post.isLiked = false;
               } , error => {
                 this.toastr.error("Post unavailable")
@@ -143,7 +150,7 @@ export class FeedCardComponent implements OnInit {
           this.postService.removeLike(like).subscribe(
             res => {
               this.post.isDisliked = true;
-              this.toastr.info("Post disliked")
+             // this.toastr.info("Post disliked")
               this.post.isLiked = false;
             } , error => {
               this.toastr.error("Post unavailable")
@@ -212,7 +219,7 @@ export class FeedCardComponent implements OnInit {
           if (this.allComms) {
             this.toggleComments();
           }
-          this.toastr.info("Comment added.")
+          //this.toastr.info("Comment added.")
 
         }, error => {
           this.toastr.error("Post unavailable")
