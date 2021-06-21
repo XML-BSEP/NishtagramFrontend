@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="d-flex justify-content-between p-2 px-3">
                     <div class="d-flex flex-row align-items-center" (click)="goToProfile()"> <img src="{{post.user.profilePhoto}}"  width="50" class="rounded-circle">
-                        <div class="d-flex flex-column ml-2"> <span class="font-weight-bold">{{post.user.username}}</span> <small class="text-primary">{{post.location.city}}, {{post.location.state}}</small> </div>
+                        <div class="d-flex flex-column ml-2"> <span class="font-weight-bold">{{post.user.username}}</span> <small class="text-primary">{{post.location}}</small> </div>
                     </div>
                     <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2 mt-2">{{this.post.moment}}</small>
                       <!-- <i class="bi bi-three-dots" (click)="openOptionsDialog()"></i> -->
@@ -18,7 +18,7 @@
                         <button mat-menu-item style="color: red;">Unfollow</button>
                         <mat-divider></mat-divider>
                         <button mat-menu-item (click)="goToPostDetails()">Go to post</button>
-                        
+
                       </mat-menu>
                     </div>
                 </div>
@@ -49,19 +49,6 @@
 
                   </mat-carousel>
 
-                  <!-- <carousel
-                    class="karusel"
-                    *ngIf="post.isAlbum"
-                    [images]="post.images"
-                    [objectFit]="'auto'"
-                    [height]="'auto'"
-                    [cellWidth]="'100%'"
-                    [arrowsOutside]="false"
-                    [autoplay]="false"
-                    [dots]="true"
-                    [loop]="false"
-                    >
-                  </carousel> -->
                   <img *ngIf="!post.isAlbum && !post.isVideo" src="{{post.images[0]}}" style="width: 100%; height: auto;   max-height: 40rem; object-fit: contain ;">
                   <div class="row d-flex flex-column justify-content-center"  *ngIf="post.isVideo && !post.isAlbum">
                     <div class="col">
@@ -93,30 +80,41 @@
                     </div>
                     <hr>
 
-                    <div class="comentsection" *ngIf="post.comments.length>=1 && allComms">
+                    <div class="commentsection" *ngIf="post.comments.length>0 && allComms">
 
-                      <div class="d-flex flex-column muted-color text-center" style="cursor:pointer">
-                      </div>
-
-                      <div class="comments" *ngFor="let comment of partialComments">
-                        <div class="d-flex flex-row mb-2"> <img src="{{comment.user.profilePhoto.path}}" width="40" class="rounded-image">
+                      <div class="comments" *ngFor="let comment of post.comments">
+                        <div class="d-flex flex-row mb-2"> <img src="{{comment.user.profilePhoto}}" width="40" class="rounded-image">
                             <div class="d-flex flex-column ml-2"> <span class="name">{{comment.user.username}}</span> <small class="comment-text">{{comment.text}}</small>
                             </div>
                         </div>
-
                       </div>
                     </div>
+
                     <div class="comments">
-                        <div class="postcomment" [formGroup]="commentForm">
+                        <form [formGroup]="commentForm">
+                          <div class="postcomment">
+
                           <div class="comment-input"> <input type="text" placeholder="Comment" formControlName="comm" class="form-control"> </div>
                           <button mat-raised-button color="primary" (click)="comment()">
                             <i class="bi bi-chat-left"></i>
                           </button>
                         </div>
-
-
+                        </form>
                     </div>
-                </div>
+                    <!--
+                    <div class="comments">
+                      <div class="postcomment">
+                        <form [formGroup]="commentForm">
+                          <div class="comment-input"> <input type="text" placeholder="Comment" formControlName="comm" class="form-control"> </div>
+                          <button mat-raised-button color="primary" (click)="comment()">
+                            <i class="bi bi-chat-left"></i>
+                          </button>
+                        </form>
+                      </div> -->
+
+
+
+                    <!-- </div> -->
             </div>
         </div>
     </div>

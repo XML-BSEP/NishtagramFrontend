@@ -27,6 +27,7 @@ export class EditProfileComponent implements OnInit {
   public accountSettingsForm : FormGroup;
   public verificationForm : FormGroup;
   public interactionForm : FormGroup;
+  public notificationForm : FormGroup;
 
   fileName : String="";
   imgFile : String;
@@ -53,6 +54,8 @@ export class EditProfileComponent implements OnInit {
   public postsWithInteractions : boolean = false;
   public requestVerifications : String[] = ["Influencer", "Sports", "NewMedia", "Business", "Brand", "Organization"];
   public interactionCriteria : String[] = ["Liked posts", "Disliked posts"];
+  //public notificationSettings : String[] = ["Turn off", "Turn on only for followers", "Turn on for all"];
+  public notificationSettings : String[] = ["Turn off", "Turn on for all"];
 
   public selectedRequsetVerification : String;
 
@@ -119,6 +122,11 @@ export class EditProfileComponent implements OnInit {
 
   })
 
+  this.notificationForm= new FormGroup({
+    'likes' : new FormControl("", Validators.required),
+    'comments' : new FormControl("", Validators.required),
+    'messages' : new FormControl("", Validators.required),
+  })
 
   this.registrationForm = new FormGroup({
 
@@ -446,7 +454,7 @@ export class EditProfileComponent implements OnInit {
     var name = this.verificationForm.controls.name.value;
     var surname = this.verificationForm.controls.surname.value;
     var newRequestVerification = new NewRequestVerification(name, surname, this.selectedRequsetVerification, this.imageVerification, this.curUsr.id);
-    
+
     this.requestVerificationService.saveNewRequestVerification(newRequestVerification).subscribe(
       res => {
         this.toastr.success("Verification request is sent!")

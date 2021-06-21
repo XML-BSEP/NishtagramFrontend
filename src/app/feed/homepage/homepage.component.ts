@@ -84,6 +84,7 @@ export class HomepageComponent implements OnInit {
   goToPostDetails(item){
     this.router.navigate(['/postDetails']);
   }
+
   openStory(story){
     const dialogRef = this.dialog.open(StoryDialogComponent, {
       width: '35vw',
