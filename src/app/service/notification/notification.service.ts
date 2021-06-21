@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { NotificationSettings } from 'src/app/model/profile/notificationSettings';
+import { Notification } from 'src/app/model/profile/notification';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,9 @@ export class NotificationService {
   }
   getUserNotificationSettings(userFor : string, userBy : string) : Observable<NotificationTypeValue[]>{
     return this.http.get<NotificationTypeValue[]>(`${environment.baseUrl}/${environment.blockedNotification}/${environment.blockedBy}/${userBy}/${environment.blockedFor}/${userFor}`,{responseType : 'json'});
+  }
+
+  getUserNotifications(userId : string) : Observable<Notification[]>{
+    return this.http.get<Notification[]>(`${environment.baseUrl}/${environment.notifications}/${userId}`,{responseType : 'json'});
   }
 }

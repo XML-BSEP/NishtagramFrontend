@@ -221,6 +221,9 @@ export class FeedCardComponent implements OnInit {
 
     }
   }
+  goToCommentProfile(c){
+    this.router.navigate(['/profile'], { queryParams: { id: c.user.id } });
+  }
   goToProfile(){
     this.router.navigate(['/profile'], { queryParams: { id: this.post.user.id } });
   }

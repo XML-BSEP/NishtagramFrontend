@@ -1,7 +1,9 @@
+import { NotificationService } from 'src/app/service/notification/notification.service';
 import { Router } from '@angular/router';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
-import { Notification } from 'src/app/model/utilities/notification';
+import { Notification } from 'src/app/model/profile/notification';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-notifications-dialog',
@@ -10,26 +12,41 @@ import { Notification } from 'src/app/model/utilities/notification';
 })
 export class NotificationsDialogComponent implements OnInit {
   public notifications : Notification[]
+  public curUsr ;
+
   constructor(
+    public notificationService :NotificationService,
     public router : Router,
-    public dialogRef: MatDialogRef<NotificationsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Notification[]
-  ) { }
+    public dialogRef: MatDialogRef<NotificationsDialogComponent> ) { }
 
   ngOnInit(): void {
-    this.notifications = this.data;
+    this.curUsr = JSON.parse(localStorage.getItem('currentUser'))
     this.changePosition()
+    this.getNotifications()
   }
   onNoClick(): void {
     this.dialogRef.close();
   }
   goToNotification(n){
-    this.router.navigate([n.path]);
+    location.href = n.redirect_path
     this.dialogRef.close();
+
+  }
+  getNotifications(){
+    this.notificationService.getUserNotifications(this.curUsr.id).subscribe(
+      rest => {
+        console.log(rest)
+        this.notifications = rest
+        for(let i=0; i<this.notifications.length;i++){
+          let a = moment(this.notifications[i].timestamp).fromNow();
+          this.notifications[i].momentTime = a
+        }
+      }
+    )
 
   }
   changePosition() {
     this.dialogRef.updatePosition({ top: '3.9rem', left: '85rem' });
-}
+  }
 
 }
