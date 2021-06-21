@@ -64,15 +64,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "nishtagramfronend:build",
-            "ssl": true,
-            "sslCert": "ssl/cert.pem",
-            "sslKey": "ssl/key.pem"
+            "ssl": false
           },
           "configurations": {
             "production": {
-              "ssl": true,
-              "sslCert": "ssl/cert.pem",
-              "sslKey": "ssl/key.pem",
+              "ssl": false,
               "browserTarget": "nishtagramfronend:build:production"
             }
           }
