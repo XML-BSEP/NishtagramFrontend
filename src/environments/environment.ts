@@ -69,6 +69,11 @@ export const environment = {
   getAllRequestVerifications : "getAllRequestVerifications",
   approveRequestVerification : "approveRequestVerification",
   rejectRequestVerification : "rejectRequestVerification",
+  saveNewRequestVerification : "saveNewRequestVerification",
+  pusher: {
+    key: 'dd3ce2a9c4a58e3577a4',
+    cluster: 'eu',
+  },
   getLikedMedia : "likedMedia",
   getDislikedMedia : "dislikedMedia",
 
@@ -82,6 +87,7 @@ export const environment = {
   blockedBy :"blockedBy",
   blockedFor : "blockedFor",
   unblock:"unblock"
+
 };
 
 /*

@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Notification } from 'src/app/model/profile/notification';
 import * as moment from 'moment';
+import Pusher from 'pusher-js';
 
 @Component({
   selector: 'app-notifications-dialog',
@@ -13,11 +14,14 @@ import * as moment from 'moment';
 export class NotificationsDialogComponent implements OnInit {
   public notifications : Notification[]
   public curUsr ;
+  private pusherClient: Pusher;
+
 
   constructor(
     public notificationService :NotificationService,
     public router : Router,
     public dialogRef: MatDialogRef<NotificationsDialogComponent> ) { }
+
 
   ngOnInit(): void {
     this.curUsr = JSON.parse(localStorage.getItem('currentUser'))
