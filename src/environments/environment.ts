@@ -79,7 +79,14 @@ export const environment = {
 
   getAllReportTypes : "getAllReportTypes",
   reportPost : "reportPost",
-  reportStory : "reportStory"
+  reportStory : "reportStory",
+  notifications: "notification",
+  block:"block",
+  saveNewRequestVerification : "saveNewRequestVerification",
+  blockedNotification:"blockedNotification",
+  blockedBy :"blockedBy",
+  blockedFor : "blockedFor",
+  unblock:"unblock"
 
 };
 

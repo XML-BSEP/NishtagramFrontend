@@ -1,3 +1,4 @@
+import { NotificationSettingsComponent } from './../../dialogs/notification-settings/notification-settings.component';
 import { PostIds } from './../../model/search/PostIds';
 import { Unfollow } from './../../model/follow/unfollow';
 import { ProfileDTO } from './../../model/profile/profileDTO';
@@ -410,7 +411,13 @@ export class ProfileComponent implements OnInit {
 
     console.log(post)
   }
-
+  openNotificationSettingsDialog(){
+    const dialogRef = this.dialog.open(NotificationSettingsComponent, {
+      width: '20vw',
+      height: '30vh',
+      data: this.userId
+    });
+  }
   openFollowersDialog(){
     if(!this.profile.private || this.isLoggedInUser || this.isFollowing){
       const dialogRef = this.dialog.open(FollowersDialogComponent, {
