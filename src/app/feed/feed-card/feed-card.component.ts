@@ -17,6 +17,7 @@ import { PostDTO } from 'src/app/model/feed/postdto';
 import { Add2collectionDialogComponent } from 'src/app/dialogs/add2collection-dialog/add2collection-dialog.component';
 import { PostInfo } from './postinfo';
 import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
+import { ReportPostDialogComponent } from 'src/app/dialogs/report-post-dialog/report-post-dialog.component';
 
 
 
@@ -28,6 +29,7 @@ import { AuthenticationService } from 'src/app/service/authentication/authentica
 export class FeedCardComponent implements OnInit {
   @Input()
   post: Post;
+  public canReport : boolean = true;
 
   partialComments : Comment[];
   allComms : boolean = false;
@@ -39,6 +41,13 @@ export class FeedCardComponent implements OnInit {
     private dialog : MatDialog) { }
 
   ngOnInit() {
+
+    let curUsr = JSON.parse(localStorage.getItem('currentUser'))
+    if(curUsr.id==this.post.user.id){
+      this.canReport = false;
+    }
+
+
     console.log(this.authenticationService.currentUserValue)
     if (this.authenticationService.currentUserValue === undefined) {
       this.router.navigate(['/forbidden'])
@@ -98,6 +107,15 @@ export class FeedCardComponent implements OnInit {
 
 
 
+  }
+
+  reportPost() {
+    this.post.isStory = false;
+    const dialogRef = this.dialog.open(ReportPostDialogComponent, {
+      width: '35vw',
+      height: 'fit-content',
+      data: this.post
+    });
   }
   dislike(){
 

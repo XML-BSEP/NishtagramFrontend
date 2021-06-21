@@ -73,7 +73,14 @@ export const environment = {
   pusher: {
     key: 'dd3ce2a9c4a58e3577a4',
     cluster: 'eu',
-  }
+  },
+  getLikedMedia : "likedMedia",
+  getDislikedMedia : "dislikedMedia",
+
+  getAllReportTypes : "getAllReportTypes",
+  reportPost : "reportPost",
+  reportStory : "reportStory"
+
 };
 
 /*

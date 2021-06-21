@@ -42,6 +42,7 @@ import {TotpLoginComponent} from './sign-in/totpsignin/login.component';
 import { AdminRequestVerificationComponent } from './admin-request-verification/admin-request-verification/admin-request-verification.component'
 import { UserSettingsComponent } from './userprofile/user-settings/user-settings.component'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ReportPostDialogComponent } from './dialogs/report-post-dialog/report-post-dialog.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     TotpLoginComponent,
     AdminRequestVerificationComponent,
     UserSettingsComponent,
-    
+    ReportPostDialogComponent
 
   ],
   imports: [

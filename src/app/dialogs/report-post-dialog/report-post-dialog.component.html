@@ -1,0 +1,28 @@
+<div class="component">
+    <div class="d-flex flex-column align-items-center">
+      <div class="d-flex flex-row align-items-center align-content-center text-center">
+        
+            Thank you for contributing to our community!<br>If you think this media should be reported, please tell us why. From the given selection, to what is your reason closest?
+        
+      </div>
+      <form [formGroup]="reportForm">
+        <div class="row">
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline" class="name" id="text-ff">
+              <mat-label>Report type:</mat-label>
+              <mat-select style="width: 210px;" placeholder="New request verification"formControlName="criteria" >
+              <mat-option *ngFor="let r of possibleTypes" [value]="r">{{r}}</mat-option>
+              </mat-select>
+          </mat-form-field>
+          </div>
+        </div>
+        
+        <button mat-raised-button style="width: 210px;" color="primary" (click)="reportPost()" [disabled]="!reportForm.valid">Report</button>
+      </form>
+      </div>
+  
+  
+  
+  
+  </div>
+  
