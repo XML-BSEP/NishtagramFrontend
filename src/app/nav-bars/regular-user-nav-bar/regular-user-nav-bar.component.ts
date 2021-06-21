@@ -56,7 +56,7 @@ export class RegularUserComponent implements OnInit {
 
       this.notificationsOpen=true;
         const dialogRef = this.dialog.open(NotificationsDialogComponent, {
-        width: '26vw',
+        width: '30vw',
         height: '70vh',
         data: this.notifications
       });

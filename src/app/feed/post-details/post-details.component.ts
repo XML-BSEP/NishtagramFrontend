@@ -57,6 +57,7 @@ export class PostDetailsComponent implements OnInit {
         this.post1 = this.post;
         console.log(this.post1)
         this.post1.comments=[];
+        this.post1.moment = moment(this.post1.time).fromNow();
       }
     )
   }
