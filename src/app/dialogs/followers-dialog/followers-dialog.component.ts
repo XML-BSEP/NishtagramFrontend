@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FollowService } from './../../service/follow/follow.service';
 import { Follower } from './../../model/follow/follower';
@@ -19,6 +19,7 @@ export class FollowersDialogComponent implements OnInit {
   userId : string
   loggedIn : boolean =false;
   constructor(
+    private router : Router,
     private route: ActivatedRoute,
     public followService : FollowService,
     public toastr : ToastrService,
@@ -65,6 +66,12 @@ export class FollowersDialogComponent implements OnInit {
       }
     )
   }
+  goToProfile(follower){
+    let url = "/profile?id="+follower.id
+    location.href = url;
+  }
+
+
   addToCf(follow){
     console.log(follow)
     var cf = new CloseFriend(follow.id, this.userId)

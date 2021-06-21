@@ -40,6 +40,11 @@ export class FollowingsDialogComponent implements OnInit {
     this.following = this.data;
 
   }
+  goToProfile(follow){
+    let url = "/profile?id="+follow.id
+    location.href = url;
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }

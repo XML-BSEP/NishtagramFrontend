@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { PostOptionsComponent } from '../../dialogs/post-options/post-options.component';
 import { MatDialog } from '@angular/material/dialog';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Comment } from './../../model/feed/comment';
 import { UserInFeed } from './../../model/feed/userInFeed';
 import { RegisteredUser } from 'src/app/model/user/registeredUser';
@@ -32,13 +32,16 @@ export class FeedCardComponent implements OnInit {
 
   partialComments : Comment[];
   allComms : boolean = false;
-  public commentForm: FormGroup;
+  commentForm: FormGroup;
 
 
   constructor(private router : Router, private postService : PostService, private toastr : ToastrService, private authenticationService : AuthenticationService,
     private dialog : MatDialog) { }
 
   ngOnInit() {
+    this.commentForm = new FormGroup({
+      'comm' : new FormControl(null, Validators.required),
+    })
 
     let curUsr = JSON.parse(localStorage.getItem('currentUser'))
     if(curUsr.id==this.post.user.id){
@@ -50,17 +53,9 @@ export class FeedCardComponent implements OnInit {
     if (this.authenticationService.currentUserValue === undefined) {
       this.router.navigate(['/forbidden'])
     }
-    if(this.post.comments.length>10){
-      this.partialComments = this.post.comments.slice(0, 10)
-    }else{
-      this.partialComments = this.post.comments;
-
-    }
 
 
-    this.commentForm = new FormGroup({
-      'comm' : new FormControl(null),
-    });
+
 
   }
 
@@ -174,7 +169,7 @@ export class FeedCardComponent implements OnInit {
       let postInfo = new PostInfo();
       postInfo.postBy = this.post.user.id;
       postInfo.postId = this.post.id;
-  
+
       this.postService.removeFromFavorites(postInfo).subscribe(
         res => {
           this.toastr.info("Post removed")
@@ -187,7 +182,7 @@ export class FeedCardComponent implements OnInit {
       let postInfo = new PostInfo();
       postInfo.postBy = this.post.user.id;
       postInfo.postId = this.post.id;
-  
+
       this.postService.addToFavorite(postInfo).subscribe(
         res => {
           this.toastr.info("Saved to favorites")
@@ -197,7 +192,7 @@ export class FeedCardComponent implements OnInit {
       )
       this.post.isBookmarked = !this.post.isBookmarked;
     }
-    
+
     //TODO: BACKEND!
   }
   comment(){
@@ -234,15 +229,15 @@ export class FeedCardComponent implements OnInit {
     let postdto = new PostDTO();
     postdto.id = this.post.id;
     this.allComms = !this.allComms;
+    console.log(this.post.comments);
 
-    if (this.partialComments.length < this.post.numOfComments) {
-      this.postService.getAllComments(postdto).subscribe(
+    this.postService.getAllComments(postdto).subscribe(
         res => {
           this.post.comments = res;
-          this.partialComments = this.post.comments;
+
         }
-      )
-    }
+    )
+
     }
 
 
@@ -251,11 +246,14 @@ export class FeedCardComponent implements OnInit {
 
 
   goToPostDetails(){
-    this.router.navigate(['/postDetails'],
-    {state:
-      {data:
-        this.post
-      }
-    });
+    console.log(this.post)
+    location.href="/postDetails?postId="+this.post.id +"&userId="+this.post.user.id;
+
+    // this.router.navigate(['/postDetails'],
+    // {state:
+    //   {data:
+    //     this.post
+    //   }
+    // });
   }
 }

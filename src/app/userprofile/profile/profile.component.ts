@@ -1,3 +1,4 @@
+import { PostIds } from './../../model/search/PostIds';
 import { Unfollow } from './../../model/follow/unfollow';
 import { ProfileDTO } from './../../model/profile/profileDTO';
 import { Follower } from './../../model/follow/follower';
@@ -66,6 +67,7 @@ export class ProfileComponent implements OnInit {
  // chosenCollection : PostInProfile[]
   userId
   userObj
+  isMuted :boolean = true;
   followDTO : FollowDTO
   isFollowed : boolean = false
   requestSent : boolean
@@ -402,12 +404,10 @@ export class ProfileComponent implements OnInit {
       postDTO.UserId = post.postBy
     }
 
-    this.postService.getPostById(postDTO).subscribe(
-      res => {
-        console.log(res)
-        this.router.navigate(["/postDetails"], {state: {data: res}})
-      }
-    )
+
+    location.href="/postDetails?postId="+postDTO.PostId +"&userId="+postDTO.UserId;
+
+
     console.log(post)
   }
 

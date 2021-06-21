@@ -41,7 +41,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component'
 import {TotpLoginComponent} from './sign-in/totpsignin/login.component';
 import { AdminRequestVerificationComponent } from './admin-request-verification/admin-request-verification/admin-request-verification.component'
 import { UserSettingsComponent } from './userprofile/user-settings/user-settings.component'
-import { ReportPostDialogComponent } from './dialogs/report-post-dialog/report-post-dialog.component'
+import { ReportPostDialogComponent } from './dialogs/report-post-dialog/report-post-dialog.component';
+import { NotificationSettingsComponent } from './dialogs/notification-settings/notification-settings.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,8 @@ import { ReportPostDialogComponent } from './dialogs/report-post-dialog/report-p
     TotpLoginComponent,
     AdminRequestVerificationComponent,
     UserSettingsComponent,
-    ReportPostDialogComponent
+    ReportPostDialogComponent,
+    NotificationSettingsComponent
 
   ],
   imports: [
