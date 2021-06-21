@@ -43,6 +43,8 @@ import { AdminRequestVerificationComponent } from './admin-request-verification/
 import { UserSettingsComponent } from './userprofile/user-settings/user-settings.component'
 import { ReportPostDialogComponent } from './dialogs/report-post-dialog/report-post-dialog.component';
 import { NotificationSettingsComponent } from './dialogs/notification-settings/notification-settings.component'
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,6 +92,7 @@ import { NotificationSettingsComponent } from './dialogs/notification-settings/n
     IvyCarouselModule,
     ToastrModule.forRoot(),
     MatCarouselModule.forRoot(),
+    MatSnackBarModule
 
   ],
   providers: [
