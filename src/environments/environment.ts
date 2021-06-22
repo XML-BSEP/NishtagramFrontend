@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080',
+  baseUrl: 'https://localhost:8080',
   login:"login",
   auth:"auth",
   refresh:"refresh",
@@ -87,6 +87,9 @@ export const environment = {
   blockedFor : "blockedFor",
   unblock:"unblock",
   getAllUsersFollowRequests :"getAllUsersFollowRequests",
-  approveFollowRequest :"approveFollowRequest"
+  approveFollowRequest :"approveFollowRequest",
+  isMuted : "isMuted",
+  muteContent : "muteContent",
+  unmuteContent : "unmuteContent"
 };
 

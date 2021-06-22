@@ -35,6 +35,7 @@ import { FollowDTO } from 'src/app/model/follow/followDTO';
 import { filter, map } from 'rxjs/operators';
 import { FollowReq } from 'src/app/model/follow/followReq';
 import { Mute } from 'src/app/model/profile/mute';
+import { MutedContentDTO } from 'src/app/model/muteContentdto';
 
 
 @Component({
@@ -102,7 +103,7 @@ export class ProfileComponent implements OnInit {
     .subscribe(params => {
       this.userId = params.id;
     });
-
+    
     this.curUsr = JSON.parse(localStorage.getItem('currentUser'))
     if(this.userId==undefined){
       this.userId = this.curUsr.id
@@ -115,6 +116,16 @@ export class ProfileComponent implements OnInit {
         }
       )
       }
+      let mutedContentDto = new MutedContentDTO();
+      mutedContentDto.blockedFor = this.curUsr.id;
+      mutedContentDto.blocked = this.userId;
+      this.postService.isMuted(mutedContentDto).subscribe(
+        res => {
+          this.isMuted = true;
+        }, err => {
+          this.isMuted = false;
+        }
+      )
     }
     this.followDTO = new FollowDTO( new UserDTO(this.userId),new UserDTO(this.curUsr.id))
     console.log(this.userId)
@@ -543,7 +554,19 @@ export class ProfileComponent implements OnInit {
     )
   }
   mute(){
+    let mutecontentDto = new MutedContentDTO();
+    mutecontentDto.blocked = this.userId;
+    mutecontentDto.blockedFor = this.curUsr.id;
 
+    this.postService.mute(mutecontentDto).subscribe(
+      res=>{
+         this.toastr.success('Successfully muted!')
+         this.isMuted = !this.isMuted;
+  
+      },error=>{
+        this.toastr.error('OOOOOOOOpppsss something went wrong :(')
+         console.log(error)
+     });
     var mute = new Mute( this.curUsr.id, this.userId)
 
     // this.followService.cancelFollowRequest(followReq).subscribe(res=>{
@@ -556,15 +579,19 @@ export class ProfileComponent implements OnInit {
   }
   unmute(){
 
-    var mute = new Mute( this.curUsr.id, this.userId)
+    let mutecontentDto = new MutedContentDTO();
+    mutecontentDto.blocked = this.userId;
+    mutecontentDto.blockedFor = this.curUsr.id;
 
-    // this.followService.cancelFollowRequest(followReq).subscribe(res=>{
-    //   this.toastr.success('Successfully muted!')
-
-    // },error=>{
-    //   this.toastr.error('OOOOOOOOpppsss something went wrong :(')
-    //   console.log(error)
-    // });
+    this.postService.unmute(mutecontentDto).subscribe(
+      res=>{
+         this.toastr.success('Successfully unmuted!')
+         this.isMuted = !this.isMuted;
+  
+      },error=>{
+        this.toastr.error('OOOOOOOOpppsss something went wrong :(')
+         console.log(error)
+     });
   }
   block(){
     var mute = new Mute( this.curUsr.id, this.userId)
