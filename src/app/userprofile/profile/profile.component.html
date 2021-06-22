@@ -80,7 +80,7 @@
                   <div class="bio" *ngIf="profile.user.web!==null">
                     <h4 class="mb-0">Website</h4>
                     <div class="p-4 rounded shadow-sm bg-light">
-                        <a class="mb-0" href={{web}}>{{profile.user.web}}</a>
+                        <a class="mb-0" href={{profile.user.web}}>{{profile.user.web}}</a>
                     </div>
                   </div>
                 </div>
@@ -98,10 +98,13 @@
                               <button mat-fab class="mr-3" color="primary" (click)="createNewHighlight()" *ngIf="isLoggedInUser">
                                 <mat-icon>add</mat-icon>
                               </button>
-                              <div class="d-flex flex-column align-items-center" *ngFor="let high of storyHighlights"  >
+                              <div *ngIf="isLoggedInUser || !isPrivate" >
+                                 <div class="d-flex flex-column align-items-center" *ngFor="let high of storyHighlights" >
                                 <img src={{high.highlightPhoto}} class="rounded-image mr-3 " (click)="openStoryHighlightDialog(high)">
                                 <span style="font-size:small">{{high.name}}</span>
                               </div>
+                              </div>
+
                             </div>
                           </div>
                         </div>

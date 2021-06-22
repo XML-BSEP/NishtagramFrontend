@@ -3,7 +3,7 @@
     <h3 style="text-align: center;">NOTIFICATIONS</h3>
     <hr>
   </div>
-    <div class="notif-row row" *ngFor="let notification of notifications" (click)="goToNotification(notification)">
+    <div class="notif-row row mt-2 mb-2" *ngFor="let notification of notifications" (click)="goToNotification(notification)">
       <div class="col-2 mb-2">
         <span>{{notification.sender_username}}</span>
       </div>
@@ -25,7 +25,7 @@
       <div class="col-2 mt-3 mb-2" *ngIf="notification.isPostRelated">
         <img src={{notification.postThumb.image.path}} class="square-image">
       </div> -->
-      <hr>
+      <mat-divider></mat-divider>
     </div>
 
 </div>

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Story } from './../../model/feed/story';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
@@ -14,17 +15,20 @@ import { UserInFeed } from 'src/app/model/feed/userInFeed';
 export class StoryDialogComponent implements OnInit {
   public canReport : boolean = true;
 
-  constructor( public dialogRef: MatDialogRef<StoryDialogComponent>, private dialog : MatDialog,
+  constructor(public router: Router, public dialogRef: MatDialogRef<StoryDialogComponent>, private dialog : MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: Story) { }
 
   ngOnInit(): void {
-    
+
     let curUsr = JSON.parse(localStorage.getItem('currentUser'))
     if(curUsr.id==this.data.user.id){
       this.canReport = false;
     }
   }
-
+  goToProfile(){
+    location.href = "/profile?id="+this.data.user.id
+      // this.router.navigate(['/profile'], { queryParams: { id: this.data.user.id } });
+  }
   reportStory() {
 
     let post = new Post(this.data.user, null, null, null, null, null, null, null);
