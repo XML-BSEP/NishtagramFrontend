@@ -35,8 +35,6 @@ export class FeedCardComponent implements OnInit {
   allComms : boolean = false;
   commentForm: FormGroup;
 
-
-
   constructor(private router : Router, private postService : PostService, private toastr : ToastrService, private authenticationService : AuthenticationService,
     private dialog : MatDialog) { }
 
@@ -59,7 +57,7 @@ export class FeedCardComponent implements OnInit {
 
 
 
-  
+
 
   }
 
@@ -67,8 +65,8 @@ export class FeedCardComponent implements OnInit {
     var like = new LikePost();
     like.postBy = this.post.user.id;
     like.postId = this.post.id;
-    
-    
+
+
 
 
     if (this.post.isLiked) {
@@ -87,12 +85,12 @@ export class FeedCardComponent implements OnInit {
       this.postService.likePost(like).subscribe(
         res => {
          // this.toastr.info("Post liked")
-          
+
           this.post.isLiked = !this.post.isLiked;
           if (this.post.isDisliked) {
             this.post.isDisliked = false;
           }
-         
+
         } , error => {
           this.toastr.error("Post unavailable")
         }

@@ -23,6 +23,8 @@ import { CollectionDTO } from 'src/app/userprofile/profile/collectiondto';
 import { PostInfo } from 'src/app/feed/feed-card/postinfo';
 import { ReportPost } from 'src/app/model/reports/reportPost';
 import { StoryReport } from 'src/app/model/reports/reportStory';
+import { Mute } from 'src/app/model/profile/mute';
+import { MutedContentDTO } from 'src/app/model/muteContentdto';
 
 @Injectable({
   providedIn: 'root'
@@ -136,4 +138,22 @@ export class PostService {
   reportStory(reportStory : StoryReport) : Observable<Response> {
     return this.https.post<Response>(`${environment.baseUrl}/${environment.reportStory}`, reportStory)
   }
+
+  isMuted(MutedContentDTO : MutedContentDTO) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.isMuted}`, MutedContentDTO)
+  }
+
+  mute(MutedContentDTO : MutedContentDTO) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.muteContent}`, MutedContentDTO)
+  }
+
+  unmute(MutedContentDTO : MutedContentDTO) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.unmuteContent}`, MutedContentDTO)
+  }
+
+
+  // mute(mute : Mute) : Observable<Response> {
+  //   return this.https.post<Response>(`${environment.baseUrl}/${environment.post}`, reportStory)
+  // }
+
 }

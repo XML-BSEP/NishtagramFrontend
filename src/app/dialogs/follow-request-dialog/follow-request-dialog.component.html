@@ -1,0 +1,20 @@
+<div class="component">
+  <div id="profile">
+    <h3 style="text-align: center;">FOLLOW REQUESTS</h3>
+    <hr>
+  </div>
+    <div class="notif-row row" *ngFor="let req of followRequests">
+      <div class="col-2 mt-3 mb-2">
+        <img src={{req.profilePhoto}} width="40" class="rounded-image">
+      </div>
+
+      <div class="col-8 mt-4 mb-2">
+        <span class="name">{{req.username}}</span><span> sent you a follow request</span>
+      </div>
+      <div class="col-2 mt-3 mb-2" >
+        <button mat-raised-button >Approve</button>
+      </div>
+      <hr>
+    </div>
+
+</div>

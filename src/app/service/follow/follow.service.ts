@@ -1,3 +1,4 @@
+import { FollowRequest } from './../../model/profile/followRequest';
 import { Unfollow } from './../../model/follow/unfollow';
 import { ProfileDTO } from './../../model/profile/profileDTO';
 import { CloseFriend } from './../../model/follow/closeFriend';
@@ -49,4 +50,12 @@ export class FollowService {
   isUserFollowingUser(follow : FollowDTO) :Observable<boolean>{
     return this.http.post<boolean>(`${environment.baseUrl}/${environment.isUserFollowingUser}`, follow);
   }
+
+  getFollowRequests(user : ProfileDTO) : Observable<FollowRequest[]> {
+    return this.http.post<FollowRequest[]>(`${environment.baseUrl}/${environment.getAllUsersFollowRequests}`, user)
+  }
+  approveFollowReq(fr : FollowReq) : Observable<Response> {
+    return this.http.post<Response>(`${environment.baseUrl}/${environment.approveFollowRequest}`, fr)
+  }
+
 }
