@@ -1,7 +1,22 @@
 <div class="component">
-  <h2 class="d-flex flex-column text-center">Notifications</h2>
+  <div id="profile">
+    <h3 style="text-align: center;">NOTIFICATIONS</h3>
+    <hr>
+  </div>
     <div class="notif-row row" *ngFor="let notification of notifications" (click)="goToNotification(notification)">
-      <div class="col-2 mt-3 mb-2">
+      <div class="col-2 mb-2">
+        <span>{{notification.sender_username}}</span>
+      </div>
+      <div class="col-6 mb-2">
+        <span>{{notification.content}}</span>
+      </div>
+      <div class="col-4 mb-2">
+        <small>{{notification.momentTime}}</small>
+      </div>
+      <!-- <div class="col-2 mt-3 mb-2">
+        <img src={{notification}} width="40" class="rounded-image">
+      </div> -->
+      <!-- <div class="col-2 mt-3 mb-2">
         <img src={{notification.notificiare.profilePhoto.path}} width="40" class="rounded-image">
       </div>
       <div class="col-8 mt-4 mb-2">
@@ -9,11 +24,8 @@
       </div>
       <div class="col-2 mt-3 mb-2" *ngIf="notification.isPostRelated">
         <img src={{notification.postThumb.image.path}} class="square-image">
-      </div>
-      <mat-divider></mat-divider>
+      </div> -->
+      <hr>
+    </div>
 
-
-
-
-  </div>
 </div>

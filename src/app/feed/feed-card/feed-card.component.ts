@@ -35,7 +35,6 @@ export class FeedCardComponent implements OnInit {
   allComms : boolean = false;
   commentForm: FormGroup;
 
-
   constructor(private router : Router, private postService : PostService, private toastr : ToastrService, private authenticationService : AuthenticationService,
     private dialog : MatDialog) { }
 
@@ -227,6 +226,9 @@ export class FeedCardComponent implements OnInit {
       )
 
     }
+  }
+  goToCommentProfile(c){
+    this.router.navigate(['/profile'], { queryParams: { id: c.user.id } });
   }
   goToProfile(){
     this.router.navigate(['/profile'], { queryParams: { id: this.post.user.id } });

@@ -18,7 +18,6 @@
                         <button mat-menu-item style="color: red;">Unfollow</button>
                         <mat-divider></mat-divider>
                         <button mat-menu-item (click)="goToPostDetails()">Go to post</button>
-
                       </mat-menu>
                     </div>
                 </div>
@@ -83,8 +82,8 @@
                     <div class="commentsection" *ngIf="post.comments.length>0 && allComms">
 
                       <div class="comments" *ngFor="let comment of post.comments">
-                        <div class="d-flex flex-row mb-2"> <img src="{{comment.user.profilePhoto}}" width="40" class="rounded-image">
-                            <div class="d-flex flex-column ml-2"> <span class="name">{{comment.user.username}}</span> <small class="comment-text">{{comment.text}}</small>
+                        <div class="d-flex flex-row mb-2"> <img src="{{comment.user.profilePhoto}}" width="40" class="rounded-image" (click)="goToCommentProfile(comment)">
+                            <div class="d-flex flex-column ml-2"> <span class="name" (click)="goToCommentProfile(comment)">{{comment.user.username}}</span> <small class="comment-text">{{comment.text}}</small>
                             </div>
                         </div>
                       </div>

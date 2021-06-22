@@ -1,3 +1,4 @@
+import { FollowRequestDialogComponent } from './../../dialogs/follow-request-dialog/follow-request-dialog.component';
 import { NewstoryDialogComponent } from './../../dialogs/newstory-dialog/newstory-dialog.component';
 import { ProfileStory } from './../../model/profile/profileStory';
 import { ToastrService } from 'ngx-toastr';
@@ -56,7 +57,7 @@ export class RegularUserComponent implements OnInit {
 
       this.notificationsOpen=true;
         const dialogRef = this.dialog.open(NotificationsDialogComponent, {
-        width: '26vw',
+        width: '30vw',
         height: '70vh',
         data: this.notifications
       });
@@ -68,6 +69,12 @@ export class RegularUserComponent implements OnInit {
 
     }
 
+  }
+  openFRDialog(){
+    const dialogRef = this.dialog.open(FollowRequestDialogComponent, {
+      width: '35vw',
+      height: '90vh'
+    });
   }
   settings(){
     window.location.href = "/settings"

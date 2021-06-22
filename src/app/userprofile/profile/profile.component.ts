@@ -1,3 +1,4 @@
+import { NotificationSettingsComponent } from './../../dialogs/notification-settings/notification-settings.component';
 import { PostIds } from './../../model/search/PostIds';
 import { Unfollow } from './../../model/follow/unfollow';
 import { ProfileDTO } from './../../model/profile/profileDTO';
@@ -33,6 +34,7 @@ import { CollectionDTO } from './collectiondto';
 import { FollowDTO } from 'src/app/model/follow/followDTO';
 import { filter, map } from 'rxjs/operators';
 import { FollowReq } from 'src/app/model/follow/followReq';
+import { Mute } from 'src/app/model/profile/mute';
 
 
 @Component({
@@ -67,7 +69,7 @@ export class ProfileComponent implements OnInit {
  // chosenCollection : PostInProfile[]
   userId
   userObj
-  isMuted :boolean = true;
+  isMuted :boolean;
   followDTO : FollowDTO
   isFollowed : boolean = false
   requestSent : boolean
@@ -410,7 +412,13 @@ export class ProfileComponent implements OnInit {
 
     console.log(post)
   }
-
+  openNotificationSettingsDialog(){
+    const dialogRef = this.dialog.open(NotificationSettingsComponent, {
+      width: '20vw',
+      height: '30vh',
+      data: this.userId
+    });
+  }
   openFollowersDialog(){
     if(!this.profile.private || this.isLoggedInUser || this.isFollowing){
       const dialogRef = this.dialog.open(FollowersDialogComponent, {
@@ -533,6 +541,34 @@ export class ProfileComponent implements OnInit {
         console.log(rest)
       }
     )
+  }
+  mute(){
+
+    var mute = new Mute( this.curUsr.id, this.userId)
+
+    // this.followService.cancelFollowRequest(followReq).subscribe(res=>{
+    //   this.toastr.success('Successfully muted!')
+
+    // },error=>{
+    //   this.toastr.error('OOOOOOOOpppsss something went wrong :(')
+    //   console.log(error)
+    // });
+  }
+  unmute(){
+
+    var mute = new Mute( this.curUsr.id, this.userId)
+
+    // this.followService.cancelFollowRequest(followReq).subscribe(res=>{
+    //   this.toastr.success('Successfully muted!')
+
+    // },error=>{
+    //   this.toastr.error('OOOOOOOOpppsss something went wrong :(')
+    //   console.log(error)
+    // });
+  }
+  block(){
+    var mute = new Mute( this.curUsr.id, this.userId)
+
   }
   backToProfile(){
     this.isCollectionChosen=false;

@@ -44,6 +44,8 @@ import { UserSettingsComponent } from './userprofile/user-settings/user-settings
 import { ReportPostDialogComponent } from './dialogs/report-post-dialog/report-post-dialog.component';
 import { NotificationSettingsComponent } from './dialogs/notification-settings/notification-settings.component'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { FollowRequestDialogComponent } from './dialogs/follow-request-dialog/follow-request-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +77,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AdminRequestVerificationComponent,
     UserSettingsComponent,
     ReportPostDialogComponent,
-    NotificationSettingsComponent
+    NotificationSettingsComponent,
+    FollowRequestDialogComponent
 
   ],
   imports: [

@@ -1,4 +1,85 @@
 
 <div class="component">
+  <div id="profile">
+    <h4 style="text-align: center;">NOTIFICATIONS</h4>
+    <hr>
+  </div>
+    <div class="row">
+      <div class="col ml-5">
+        <h4>Like</h4>
+      </div>
+      <div class="col">
+        <div class="col-md-6 ml-md-auto">
+          <button mat-raised-button color="primary" *ngIf="isLikeDisabled" (click)="unblockLike()">
+            Turn on
+          </button>
+          <button mat-raised-button color="accent" *ngIf="!isLikeDisabled" (click)="blockLike()">
+            Turn off
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col ml-5">
+        <h4>Dislike</h4>
+      </div>
+      <div class="col">
+        <div class="col-md-6 ml-md-auto">
+          <button mat-raised-button color="primary" *ngIf="isDislikeDisabled" (click)="unblockDislike()">
+            Turn on
+          </button>
+          <button mat-raised-button color="accent" *ngIf="!isDislikeDisabled" (click)="blockDislike()">
+            Turn off
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col ml-5">
+        <h4>Comment</h4>
+      </div>
+      <div class="col">
+        <div class="col-md-6 ml-md-auto" >
+          <button mat-raised-button color="primary" *ngIf="isCommentDisabled" (click)="unblockComment()">
+            Turn on
+          </button>
+          <button mat-raised-button color="accent" *ngIf="!isCommentDisabled" (click)="blockComment()">
+            Turn off
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col ml-5">
+        <h4>Post</h4>
+      </div>
+      <div class="col">
+        <div class="col-md-6 ml-md-auto" >
+          <button mat-raised-button color="primary" *ngIf="isPostDisabled" (click)="unblockPost()">
+            Turn on
+          </button>
+          <button mat-raised-button color="accent" *ngIf="!isPostDisabled" (click)="blockPost()">
+            Turn off
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col ml-5">
+        <h4>Story</h4>
+      </div>
+      <div class="col">
+        <div class="col-md-6 ml-md-auto" >
+          <button mat-raised-button color="primary" *ngIf="isStoryDisabled" (click)="unblockStory()">
+            Turn on
+          </button>
+          <button mat-raised-button color="accent" *ngIf="!isStoryDisabled" (click)="blockStory()">
+            Turn off
+          </button>
+        </div>
+      </div>
+    </div>
+
 
 </div>
