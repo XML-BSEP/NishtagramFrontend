@@ -82,11 +82,12 @@ export const environment = {
   reportStory : "reportStory",
   notifications: "notification",
   block:"block",
-  saveNewRequestVerification : "saveNewRequestVerification",
   blockedNotification:"blockedNotification",
   blockedBy :"blockedBy",
   blockedFor : "blockedFor",
-  unblock:"unblock"
+  unblock:"unblock",
+  changePrivacyAndTagging : "changePrivacyAndTagging",
+  getPrivacyAndTagging : "getPrivacyAndTagging"
 
 };
 

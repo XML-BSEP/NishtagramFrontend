@@ -11,6 +11,7 @@ import { VerifySecret } from 'src/app/model/verifysecret';
 import { AuthenticatedUser } from 'src/app/model/security/authenticatedUser';
 import { isTotpEnabled } from 'src/app/model/istotpenabled';
 import { SearchedUser } from 'src/app/model/profile/searchedProfile';
+import { PrivacyTaggingg } from 'src/app/model/profile/privacyTagging';
 
 @Injectable({
   providedIn: 'root'
@@ -62,5 +63,13 @@ export class ProfileService {
   
   searchUser(search : String) : Observable<SearchedUser[]> {
     return this.http.get<SearchedUser[]>(`${environment.baseUrl}/${environment.searchUser}?search=${search}`);
+  }
+
+  changePrivacyAndTagging(change : PrivacyTaggingg)  {
+    return this.http.post(`${environment.baseUrl}/${environment.changePrivacyAndTagging}`, change)
+  }
+
+  getPrivacyAndTagging(id : String) : Observable<PrivacyTaggingg> {
+    return this.http.get<PrivacyTaggingg>(`${environment.baseUrl}/${environment.getPrivacyAndTagging}?userId=${id}`)
   }
 }
