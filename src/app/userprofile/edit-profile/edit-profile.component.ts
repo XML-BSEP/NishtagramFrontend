@@ -15,6 +15,7 @@ import { isTotpEnabled } from 'src/app/model/istotpenabled';
 import { PostService } from 'src/app/service/post/postservice';
 import {RequestVerificationService} from 'src/app/service/request-verification/request-verification.service';
 import { NewRequestVerification } from 'src/app/model/request-verification/newRequestVerification';
+import { PrivacyTaggingg } from 'src/app/model/profile/privacyTagging';
 
 @Component({
   selector: 'app-edit-profile',
@@ -100,15 +101,44 @@ export class EditProfileComponent implements OnInit {
     console.log(history.state.data)
     this.user = history.state.data;
     this.today = new Date();
+    
+    var privacyTag = new PrivacyTaggingg();
+    this.privateService.getPrivacyAndTagging(this.curUsr.id).subscribe(
+      data => {
+        privacyTag = data;
+        console.log(privacyTag)
+
+
+        var isPrivacyTagPrivate : boolean;
+        if (privacyTag.privacy_permission === "Private") {
+            isPrivacyTagPrivate = true;
+        }else {
+          isPrivacyTagPrivate = false;
+        }
+
+        
+        this.accountSettingsForm = new FormGroup({
+    
+          'private' : new FormControl(isPrivacyTagPrivate),
+          'messages' : new FormControl(null),
+          'tags' : new FormControl(privacyTag.allow_tagging),
+       });
+      },
+      err => {
+        this.toastr.error(err)
+      }
+    );
+
+  
+
+    
+
+
     this.changePasswordForm = new FormGroup({
      'password' : new FormControl(null, [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9\d$@$!%*?&].{7,}$')]),
     'confirmPassword' : new FormControl(null, [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9\d$@$!%*?&].{7,}$')]),
   });
-  this.accountSettingsForm = new FormGroup({
-    'private' : new FormControl(this.user.private),
-    'messages' : new FormControl(null),
-    'tags' : new FormControl(null),
- });
+  
   this.passcodeForm = new FormGroup({
     "passcode" : new FormControl("", [Validators.required])
   });
@@ -463,6 +493,40 @@ export class EditProfileComponent implements OnInit {
         this.toastr.error(err);
       }
     );
+
+  }
+
+  saveAccountSettins() {
+    console.log(this.accountSettingsForm.controls.private.value)
+    console.log(this.accountSettingsForm.controls.tags.value)
+
+    var privacyTag = new PrivacyTaggingg();
+   
+    if (this.accountSettingsForm.controls.private.value == true) {
+      privacyTag.privacy_permission = "Private"
+    }else {
+      privacyTag.privacy_permission = "Public";
+    }
+
+    if (this.accountSettingsForm.controls.tags.value == null) {
+      privacyTag.allow_tagging = false
+    }
+
+    privacyTag.allow_tagging = this.accountSettingsForm.controls.tags.value
+    privacyTag.profile_id = this.curUsr.id;
+    
+    this.privateService.changePrivacyAndTagging(privacyTag).subscribe(
+      res => {
+        this.toastr.success("Updated account settings!")
+        location.reload();
+
+      },
+      err => {
+        this.toastr.error(err)
+      }
+    );
+
+
 
   }
 
