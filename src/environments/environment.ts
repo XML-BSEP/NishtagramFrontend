@@ -87,6 +87,9 @@ export const environment = {
   blockedFor : "blockedFor",
   unblock:"unblock",
   getAllUsersFollowRequests :"getAllUsersFollowRequests",
-  approveFollowRequest :"approveFollowRequest"
+  approveFollowRequest :"approveFollowRequest",
+  changePrivacyAndTagging : "changePrivacyAndTagging",
+  getPrivacyAndTagging : "getPrivacyAndTagging"
+
 };
 
