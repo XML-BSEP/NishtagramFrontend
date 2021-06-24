@@ -90,7 +90,7 @@ export const environment = {
   approveFollowRequest :"approveFollowRequest",
   isMuted : "isMuted",
   muteContent : "muteContent",
-  unmuteContent : "unmuteContent"
+  unmuteContent : "unmuteContent",
   changePrivacyAndTagging : "changePrivacyAndTagging",
   getPrivacyAndTagging : "getPrivacyAndTagging"
 };

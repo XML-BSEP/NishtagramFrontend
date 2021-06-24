@@ -99,302 +99,210 @@ export class ProfileComponent implements OnInit {
 
 
 
+
     this.route.queryParams
     .subscribe(params => {
       this.userId = params.id;
     });
-    
+
+
+
     this.curUsr = JSON.parse(localStorage.getItem('currentUser'))
-    if(this.userId==undefined){
+
+    if(this.userId===undefined){
       this.userId = this.curUsr.id
+      console.log('WTFFF')
+
     }else{
-      if(this.userId !=this.curUsr.id){
-      var follow = new FollowDTO(new UserDTO(this.curUsr.id), new UserDTO(this.userId))
-      this.followService.isUserFollowingUser(follow).subscribe(
-        res=>{
-          this.isFollowing = res;
-        }
-      )
+
+      if(this.userId !==this.curUsr.id){
+        this.getIsMutedStatus()
+        this.followDTO = new FollowDTO( new UserDTO(this.userId),new UserDTO(this.curUsr.id))
+        this.getisUserFollowingUser()
+        console.log('USAO U IF')
       }
-      let mutedContentDto = new MutedContentDTO();
-      mutedContentDto.blockedFor = this.curUsr.id;
-      mutedContentDto.blocked = this.userId;
-      this.postService.isMuted(mutedContentDto).subscribe(
-        res => {
-          this.isMuted = true;
-        }, err => {
-          this.isMuted = false;
-        }
-      )
+
     }
+
+    let userInFeed = new UserInFeed(this.userId, this.curUsr.username, "")
+    let profileDTO = new ProfileDTO(this.userId)
+
+
+
     this.followDTO = new FollowDTO( new UserDTO(this.userId),new UserDTO(this.curUsr.id))
-    console.log(this.userId)
-    if (this.userId === undefined) {
-      console.log("SADOGOGOGOGOG")
 
-      console.log(this.userId)
-      if(this.userId === undefined) {
 
+    if (this.userId === this.curUsr.id) {
       this.isLoggedInUser=true;
 
+      // this.userId = this.curUsr.id
+      // this.isLoggedInUser=true;
 
-      let userInFeed = new UserInFeed(this.curUsr.id, this.curUsr.username, "")
+
+      let userInFeed = new UserInFeed(this.userId, this.curUsr.username, "")
       let profileDTO = new ProfileDTO(this.userId)
-      this.followService.getFollowers(profileDTO).subscribe(
-        res => {
-          this.followers = res
-          if (this.followers === null) {
-            this.followers = []
-          }
-          console.log(this.followers)
-        }
-      )
+      this.getUserFollowers(profileDTO);
+      this.getUsersFollowings(profileDTO);
 
-      this.followService.getFollowing(profileDTO).subscribe(
-        res => {
-          this.following = res
-          console.log(this.following)
-          if (this.following === null) {
-            this.following = []
-          }
-        }
-      )
+
       this.profileService.getUserById(this.curUsr.id).subscribe(
         (data) => {
           this.user = data;
           this.jeldobavio = true;
-          this.profile = new UserProfile(this.user, [], [], [], false)
-          console.log(this.jeldobavio)
-          this.web = "https://"+this.user.web
-          console.log(this.posts)
-
-          //this.storyHighlights = []
-          console.log(this.allStories)
-
-
+          this.profile = new UserProfile(this.user, [], [], [], this.user.private)
 
             this.isLoggedInUser=true;
             this.requestSent = false;
             this.canBeUnfollowed =false;
+
             this.user.private = false;
-
-            this.postService.getAllPostsInProfile(userInFeed).subscribe(
-              res => {
-                this.posts = []
-                if (this.posts != null) {
-                for (let p of res) {
-                  // console.log(p)
-                  this.posts.push(new PostInProfile(p.user, p.images, p.postid, p.isVideo))
-                }
-                  // console.log(p.postid)
-                }
-                // console.log(this.posts)
-                this.profile.posts = this.posts
-
-
-              }
-            )
-
-            this.postService.getAllStories(userInFeed).subscribe(
-              res => {
-                this.allStories = res;
-              }
-            )
-
-            this.postService.getAllHighlightsByUser(userInFeed).subscribe(
-              res => {
-                this.storyHighlights = res
-                console.log(res)
-              }
-            )
-
+            this.getAllPostsInProfile(userInFeed);
+            this.getAllUsersStories(userInFeed);
+            this.getAllUsersHighlights(userInFeed);
             this.showUser = true;
             this.showDetails = true;
-
          })
-      }
-    }
 
-
-    if (this.userId !== undefined) {
+    }else{
       let userInFeed = new UserInFeed(this.userId, this.curUsr.username, "")
-      this.followService.getFollowers(userInFeed).subscribe(
-        res => {
-          this.followers = res
-          if (this.followers === null) {
-            this.followers = []
-          }
-        }
-      )
-
-      this.followService.getFollowing(userInFeed).subscribe(
-        res => {
-          this.following = res;
-          if (this.following === null) {
-            this.following = []
-          }
-        }
-      )
-      console.log("ASDASDASDASD OVDEEEE")
+      this.getUserFollowers(userInFeed);
+      this.getUsersFollowings(userInFeed);
       this.profileService.getUserById(this.userId).subscribe(
-        (data) => {
-          this.user = data;
-          this.jeldobavio = true;
-          this.profile = new UserProfile(this.user, [], [], [], this.user.private)
-          console.log(this.jeldobavio)
-          this.web = "https://"+this.user.web
-          console.log(this.posts)
-
-          //this.storyHighlights = []
-          console.log(this.allStories)
-
-          this.isLoggedInUser = false;
-
-          this.followService.isUserAllowedToFollow(this.followDTO).subscribe(
-            res=>{
-              this.isLoggedInUser=false;
-              this.requestSent = false;
-              this.isFollowed = false
-              this.canBeUnfollowed =false;
-            },err=>{
-              console.log(err)
-              if(err==="Request already sent"){
-                this.requestSent = true;
-                this.isLoggedInUser = false;
-                this.canBeUnfollowed =false;
-
-
-              }else if(err==="Its you, you moron!"){
-                console.log("FOFOFOOFFO")
-                this.isLoggedInUser=true;
-                this.requestSent = false;
-                this.canBeUnfollowed =false;
-                this.user.private = false;
-
-                let userInFeed = new UserInFeed(this.curUsr.id, this.curUsr.username, "")
-                this.postService.getAllPostsInProfile(userInFeed).subscribe(
-                  res => {
-                    this.posts = []
-                    for (let p of res) {
-                      // console.log(p)
-                      this.posts.push(new PostInProfile(p.user, p.images, p.postid, p.isVideo))
-
-                      // console.log(p.postid)
-                    }
-                    // console.log(this.posts)
-                    this.profile.posts = this.posts
-
-
-
-                  }
-                )
-
-                this.postService.getAllStories(userInFeed).subscribe(
-                  res => {
-                    this.allStories = res;
-                  }
-                )
-
-                this.postService.getAllHighlightsByUser(userInFeed).subscribe(
-                  res => {
-                    this.storyHighlights = res
-                    console.log(res)
-                  }
-                )
-
-                this.showDetails = true;
-
-
-              }else if(err ==="You are already following user"){
-                this.isLoggedInUser=false;
-                this.requestSent= false;
-                this.canBeUnfollowed =true;
-                this.user.private = false;
-                let userInFeed = new UserInFeed(this.userId, "", "")
-                this.postService.getAllPostsInProfile(userInFeed).subscribe(
-                  res => {
-                    this.posts = []
-                    for (let p of res) {
-                      // console.log(p)
-                      this.posts.push(new PostInProfile(p.user, p.images, p.postid, p.isVideo))
-
-                      // console.log(p.postid)
-                    }
-                    // console.log(this.posts)
-                    this.profile.posts = this.posts
-
-
-
-                    this.showDetails = true;
-                  }
-                )
-
-                this.postService.getAllStories(userInFeed).subscribe(
-                  res => {
-                    this.allStories = res;
-                  }
-                )
-
-                this.postService.getAllHighlightsByUser(userInFeed).subscribe(
-                  res => {
-                    this.storyHighlights = res
-                    console.log(res)
-                  }
-                )
-
-                this.showUser = true;
-                this.showDetails = true;
-              } else {
-                if (this.user.private) {
-
-                  this.user.private = false;
+            (data) => {
+              this.user = data;
+              this.jeldobavio = true;
+              this.profile = new UserProfile(this.user, [], [], [], this.user.private)
+              this.isLoggedInUser = false;
+              this.followService.isUserAllowedToFollow(this.followDTO).subscribe(
+                res=>{
+                  this.isLoggedInUser=false;
+                  this.requestSent = false;
+                  this.isFollowed = false
+                  this.canBeUnfollowed =false;
                   this.showUser = true;
-                  this.showDetails = false;
-                }
-              }
-            })
 
+                },err=>{
+                  if(err==="Request already sent"){
+                    this.requestSent = true;
+                    this.isLoggedInUser = false;
+                    this.canBeUnfollowed =false;
+                    this.showUser = true;
 
-            this.showUser = true
-            console.log(this.user)
-
-            if (!this.user.private) {
-              this.postService.getAllPostsInProfile(userInFeed).subscribe(
-                res => {
-                  this.posts = []
-                  for (let p of res) {
-                    // console.log(p)
-                    this.posts.push(new PostInProfile(p.user, p.images, p.postid, p.isVideo))
-
-                    // console.log(p.postid)
+                  }else if(err ==="You are already following user"){
+                    this.isLoggedInUser=false;
+                    this.requestSent= false;
+                    this.canBeUnfollowed =true;
+                    this.user.private = false;
+                    let userInFeed = new UserInFeed(this.userId, "", "")
+                    this.getAllPostsInProfile(userInFeed)
+                    this.getAllUsersHighlights(userInFeed)
+                    this.showUser = true;
+                    this.showDetails = true;
+                  }else if(err==="Its you, you moron!"){
+                    console.log('idk')
+                  } else  {
+                    if (this.user.private) {
+                      this.showUser = true;
+                      this.showDetails = false;
+                    }
                   }
-                  // console.log(this.posts)
-                  this.profile.posts = this.posts
-
-
+                })
+                if(!this.user.private){
+                  this.getAllPostsInProfile(userInFeed)
+                  this.getAllUsersHighlights(userInFeed)
+                  this.showUser = true;
+                  this.showDetails = true;
 
                 }
-              )
 
-              this.postService.getAllStories(userInFeed).subscribe(
-                res => {
-                  this.allStories = res;
-                }
-              )
 
-              this.postService.getAllHighlightsByUser(userInFeed).subscribe(
-                res => {
-                  this.storyHighlights = res
-                  console.log(res)
-                }
-              )
 
-              this.showDetails = true;
-            }
-          })
+        });
 
+
+
+    }
+  }
+
+
+  getAllUsersHighlights(userInFeed){
+    this.postService.getAllHighlightsByUser(userInFeed).subscribe(
+      res => {
+        this.storyHighlights = res
+        console.log('PLS STA SE DESAVA SAAAAAAAAAAD')
+        console.log(res)
+      }
+    )
+  }
+  getAllUsersStories(userInFeed){
+    this.postService.getAllStories(userInFeed).subscribe(
+      res => {
+        this.allStories = res;
+      }
+    )
+  }
+  getAllPostsInProfile(userInFeed){
+    this.postService.getAllPostsInProfile(userInFeed).subscribe(
+      res => {
+        this.posts = []
+        if (res != null) {
+          for (let p of res) {
+            // console.log(p)
+            this.posts.push(new PostInProfile(p.user, p.images, p.postid, p.isVideo))
+          }
+        }
+        this.profile.posts = this.posts
+
+
+      }
+    )
+  }
+
+  getUsersFollowings(profileDTO){
+    this.followService.getFollowing(profileDTO).subscribe(
+      res => {
+        this.following = res
+        console.log(this.following)
+        if (this.following === null) {
+          this.following = []
         }
       }
+    )
+  }
+  getUserFollowers(profileDTO){
+    this.followService.getFollowers(profileDTO).subscribe(
+      res => {
+        this.followers = res
+        if (this.followers === null) {
+          this.followers = []
+        }
+        console.log(this.followers)
+      }
+    )
+
+  }
+  getisUserFollowingUser(){
+    var follow = new FollowDTO(new UserDTO(this.curUsr.id), new UserDTO(this.userId))
+    this.followService.isUserFollowingUser(follow).subscribe(
+      res=>{
+        this.isFollowing = res;
+      })
+  }
+
+  getIsMutedStatus(){
+    let mutedContentDto = new MutedContentDTO();
+    mutedContentDto.blockedFor = this.curUsr.id;
+    mutedContentDto.blocked = this.userId;
+    this.postService.isMuted(mutedContentDto).subscribe(
+      res => {
+        this.isMuted = true;
+      }, err => {
+        this.isMuted = false;
+      }
+    )
+
+  }
+
   goToEditProfile(){
       this.router.navigate(['/editProfile'],
       {state:
@@ -416,13 +324,10 @@ export class ProfileComponent implements OnInit {
       console.log(post.postBy)
       postDTO.UserId = post.postBy
     }
-
-
     location.href="/postDetails?postId="+postDTO.PostId +"&userId="+postDTO.UserId;
-
-
-    console.log(post)
   }
+
+
   openNotificationSettingsDialog(){
     const dialogRef = this.dialog.open(NotificationSettingsComponent, {
       width: '20vw',
@@ -509,18 +414,18 @@ export class ProfileComponent implements OnInit {
     this.areFavorites=false;
     this.areCollections=false;
   }
-  seeStories(){
 
+  seeStories(){
     this.arePosts=false;
     this.areStories=true;
     this.areFavorites=false;
     this.areCollections=false;
   }
+
   seeFavorites(){
     this.postService.getAllFavorites().subscribe(
       rest => {
         this.allFavorites = rest
-        //this.chosenCollection = collection.posts
       }
     )
     this.arePosts=false;
@@ -562,20 +467,11 @@ export class ProfileComponent implements OnInit {
       res=>{
          this.toastr.success('Successfully muted!')
          this.isMuted = !this.isMuted;
-  
+
       },error=>{
         this.toastr.error('OOOOOOOOpppsss something went wrong :(')
          console.log(error)
      });
-    var mute = new Mute( this.curUsr.id, this.userId)
-
-    // this.followService.cancelFollowRequest(followReq).subscribe(res=>{
-    //   this.toastr.success('Successfully muted!')
-
-    // },error=>{
-    //   this.toastr.error('OOOOOOOOpppsss something went wrong :(')
-    //   console.log(error)
-    // });
   }
   unmute(){
 
@@ -587,12 +483,13 @@ export class ProfileComponent implements OnInit {
       res=>{
          this.toastr.success('Successfully unmuted!')
          this.isMuted = !this.isMuted;
-  
+
       },error=>{
         this.toastr.error('OOOOOOOOpppsss something went wrong :(')
          console.log(error)
      });
   }
+
   block(){
     var mute = new Mute( this.curUsr.id, this.userId)
 
