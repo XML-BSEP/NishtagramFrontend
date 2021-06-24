@@ -17,6 +17,7 @@ import { Role } from './model/user/role';
 import {AdminComponent} from './admin/admin.component'
 import { AdminRequestVerificationComponent } from './admin-request-verification/admin-request-verification/admin-request-verification.component';
 import { UserSettingsComponent } from './userprofile/user-settings/user-settings.component';
+import { AdminAgentRequestComponent } from './admin-agent-request/admin-agent-request/admin-agent-request.component';
 
 
 const routes: Routes = [
@@ -100,6 +101,12 @@ const routes: Routes = [
   {
     path: "admin/verifications",
     component: AdminRequestVerificationComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.Admin]}
+  },
+  {
+    path: "admin/agentRequests",
+    component: AdminAgentRequestComponent,
     canActivate : [AuthGuard],
     data : {roles: [Role.Admin]}
   }
