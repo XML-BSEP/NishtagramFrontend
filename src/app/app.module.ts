@@ -21,7 +21,6 @@ import {RegistrationConfirmationComponent} from './registration/registration-con
 import {ForgotPasswordComponent} from "./sign-in/forgot-password/forgot-password.component"
 import {HomepageComponent} from "./feed/homepage/homepage.component"
 import {FeedCardComponent} from "./feed/feed-card/feed-card.component"
-import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { ProfileComponent } from './userprofile/profile/profile.component';
 import { EditProfileComponent } from './userprofile/edit-profile/edit-profile.component';
@@ -91,7 +90,6 @@ import { FollowRequestDialogComponent } from './dialogs/follow-request-dialog/fo
     HttpClientModule,
     MatInputModule,
     MatSelectModule,
-    IvyCarouselModule,
     ToastrModule.forRoot(),
     MatCarouselModule.forRoot(),
     MatSnackBarModule
