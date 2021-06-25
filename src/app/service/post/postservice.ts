@@ -25,6 +25,8 @@ import { ReportPost } from 'src/app/model/reports/reportPost';
 import { StoryReport } from 'src/app/model/reports/reportStory';
 import { Mute } from 'src/app/model/profile/mute';
 import { MutedContentDTO } from 'src/app/model/muteContentdto';
+import { Report } from 'src/app/model/reports/report';
+import { ReviewReport } from 'src/app/model/reports/reviewReport';
 
 @Injectable({
   providedIn: 'root'
@@ -151,9 +153,20 @@ export class PostService {
     return this.https.post<Response>(`${environment.baseUrl}/${environment.unmuteContent}`, MutedContentDTO)
   }
 
+  getAllRejectedReports() : Observable<Report[]> {
+    return this.https.get<Report[]>(`${environment.baseUrl}/${environment.getRejectedReports}`);
+  }
 
-  // mute(mute : Mute) : Observable<Response> {
-  //   return this.https.post<Response>(`${environment.baseUrl}/${environment.post}`, reportStory)
-  // }
+  getAllApprovedReports() : Observable<Report[]> {
+    return this.https.get<Report[]>(`${environment.baseUrl}/${environment.getApprovedReports}`);
+  }
+
+  getAllPendingReports() : Observable<Report[]> {
+    return this.https.get<Report[]>(`${environment.baseUrl}/${environment.getPendingReports}`);
+  }
+  
+  reviewReport(report : ReviewReport) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.reviewReport}`, report)
+  }
 
 }
