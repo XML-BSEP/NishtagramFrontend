@@ -27,6 +27,7 @@ import { Mute } from 'src/app/model/profile/mute';
 import { MutedContentDTO } from 'src/app/model/muteContentdto';
 import { Report } from 'src/app/model/reports/report';
 import { ReviewReport } from 'src/app/model/reports/reviewReport';
+import { GetStoryForAdmin } from 'src/app/model/reports/getstoryadmin';
 
 @Injectable({
   providedIn: 'root'
@@ -169,4 +170,23 @@ export class PostService {
     return this.https.post<Response>(`${environment.baseUrl}/${environment.reviewReport}`, report)
   }
 
+  getAllRejectedReportsStory() : Observable<Report[]> {
+    return this.https.get<Report[]>(`${environment.baseUrl}/${environment.getRejectedReportsStory}`);
+  }
+
+  getAllApprovedReportsStory() : Observable<Report[]> {
+    return this.https.get<Report[]>(`${environment.baseUrl}/${environment.getApprovedReportsStory}`);
+  }
+
+  getAllPendingReportsStory() : Observable<Report[]> {
+    return this.https.get<Report[]>(`${environment.baseUrl}/${environment.getPendingReportsStory}`);
+  }
+  
+  reviewReportStory(report : ReviewReport) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.reviewReportStory}`, report)
+  }
+
+  getStoryByIdForAdmin(getStory : GetStoryForAdmin) : Observable<Story> {
+    return this.https.post<Story>(`${environment.baseUrl}/${environment.getStoryForAdmin}`, getStory)
+  }
 }

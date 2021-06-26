@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { BanUserDialog } from '../dialogs/ban-user-dialog/ban-user.component';
+import { StoryDialogComponent } from '../dialogs/story-dialog/story-dialog.component';
+import { GetStoryForAdmin } from '../model/reports/getstoryadmin';
 import { Report } from '../model/reports/report';
 import { ReviewReport } from '../model/reports/reviewReport';
 import { RequestVerification } from '../model/request-verification/requestVerification';
@@ -30,18 +32,34 @@ export class AdminReportsComponent implements OnInit {
 
   ngOnInit(): void {
     this.isPending = false;
+    this.reports = [];
     this.criteriaForm= new FormGroup({
       'criteria' : new FormControl("", Validators.required),
   
     })
   }
   comboChangeCriteria(e) {
+    this.reports = [];
     if(this.criteriaForm.controls.criteria.value==="Pending"){
       this.isPending = true;
       //this.mockPosts();
       this.postService.getAllPendingReports().subscribe(
         res => {
-          this.reports = res;
+          for(let r of res) {
+            r.reportedMediaType = "POST";
+            this.reports.push(r)
+          }
+
+          this.postService.getAllPendingReportsStory().subscribe(
+            res => {
+              for (let r of res) {
+                r.reportedMediaType = "STORY"
+                this.reports.push(r)
+              }
+            }
+          )
+
+          
         }
       )
     }else if(this.criteriaForm.controls.criteria.value==="Approved"){
@@ -50,9 +68,18 @@ export class AdminReportsComponent implements OnInit {
 
       this.postService.getAllApprovedReports().subscribe(
         res => {
-          this.reports = res;
-          console.log(this.reports)
-          console.log(res)
+          for(let r of res) {
+            r.reportedMediaType = "POST";
+            this.reports.push(r)
+          }
+
+          this.postService.getAllApprovedReportsStory().subscribe(
+            res => {
+              for (let r of res) {
+                r.reportedMediaType = "STORY"
+                this.reports.push(r)
+              }
+            })
         }
       )
     } else if (this.criteriaForm.controls.criteria.value === "Rejected") {
@@ -60,11 +87,22 @@ export class AdminReportsComponent implements OnInit {
 
       this.postService.getAllRejectedReports().subscribe(
         res => {
-          this.reports = res;
-          console.log(this.reports)
-          console.log(res)
-        }
+          for(let r of res) {
+            r.reportedMediaType = "POST";
+            this.reports.push(r)
+          }
+
+          this.postService.getAllRejectedReportsStory().subscribe(
+            res => {
+              for (let r of res) {
+                r.reportedMediaType = "STORY"
+                this.reports.push(r)
+              }
+            })
+          }
+        
       )
+        
     }
 
   }
@@ -73,14 +111,21 @@ export class AdminReportsComponent implements OnInit {
     reviewReport.deletePost = false;
     reviewReport.status = "REJECTED";
     reviewReport.reportId = report.id;
-
-    this.postService.reviewReport(reviewReport).subscribe(
-      res => {
-        this.toastr.success("Successfully approved and deleted media")
-      }), err => {
-        this.toastr.error("Sorry, something went wrong")
-      }
-
+    if (report.reportedMediaType === "POST") {
+      this.postService.reviewReport(reviewReport).subscribe(
+        res => {
+          this.toastr.success("Successfully approved and deleted media")
+        }), err => {
+          this.toastr.error("Sorry, something went wrong")
+        }
+    } else if(report.reportedMediaType === "STORY") {
+      this.postService.reviewReportStory(reviewReport).subscribe(
+        res => {
+          this.toastr.success("Successfully approved and deleted media")
+        }), err => {
+          this.toastr.error("Sorry, something went wrong")
+        }
+    }
   }
 
   
@@ -90,12 +135,21 @@ export class AdminReportsComponent implements OnInit {
     reviewReport.status = "APPROVED";
     reviewReport.reportId = report.id;
 
-    this.postService.reviewReport(reviewReport).subscribe(
-      res => {
-        this.toastr.success("Successfully approved and deleted media")
-      }), err => {
-        this.toastr.error("Sorry, something went wrong")
-      }
+    if (report.reportedMediaType === "POST") {
+      this.postService.reviewReport(reviewReport).subscribe(
+        res => {
+          this.toastr.success("Successfully approved and deleted media")
+        }), err => {
+          this.toastr.error("Sorry, something went wrong")
+        }
+    } else if(report.reportedMediaType === "STORY") {
+      this.postService.reviewReportStory(reviewReport).subscribe(
+        res => {
+          this.toastr.success("Successfully approved and deleted media")
+        }), err => {
+          this.toastr.error("Sorry, something went wrong")
+        }
+    }
 
       const dialogRef = this.dialog.open(BanUserDialog, {
         width: '35vw',
@@ -105,7 +159,23 @@ export class AdminReportsComponent implements OnInit {
    }
 
    goToPost(e : Report) {
-    location.href="/postDetails?postId="+e.postId +"&userId="+e.reportedPostBy.id;
+
+    if (e.reportedMediaType === "POST") {
+      location.href="/postDetails?postId="+e.postId +"&userId="+e.reportedPostBy.id;
+    } else if (e.reportedMediaType === "STORY") {
+      let getStory = new GetStoryForAdmin();
+      getStory.id = e.postId;
+      getStory.storyBy = e.reportedPostBy.id;
+      this.postService.getStoryByIdForAdmin(getStory).subscribe(
+        res => {
+          const dialogRef = this.dialog.open(StoryDialogComponent, {
+            width: '35vw',
+            height: '90vh',
+            data: res
+          });
+        }
+      )
+    }
    }
 
 
