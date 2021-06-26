@@ -29,4 +29,12 @@ export class RegistrationService {
   resend(data : Object) {
     return this.https.post(`${environment.baseUrl}/${environment.resendRegCode}`, data, {responseType : 'json' })
   }
+
+  registerAgent(data : NewUser) {
+    return this.https.post(`${environment.baseUrl}/${environment.agent}`, data, {responseType : 'json'})
+  }
+
+  validateAgentAcc(data : ConfirmRegistration) {
+    return this.https.post(`${environment.baseUrl}/${environment.agent}/${environment.validate}`, data, {responseType : 'json'})
+  }
 }

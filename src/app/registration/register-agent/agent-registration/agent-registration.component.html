@@ -1,0 +1,202 @@
+<div class="component">
+    <div class="content">
+      <mat-card class="main-card">
+        <h1 class="register-text">Sign up</h1>
+        <form [formGroup]="registrationForm" >
+          <div class="row">
+            <div class="col">
+              <div class="d-flex flex-column align-items-center text-center">
+                <!-- <div class="circular">
+                  <img src={{imgFile}}/>
+                </div> -->
+                <img class="circular rounded-circle mt-5 mb-5"  src={{imgFile}}>
+              </div>
+  
+            </div>
+            <div class="col d-flex flex-row align-items-center text-center" *ngIf="isEmptyImage()">
+              <input
+                style="display: none"
+                type="file" (change)="onFileChanged($event)"
+                #fileInput accept="image/x-png,image/gif,image/jpeg" >
+              <button mat-fab color="primary" (click)="fileInput.click()" >
+                <mat-icon>add</mat-icon>
+              </button>
+  
+            </div>
+  
+            <div class="col d-flex flex-row align-items-center text-center" *ngIf="!isEmptyImage()">
+              <button mat-fab color="accent" (click)="removePhoto()" >
+                <mat-icon>remove</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm" >
+              <mat-form-field appearance="outline" class="name" id="text-ff">
+                <mat-label>Name*</mat-label>
+                <input matInput placeholder="Name"
+                      formControlName="name">
+                <mat-error
+                  *ngIf="!registrationForm.get('name').valid && registrationForm.get('name').touched && registrationForm.get('name').errors['required']">
+                  Please enter name</mat-error>
+  
+              </mat-form-field>
+            </div>
+            <div class="col-sm">
+              <mat-form-field appearance="outline" class="name" id="text-ff">
+                <mat-label>Lastname*</mat-label>
+                <input matInput placeholder="Lastname"
+                      formControlName="surname">
+                <mat-error
+                  *ngIf="!registrationForm.get('surname').valid && registrationForm.get('surname').touched && registrationForm.get('surname').errors['required']">
+                  Please enter lastname</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field appearance="outline" class="name" id="text-ff">
+                <mat-label>Address*</mat-label>
+                <input matInput type="text" placeholder="Address"
+                      formControlName="address" >
+                <mat-error
+                  *ngIf="!registrationForm.get('address').valid && registrationForm.get('address').touched && registrationForm.get('address').errors['required']">
+                  Please enter address</mat-error>
+  
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="outline" class="name" id="text-ff">
+                <mat-label>Phone*</mat-label>
+                <input matInput type="text" placeholder="Phone"
+                      formControlName="phone" >
+                <mat-error
+                  *ngIf="!registrationForm.get('phone').valid && registrationForm.get('phone').touched && registrationForm.get('phone').errors['required']">
+                  Please enter phone number</mat-error>
+  
+              </mat-form-field>
+  
+            </div>
+  
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field appearance="outline" class="name">
+                <mat-label>Birthday*</mat-label>
+                <input matInput [matDatepicker]="dp3" [max]="today" formControlName="birthday">
+                <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+                <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                <mat-error
+                *ngIf="!registrationForm.get('birthday').valid && registrationForm.get('birthday').touched && registrationForm.get('birthday').errors['required']">
+                Please enter birthday</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col mt-3">
+              <mat-label class="mr-3">Gender*</mat-label>
+              <mat-radio-group class="mt-4  " formControlName="gender">
+                <mat-radio-button class="mr-3" value="1">Male</mat-radio-button>
+                <mat-radio-button class="mr-3" value="2">Female</mat-radio-button>
+                <mat-radio-button class="mr-3" value="3">Other</mat-radio-button>
+  
+              </mat-radio-group>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field appearance="outline" class="name" id="text-ff">
+                <mat-label>Website*</mat-label>
+                <input matInput type="text" placeholder="Website"
+                      formControlName="web" >
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="outline" class="name" id="text-ff">
+                <mat-label>Bio</mat-label>
+                <input matInput type="text" placeholder="Biography"
+                      formControlName="bio" >
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field appearance="outline" class="name" id="text-ff">
+                <mat-label>Username*</mat-label>
+                <input matInput placeholder="Username"
+                      formControlName="username">
+                <mat-error
+                  *ngIf="!registrationForm.get('username').valid && registrationForm.get('username').touched && registrationForm.get('username').errors['required']">
+                  Please enter username</mat-error>
+  
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="outline" class="name" id="text-ff">
+                <mat-label>Email*</mat-label>
+                <input matInput placeholder="Email"
+                      formControlName="email">
+                <mat-error
+                  *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched && registrationForm.get('email').errors['required']">
+                  Please enter email</mat-error>
+                  <mat-error
+                  *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched && registrationForm.get('email').errors['email']">
+                  Please enter email</mat-error>
+              </mat-form-field>
+            </div>
+  
+          </div>
+  
+          <div class="row">
+            <div class="col mb-4">
+              <mat-form-field appearance="outline" class="name"  id="text-ff">
+                <mat-label>Password*</mat-label>
+                <input matInput type="password" placeholder="Password"
+                      formControlName="password" (change)="checkPassword()">
+                      <mat-hint>Password must have minimum 1 uppercase letter, 1 lowercase letter, 1 digit and 1 special character</mat-hint>
+  
+                <mat-error
+                  *ngIf="!registrationForm.get('password').valid && registrationForm.get('password').touched && registrationForm.get('password').errors['required']">
+                  Please enter password</mat-error>
+                  <mat-error
+                  *ngIf="!registrationForm.get('password').valid && registrationForm.get('password').touched && registrationForm.get('password').errors['pattern']">
+                  Password must have minimum 1 uppercase letter, 1 lowercase letter, 1 digit and 1 special character and needs to be minimum 8 characters long.</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col mb-4">
+              <mat-form-field appearance="outline" class="name" id="text-ff">
+                <mat-label>Confirm password*</mat-label>
+                <input matInput type="password" placeholder="Password"
+                      formControlName="confirmPassword" >
+                      <mat-hint>Password must have minimum 1 uppercase letter, 1 lowercase letter, 1 digit and 1 special character</mat-hint>
+  
+                <mat-error
+                  *ngIf="!registrationForm.get('confirmPassword').valid && registrationForm.get('confirmPassword').touched && registrationForm.get('confirmPassword').errors['required']">
+                  Please confirm password</mat-error>
+                  <mat-error
+                  *ngIf="!registrationForm.get('confirmPassword').valid && registrationForm.get('confirmPassword').touched && registrationForm.get('confirmPassword').errors['pattern']">
+                  Password must have minimum 1 uppercase letter, 1 lowercase letter, 1 digit and 1 special character and needs to be minimum 8 characters long.</mat-error>
+  
+              </mat-form-field>
+            </div>
+  
+          </div>
+          <div class="row">
+            <div class="col d-flex justify-content-center mt-4 mb-3">
+              <mat-slide-toggle formControlName="private" (click)="test()"><mat-icon>lock</mat-icon>Private</mat-slide-toggle>
+            </div>
+          </div>
+  
+  
+  
+          </form>
+          <div class="d-flex justify-content-center">
+            <button mat-raised-button id="register"  (click)="register()">Register</button>
+  
+          </div>
+  
+          <p id="login">Already have an account? <a href="/login"> Sign in!</a></p>
+  
+    </mat-card>
+    </div>
+  
+  </div>
+  

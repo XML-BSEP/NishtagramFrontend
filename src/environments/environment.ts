@@ -92,6 +92,8 @@ export const environment = {
   muteContent : "muteContent",
   unmuteContent : "unmuteContent",
   changePrivacyAndTagging : "changePrivacyAndTagging",
-  getPrivacyAndTagging : "getPrivacyAndTagging"
+  getPrivacyAndTagging : "getPrivacyAndTagging",
+  agent : "agent",
+  validate : "validate"
 };
 
