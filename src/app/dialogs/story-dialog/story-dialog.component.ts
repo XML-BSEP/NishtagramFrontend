@@ -13,9 +13,19 @@ import { UserInFeed } from 'src/app/model/feed/userInFeed';
 })
 export class StoryDialogComponent implements OnInit {
   public canReport : boolean = true;
+  public isAdmin : boolean = false;
 
   constructor( public dialogRef: MatDialogRef<StoryDialogComponent>, private dialog : MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: Story) { }
+    @Inject(MAT_DIALOG_DATA) public data: Story) {
+            
+    let curUsr = JSON.parse(localStorage.getItem('currentUser'))
+   
+    console.log(curUsr.role)
+    if(curUsr.role === "admin") {
+      this.isAdmin = true;
+      this.canReport = false;
+    }
+     }
 
   ngOnInit(): void {
     

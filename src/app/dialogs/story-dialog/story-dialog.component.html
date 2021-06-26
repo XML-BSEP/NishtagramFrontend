@@ -8,12 +8,15 @@
   <div *ngIf="canReport">
   <div class="d-flex flex-column align-items-right">
     <!-- <i class="bi bi-three-dots" (click)="openOptionsDialog()"></i> -->
+    <div *ngIf="!isAdmin">
+
     <button mat-icon-button [matMenuTriggerFor]="aboveMenu">  <mat-icon>more_horizont</mat-icon>
     </button>
     <mat-menu #aboveMenu="matMenu" yPosition="above">
       <button mat-menu-item (click)="reportStory()">Report</button>
       
     </mat-menu>
+    </div>
   </div>
 </div>
     

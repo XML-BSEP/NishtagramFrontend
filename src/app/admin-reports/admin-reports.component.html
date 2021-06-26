@@ -55,11 +55,13 @@
               <table matSort class="fl-table" >
                   <thead>
                     <tr>
+                        <th>Media</th>
                         <th>Reported By</th>
                         <th>Reported User</th>
                         <th>Report Type</th>
                         <th>Status</th>
                         <th>Go To Post</th>
+                        
                 
                        
                     
@@ -67,6 +69,7 @@
                     </thead>
                     <tbody>
                     <tr  *ngFor="let r of reports">
+                        <td>{{r.reportedMediaType}}</td>
                         <td>{{r.reportedBy.username}}</td>
                         <td>{{r.reportedPostBy.username}}</td>
                         <td>{{r.reportType}}</td>
@@ -82,6 +85,8 @@
                 <table matSort class="fl-table" >
                     <thead>
                       <tr>
+                        <th>Media</th>
+
                           <th>Reported By</th>
                           <th>Reported User</th>
                           <th>Report Type</th>
@@ -95,6 +100,7 @@
                       </thead>
                       <tbody>
                       <tr  *ngFor="let r of reports">
+                        <td>{{r.reportedMediaType}}</td>
                           <td>{{r.reportedBy.username}}</td>
                           <td>{{r.reportedPostBy.username}}</td>
                           <td>{{r.reportType}}</td>

@@ -9,6 +9,7 @@ export class Report {
     public reportType : String;
     public reportedPostBy : UserInFeed;
     public reportStatus : String;
+    public reportedMediaType : String;
     
     constructor() {}
 
