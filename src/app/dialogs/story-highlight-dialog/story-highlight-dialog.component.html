@@ -11,7 +11,7 @@
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>
 
-      <button mat-fab class="ml-3" style="background-color: transparent; color:rgb(9, 255, 71);" (click)="done()" >
+      <button mat-fab class="ml-3" style="background-color: transparent; color:rgb(9, 255, 71);"  *ngIf="isLoggedInUser" (click)="done()" >
         <mat-icon>done</mat-icon>
       </button>
 

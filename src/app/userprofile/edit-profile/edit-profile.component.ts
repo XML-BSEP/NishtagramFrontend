@@ -101,7 +101,7 @@ export class EditProfileComponent implements OnInit {
     console.log(history.state.data)
     this.user = history.state.data;
     this.today = new Date();
-    
+
     var privacyTag = new PrivacyTaggingg();
     this.privateService.getPrivacyAndTagging(this.curUsr.id).subscribe(
       data => {
@@ -116,9 +116,9 @@ export class EditProfileComponent implements OnInit {
           isPrivacyTagPrivate = false;
         }
 
-        
+
         this.accountSettingsForm = new FormGroup({
-    
+
           'private' : new FormControl(isPrivacyTagPrivate),
           'messages' : new FormControl(null),
           'tags' : new FormControl(privacyTag.allow_tagging),
@@ -129,16 +129,16 @@ export class EditProfileComponent implements OnInit {
       }
     );
 
-  
 
-    
+
+
 
 
     this.changePasswordForm = new FormGroup({
      'password' : new FormControl(null, [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9\d$@$!%*?&].{7,}$')]),
     'confirmPassword' : new FormControl(null, [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z0-9\d$@$!%*?&].{7,}$')]),
   });
-  
+
   this.passcodeForm = new FormGroup({
     "passcode" : new FormControl("", [Validators.required])
   });
@@ -465,12 +465,14 @@ export class EditProfileComponent implements OnInit {
       postDTO.UserId = post.postBy
     }
 
-    this.postService.getPostById(postDTO).subscribe(
-      res => {
-        console.log(res)
-        this.router.navigate(["/postDetails"], {state: {data: res}})
-      }
-    )
+    location.href="/postDetails?postId="+postDTO.PostId +"&userId="+postDTO.UserId;
+
+    // this.postService.getPostById(postDTO).subscribe(
+    //   res => {
+    //     console.log(res)
+    //     this.router.navigate(["/postDetails"], {state: {data: res}})
+    //   }
+    // )
     console.log(post)
   }
 
@@ -501,7 +503,7 @@ export class EditProfileComponent implements OnInit {
     console.log(this.accountSettingsForm.controls.tags.value)
 
     var privacyTag = new PrivacyTaggingg();
-   
+
     if (this.accountSettingsForm.controls.private.value == true) {
       privacyTag.privacy_permission = "Private"
     }else {
@@ -514,7 +516,7 @@ export class EditProfileComponent implements OnInit {
 
     privacyTag.allow_tagging = this.accountSettingsForm.controls.tags.value
     privacyTag.profile_id = this.curUsr.id;
-    
+
     this.privateService.changePrivacyAndTagging(privacyTag).subscribe(
       res => {
         this.toastr.success("Updated account settings!")
