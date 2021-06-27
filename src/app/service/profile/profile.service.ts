@@ -12,6 +12,7 @@ import { AuthenticatedUser } from 'src/app/model/security/authenticatedUser';
 import { isTotpEnabled } from 'src/app/model/istotpenabled';
 import { SearchedUser } from 'src/app/model/profile/searchedProfile';
 import { PrivacyTaggingg } from 'src/app/model/profile/privacyTagging';
+import { BanProfile } from 'src/app/model/profile/banProfile';
 
 @Injectable({
   providedIn: 'root'
@@ -71,5 +72,9 @@ export class ProfileService {
 
   getPrivacyAndTagging(id : String) : Observable<PrivacyTaggingg> {
     return this.http.get<PrivacyTaggingg>(`${environment.baseUrl}/${environment.getPrivacyAndTagging}?userId=${id}`)
+  }
+
+  banProfile(profile : BanProfile)  {
+    return this.http.post(`${environment.baseUrl}/${environment.banProfile}`, profile)
   }
 }
