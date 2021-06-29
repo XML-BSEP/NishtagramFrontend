@@ -14,6 +14,8 @@ import { ReportPost } from 'src/app/model/reports/reportPost';
 import { Post } from 'src/app/model/feed/post';
 import { StoryReport } from 'src/app/model/reports/reportStory';
 import { UserInFeed } from 'src/app/model/feed/userInFeed';
+import { BanProfile } from 'src/app/model/profile/banProfile';
+import { ProfileService } from 'src/app/service/profile/profile.service';
 
 @Component({
   selector: 'app-story-highlight-dialog',
@@ -28,9 +30,10 @@ export class BanUserDialog implements OnInit {
   public possibleTypes : String[];
   public post : Post;
   public reportForm : FormGroup;
-  public user : UserInFeed
+  public user : UserInFeed;
+  public banProfile : BanProfile;
 
-  constructor(public dialogRef: MatDialogRef<BanUserDialog>, private postService : PostService, private toastr : ToastrService,
+  constructor(public dialogRef: MatDialogRef<BanUserDialog>, private postService : PostService, private toastr : ToastrService, private profileService : ProfileService,
     @Inject(MAT_DIALOG_DATA) public data: UserInFeed) {
 
      
@@ -47,36 +50,17 @@ export class BanUserDialog implements OnInit {
 
   }
   banUser() {
-  //     if (!this.post.isStory) {
-  //       let reportPost = new ReportPost();
-  //       reportPost.postId = this.post.id;
-  //       reportPost.reportedPostBy = this.post.user.id;
-  //       reportPost.reportType = this.reportForm.controls.criteria.value;
-  
-  //       this.postService.reportPost(reportPost).subscribe(
-  //           res => {
-  //               this.toastr.info("Post reported")
-  //           }, err => {
-  //               this.toastr.error("Service unavailable")
-  //           }
-  //       )
+    this.banProfile = new BanProfile();
+    this.banProfile.profileId = this.user.id;
+    this.profileService.banProfile(this.banProfile).subscribe(
+      res => {
+        this.toastr.success("User is banned!");
+      }, 
+      err => {
+        this.toastr.error(err);
+      }
+    );
       
-  //     } else {
-  //         let storyReport = new StoryReport();
-  //         storyReport.reportType = this.reportForm.controls.criteria.value;
-  //         storyReport.storyBy = this.data.user.id;
-  //         storyReport.storyId = this.data.id;
-  //         console.log(this.data)
-
-  //         this.postService.reportStory(storyReport).subscribe(
-  //           res => {
-  //               this.toastr.info("Post reported")
-  //           }, err => {
-  //               this.toastr.error("Service unavailable")
-  //           }
-  //         )
-  //     }
-
       this.dialogRef.close()
       
   }
