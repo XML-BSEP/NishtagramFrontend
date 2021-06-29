@@ -46,7 +46,8 @@ export class TotpLoginComponent implements OnInit {
     //   }
 
     // )
-    if(JSON.parse(localStorage.getItem('currentUser')).role==='user'){
+    let role = JSON.parse(localStorage.getItem('currentUser')).role
+    if(role === 'user' || role === 'agent'){
       this.router.navigate(['/home'])
     }
     console.log(verifySecret)

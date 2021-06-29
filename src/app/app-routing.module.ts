@@ -53,31 +53,31 @@ const routes: Routes = [
     path: 'createPost',
     component : CreatePostComponent,
     canActivate : [AuthGuard],
-    data : {roles: [Role.RegularUser]}
+    data : {roles: [Role.RegularUser, Role.Agent]}
   },
   {
     path: 'postDetails',
     component : PostDetailsComponent,
     canActivate : [AuthGuard],
-    data : {roles: [Role.RegularUser, Role.Admin]}
+    data : {roles: [Role.RegularUser, Role.Admin, Role.Agent]}
   },
   {
     path: 'profile',
     component : ProfileComponent,
     canActivate : [AuthGuard],
-    data : {roles: [Role.RegularUser]}
+    data : {roles: [Role.RegularUser, Role.Agent]}
   },
   {
     path: 'settings',
     component : UserSettingsComponent,
     canActivate : [AuthGuard],
-    data : {roles: [Role.RegularUser]}
+    data : {roles: [Role.RegularUser, Role.Agent]}
   },
   {
     path: 'editProfile',
     component : EditProfileComponent,
     canActivate : [AuthGuard],
-    data : {roles: [Role.RegularUser]}
+    data : {roles: [Role.RegularUser, Role.Agent]}
   },
   {
     path:'search',
