@@ -46,6 +46,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FollowRequestDialogComponent } from './dialogs/follow-request-dialog/follow-request-dialog.component';
 import { PreRegistrationComponent } from './registration/pre-register/pre-registration/pre-registration.component';
 import { AgentRegistrationComponent } from './registration/register-agent/agent-registration/agent-registration.component';
+import { AdminReportsComponent } from './admin-reports/admin-reports.component';
+import { BanUserDialog } from './dialogs/ban-user-dialog/ban-user.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { AgentRegistrationComponent } from './registration/register-agent/agent-
     NotificationSettingsComponent,
     FollowRequestDialogComponent,
     PreRegistrationComponent,
-    AgentRegistrationComponent
+    AgentRegistrationComponent,
+    AdminReportsComponent,
+    BanUserDialog
 
   ],
   imports: [

@@ -94,6 +94,16 @@ export const environment = {
   changePrivacyAndTagging : "changePrivacyAndTagging",
   getPrivacyAndTagging : "getPrivacyAndTagging",
   agent : "agent",
-  validate : "validate"
+  validate : "validate",
+  getApprovedReports : "getApprovedReports",
+  getRejectedReports : "getRejectedReports",
+  getPendingReports : "getPendingReports",
+  reviewReport : "reviewReport",
+  getApprovedReportsStory : "story/getApprovedReports",
+  getRejectedReportsStory : "story/getRejectedReports",
+  getPendingReportsStory : "story/getPendingReports",
+  reviewReportStory : "story/reviewReport",
+  getStoryForAdmin : "getStoryForAdmin",
+  banProfile : "banProfile"
 };
 

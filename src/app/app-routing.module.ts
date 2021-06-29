@@ -19,6 +19,7 @@ import { AdminRequestVerificationComponent } from './admin-request-verification/
 import { UserSettingsComponent } from './userprofile/user-settings/user-settings.component';
 import { PreRegistrationComponent } from './registration/pre-register/pre-registration/pre-registration.component';
 import { AgentRegistrationComponent } from './registration/register-agent/agent-registration/agent-registration.component';
+import { AdminReportsComponent } from './admin-reports/admin-reports.component';
 
 
 const routes: Routes = [
@@ -58,7 +59,7 @@ const routes: Routes = [
     path: 'postDetails',
     component : PostDetailsComponent,
     canActivate : [AuthGuard],
-    data : {roles: [Role.RegularUser]}
+    data : {roles: [Role.RegularUser, Role.Admin]}
   },
   {
     path: 'profile',
@@ -112,6 +113,12 @@ const routes: Routes = [
   {
     path: "agentRegistration",
     component: AgentRegistrationComponent
+  },
+  {
+    path: "admin/reports", 
+    component: AdminReportsComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.Admin]}
   }
 
 ];

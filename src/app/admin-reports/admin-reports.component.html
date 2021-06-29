@@ -1,0 +1,123 @@
+<!--div class="table-wrapper">
+    <table matSort class="fl-table">
+        <thead>
+        <tr>
+            <th>Profile name</th>
+            <th>Profile surname</th>
+            <th>Category for verification</th>
+            <th>Image</th>
+            <th>Current state</th>
+            <th>Approve</th>
+            <th>Reject</th>
+            
+        
+        </tr>
+        </thead>
+        <tbody>
+        <tr >
+            <td>PERA</td>
+            <td>PERIC</td>
+            <td>SPORT</td>
+            <td>SLIKA NEKA</td>
+            <td>CEEKANJE</td>
+            <td><button mat-button style="background-color: darkslategray; color: white;" >Approve</button></td>
+            <td><button mat-button style="background-color: darkslategray; color: white;" >Reject</button></td>
+            
+
+        </tr>
+        
+        <tbody>
+    </table>
+</div-->
+
+<mat-drawer-container autosize style="position: absolute;right: 0px;left: 0px;bottom: 0px;top: 10%; background: transparent;" hasBackdrop="true">
+        <mat-drawer-content>
+
+       
+                
+          <div class="table-wrapper">
+
+            <form [formGroup]="criteriaForm">
+                <div class="row">
+                    <div class="col-sm-4">
+                    <mat-form-field appearance="outline" class="name" id="text-ff">
+                        <mat-label>Choose report status:</mat-label>
+                        <mat-select placeholder="Interaction criteria" (openedChange)="comboChangeCriteria($event)" formControlName="criteria" >
+                        <mat-option *ngFor="let r of criteria" [value]="r">{{r}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    </div>
+                </div>
+                </form>
+
+                <div *ngIf="!isPending">
+
+              <table matSort class="fl-table" >
+                  <thead>
+                    <tr>
+                        <th>Media</th>
+                        <th>Reported By</th>
+                        <th>Reported User</th>
+                        <th>Report Type</th>
+                        <th>Status</th>
+                        <th>Go To Post</th>
+                        
+                
+                       
+                    
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr  *ngFor="let r of reports">
+                        <td>{{r.reportedMediaType}}</td>
+                        <td>{{r.reportedBy.username}}</td>
+                        <td>{{r.reportedPostBy.username}}</td>
+                        <td>{{r.reportType}}</td>
+                        <td >{{r.reportStatus}}</td>
+                        <td><button  mat-button style="background-color: darkslategray; color: white;" (click)="goToPost(r)" >Show post</button></td>
+                    </tr>
+                  <tbody>
+              </table>
+            </div>
+
+            <div *ngIf="isPending">
+
+                <table matSort class="fl-table" >
+                    <thead>
+                      <tr>
+                        <th>Media</th>
+
+                          <th>Reported By</th>
+                          <th>Reported User</th>
+                          <th>Report Type</th>
+                          <th>Status</th>
+                          <th>Go To Post</th>
+                          <th>Approve</th>
+                          <th>Reject</th>
+                         
+                      
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr  *ngFor="let r of reports">
+                        <td>{{r.reportedMediaType}}</td>
+                          <td>{{r.reportedBy.username}}</td>
+                          <td>{{r.reportedPostBy.username}}</td>
+                          <td>{{r.reportType}}</td>
+                          <td >{{r.reportStatus}}</td>
+                          <td><button  mat-button style="background-color: darkslategray; color: white;" (click)="goToPost(r)" >Show post</button></td>
+                      
+                              <td><button  mat-button style="background-color: darkslategray; color: white;" (click)="approve(r)" >Approve</button></td>
+                              <td><button  mat-button style="background-color: darkslategray; color: white;" (click)="reject(r)">Reject</button></td>
+                         
+                         
+              
+                      </tr>
+                    <tbody>
+                </table>
+              </div>
+          </div>
+    </mat-drawer-content>
+
+   
+</mat-drawer-container>

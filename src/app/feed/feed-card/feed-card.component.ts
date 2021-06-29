@@ -29,6 +29,7 @@ import { ReportPostDialogComponent } from 'src/app/dialogs/report-post-dialog/re
 export class FeedCardComponent implements OnInit {
   @Input()
   post: Post;
+  public isAdmin : boolean = false;
   public canReport : boolean = true;
 
   partialComments : Comment[];
@@ -36,18 +37,25 @@ export class FeedCardComponent implements OnInit {
   commentForm: FormGroup;
 
   constructor(private router : Router, private postService : PostService, private toastr : ToastrService, private authenticationService : AuthenticationService,
-    private dialog : MatDialog) { }
+    private dialog : MatDialog) { 
+      
+    let curUsr = JSON.parse(localStorage.getItem('currentUser'))
+   
+    console.log(curUsr.role)
+    if(curUsr.role === "admin") {
+      this.isAdmin = true;
+      this.canReport = false;
+    }
+    }
 
   ngOnInit() {
     this.commentForm = new FormGroup({
       'comm' : new FormControl(null, Validators.required),
     })
-
     let curUsr = JSON.parse(localStorage.getItem('currentUser'))
     if(curUsr.id==this.post.user.id){
       this.canReport = false;
     }
-
 
     console.log(this.authenticationService.currentUserValue)
     if (this.authenticationService.currentUserValue === undefined) {
