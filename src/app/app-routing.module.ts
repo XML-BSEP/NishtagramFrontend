@@ -17,6 +17,8 @@ import { Role } from './model/user/role';
 import {AdminComponent} from './admin/admin.component'
 import { AdminRequestVerificationComponent } from './admin-request-verification/admin-request-verification/admin-request-verification.component';
 import { UserSettingsComponent } from './userprofile/user-settings/user-settings.component';
+import { PreRegistrationComponent } from './registration/pre-register/pre-registration/pre-registration.component';
+import { AgentRegistrationComponent } from './registration/register-agent/agent-registration/agent-registration.component';
 import { AdminReportsComponent } from './admin-reports/admin-reports.component';
 
 
@@ -51,31 +53,31 @@ const routes: Routes = [
     path: 'createPost',
     component : CreatePostComponent,
     canActivate : [AuthGuard],
-    data : {roles: [Role.RegularUser]}
+    data : {roles: [Role.RegularUser, Role.Agent]}
   },
   {
     path: 'postDetails',
     component : PostDetailsComponent,
     canActivate : [AuthGuard],
-    data : {roles: [Role.RegularUser, Role.Admin]}
+    data : {roles: [Role.RegularUser, Role.Admin, Role.Agent]}
   },
   {
     path: 'profile',
     component : ProfileComponent,
     canActivate : [AuthGuard],
-    data : {roles: [Role.RegularUser]}
+    data : {roles: [Role.RegularUser, Role.Agent]}
   },
   {
     path: 'settings',
     component : UserSettingsComponent,
     canActivate : [AuthGuard],
-    data : {roles: [Role.RegularUser]}
+    data : {roles: [Role.RegularUser, Role.Agent]}
   },
   {
     path: 'editProfile',
     component : EditProfileComponent,
     canActivate : [AuthGuard],
-    data : {roles: [Role.RegularUser]}
+    data : {roles: [Role.RegularUser, Role.Agent]}
   },
   {
     path:'search',
@@ -103,6 +105,14 @@ const routes: Routes = [
     component: AdminRequestVerificationComponent,
     canActivate : [AuthGuard],
     data : {roles: [Role.Admin]}
+  },
+  {
+    path: "preRegistration",
+    component: PreRegistrationComponent
+  },
+  {
+    path: "agentRegistration",
+    component: AgentRegistrationComponent
   },
   {
     path: "admin/reports", 

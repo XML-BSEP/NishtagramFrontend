@@ -44,6 +44,8 @@ import { ReportPostDialogComponent } from './dialogs/report-post-dialog/report-p
 import { NotificationSettingsComponent } from './dialogs/notification-settings/notification-settings.component'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { FollowRequestDialogComponent } from './dialogs/follow-request-dialog/follow-request-dialog.component';
+import { PreRegistrationComponent } from './registration/pre-register/pre-registration/pre-registration.component';
+import { AgentRegistrationComponent } from './registration/register-agent/agent-registration/agent-registration.component';
 import { AdminReportsComponent } from './admin-reports/admin-reports.component';
 import { BanUserDialog } from './dialogs/ban-user-dialog/ban-user.component';
 
@@ -80,6 +82,8 @@ import { BanUserDialog } from './dialogs/ban-user-dialog/ban-user.component';
     ReportPostDialogComponent,
     NotificationSettingsComponent,
     FollowRequestDialogComponent,
+    PreRegistrationComponent,
+    AgentRegistrationComponent,
     AdminReportsComponent,
     BanUserDialog
 

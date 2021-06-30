@@ -47,25 +47,41 @@ export class RegistrationConfirmationComponent implements OnInit {
   }
   confirm(){
     console.log(this.mail)
-    this.confirmRegistration = new ConfirmRegistration(this.confirmRegHistory.email, this.codeForm.controls.code.value)
+    this.confirmRegistration = new ConfirmRegistration(this.confirmRegHistory.email, this.codeForm.controls.code.value, this.confirmRegHistory.username)
 
-    console.log(this.confirmRegistration)
-    this.registrationService.confAcc(this.confirmRegistration).subscribe(
-      res=>{
-        this.toastr.success("Successful confirmation")
-        this.router.navigate(['/login']);
-      },
-      error => {
-        this.toastr.error("Confirmation code is not correct")
-      }
+    if (this.confirmRegHistory.role == "user") {
+      this.registrationService.confAcc(this.confirmRegistration).subscribe(
+        res=>{
+          this.toastr.success("Successful confirmation")
+          this.router.navigate(['/login']);
+        },
+        error => {
+          this.toastr.error("Confirmation code is not correct")
+        }
 
 
-        )
+          )
+    }
+
+    if (this.confirmRegHistory.role == "agent") {
+      this.registrationService.validateAgentAcc(this.confirmRegistration).subscribe(
+        res=>{
+          this.toastr.success("Successful confirmation")
+          this.router.navigate(['/login']);
+        },
+        error => {
+          this.toastr.error("Confirmation code is not correct")
+        }
+
+
+          )
+    }
 
   }
   resend(){
     let sendData = {
-      "email" : this.confirmRegHistory.email
+      "email" : this.confirmRegHistory.email,
+      "username" : this.confirmRegHistory.username
     }
     console.log(sendData)
     this.registrationService.resend(sendData).subscribe(

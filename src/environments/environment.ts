@@ -93,6 +93,8 @@ export const environment = {
   unmuteContent : "unmuteContent",
   changePrivacyAndTagging : "changePrivacyAndTagging",
   getPrivacyAndTagging : "getPrivacyAndTagging",
+  agent : "agent",
+  validate : "validate",
   getApprovedReports : "getApprovedReports",
   getRejectedReports : "getRejectedReports",
   getPendingReports : "getPendingReports",

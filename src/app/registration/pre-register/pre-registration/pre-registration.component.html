@@ -1,0 +1,23 @@
+<div class="component">
+  <div class="content">
+    <mat-card class="main-card">
+      <h1 class="register-text">Register as:</h1>
+      <form [formGroup]="preRegistrationForm">
+        <mat-radio-group aria-label="Select an option" formControlName="option">
+          <div class="ro2">
+            <mat-radio-button value="user">User</mat-radio-button>
+          </div>
+          <div class="row">
+            <mat-radio-button value="agent">Agent</mat-radio-button>
+          </div>
+        </mat-radio-group>
+      </form>
+      <div class="d-flex flex-row-reverse">
+        <div class="p-6">
+          <button mat-raised-button color="primary" (click)="onClick()">Confirm</button>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+</div>

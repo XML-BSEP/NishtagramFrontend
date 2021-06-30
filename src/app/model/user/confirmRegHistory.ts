@@ -1,8 +1,10 @@
 export class ConfirmRegHistory{
   username : String
   email : String
-  constructor(username,email){
+  role : String
+  constructor(username,email,role){
     this.username = username
     this.email = email
+    this.role = role
   }
 }
