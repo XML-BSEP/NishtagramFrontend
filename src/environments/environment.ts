@@ -104,6 +104,7 @@ export const environment = {
   getPendingReportsStory : "story/getPendingReports",
   reviewReportStory : "story/reviewReport",
   getStoryForAdmin : "getStoryForAdmin",
-  banProfile : "banProfile"
+  banProfile : "banProfile",
+  confirmAgentAccount : "confirmAgentAccount"
 };
 
