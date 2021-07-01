@@ -49,6 +49,8 @@ import { AgentRegistrationComponent } from './registration/register-agent/agent-
 import { AdminReportsComponent } from './admin-reports/admin-reports.component';
 import { BanUserDialog } from './dialogs/ban-user-dialog/ban-user.component';
 import { CreateAdComponent } from './create-ad/create-ad/create-ad.component';
+import { CreateCampaingComponent } from './create-campaing/create-campaing/create-campaing.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,8 @@ import { CreateAdComponent } from './create-ad/create-ad/create-ad.component';
     AgentRegistrationComponent,
     AdminReportsComponent,
     BanUserDialog,
-    CreateAdComponent
+    CreateAdComponent,
+    CreateCampaingComponent
 
   ],
   imports: [
@@ -102,7 +105,8 @@ import { CreateAdComponent } from './create-ad/create-ad/create-ad.component';
     MatSelectModule,
     ToastrModule.forRoot(),
     MatCarouselModule.forRoot(),
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxMaterialTimepickerModule
 
   ],
   providers: [

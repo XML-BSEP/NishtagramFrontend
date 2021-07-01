@@ -21,6 +21,7 @@ import { PreRegistrationComponent } from './registration/pre-register/pre-regist
 import { AgentRegistrationComponent } from './registration/register-agent/agent-registration/agent-registration.component';
 import { AdminReportsComponent } from './admin-reports/admin-reports.component';
 import { CreateAdComponent } from './create-ad/create-ad/create-ad.component';
+import { CreateCampaingComponent } from './create-campaing/create-campaing/create-campaing.component';
 
 
 const routes: Routes = [
@@ -124,6 +125,12 @@ const routes: Routes = [
   {
     path: 'createAd',
     component : CreateAdComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.Agent]}
+  },
+  {
+    path: 'createCampaign',
+    component : CreateCampaingComponent,
     canActivate : [AuthGuard],
     data : {roles: [Role.Agent]}
   }
