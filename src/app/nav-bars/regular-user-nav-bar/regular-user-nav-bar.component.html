@@ -14,11 +14,15 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
+
+      <li *ngIf="isAgent()" class="nav-item">
+        <i class="nav-link bi-bag-plus" routerLink="/createAd" data-toggle="tooltip" title="Create ad"></i>
+        <span class="sr-only">(current)</span>
+      </li>
       <li class="nav-item" (click)="openNewStoryDialog()">
         <i class="nav-link bi-clock-history"></i>
         <span class="sr-only">(current)</span>
-      </li>
-
+      </li>    
       <li class="nav-item">
         <i class="nav-link bi-plus-square" routerLink="/createPost"></i>
         <span class="sr-only">(current)</span>

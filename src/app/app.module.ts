@@ -48,6 +48,7 @@ import { PreRegistrationComponent } from './registration/pre-register/pre-regist
 import { AgentRegistrationComponent } from './registration/register-agent/agent-registration/agent-registration.component';
 import { AdminReportsComponent } from './admin-reports/admin-reports.component';
 import { BanUserDialog } from './dialogs/ban-user-dialog/ban-user.component';
+import { CreateAdComponent } from './create-ad/create-ad/create-ad.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { BanUserDialog } from './dialogs/ban-user-dialog/ban-user.component';
     PreRegistrationComponent,
     AgentRegistrationComponent,
     AdminReportsComponent,
-    BanUserDialog
+    BanUserDialog,
+    CreateAdComponent
 
   ],
   imports: [

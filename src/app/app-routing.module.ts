@@ -20,6 +20,7 @@ import { UserSettingsComponent } from './userprofile/user-settings/user-settings
 import { PreRegistrationComponent } from './registration/pre-register/pre-registration/pre-registration.component';
 import { AgentRegistrationComponent } from './registration/register-agent/agent-registration/agent-registration.component';
 import { AdminReportsComponent } from './admin-reports/admin-reports.component';
+import { CreateAdComponent } from './create-ad/create-ad/create-ad.component';
 
 
 const routes: Routes = [
@@ -119,6 +120,12 @@ const routes: Routes = [
     component: AdminReportsComponent,
     canActivate : [AuthGuard],
     data : {roles: [Role.Admin]}
+  },
+  {
+    path: 'createAd',
+    component : CreateAdComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.Agent]}
   }
 
 ];
