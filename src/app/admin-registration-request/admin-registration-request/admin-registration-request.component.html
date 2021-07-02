@@ -1,0 +1,34 @@
+<mat-drawer-container autosize style="position: absolute;right: 0px;left: 0px;bottom: 0px;top: 10%; background: transparent;" hasBackdrop="true">
+    <mat-drawer-content>
+            
+      <div class="table-wrapper">
+          <table matSort class="fl-table" >
+              <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Web shop</th>
+                    <th>#</th>
+                    <th>#</th>
+                
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let req of requests">
+                        <td>{{req.name}}</td>
+                        <td>{{req.surname}}</td>
+                        <td>{{req.username}}</td>
+                        <td>{{req.email}}</td>
+                        <td><a [href]="req.web" target="_blank">{{req.web}}</a></td>
+                        <td><button mat-raised-button color="primary" (click)="confirm(req.email, req)">Confirm</button></td>
+                        <td><button mat-raised-button color="warn" (click)="decline(req.email, req)">Decline</button></td>
+                    </tr>
+              <tbody>
+          </table>
+      </div>
+</mat-drawer-content>
+
+
+</mat-drawer-container>

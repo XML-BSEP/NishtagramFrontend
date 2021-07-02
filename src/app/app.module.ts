@@ -53,6 +53,7 @@ import { CreateCampaingComponent } from './create-campaing/create-campaing/creat
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { ShowImageComponent } from './dialogs/show-image/show-image.component';
 import { DatePipe } from '@angular/common'
+import { AdminRegistrationRequestComponent } from './admin-registration-request/admin-registration-request/admin-registration-request.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { DatePipe } from '@angular/common'
     BanUserDialog,
     CreateAdComponent,
     CreateCampaingComponent,
-    ShowImageComponent
+    ShowImageComponent,
+    AdminRegistrationRequestComponent
 
   ],
   imports: [
