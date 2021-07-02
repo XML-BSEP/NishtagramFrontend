@@ -84,7 +84,14 @@ export class CreateCampaingComponent implements OnInit,AfterViewInit {
   addDisposableCampaign() {
 
     let campaign = new CreateDisposableCampaign();
+
+  
+
     campaign.ads = this.adsForCampaign;
+    if (campaign.ads.length == 0) {
+      this.toastr.error("Choose at leats one ad")
+      return
+    }
     if (this.sinImputarValue === "storyChecked") {
       campaign.type = 0;
     } else {
@@ -125,6 +132,10 @@ export class CreateCampaingComponent implements OnInit,AfterViewInit {
     campaign.type = 1;
     }
     campaign.ads = this.adsForCampaign;
+    if (campaign.ads.length == 0) {
+      this.toastr.error("Choose at leats one ad")
+      return
+    }
     
 
 
