@@ -12,6 +12,7 @@ import { AuthenticationService } from '../../service/authentication/authenticati
 import { Image } from 'src/app/model/feed/image';
 import { Notification } from 'src/app/model/utilities/notification';
 import { Router } from '@angular/router';
+import { Role } from 'src/app/model/user/role';
 
 @Component({
   selector: 'app-customer-nav-bar',
@@ -90,6 +91,14 @@ export class RegularUserComponent implements OnInit {
       width: '35vw',
       height: '90vh'
     });
+  }
+
+  public isAgent() {
+    if( localStorage.getItem('currentUser')!=null){
+      var role = JSON.parse(localStorage.getItem('currentUser')).role
+      return this.authService.getUserValue() && role === Role.Agent;
+    }
+    else return false;
   }
 
 }

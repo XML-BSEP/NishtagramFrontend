@@ -6,7 +6,7 @@
       <header>
         <ng-container *ngIf="isAdmin(); else second">  <app-admin-nav-bar></app-admin-nav-bar></ng-container>
         <ng-template #second>
-            <ng-container *ngIf="isRegularUser();else third"><app-customer-nav-bar></app-customer-nav-bar></ng-container>
+            <ng-container *ngIf="isRegularUser() || isAgent();else third"><app-customer-nav-bar></app-customer-nav-bar></ng-container>
         </ng-template>
         <div *ngIf="isNotLogged()" #third><app-not-user-nav-bar></app-not-user-nav-bar></div>
       </header>

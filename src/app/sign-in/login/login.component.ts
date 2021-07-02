@@ -65,6 +65,9 @@ export class LoginComponent implements OnInit {
               if (curUsr.role == Role.Admin) {
                 this.router.navigate(['/admin'])
               }
+              if (curUsr.role == Role.Agent) {
+                this.router.navigate(['/home'])
+              }
             }
           }, err => {
             if (err === "Two factor authentication is already enabled") {

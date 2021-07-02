@@ -48,6 +48,11 @@ import { PreRegistrationComponent } from './registration/pre-register/pre-regist
 import { AgentRegistrationComponent } from './registration/register-agent/agent-registration/agent-registration.component';
 import { AdminReportsComponent } from './admin-reports/admin-reports.component';
 import { BanUserDialog } from './dialogs/ban-user-dialog/ban-user.component';
+import { CreateAdComponent } from './create-ad/create-ad/create-ad.component';
+import { CreateCampaingComponent } from './create-campaing/create-campaing/create-campaing.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { ShowImageComponent } from './dialogs/show-image/show-image.component';
+import { DatePipe } from '@angular/common'
 import { AdminRegistrationRequestComponent } from './admin-registration-request/admin-registration-request/admin-registration-request.component';
 
 @NgModule({
@@ -87,6 +92,9 @@ import { AdminRegistrationRequestComponent } from './admin-registration-request/
     AgentRegistrationComponent,
     AdminReportsComponent,
     BanUserDialog,
+    CreateAdComponent,
+    CreateCampaingComponent,
+    ShowImageComponent,
     AdminRegistrationRequestComponent
 
   ],
@@ -102,12 +110,14 @@ import { AdminRegistrationRequestComponent } from './admin-registration-request/
     MatSelectModule,
     ToastrModule.forRoot(),
     MatCarouselModule.forRoot(),
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgxMaterialTimepickerModule
 
   ],
   providers: [
     {provide : HTTP_INTERCEPTORS, useClass : JwtInterceptor, multi : true},
-    {provide : HTTP_INTERCEPTORS, useClass : ErrorInterceptor, multi : true}
+    {provide : HTTP_INTERCEPTORS, useClass : ErrorInterceptor, multi : true},
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

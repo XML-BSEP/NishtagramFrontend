@@ -105,6 +105,10 @@ export const environment = {
   reviewReportStory : "story/reviewReport",
   getStoryForAdmin : "getStoryForAdmin",
   banProfile : "banProfile",
+  createAd : "createAd",
+  getAllAdsPerAgent : "getAllAdsPerAgent",
+  createDisposableCampaign : "createDisposableCampaign",
+  createMultipleCampaign : "createMultipleCampaign",
   confirmAgentAccount : "confirmAgentAccount"
 };
 

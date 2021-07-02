@@ -61,6 +61,14 @@ export class AppComponent {
     else return false;
   }
 
+  public isAgent() {
+    if( localStorage.getItem('currentUser')!=null){
+      var role = JSON.parse(localStorage.getItem('currentUser')).role
+      return this.authService.getUserValue() && role === Role.Agent;
+    }
+    else return false;
+  }
+
   public initializePusher() {
 
     this.pusherService.channel1.bind('notification', data => {

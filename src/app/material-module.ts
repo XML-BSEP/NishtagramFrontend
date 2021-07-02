@@ -37,6 +37,8 @@ import {MatFormFieldControl, MatFormFieldModule} from '@angular/material/form-fi
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 
+
+
 @NgModule({
   exports: [
     MatAutocompleteModule,
@@ -75,7 +77,8 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     MatTooltipModule,
     MatTreeModule,
     MatFormFieldModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    MatStepperModule
     ]
 })
 export class MaterialModule {}
