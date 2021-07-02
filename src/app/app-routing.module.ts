@@ -23,6 +23,7 @@ import { AdminReportsComponent } from './admin-reports/admin-reports.component';
 import { CreateAdComponent } from './create-ad/create-ad/create-ad.component';
 import { CreateCampaingComponent } from './create-campaing/create-campaing/create-campaing.component';
 import { AdminRegistrationRequestComponent } from './admin-registration-request/admin-registration-request/admin-registration-request.component';
+import { ChangeCampaignComponent } from './change-campaign/change-campaign/change-campaign.component';
 
 
 const routes: Routes = [
@@ -141,6 +142,12 @@ const routes: Routes = [
     canActivate : [AuthGuard],
     data : {roles : [Role.Admin]}
     
+  },
+  {
+    path: 'changeCampaign',
+    component : ChangeCampaignComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.Agent]}
   }
 
 ];
