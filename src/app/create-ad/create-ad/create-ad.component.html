@@ -76,25 +76,13 @@
 
         <br>
          <!-- Default unchecked -->
-            <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="postChecked" value="postChecked"
-                mdbInput formControlName="postStoryChecked" checked>
-                <label class="custom-control-label" for="postChecked">Post</label>
-            </div>
-            
-            <!-- Default checked -->
-            <div class="custom-control custom-radio">   
-                <input type="radio" class="custom-control-input" id="storyChecked" value="storyChecked"
-               mdbInput formControlName="postStoryChecked">
-                <label class="custom-control-label" for="storyChecked">Story</label>
-            </div>
 
           <div class="row justify-content-between">
             <div class="col-2">
               <button mat-raised-button color="accent" routerLink="/home"> Cancel</button>
             </div>
             <div class="col-2">
-              <button mat-raised-button color="primary" [disabled]="!newAdForm.valid" (click)="checkradio()">Ad</button>
+              <button mat-raised-button color="primary" [disabled]="!newAdForm.valid" (click)="createAd()">Ad</button>
             </div>
           </div>
         </form>

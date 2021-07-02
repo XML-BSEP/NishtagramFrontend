@@ -51,6 +51,8 @@ import { BanUserDialog } from './dialogs/ban-user-dialog/ban-user.component';
 import { CreateAdComponent } from './create-ad/create-ad/create-ad.component';
 import { CreateCampaingComponent } from './create-campaing/create-campaing/create-campaing.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { ShowImageComponent } from './dialogs/show-image/show-image.component';
+import { DatePipe } from '@angular/common'
 
 @NgModule({
   declarations: [
@@ -90,7 +92,8 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     AdminReportsComponent,
     BanUserDialog,
     CreateAdComponent,
-    CreateCampaingComponent
+    CreateCampaingComponent,
+    ShowImageComponent
 
   ],
   imports: [
@@ -111,7 +114,8 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
   ],
   providers: [
     {provide : HTTP_INTERCEPTORS, useClass : JwtInterceptor, multi : true},
-    {provide : HTTP_INTERCEPTORS, useClass : ErrorInterceptor, multi : true}
+    {provide : HTTP_INTERCEPTORS, useClass : ErrorInterceptor, multi : true},
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

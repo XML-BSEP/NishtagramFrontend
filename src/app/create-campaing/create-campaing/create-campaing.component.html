@@ -5,7 +5,6 @@
           <table matSort class="fl-table" >
               <thead>
                 <tr>
-                    <th>Index</th>
                     <th>Ad link</th>
                     <th>Caption</th>
                     <th>Type</th>
@@ -17,13 +16,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr  >
-                    <td>1</td>
-                    <td>Link</td>
-                    <td>sadsdasdas</td>
-                    <td>slika</td>
-                    <td><button mat-button style="background-color: darkslategray; color: white;">ViewImage</button></td>
-                    <td><button mat-button style="background-color: darkslategray; color: white;">Add</button></td>
+                <tr  *ngFor="let a of ads">
+                    <td>{{a.link}}</td>
+                    <td>{{a.description}}</td>
+                    <td>{{a.mediaType}}</td>
+                    <td><button mat-button style="background-color: darkslategray; color: white;" (click)="showImage(a)">ViewImage</button></td>
+                    <td *ngIf="!a.isAdded"><button mat-button style="background-color: darkslategray; color: white;" (click)="addToCampaign(a)">Add</button></td>
+                    <td *ngIf="a.isAdded"><button mat-button style="background-color: darkslategray; color: white;" (click)="addToCampaign(a)">Remove</button></td>
                 
         
                 </tr>
@@ -47,7 +46,26 @@
            mdbInput [(ngModel)]="campaignChecked">
             <label class="custom-control-label" for="disposableCampaignCheck">Disposable campaign</label>
         </div>
+
+        <br><br>
+        <mat-label>Campaign type:</mat-label>
+
+        <div class="custom-control custom-radio">
+          <input type="radio" class="custom-control-input" name="campaignType" id="postChecked" value="postChecked"
+          mdbInput [(ngModel)]="sinImputarValue" checked>
+          <label class="custom-control-label" for="postChecked">Post</label>
       </div>
+      
+      <!-- Default checked -->
+      <div class="custom-control custom-radio">   
+          <input type="radio" class="custom-control-input" name="campaignType" id="storyChecked" value="storyChecked"
+         mdbInput [(ngModel)]="sinImputarValue">
+          <label class="custom-control-label" for="storyChecked">Story</label>
+      </div>
+      </div>
+
+      
+     
 
       <br> 
       <div *ngIf="campaignChecked === 'disposableCampaign'" style="margin-left: 42vw;" >
@@ -66,7 +84,7 @@
       </div>
 
       <br *ngIf="campaignChecked === 'disposableCampaign'">
-      <button *ngIf="campaignChecked === 'disposableCampaign'" mat-button style="background-color: darkslategray; color: white; margin-left: 45vw;">Add disposable campaign</button>
+      <button *ngIf="campaignChecked === 'disposableCampaign'" (click)="addDisposableCampaign()" mat-button style="background-color: darkslategray; color: white; margin-left: 45vw;">Add disposable campaign</button>
       
       <div *ngIf="campaignChecked === 'multipleCampaign'" style="margin-left: 42vw; " >
         <mat-label>Choose expose start date: </mat-label>
@@ -100,10 +118,10 @@
       <br *ngIf="campaignChecked === 'multipleCampaign'">
       <div *ngIf="campaignChecked === 'multipleCampaign'" style="margin-left: 42vw; " >   
         <mat-label>Choose frequency: </mat-label>                    
-        <input type="number"  min="0" />
+        <input type="number" [(ngModel)]="frequency" min="0" />
     </div>
     <br *ngIf="campaignChecked === 'multipleCampaign'">
-    <button *ngIf="campaignChecked === 'multipleCampaign'" mat-button style="background-color: darkslategray; color: white; margin-left: 47vw;">Add multiple campaign</button>
+    <button *ngIf="campaignChecked === 'multipleCampaign'" (click)="addMultipleCampaign()" mat-button style="background-color: darkslategray; color: white; margin-left: 47vw;">Add multiple campaign</button>
 
       
  
