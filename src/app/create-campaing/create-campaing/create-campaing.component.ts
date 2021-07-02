@@ -60,7 +60,7 @@ export class CreateCampaingComponent implements OnInit,AfterViewInit {
     });
   }
   addToCampaign(a : ShowAd) {
-    if(!a.isAdded) {
+    if(a.isAdded) {
       this.adsForCampaign.forEach((element, index)=>{
         if(element.id === a.id) this.adsForCampaign.splice(index,1);
      });
@@ -108,6 +108,7 @@ export class CreateCampaingComponent implements OnInit,AfterViewInit {
   }
 
   addMultipleCampaign() {
+    console.log(this.adsForCampaign)
     let campaign = new CreateMultipleCampaign();
     let latest_date =this.datePipe.transform(this.exposeStartDateMultipleCapaign, 'yyyy-MM-dd');
     latest_date = latest_date + " " + this.multipleCampaignStartTime;
