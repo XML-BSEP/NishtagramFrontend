@@ -109,6 +109,11 @@ export const environment = {
   getAllAdsPerAgent : "getAllAdsPerAgent",
   createDisposableCampaign : "createDisposableCampaign",
   createMultipleCampaign : "createMultipleCampaign",
-  confirmAgentAccount : "confirmAgentAccount"
+  confirmAgentAccount : "confirmAgentAccount",
+  getAllMultipleCampaigns : "getAllMultipleCampaigns",
+  getAllDisposableCampaigns : "getAllDisposableCampaigns",
+  deleteDisposableCampaign : "deleteDisposableCampaign",
+  deleteMultipleCampaign : "deleteMultipleCampaign",
+  updateMultipleCampaign : "updateMultipleCampaign"
 };
 

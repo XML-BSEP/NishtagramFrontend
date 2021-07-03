@@ -54,6 +54,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { ShowImageComponent } from './dialogs/show-image/show-image.component';
 import { DatePipe } from '@angular/common'
 import { AdminRegistrationRequestComponent } from './admin-registration-request/admin-registration-request/admin-registration-request.component';
+import { ChangeCampaignComponent } from './change-campaign/change-campaign/change-campaign.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { AdminRegistrationRequestComponent } from './admin-registration-request/
     CreateAdComponent,
     CreateCampaingComponent,
     ShowImageComponent,
-    AdminRegistrationRequestComponent
+    AdminRegistrationRequestComponent,
+    ChangeCampaignComponent
 
   ],
   imports: [
