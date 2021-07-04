@@ -23,7 +23,7 @@
 }
 
 .fl-table td {
-    border-right: 0.5px solid black;
+    border-right: 1px solid #f8f8f8;
     font-size: 1vw;
     
 }

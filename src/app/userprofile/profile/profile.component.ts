@@ -36,6 +36,8 @@ import { filter, map } from 'rxjs/operators';
 import { FollowReq } from 'src/app/model/follow/followReq';
 import { Mute } from 'src/app/model/profile/mute';
 import { MutedContentDTO } from 'src/app/model/muteContentdto';
+import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
+import { Role } from 'src/app/model/user/role';
 
 
 @Component({
@@ -85,7 +87,8 @@ export class ProfileComponent implements OnInit {
     private followService : FollowService,
     private route: ActivatedRoute,
     private toastr : ToastrService,
-    private profileService : ProfileService
+    private profileService : ProfileService,
+    private authService : AuthenticationService
 
     ) { }
 
@@ -533,5 +536,31 @@ export class ProfileComponent implements OnInit {
       this.toastr.error('OOOOOOOOpppsss something went wrong :(')
       console.log(error)
     });
+  }
+
+  public isAgent() {
+    if( localStorage.getItem('currentUser')!=null){
+      var role = JSON.parse(localStorage.getItem('currentUser')).role
+      return this.authService.getUserValue() && role === Role.Agent;
+    }
+    else return false;
+  }
+
+  public isInfluencer() {
+    if(this.user.category == "Influencer") {
+      return true;
+    } 
+    return false;
+  }
+
+  public isProfilePrivate() {
+    if(this.user.private) {
+      return true
+    }
+    return false
+  }
+
+  goToCampaignRequst() {
+    this.router.navigate(['/campaignRequest'], { queryParams: { id: this.userId } });
   }
 }

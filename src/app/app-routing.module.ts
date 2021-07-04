@@ -24,6 +24,8 @@ import { CreateAdComponent } from './create-ad/create-ad/create-ad.component';
 import { CreateCampaingComponent } from './create-campaing/create-campaing/create-campaing.component';
 import { AdminRegistrationRequestComponent } from './admin-registration-request/admin-registration-request/admin-registration-request.component';
 import { ChangeCampaignComponent } from './change-campaign/change-campaign/change-campaign.component';
+import { CampaignRequestsComponent } from './campaign-requests/campaign-requests/campaign-requests.component';
+import { CampaignInfluencerRequestComponent } from './campaign-influencer-request/campaign-influencer-request/campaign-influencer-request.component';
 
 
 const routes: Routes = [
@@ -148,6 +150,18 @@ const routes: Routes = [
     component : ChangeCampaignComponent,
     canActivate : [AuthGuard],
     data : {roles: [Role.Agent]}
+  },
+  {
+    path: 'campaignRequest',
+    component : CampaignRequestsComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.Agent]}
+  },
+  {
+    path: 'influencerCampaignRequest',
+    component : CampaignInfluencerRequestComponent,
+    canActivate : [AuthGuard],
+    data : {roles: [Role.Agent, Role.RegularUser]}
   }
 
 ];

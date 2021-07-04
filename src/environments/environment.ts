@@ -114,6 +114,14 @@ export const environment = {
   getAllDisposableCampaigns : "getAllDisposableCampaigns",
   deleteDisposableCampaign : "deleteDisposableCampaign",
   deleteMultipleCampaign : "deleteMultipleCampaign",
-  updateMultipleCampaign : "updateMultipleCampaign"
+  updateMultipleCampaign : "updateMultipleCampaign",
+  createDisposableCampaignRequest : "createDisposableCampaignRequest",
+  createMultipleCampaignRequest : "createMultipleCampaignRequest",
+  getAllMultipleCampaignRequests : "getAllMultipleCampaignRequests",
+  getAllDisposableCampaignRequests : "getAllDisposableCampaignRequests",
+  approveMultipleCampaignRequest : "approveMultipleCampaignRequest",
+  approveDisposableCampaignRequest : "approveDisposableCampaignRequest",
+  rejectMultipleCampaignRequest : "rejectMultipleCampaignRequest",
+  rejectDisposableCampaignRequest : "rejectDisposableCampaignRequest"
 };
 
