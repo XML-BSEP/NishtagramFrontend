@@ -55,6 +55,7 @@ import { ShowImageComponent } from './dialogs/show-image/show-image.component';
 import { DatePipe } from '@angular/common'
 import { AdminRegistrationRequestComponent } from './admin-registration-request/admin-registration-request/admin-registration-request.component';
 import { ChangeCampaignComponent } from './change-campaign/change-campaign/change-campaign.component';
+import { CampaignRequestsComponent } from './campaign-requests/campaign-requests/campaign-requests.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { ChangeCampaignComponent } from './change-campaign/change-campaign/chang
     CreateCampaingComponent,
     ShowImageComponent,
     AdminRegistrationRequestComponent,
-    ChangeCampaignComponent
+    ChangeCampaignComponent,
+    CampaignRequestsComponent
 
   ],
   imports: [

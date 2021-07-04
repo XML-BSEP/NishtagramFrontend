@@ -1,0 +1,76 @@
+<mat-drawer-container autosize style="position: absolute;right: 0px;left: 0px;bottom: 0px;top: 10%; background: transparent;" hasBackdrop="true">
+    <mat-drawer-content>
+        <div style="position: absolute; left: 40%;">
+            <button mat-button style="background-color: darkslategray; color: white;" (click)="clickShowDisposable()" >Show disposable campaigns</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button mat-button style="background-color: darkslategray; color: white;" (click)="clikcShowMultiple()">Show mulitple campaigns</button>
+        </div>
+
+        <br><br>
+
+        <div *ngIf="isDisposableShowing" class="table-wrapper">
+           <h1 style="text-align: center;">Disposable campaigns</h1>
+          <table matSort class="fl-table" >
+              <thead>              
+                <tr>                   
+                    <th>Type</th>
+                    <th>Exposure Date</th>
+                    <th>Exposure Time</th>
+                    <th>Ad post</th>
+                    <th>Send campaign request</th>
+                                 
+                
+                </tr>
+                </thead>
+                <tbody>
+                <tr  *ngFor="let d of disposableCampaigns; let i = index;">
+                    <td><span *ngIf="d.type === 1">Post</span><span *ngIf="d.type === 0">Story</span>     
+                    </td>
+                    <td>{{d.exposureDate | date: 'dd.MM.yyyy.'}}</td>
+                    <td>{{d.exposureDate | date:'HH:mm' : '+0'}}</td>                  
+                    <td><button mat-button style="background-color: darkslategray; color: white;" (click)="showImageDisposable(d)">View ad post</button></td>
+                    <td ><button mat-button style="background-color: darkslategray; color: white;" (click)="createDisposableCampaignRequest(d)">Send request</button></td>
+                
+        
+                </tr>
+              <tbody>
+          </table>
+        
+        </div>
+
+        <div *ngIf="isMultipleShowing" class="table-wrapper" >
+            <h1 style="text-align: center;">Multiple campaigns</h1>
+           <table matSort class="fl-table" >
+               <thead>              
+                 <tr>                   
+                     <th>Type</th>
+                     <th>Exposure start date</th>
+                     <th>Exposure end date</th>
+                     <th>Advertisement frequency </th>
+                     <th>Ad post</th>
+                     <th>Send campaign request</th>           
+                 
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <tr *ngFor="let d of multipleCampaigns; let i = index;" >
+                    <td><span *ngIf="d.type === 1">Post</span><span *ngIf="d.type === 0">Story</span>     
+                    </td>
+                     <td> {{d.startDate | date: 'dd.MM.yyyy.'}} {{d.startDate | date:'HH:mm'}}
+                     </td>
+                     <td> {{d.endDate | date: 'dd.MM.yyyy.'}} {{d.endDate | date:'HH:mm'}}</td>
+                     <td> {{d.frequency}} </td>
+                     <td><button mat-button style="background-color: darkslategray; color: white;" (click)="showImageMultiple(d)">View ad post</button></td>
+                     <td><button mat-button style="background-color: darkslategray; color: white;"  (click)="createMultipleCampaignRequest(d)">Send request</button></td>
+                 
+         
+                 </tr>
+               <tbody>
+           </table>
+         
+         </div>
+  
+ 
+    
+    </mat-drawer-content>
+
+</mat-drawer-container>

@@ -12,7 +12,10 @@
                         <button mat-raised-button class="btn btn-sm btn-block" (click)="follow()" color="primary" *ngIf="!canBeUnfollowed && !requestSent && !isLoggedInUser">Follow</button>
                         <button mat-raised-button class="btn btn-sm btn-block" (click)="unfollow()" color="accent" *ngIf="canBeUnfollowed">Unfollow</button>
                         <button mat-raised-button class="btn btn-sm btn-block" (click)="cancelRequest()" *ngIf="requestSent">Cancel follow request</button>
+                        
                       </div>
+                      
+                      <button style="margin-right: 4%;" mat-raised-button class="btn btn-sm" *ngIf="!isLoggedInUser && isAgent() && isInfluencer() && (!isProfilePrivate() || (isProfilePrivate() && canBeUnfollowed))" (click)="goToCampaignRequst()">Campaign request</button>
                       <div class="row mr-3">
                         <!-- <button mat-raised-button class="btn btn-sm btn-block" style="color: red;" *ngIf="!isMuted">
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-slash" viewBox="0 0 16 16">

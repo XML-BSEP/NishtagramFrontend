@@ -114,6 +114,8 @@ export const environment = {
   getAllDisposableCampaigns : "getAllDisposableCampaigns",
   deleteDisposableCampaign : "deleteDisposableCampaign",
   deleteMultipleCampaign : "deleteMultipleCampaign",
-  updateMultipleCampaign : "updateMultipleCampaign"
+  updateMultipleCampaign : "updateMultipleCampaign",
+  createDisposableCampaignRequest : "createDisposableCampaignRequest",
+  createMultipleCampaignRequest : "createMultipleCampaignRequest"
 };
 
