@@ -56,6 +56,7 @@ import { DatePipe } from '@angular/common'
 import { AdminRegistrationRequestComponent } from './admin-registration-request/admin-registration-request/admin-registration-request.component';
 import { ChangeCampaignComponent } from './change-campaign/change-campaign/change-campaign.component';
 import { CampaignRequestsComponent } from './campaign-requests/campaign-requests/campaign-requests.component';
+import { CampaignInfluencerRequestComponent } from './campaign-influencer-request/campaign-influencer-request/campaign-influencer-request.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { CampaignRequestsComponent } from './campaign-requests/campaign-requests
     ShowImageComponent,
     AdminRegistrationRequestComponent,
     ChangeCampaignComponent,
-    CampaignRequestsComponent
+    CampaignRequestsComponent,
+    CampaignInfluencerRequestComponent
 
   ],
   imports: [

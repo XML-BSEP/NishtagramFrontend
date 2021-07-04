@@ -61,4 +61,29 @@ import { environment } from "src/environments/environment";
     createMultipleCampaignRequest(multipleCampaignRequest : MultipleCampaignRequest) : Observable<Response> {
         return this.https.post<Response>(`${environment.baseUrl}/${environment.createMultipleCampaignRequest}`, multipleCampaignRequest)
     }
+
+
+    getAllDisposableCampaignRequests() : Observable<DisposableCampaignRequest[]> {
+        return this.https.get<DisposableCampaignRequest[]>(`${environment.baseUrl}/${environment.getAllDisposableCampaignRequests}`)
+    }
+
+    getAllMultipleCampaignRequests() : Observable<MultipleCampaignRequest[]> {
+        return this.https.get<MultipleCampaignRequest[]>(`${environment.baseUrl}/${environment.getAllMultipleCampaignRequests}`)
+    }
+
+    approveDisposableCampaignRequest(disposableCampaignRequest : DisposableCampaignRequest) : Observable<Response> {
+        return this.https.post<Response>(`${environment.baseUrl}/${environment.approveDisposableCampaignRequest}`, disposableCampaignRequest)
+    }
+
+    approveMultipleCampaignRequest(multipleCampaignRequest : MultipleCampaignRequest) : Observable<Response> {
+        return this.https.post<Response>(`${environment.baseUrl}/${environment.approveMultipleCampaignRequest}`, multipleCampaignRequest)
+    }
+
+    rejectDisposableCampaignRequest(disposableCampaignRequest : DisposableCampaignRequest) : Observable<Response> {
+        return this.https.post<Response>(`${environment.baseUrl}/${environment.rejectDisposableCampaignRequest}`, disposableCampaignRequest)
+    }
+
+    rejectMultipleCampaignRequest(multipleCampaignRequest : MultipleCampaignRequest) : Observable<Response> {
+        return this.https.post<Response>(`${environment.baseUrl}/${environment.rejectMultipleCampaignRequest}`, multipleCampaignRequest)
+    }
   }  

@@ -1,0 +1,80 @@
+<mat-drawer-container autosize style="position: absolute;right: 0px;left: 0px;bottom: 0px;top: 10%; background: transparent;" hasBackdrop="true">
+    <mat-drawer-content>
+        <div style="position: absolute; left: 40%;">
+            <button mat-button style="background-color: darkslategray; color: white;" (click)="clickShowDisposable()" >Show disposable requests campaigns</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button mat-button style="background-color: darkslategray; color: white;" (click)="clikcShowMultiple()">Show mulitple requests campaigns</button>
+        </div>
+
+        <br><br>
+
+        <div *ngIf="isDisposableShowing" class="table-wrapper">
+           <h1 style="text-align: center;">Disposable campaigns</h1>
+          <table matSort class="fl-table" >
+              <thead>              
+                <tr>                   
+                    <th>Type</th>
+                    <th>Exposure Date</th>
+                    <th>Exposure Time</th>
+                    <th>Ad post</th>
+                    <th>Approve</th>
+                    <th>Reject</th>
+                                 
+                
+                </tr>
+                </thead>
+                <tbody>
+                <tr  *ngFor="let d of disposableRequests; let i = index;">
+                    <td><span *ngIf="d.disposableCampaign.type === 1">Post</span><span *ngIf="d.disposableCampaign.type === 0">Story</span>     
+                    </td>
+                    <td>{{d.disposableCampaign.exposureDate | date: 'dd.MM.yyyy.'}}</td>
+                    <td>{{d.disposableCampaign.exposureDate | date:'HH:mm' : '+0'}}</td>                  
+                    <td><button mat-button style="background-color: darkslategray; color: white;" (click)="showImageDisposable(d.disposableCampaign)" >View ad post</button></td>
+                    <td ><button mat-button style="background-color: darkslategray; color: white;" *ngIf="d.RequestStatus == 0" (click)="approveDisposableCampaignRequest(d)">Approve</button></td>
+                    <td ><button mat-button style="background-color: darkslategray; color: white;" *ngIf="d.RequestStatus == 0" (click)="rejectDisposableCampaignRequest(d)">Reject</button></td>
+                
+        
+                </tr>
+              <tbody>
+          </table>
+        
+        </div>
+
+        <div *ngIf="isMultipleShowing" class="table-wrapper" >
+            <h1 style="text-align: center;">Multiple campaigns</h1>
+           <table matSort class="fl-table" >
+               <thead>              
+                 <tr>                   
+                     <th>Type</th>
+                     <th>Exposure start date</th>
+                     <th>Exposure end date</th>
+                     <th>Advertisement frequency </th>
+                     <th>Ad post</th>
+                     <th>Approve</th>
+                     <th>Reject</th>          
+                 
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <tr *ngFor="let d of multpleRequests; let i = index;" >
+                    <td><span *ngIf="d.multipleCampaign.type === 1">Post</span><span *ngIf="d.multipleCampaign.type === 0">Story</span>     
+                    </td>
+                     <td> {{d.multipleCampaign.startDate | date: 'dd.MM.yyyy.'}} {{d.multipleCampaign.startDate | date:'HH:mm'}}
+                     </td>
+                     <td> {{d.multipleCampaign.endDate | date: 'dd.MM.yyyy.'}} {{d.multipleCampaign.endDate | date:'HH:mm'}}</td>
+                     <td> {{d.multipleCampaign.frequency}} </td>
+                     <td><button mat-button style="background-color: darkslategray; color: white;" (click)="showImageMultiple(d.multipleCampaign)">View ad post</button></td>
+                     <td ><button mat-button style="background-color: darkslategray; color: white;" *ngIf="d.RequestStatus == 0" (click)="approveMultipleCampaignRequest(d)" >Approve</button></td>
+                     <td ><button mat-button style="background-color: darkslategray; color: white;" *ngIf="d.RequestStatus == 0" (click)="rejectMultipleCampaignRequest(d)">Reject</button></td>
+                 
+         
+                 </tr>
+               <tbody>
+           </table>
+         
+         </div>
+  
+ 
+    
+    </mat-drawer-content>
+
+</mat-drawer-container>
