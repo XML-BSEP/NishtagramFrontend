@@ -36,6 +36,7 @@ export class ChangeCampaignComponent implements OnInit {
     this.agentService.getAllDisposableCampaigns().subscribe(
       res => {
         this.disposableCampaigns = res;   
+        console.log(this.disposableCampaigns)
       }, 
       error => {
         this.toastr.error(error);
@@ -64,7 +65,7 @@ export class ChangeCampaignComponent implements OnInit {
   }
 
   showImageDisposable(a : DisposableCampaign) {
-   
+    console.log(a)
     for(var i = 0; i < a.ads.length; i++) {
       const dialogRef = this.dialog.open(ShowImageComponent, {
         width: '35vw',
@@ -76,7 +77,7 @@ export class ChangeCampaignComponent implements OnInit {
   }
 
   showImageMultiple(a : MultipleCampaign) {
-   
+   console.log(a)
     for(var i = 0; i < a.ads.length; i++) {
       const dialogRef = this.dialog.open(ShowImageComponent, {
         width: '35vw',

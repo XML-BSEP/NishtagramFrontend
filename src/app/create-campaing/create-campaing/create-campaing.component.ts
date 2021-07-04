@@ -68,7 +68,7 @@ export class CreateCampaingComponent implements OnInit,AfterViewInit {
       this.adsForCampaign.push(a)
     }
 
-    a.isAdded = !a.isAdded
+    a.isAdded = !a.isAdded    
   }
   onTimeDisposableCampaignChange(time) {
     this.disposableCampaignTime = time;

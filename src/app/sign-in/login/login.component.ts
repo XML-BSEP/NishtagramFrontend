@@ -37,6 +37,9 @@ export class LoginComponent implements OnInit {
 
         this.router.navigate(['/admin'])
       }
+      if (curUsr.role == Role.Agent) {
+        this.router.navigate(['/home'])
+      }
     }
 
 
