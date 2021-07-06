@@ -1,3 +1,4 @@
+import { ChatComponent } from './chat/chat.component';
 import { PostDetailsComponent } from './feed/post-details/post-details.component';
 import { EditProfileComponent } from './userprofile/edit-profile/edit-profile.component';
 import { ProfileComponent } from './userprofile/profile/profile.component';
@@ -48,6 +49,10 @@ const routes: Routes = [
   },{
     path: 'forgotPassword',
     component : ForgotPasswordComponent
+  },
+  {
+    path: 'chat',
+    component : ChatComponent
   },
   {
     path: 'home',
@@ -105,7 +110,7 @@ const routes: Routes = [
     canActivate : [AuthGuard],
     data : {roles: [Role.Admin]}
 
-  }, 
+  },
   {
     path: "admin/verifications",
     component: AdminRequestVerificationComponent,
@@ -121,7 +126,7 @@ const routes: Routes = [
     component: AgentRegistrationComponent
   },
   {
-    path: "admin/reports", 
+    path: "admin/reports",
     component: AdminReportsComponent,
     canActivate : [AuthGuard],
     data : {roles: [Role.Admin]}
@@ -137,13 +142,13 @@ const routes: Routes = [
     component : CreateCampaingComponent,
     canActivate : [AuthGuard],
     data : {roles: [Role.Agent]}
-  }, 
+  },
   {
     path : "admin/registrationRequest",
     component: AdminRegistrationRequestComponent,
     canActivate : [AuthGuard],
     data : {roles : [Role.Admin]}
-    
+
   },
   {
     path: 'changeCampaign',
