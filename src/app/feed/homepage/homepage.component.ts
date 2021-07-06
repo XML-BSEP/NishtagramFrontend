@@ -14,6 +14,7 @@ import { Comment } from 'src/app/model/feed/comment';
 import { PostService } from 'src/app/service/post/postservice';
 import { Add2collectionDialogComponent } from 'src/app/dialogs/add2collection-dialog/add2collection-dialog.component';
 import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
+import { AgentService } from 'src/app/service/agent/agent_service';
 
 @Component({
 	selector: 'ia-homepage',
@@ -33,13 +34,15 @@ export class HomepageComponent implements OnInit {
 		private titleService: Title,
     private dialog : MatDialog,
     private postService : PostService,
-    private authenticationService : AuthenticationService
+    private authenticationService : AuthenticationService,
+    private agentService : AgentService
 
 	) {
 		this.titleService.setTitle('Feed');
 	}
 
 	ngOnInit(): void {
+    this.feed = []
 
     console.log(this.authenticationService.currentUserValue)
 
@@ -50,6 +53,7 @@ export class HomepageComponent implements OnInit {
       this.router.navigate(['/forbidden'])
     }else{
       this.postService.generateFeed().subscribe(
+        
         res => {
           console.log(res)
           let feeds = []
@@ -63,16 +67,37 @@ export class HomepageComponent implements OnInit {
             console.log(f.user.id)
             f.user = f.user
 
+            this.feed.push(f);
           }
-          this.feed = res;
           console.log(this.feed)
+
+          
 
         }
       )
 
+      this.agentService.getAllPostAds().subscribe(
+        res => {
+          for (let f of res) {
+            f.comments = []
+            this.feed.push(f)
+          }
+        }
+      )
+      this.stories = []
       this.postService.getStories().subscribe(
         res => {
-          this.stories = res;
+          for (let s of res) {
+            this.stories.push(s)
+          }
+        }
+      )
+
+      this.agentService.getAllStoryAds().subscribe(
+        res => {
+          for (let a of res) {
+            this.stories.push(a)
+          }
         }
       )
 

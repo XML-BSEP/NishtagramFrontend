@@ -130,13 +130,13 @@ const routes: Routes = [
     path: 'createAd',
     component : CreateAdComponent,
     canActivate : [AuthGuard],
-    data : {roles: [Role.Agent]}
+    data : {roles: [Role.NonExistentRole]}
   },
   {
     path: 'createCampaign',
     component : CreateCampaingComponent,
     canActivate : [AuthGuard],
-    data : {roles: [Role.Agent]}
+    data : {roles: [Role.NonExistentRole]}
   }, 
   {
     path : "admin/registrationRequest",
@@ -149,7 +149,7 @@ const routes: Routes = [
     path: 'changeCampaign',
     component : ChangeCampaignComponent,
     canActivate : [AuthGuard],
-    data : {roles: [Role.Agent]}
+    data : {roles: [Role.NonExistentRole]}
   },
   {
     path: 'campaignRequest',

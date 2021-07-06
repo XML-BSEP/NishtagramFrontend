@@ -71,6 +71,9 @@ export class RegularUserComponent implements OnInit {
     }
 
   }
+  isNonExistent() {
+    return false;
+  }
   openFRDialog(){
     const dialogRef = this.dialog.open(FollowRequestDialogComponent, {
       width: '35vw',
