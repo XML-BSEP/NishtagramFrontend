@@ -291,6 +291,13 @@
                   <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2zM14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1zM2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1h-10z"/>
                 </svg>Posts with interactions
               </button>
+              <button mat-flat-button data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded" (click)="goToGenerateToken()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" stroke="currentCollor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="bi bi-images mr-2" viewBox="0 0 16 16">
+                  <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"/>
+                  <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                </svg>Generate Nishtagram token
+              </button>
+
             </nav>
           </div>
         </div>
@@ -743,6 +750,16 @@
                   </div>
                 </div>
             </div>
+            </div>
+          </div>
+          <div *ngIf="generateToken">
+            <h6>GENERATE YOUR PERSONAL NISHTAGRAM API TOKEN</h6>
+            <hr>
+            <button mat-raised-button color="primary" (click)="generateAPIToken()">Generate token</button>
+            <br><br><br>
+            <div *ngIf="tokenGenerated">
+              <mat-label>Here's your token! Copy it to your WebShop account so that you can use our advantages to the fullest!</mat-label>
+              <br><br><mat-label>{{personalToken}}</mat-label>
             </div>
           </div>
         </div>

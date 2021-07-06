@@ -9,6 +9,8 @@ import { DisposableCampaignRequest } from "src/app/model/agent/disposable_campai
 import { MultipleCampaign } from "src/app/model/agent/multiple_campaign";
 import { MultipleCampaignRequest } from "src/app/model/agent/multiple_campaign_request";
 import { ShowAd } from "src/app/model/agent/show_ads";
+import { Post } from "src/app/model/feed/post";
+import { Story } from "src/app/model/feed/story";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -85,5 +87,17 @@ import { environment } from "src/environments/environment";
 
     rejectMultipleCampaignRequest(multipleCampaignRequest : MultipleCampaignRequest) : Observable<Response> {
         return this.https.post<Response>(`${environment.baseUrl}/${environment.rejectMultipleCampaignRequest}`, multipleCampaignRequest)
+    }
+
+    getAllPostAds() : Observable<Post[]> {
+        return this.https.get<Post[]>(`${environment.baseUrl}/${environment.getAllPostAds}`)
+    }
+    
+    getAllStoryAds() : Observable<Story[]> {
+        return this.https.get<Story[]>(`${environment.baseUrl}/${environment.getAllStoryAds}`)
+    }
+
+    generateApiToken() : Observable<String> {
+        return this.https.get<String>(`${environment.baseUrl}/${environment.generateApiToken}`)
     }
   }  

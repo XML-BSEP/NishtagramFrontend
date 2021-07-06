@@ -122,6 +122,9 @@ export const environment = {
   approveMultipleCampaignRequest : "approveMultipleCampaignRequest",
   approveDisposableCampaignRequest : "approveDisposableCampaignRequest",
   rejectMultipleCampaignRequest : "rejectMultipleCampaignRequest",
-  rejectDisposableCampaignRequest : "rejectDisposableCampaignRequest"
+  rejectDisposableCampaignRequest : "rejectDisposableCampaignRequest",
+  getAllPostAds : "getAllPostAds",
+  getAllStoryAds : "getAllStoryAds",
+  generateApiToken : "generateApiToken"
 };
 

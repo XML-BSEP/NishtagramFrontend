@@ -3,5 +3,6 @@ export enum Role {
   RegularUser = 'user',
   Anonymous = "anonymous",
   TemporaryUser = "temporary_user",
-  Agent = "agent"
+  Agent = "agent",
+  NonExistentRole = "asdadsasd"
 }
