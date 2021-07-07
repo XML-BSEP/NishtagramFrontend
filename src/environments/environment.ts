@@ -122,6 +122,8 @@ export const environment = {
   approveMultipleCampaignRequest : "approveMultipleCampaignRequest",
   approveDisposableCampaignRequest : "approveDisposableCampaignRequest",
   rejectMultipleCampaignRequest : "rejectMultipleCampaignRequest",
-  rejectDisposableCampaignRequest : "rejectDisposableCampaignRequest"
+  rejectDisposableCampaignRequest : "rejectDisposableCampaignRequest",
+  message : "message",
+  users : "users"
 };
 
