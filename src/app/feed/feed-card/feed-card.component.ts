@@ -18,6 +18,8 @@ import { Add2collectionDialogComponent } from 'src/app/dialogs/add2collection-di
 import { PostInfo } from './postinfo';
 import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 import { ReportPostDialogComponent } from 'src/app/dialogs/report-post-dialog/report-post-dialog.component';
+import { AgentService } from 'src/app/service/agent/agent_service';
+import { ClickEvent } from 'src/app/model/clickevent';
 
 
 
@@ -36,7 +38,7 @@ export class FeedCardComponent implements OnInit {
   allComms : boolean = false;
   commentForm: FormGroup;
 
-  constructor(private router : Router, private postService : PostService, private toastr : ToastrService, private authenticationService : AuthenticationService,
+  constructor(private router : Router, private postService : PostService, private toastr : ToastrService, private authenticationService : AuthenticationService, private agentService : AgentService,
     private dialog : MatDialog) { 
       
     let curUsr = JSON.parse(localStorage.getItem('currentUser'))
@@ -74,37 +76,68 @@ export class FeedCardComponent implements OnInit {
     like.postBy = this.post.user.id;
     like.postId = this.post.id;
 
-
-
-
-    if (this.post.isLiked) {
-      this.postService.removeLike(like).subscribe(
-        res => {
-          //this.toastr.info("Like removed")
-          this.post.isLiked = !this.post.isLiked;
-
-        } , error => {
-          this.toastr.error("Post unavailable")
-        }
-      )
-
-    } else {
-
-      this.postService.likePost(like).subscribe(
-        res => {
-         // this.toastr.info("Post liked")
-
-          this.post.isLiked = !this.post.isLiked;
-          if (this.post.isDisliked) {
-            this.post.isDisliked = false;
+    if (this.post.isAd) {
+      if (this.post.isLiked) {
+        this.agentService.removeLike(like).subscribe(
+          res => {
+            //this.toastr.info("Like removed")
+            this.post.isLiked = !this.post.isLiked;
+  
+          } , error => {
+            this.toastr.error("Post unavailable")
           }
-
-        } , error => {
-          this.toastr.error("Post unavailable")
-        }
-      )
-
+        )
+  
+      } else {
+  
+        this.agentService.likePost(like).subscribe(
+          res => {
+           // this.toastr.info("Post liked")
+  
+            this.post.isLiked = !this.post.isLiked;
+            if (this.post.isDisliked) {
+              this.post.isDisliked = false;
+            }
+  
+          } , error => {
+            this.toastr.error("Post unavailable")
+          }
+        )
+  
+      }
+    } else {
+      if (this.post.isLiked) {
+        this.postService.removeLike(like).subscribe(
+          res => {
+            //this.toastr.info("Like removed")
+            this.post.isLiked = !this.post.isLiked;
+  
+          } , error => {
+            this.toastr.error("Post unavailable")
+          }
+        )
+  
+      } else {
+  
+        this.postService.likePost(like).subscribe(
+          res => {
+           // this.toastr.info("Post liked")
+  
+            this.post.isLiked = !this.post.isLiked;
+            if (this.post.isDisliked) {
+              this.post.isDisliked = false;
+            }
+  
+          } , error => {
+            this.toastr.error("Post unavailable")
+          }
+        )
+  
+      }
     }
+
+
+    
 
 
 
@@ -123,8 +156,11 @@ export class FeedCardComponent implements OnInit {
     let like = new LikePost();
     like.postBy = this.post.user.id;
     like.postId = this.post.id;
+    if (this.post.isAd) {
+
+    
     if (this.post.isDisliked) {
-      this.postService.removeDislike(like).subscribe(
+      this.agentService.removeDislike(like).subscribe(
         res => {
           //this.toastr.info("Dislike removed")
           this.post.isDisliked = !this.post.isDisliked;
@@ -140,7 +176,7 @@ export class FeedCardComponent implements OnInit {
     }else
     {
 
-      this.postService.dislikePost(like).subscribe(
+      this.agentService.dislikePost(like).subscribe(
         res => {
           if (this.post.isLiked) {
             this.postService.removeLike(like).subscribe(
@@ -154,7 +190,7 @@ export class FeedCardComponent implements OnInit {
             )
           } else {
 
-          this.postService.removeLike(like).subscribe(
+          this.agentService.removeLike(like).subscribe(
             res => {
               this.post.isDisliked = true;
              // this.toastr.info("Post disliked")
@@ -168,8 +204,57 @@ export class FeedCardComponent implements OnInit {
       )
 
     }
+    } else {
+      if (this.post.isDisliked) {
+        this.postService.removeDislike(like).subscribe(
+          res => {
+            //this.toastr.info("Dislike removed")
+            this.post.isDisliked = !this.post.isDisliked;
+            if (this.post.isLiked) {
+              this.post.isLiked = false;
+            }
+  
+          } , error => {
+            this.toastr.error("Post unavailable")
+          }
+        )
+  
+      }else
+      {
+  
+        this.postService.dislikePost(like).subscribe(
+          res => {
+            if (this.post.isLiked) {
+              this.postService.removeLike(like).subscribe(
+                res => {
+                  this.post.isDisliked = true;
+                //  this.toastr.info("Post disliked")
+                  this.post.isLiked = false;
+                } , error => {
+                  this.toastr.error("Post unavailable")
+                }
+              )
+            } else {
+  
+            this.postService.removeLike(like).subscribe(
+              res => {
+                this.post.isDisliked = true;
+               // this.toastr.info("Post disliked")
+                this.post.isLiked = false;
+              } , error => {
+                this.toastr.error("Post unavailable")
+              }
+            )
+            }
+          }
+        )
+  
+      }
 
+    }
   }
+
+  
   saveToCollectionDialog(item){
     const dialogRef = this.dialog.open(Add2collectionDialogComponent, {
       width: '35vw',
@@ -218,6 +303,26 @@ export class FeedCardComponent implements OnInit {
       this.toastr.info("Please enter comment.")
     } else {
       let comment = new Comment(this.post.user.id, this.post.id, new UserInFeed("1", "", ""), this.commentForm.controls.comm.value);
+      if (this.post.isAd) {
+
+      
+        this.agentService.comment(comment).subscribe(
+          res => {
+            //this.partialComments.push(comment)
+            this.post.numOfComments = this.post.numOfComments + 1;
+            this.commentForm.reset();
+            if (this.allComms) {
+              this.toggleComments();
+            }
+            //this.toastr.info("Comment added.")
+  
+          }, error => {
+            this.toastr.error("Post unavailable")
+          }
+        )
+      } else {
+
+      
       this.postService.comment(comment).subscribe(
         res => {
           //this.partialComments.push(comment)
@@ -232,6 +337,7 @@ export class FeedCardComponent implements OnInit {
           this.toastr.error("Post unavailable")
         }
       )
+      }
 
     }
   }
@@ -247,19 +353,38 @@ export class FeedCardComponent implements OnInit {
     postdto.id = this.post.id;
     this.allComms = !this.allComms;
     console.log(this.post.comments);
+    if (this.post.isAd) {
 
-    this.postService.getAllComments(postdto).subscribe(
+      this.agentService.getAllComments(postdto).subscribe(
         res => {
           this.post.comments = res;
 
         }
     )
+    } else {
+      
+    this.postService.getAllComments(postdto).subscribe(
+      res => {
+        this.post.comments = res;
+
+      }
+  )
+    }
+
 
     }
 
 
 
+    addEvent() {
+      if (this.post.isCampaign && !this.post.isAd) {
+        let addEvent = new ClickEvent();
+        addEvent.campaignId = this.post.campaignId;
+        addEvent.influencerId = this.post.user.id;
+        this.agentService.createEvent(addEvent).subscribe()
+      }
 
+    }
 
 
   goToPostDetails(){

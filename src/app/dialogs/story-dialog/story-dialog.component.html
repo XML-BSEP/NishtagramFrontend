@@ -3,6 +3,7 @@
     <div class="d-flex flex-row align-items-left" (click)="goToProfile()">
       <img src="{{data.user.profilePhoto}}"  width="50" class="rounded-circle mr-2">
       <span class="font-weight-bold mt-3">{{data.user.username}}</span>
+      <div *ngIf="data.isAd || data.isCampaign" class="d-flex flex-column ml-2"> <small class="text-primary">Go to link: <a (click)="addEvent()" [href]="data.link">{{data.link}}</a></small></div>
     </div>
 
   <div *ngIf="canReport">

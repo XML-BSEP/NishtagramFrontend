@@ -6,6 +6,7 @@
                 <div class="d-flex justify-content-between p-2 px-3">
                     <div class="d-flex flex-row align-items-center" (click)="goToProfile()"> <img src="{{post.user.profilePhoto}}"  width="50" class="rounded-circle">
                         <div class="d-flex flex-column ml-2"> <span class="font-weight-bold">{{post.user.username}}</span> <small class="text-primary">{{post.location}}</small> </div>
+                        <div *ngIf="post.isAd || post.isCampaign" class="d-flex flex-column ml-2"> <small class="text-primary">Go to link: <a (click)="addEvent()" [href]="post.link">{{post.link}}</a></small></div>
                     </div>
                     <div class="d-flex flex-row mt-1 ellipsis"> <small class="mr-2 mt-2">{{this.post.moment}}</small>
                       <!-- <i class="bi bi-three-dots" (click)="openOptionsDialog()"></i> -->
@@ -73,10 +74,11 @@
 
                           <i *ngIf="!post.isDisliked" class="bi bi-hand-thumbs-down" (click)="dislike()"></i>
                           <i *ngIf="post.isDisliked" class="bi bi-hand-thumbs-down-fill" (click)="dislike()"></i>
-
-                          <i *ngIf="!post.isBookmarked" class="bi bi-bookmark" (click)="bookmark()"></i>
-                          <i *ngIf="post.isBookmarked" class="bi bi-bookmark-fill" (click)="bookmark()"></i>
-                          <i  class="bi bi-bookmark-plus" (click)="saveToCollectionDialog(post)"> </i>
+                          
+                            <i *ngIf="!post.isBookmarked && !post.isAd" class="bi bi-bookmark" (click)="bookmark()"></i>
+                            <i *ngIf="post.isBookmarked&& !post.isAd" class="bi bi-bookmark-fill" (click)="bookmark()"></i>
+                            <i  *ngIf="!post.isAd" class="bi bi-bookmark-plus" (click)="saveToCollectionDialog(post)"> </i>
+                                                    
 
                          </div>
                         <div class="d-flex flex-row muted-color" (click)="toggleComments()"> <span *ngIf="post.numOfComments>1">{{post.numOfComments}} comments</span><span *ngIf="post.numOfComments==1">{{post.numOfComments}} comment</span></div>
