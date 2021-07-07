@@ -59,6 +59,7 @@ export class HomepageComponent implements OnInit {
           let feeds = []
           for (let f of res) {
             f.comments = []
+            f.isAd = false;
             if (f.isVideo) {
               console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
               console.log(f.images)
@@ -78,16 +79,21 @@ export class HomepageComponent implements OnInit {
 
       this.agentService.getAllPostAds().subscribe(
         res => {
+          if (res != null)
+          {
           for (let f of res) {
             f.comments = []
+            f.isAd = true;
+            f.link = "https://localhost:4300/" + f.link
             this.feed.push(f)
-          }
+          }}
         }
       )
       this.stories = []
       this.postService.getStories().subscribe(
         res => {
           for (let s of res) {
+            s.isAd = false;
             this.stories.push(s)
           }
         }
@@ -95,10 +101,16 @@ export class HomepageComponent implements OnInit {
 
       this.agentService.getAllStoryAds().subscribe(
         res => {
+          if (res != null) {
+
+          
           for (let a of res) {
+            a.isAd = true;
             this.stories.push(a)
           }
+          console.log(this.stories)
         }
+      }
       )
 
     }
