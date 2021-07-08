@@ -95,7 +95,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }*/
   selectChat(user){
     this.otherUsr = user.id
-    let blocked = await this.isUserBlocked(this.currUsrId, this.otherUsr)
+    let blocked = this.isUserBlocked(this.currUsrId, this.otherUsr)
     console.log("BLOKIRAN: " + blocked)
     this.connectToSocket()
     console.log(user)

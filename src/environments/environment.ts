@@ -125,6 +125,7 @@ export const environment = {
   rejectDisposableCampaignRequest : "rejectDisposableCampaignRequest",
   message : "message",
   users : "users",
-  blocked : "blocked"
+  blocked : "blocked",
+  recommend : "recommend"
 };
 
