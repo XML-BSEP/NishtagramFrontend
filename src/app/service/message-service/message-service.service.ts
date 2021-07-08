@@ -5,6 +5,7 @@ import { Message } from 'src/app/model/message/message';
 import { environment } from 'src/environments/environment';
 import { SearchedUser } from 'src/app/model/profile/searchedProfile';
 import { Block } from 'src/app/model/message/block';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,5 +23,9 @@ export class MessageServiceService {
 
   isBlocked(blockedBy : string, blockedFor : string) : Observable<Block> {
     return this.http.get<Block>(`${environment.baseUrl}/${environment.blocked}/${blockedBy}/${blockedFor}`)
+  }
+
+  isAllowedToSee(messageId : string) {
+    return this.http.get(`${environment.baseUrl}/${environment.isAllowedToSee}/${messageId}`)
   }
 }

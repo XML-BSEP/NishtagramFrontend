@@ -10,6 +10,8 @@ import { v4 as uuidv4 } from 'uuid'
 import { JsonpClientBackend } from '@angular/common/http';
 import { ProfileService } from '../service/profile/profile.service';
 import { SearchedUser } from '../model/profile/searchedProfile';
+import { MatDialog } from '@angular/material/dialog';
+import { ShowImageComponent } from '../dialogs/show-image/show-image.component';
 
 @Component({
   selector: 'app-chat',
@@ -44,7 +46,13 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   public isBlocked : boolean = false
 
-  constructor(public followService : FollowService, private messageService : MessageServiceService, private profileService : ProfileService) { }
+
+  private imgFile : string;
+  private fileName : string;
+  private imgSelected : boolean = false;
+  
+
+  constructor(public followService : FollowService, private messageService : MessageServiceService, private profileService : ProfileService, private dialog : MatDialog) { }
 
   ngOnInit(): void {
     //this.curUsr = JSON.parse(localStorage.getItem('currentUser'))
@@ -116,15 +124,28 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
   sendMessage(){
 
-    let msg = this.messageForm.controls.message.value;
+    if(this.imgSelected) {
+      let message = new Message("", false, new Date(), "", "", 2, new Profile(this.currUsrId), new Profile(this.otherUsr), this.imgFile, "")
+      let messageJson = JSON.stringify(message)
+      console.log(messageJson)
+      this.imgFile = "";
+      this.fileName = "";
+      this.wsConnection.send(messageJson)
+      this.imgSelected = false;
+    } else {
+
+
+      let msg = this.messageForm.controls.message.value;
     
-    let message = new Message(new Date(), this.message, "", 0, new Profile(this.currUsrId), new Profile(this.otherUsr))
-    //this.messagesfromUser1.push(message)
-    console.log(this.messagesfromUser1)
-    let messageJson = JSON.stringify(message)
-    console.log(messageJson)
-    this.wsConnection.send(messageJson)
-    this.messageForm.controls.message.setValue("");
+      let message = new Message("", false, new Date(), this.message, "", 0, new Profile(this.currUsrId), new Profile(this.otherUsr), "", "")
+      //this.messagesfromUser1.push(message)
+      console.log(this.messagesfromUser1)
+      let messageJson = JSON.stringify(message)
+      console.log(messageJson)
+      this.wsConnection.send(messageJson)
+      this.messageForm.controls.message.setValue("");
+  }
+  
   }
   search(){
 
@@ -189,5 +210,44 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       }
     )
     return blocked
+  }
+
+  onFileChanged(e) {
+    this.imgFile = "";
+    this.fileName = "";
+    const reader = new FileReader();
+      if(e.target.files && e.target.files.length) {
+        const [file] = e.target.files;
+          reader.readAsDataURL(file);
+
+          reader.onload = () => {
+            this.imgFile = reader.result as string;
+            this.fileName = file.name;
+            this.imgSelected = true;
+            console.log(this.imgSelected);
+          };
+
+      
+    }
+
+  }
+
+  showImg(m : Message) {
+
+    this.messageService.isAllowedToSee(m.id.toString()).subscribe(
+      success => {
+        this.dialog.open(ShowImageComponent, {
+    
+      data: m.image_base_64
+    })
+      }
+    )
+    
+  }
+
+  removeImg() {
+    this.imgFile = "";
+    this.fileName = "";
+    this.imgSelected = false;
   }
 }

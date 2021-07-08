@@ -52,14 +52,20 @@
                                        
                                     </div>
                                     
-                                    <div *ngIf="currUsrId === m.message_from.id" class="message other-message float-right">{{m.content}}</div>
-                            
+                                    <div *ngIf="currUsrId === m.message_from.id && m.type === 0" class="message other-message float-right">{{m.content}}</div>
+                                    <div *ngIf="m.type === 2" class="message other-message float-right">
+                                        <i class="fa fa-picture-o"></i>
+                                    </div>
                                 </li>
                                 <li *ngIf="currUsrId === m.message_to.id" class="clearfix">
                                     <div *ngIf="currUsrId === m.message_to.id" class="message-data">
                                         <span class="message-data-time">{{m.timestamp | date:'medium'}}</span>
                                     </div>
-                                    <div *ngIf="currUsrId === m.message_to.id" class="message my-message"> {{m.content}}</div>
+                                    <div *ngIf="currUsrId === m.message_to.id && m.type === 0" class="message my-message"> {{m.content}}</div>
+                                    <div *ngIf="m.type === 2" class="message my-message"  (click)="showImg(m)">
+                                        <i class="fa fa-picture-o"></i>
+                                    </div>
+                                    
                                 </li>
                             </div>
                           </ul>
@@ -69,9 +75,19 @@
                           <div class="input-group mb-0">
                               <input type="text" class="form-control" [(ngModel)]="message" placeholder="Enter text here...">
 
+                              <div class="input-group-prepend">
+                                <input 
+                                 style="display: none"
+                                 type="file" (change)="onFileChanged($event)"
+                                 #fileInput accept="image/x-png,image/gif,image/jpeg">
+                                <span *ngIf="!imgSelected" class="input-group-text" (click)="fileInput.click()"><i class="fa fa-paperclip"></i></span>
+                                <span *ngIf="imgSelected" class="input-group-text" (click)="removeImg()"><i class="fa fa-check"></i></span>
+                              </div>
+
                               <div class="input-group-prepend" (click)="sendMessage()">
                                   <span class="input-group-text"><i class="fa fa-send"></i></span>
                               </div>
+                              
 
                           </div>
 

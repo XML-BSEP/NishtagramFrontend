@@ -126,6 +126,7 @@ export const environment = {
   message : "message",
   users : "users",
   blocked : "blocked",
-  recommend : "recommend"
+  recommend : "recommend",
+  isAllowedToSee : "isAllowedToSee"
 };
 
