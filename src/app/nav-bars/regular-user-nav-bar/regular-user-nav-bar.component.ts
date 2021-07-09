@@ -89,6 +89,7 @@ export class RegularUserComponent implements OnInit {
     window.location.href = "/profile"
 
   }
+  openRecommendationDialogs() {}
   openNewStoryDialog(){
     const dialogRef = this.dialog.open(NewstoryDialogComponent, {
       width: '35vw',

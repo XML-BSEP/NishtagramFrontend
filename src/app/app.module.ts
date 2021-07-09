@@ -57,6 +57,7 @@ import { AdminRegistrationRequestComponent } from './admin-registration-request/
 import { ChangeCampaignComponent } from './change-campaign/change-campaign/change-campaign.component';
 import { CampaignRequestsComponent } from './campaign-requests/campaign-requests/campaign-requests.component';
 import { CampaignInfluencerRequestComponent } from './campaign-influencer-request/campaign-influencer-request/campaign-influencer-request.component';
+import { RecommendationsComponent } from './dialogs/recommendations/recommendations.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { CampaignInfluencerRequestComponent } from './campaign-influencer-reques
     AdminRegistrationRequestComponent,
     ChangeCampaignComponent,
     CampaignRequestsComponent,
-    CampaignInfluencerRequestComponent
+    CampaignInfluencerRequestComponent,
+    RecommendationsComponent
 
   ],
   imports: [
