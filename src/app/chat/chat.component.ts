@@ -12,6 +12,8 @@ import { ProfileService } from '../service/profile/profile.service';
 import { SearchedUser } from '../model/profile/searchedProfile';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowImageComponent } from '../dialogs/show-image/show-image.component';
+import { ThrowStmt } from '@angular/compiler';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-chat',
@@ -50,9 +52,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   private imgFile : string;
   private fileName : string;
   private imgSelected : boolean = false;
+
   
 
-  constructor(public followService : FollowService, private messageService : MessageServiceService, private profileService : ProfileService, private dialog : MatDialog) { }
+  constructor(public followService : FollowService, private messageService : MessageServiceService, private profileService : ProfileService, private dialog : MatDialog, private toastr : ToastrService) { }
 
   ngOnInit(): void {
     //this.curUsr = JSON.parse(localStorage.getItem('currentUser'))
@@ -71,7 +74,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
     this.getUsers()
 
-    console.log("UUID: " + uuidv4())
 
     window.onbeforeunload = () => this.wsConnection.close;
     this.getUsers()
@@ -101,10 +103,19 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       }
     )
   }*/
-  selectChat(user){
+  async selectChat(user){
+    if (this.wsConnection != undefined) {
+      this.wsConnection.close()
+    }
+    if (this.wsCurrConnection != undefined) {
+      this.wsCurrConnection.close
+    }
     this.otherUsr = user.id
-    let blocked = this.isUserBlocked(this.currUsrId, this.otherUsr)
-    console.log("BLOKIRAN: " + blocked)
+    let blocked = await this.isUserBlocked(this.currUsrId, this.otherUsr)
+    if (blocked) {
+      this.toastr.error("User blocked messages for you")
+      return
+    }
     this.connectToSocket()
     console.log(user)
     this.chatSelected = true
@@ -123,11 +134,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     
   }
   sendMessage(){
-
     if(this.imgSelected) {
       let message = new Message("", false, new Date(), "", "", 2, new Profile(this.currUsrId), new Profile(this.otherUsr), this.imgFile, "")
       let messageJson = JSON.stringify(message)
-      console.log(messageJson)
       this.imgFile = "";
       this.fileName = "";
       this.wsConnection.send(messageJson)
@@ -138,10 +147,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       let msg = this.messageForm.controls.message.value;
     
       let message = new Message("", false, new Date(), this.message, "", 0, new Profile(this.currUsrId), new Profile(this.otherUsr), "", "")
-      //this.messagesfromUser1.push(message)
-      console.log(this.messagesfromUser1)
+
       let messageJson = JSON.stringify(message)
-      console.log(messageJson)
       this.wsConnection.send(messageJson)
       this.messageForm.controls.message.setValue("");
   }
@@ -149,7 +156,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
   search(){
 
-    console.log("SEARCH STRING: " + this.searchString)
     if (this.searchString == "") {
       this.getUsers()
       return
@@ -168,24 +174,42 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   connectToSocket() {
+   
+        this.wsConnection = new WebSocket("ws://localhost:8052/ws/" + this.otherUsr + "/dsadsdsa" )
+        this.wsConnection.addEventListener('message', (event) => {
+        
+          let message = JSON.parse(event.data)
+          this.messagesfromUser1.push(message)
+         
+        })
+      
     
-    this.wsConnection = new WebSocket("ws://localhost:8052/ws/" + this.otherUsr + "/dsadsdsa" )
-
-    this.wsConnection.addEventListener('message', (event) => {
-      //this.messagesfromUser1.push(event.data)
-      //console.log("DSADSAD" + event.data.content)
-      let message = JSON.parse(event.data)
-      this.messagesfromUser1.push(message)
-     
-    })
+    
     
   }
 
   connectToCurrSocket() {
+    console.log("Usao u connect to cur socket and user id: " + this.currUsrId)
+    this.connections.forEach((element) => {
+      console.log("ELEMENT: " + element)
+      if (element === this.otherUsr) {
+        console.log("POSTOJIIIIII")
+        this.connections.push(this.otherUsr)
+        return
+      } else if (element === this.curUsr.id) {
+        console.log("POSTOJIIIIII")
+        this.connections.push(this.curUsr.id)
+        return
+      }
+    })
     
-    this.wsConnection = new WebSocket("ws://localhost:8052/ws/" + this.currUsrId + "/dsadsdsa" )
+    this.wsCurrConnection = new WebSocket("ws://localhost:8052/ws/" + this.curUsr.id + "/dsadsdsa" )
 
-    this.wsConnection.addEventListener('message', (event) => {
+    if (this.connections.length === 0) {
+      this.connections.push(this.curUsr.id)
+    }
+
+    this.wsCurrConnection.addEventListener('message', (event) => {
       let message = JSON.parse(event.data)
       this.messagesfromUser1.push(message)
     
