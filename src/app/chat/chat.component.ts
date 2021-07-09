@@ -13,6 +13,7 @@ import { SearchedUser } from '../model/profile/searchedProfile';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowImageComponent } from '../dialogs/show-image/show-image.component';
 import { ThrowStmt } from '@angular/compiler';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-chat',
@@ -54,7 +55,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   
 
-  constructor(public followService : FollowService, private messageService : MessageServiceService, private profileService : ProfileService, private dialog : MatDialog) { }
+  constructor(public followService : FollowService, private messageService : MessageServiceService, private profileService : ProfileService, private dialog : MatDialog, private toastr : ToastrService) { }
 
   ngOnInit(): void {
     //this.curUsr = JSON.parse(localStorage.getItem('currentUser'))
@@ -112,6 +113,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.otherUsr = user.id
     let blocked = await this.isUserBlocked(this.currUsrId, this.otherUsr)
     if (blocked) {
+      this.toastr.error("User blocked messages for you")
       return
     }
     this.connectToSocket()
