@@ -58,6 +58,7 @@ import { ChangeCampaignComponent } from './change-campaign/change-campaign/chang
 import { CampaignRequestsComponent } from './campaign-requests/campaign-requests/campaign-requests.component';
 import { CampaignInfluencerRequestComponent } from './campaign-influencer-request/campaign-influencer-request/campaign-influencer-request.component';
 import { RecommendationsComponent } from './dialogs/recommendations/recommendations.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { RecommendationsComponent } from './dialogs/recommendations/recommendati
     ChangeCampaignComponent,
     CampaignRequestsComponent,
     CampaignInfluencerRequestComponent,
-    RecommendationsComponent
+    RecommendationsComponent,
+    ChatComponent
 
   ],
   imports: [

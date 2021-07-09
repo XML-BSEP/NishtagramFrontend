@@ -123,6 +123,11 @@ export const environment = {
   approveDisposableCampaignRequest : "approveDisposableCampaignRequest",
   rejectMultipleCampaignRequest : "rejectMultipleCampaignRequest",
   rejectDisposableCampaignRequest : "rejectDisposableCampaignRequest",
+  message : "message",
+  users : "users",
+  blocked : "blocked",
+  recommend : "recommend",
+  isAllowedToSee : "isAllowedToSee",
   getAllPostAds : "getAllPostAds",
   getAllStoryAds : "getAllStoryAds",
   generateApiToken : "generateApiToken",
@@ -133,5 +138,6 @@ export const environment = {
   removeDislikeAd : "removeDislikeAd",
   getCommentsAd : "getAllCommentsAd",
   createClickEvent : "createClickEvent"
+
 };
 

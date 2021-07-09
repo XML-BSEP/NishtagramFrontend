@@ -1,1 +1,26 @@
-<p>recommendations works!</p>
+<div class="component">
+    <h2 class="d-flex flex-column text-center">User recommendations</h2>
+      <div class="row" *ngFor="let follow of recommendations">
+        <div class="col mt-2 mb-2">
+          <img src={{follow.image}} (click)="goToProfile(follow)"  class="rounded-image-cf" *ngIf="follow.close_friend">
+          <img src={{follow.image}} (click)="goToProfile(follow)"  class="rounded-image" *ngIf="!follow.close_friend">
+        </div>
+        <div class="col-6 mt-4 mb-2" (click)="goToProfile(follow)">
+          <span class="name ">{{follow.username}}</span>
+        </div>
+        <div class="col mt-2 mb-2">
+          <div class="d-flex flex-row justify-content-end">
+            <button mat-raised-button (click)="followUser(follow)" style="font-size: 14px; width: 10rem;"  >Follow</button>
+  
+  
+          </div>
+  
+        </div>
+        <mat-divider></mat-divider>
+  
+  
+  
+  
+    </div>
+  </div>
+  
