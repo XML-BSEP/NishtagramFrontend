@@ -9,6 +9,12 @@ import { DisposableCampaignRequest } from "src/app/model/agent/disposable_campai
 import { MultipleCampaign } from "src/app/model/agent/multiple_campaign";
 import { MultipleCampaignRequest } from "src/app/model/agent/multiple_campaign_request";
 import { ShowAd } from "src/app/model/agent/show_ads";
+import { ClickEvent } from "src/app/model/clickevent";
+import { Comment } from "src/app/model/feed/comment";
+import { LikePost } from "src/app/model/feed/likepost";
+import { Post } from "src/app/model/feed/post";
+import { PostDTO } from "src/app/model/feed/postdto";
+import { Story } from "src/app/model/feed/story";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -86,4 +92,44 @@ import { environment } from "src/environments/environment";
     rejectMultipleCampaignRequest(multipleCampaignRequest : MultipleCampaignRequest) : Observable<Response> {
         return this.https.post<Response>(`${environment.baseUrl}/${environment.rejectMultipleCampaignRequest}`, multipleCampaignRequest)
     }
+
+    getAllPostAds() : Observable<Post[]> {
+        return this.https.get<Post[]>(`${environment.baseUrl}/${environment.getAllPostAds}`)
+    }
+    
+    getAllStoryAds() : Observable<Story[]> {
+        return this.https.get<Story[]>(`${environment.baseUrl}/${environment.getAllStoryAds}`)
+    }
+
+    generateApiToken() : Observable<String> {
+        return this.https.get<String>(`${environment.baseUrl}/${environment.generateApiToken}`)
+    }
+
+    
+  likePost(likePost : LikePost) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.likeAd}`, likePost);
+  }
+
+  dislikePost(likePost : LikePost) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.dislikeAd}`, likePost);
+  }
+  removeLike(likePost : LikePost) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.removeLikeAd}`, likePost);
+
+  }
+  removeDislike(likePost : LikePost) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.removeDislikeAd}`, likePost);
+  }
+
+  comment(comment : Comment) : Observable<Response> {
+    return this.https.post<Response>(`${environment.baseUrl}/${environment.commentAd}`, comment)
+  }
+
+  getAllComments(post : PostDTO) : Observable<Comment[]> {
+    return this.https.post<Comment[]>(`${environment.baseUrl}/${environment.getCommentsAd}`, post);
+  }
+
+  createEvent(event : ClickEvent) : Observable<Response> {
+      return this.https.post<Response>(`${environment.baseUrl}/${environment.createClickEvent}`, event)
+  }
   }  

@@ -15,7 +15,7 @@ import { PostService } from 'src/app/service/post/postservice';
 import { Add2collectionDialogComponent } from 'src/app/dialogs/add2collection-dialog/add2collection-dialog.component';
 import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
 import { FollowService } from 'src/app/service/follow/follow.service';
-
+import { AgentService } from 'src/app/service/agent/agent_service';
 @Component({
 	selector: 'ia-homepage',
 	templateUrl: './homepage.component.html',
@@ -35,13 +35,15 @@ export class HomepageComponent implements OnInit {
     private dialog : MatDialog,
     private postService : PostService,
     private authenticationService : AuthenticationService,
-    private followService : FollowService
+    private followService : FollowService,
+    private agentService : AgentService
 
 	) {
 		this.titleService.setTitle('Feed');
 	}
 
 	ngOnInit(): void {
+    this.feed = []
 
     console.log(this.authenticationService.currentUserValue)
 
@@ -52,11 +54,13 @@ export class HomepageComponent implements OnInit {
       this.router.navigate(['/forbidden'])
     }else{
       this.postService.generateFeed().subscribe(
+        
         res => {
           console.log(res)
           let feeds = []
           for (let f of res) {
             f.comments = []
+            f.isAd = false;
             if (f.isVideo) {
               console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
               console.log(f.images)
@@ -65,17 +69,49 @@ export class HomepageComponent implements OnInit {
             console.log(f.user.id)
             f.user = f.user
 
+            this.feed.push(f);
           }
-          this.feed = res;
           console.log(this.feed)
+
+          
 
         }
       )
 
+      this.agentService.getAllPostAds().subscribe(
+        res => {
+          if (res != null)
+          {
+          for (let f of res) {
+            f.comments = []
+            f.isAd = true;
+            f.link = "https://localhost:4300/" + f.link
+            this.feed.push(f)
+          }}
+        }
+      )
+      this.stories = []
       this.postService.getStories().subscribe(
         res => {
-          this.stories = res;
+          for (let s of res) {
+            s.isAd = false;
+            this.stories.push(s)
+          }
         }
+      )
+
+      this.agentService.getAllStoryAds().subscribe(
+        res => {
+          if (res != null) {
+
+          
+          for (let a of res) {
+            a.isAd = true;
+            this.stories.push(a)
+          }
+          console.log(this.stories)
+        }
+      }
       )
 
       this.followService.recomemnd(JSON.parse(localStorage.getItem('currentUser')).id).subscribe(

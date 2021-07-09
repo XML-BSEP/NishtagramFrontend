@@ -127,6 +127,17 @@ export const environment = {
   users : "users",
   blocked : "blocked",
   recommend : "recommend",
-  isAllowedToSee : "isAllowedToSee"
+  isAllowedToSee : "isAllowedToSee",
+  getAllPostAds : "getAllPostAds",
+  getAllStoryAds : "getAllStoryAds",
+  generateApiToken : "generateApiToken",
+  likeAd : "likeAd",
+  dislikeAd : "dislikeAd",
+  commentAd : "commentAd",
+  removeLikeAd : "removeLikeAd",
+  removeDislikeAd : "removeDislikeAd",
+  getCommentsAd : "getAllCommentsAd",
+  createClickEvent : "createClickEvent"
+
 };
 
