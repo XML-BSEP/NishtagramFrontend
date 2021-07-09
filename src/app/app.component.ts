@@ -19,6 +19,7 @@ export class AppComponent {
   user : AuthenticatedUser
   router : Router
   showHeader : boolean
+  wsConnection : WebSocket
   constructor(private authService : AuthenticationService, private _router : Router, private pusherService : PusherService, private snackBar: MatSnackBar) {
     this.router = _router
     var curUsr = JSON.parse(localStorage.getItem('currentUser'))
@@ -30,6 +31,14 @@ export class AppComponent {
         snackBar.open(data.content, 'Ok', {
           duration: 4000
         });
+     })
+
+     this.wsConnection = new WebSocket("ws://localhost:8052/ws/" +curUsr.id + "/dsadsa" )
+
+     this.wsConnection.addEventListener('message', function(evt) {
+      snackBar.open("You have new message", 'Ok', {
+        duration: 4000
+      });
      })
     }
  

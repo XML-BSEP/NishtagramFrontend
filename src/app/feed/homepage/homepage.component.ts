@@ -14,8 +14,8 @@ import { Comment } from 'src/app/model/feed/comment';
 import { PostService } from 'src/app/service/post/postservice';
 import { Add2collectionDialogComponent } from 'src/app/dialogs/add2collection-dialog/add2collection-dialog.component';
 import { AuthenticationService } from 'src/app/service/authentication/authentication.service';
+import { FollowService } from 'src/app/service/follow/follow.service';
 import { AgentService } from 'src/app/service/agent/agent_service';
-
 @Component({
 	selector: 'ia-homepage',
 	templateUrl: './homepage.component.html',
@@ -35,6 +35,7 @@ export class HomepageComponent implements OnInit {
     private dialog : MatDialog,
     private postService : PostService,
     private authenticationService : AuthenticationService,
+    private followService : FollowService,
     private agentService : AgentService
 
 	) {
@@ -113,8 +114,15 @@ export class HomepageComponent implements OnInit {
       }
       )
 
+      this.followService.recomemnd(JSON.parse(localStorage.getItem('currentUser')).id).subscribe(
+        res => {
+          console.log(res)
+        }
+      )
+
     }
 
+   
 
   }
 

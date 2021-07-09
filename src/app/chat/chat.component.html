@@ -1,0 +1,100 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<div class="component mt-5">
+    <div class="container" style="margin-top:5%">
+      <div class="row clearfix">
+          <div class="col-lg-12">
+              <div class="card chat-app">
+
+                  <div id="plist" class="people-list">
+
+                        <div class="input-group">
+
+
+                          <input type="text" class="form-control" [(ngModel)]="searchString" placeholder="Search...">
+                          <div class="input-group-prepend" (click)="search()">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                          </div>
+                        </div>
+
+                      <ul class="list-unstyled chat-list mt-2 mb-0">
+                          <li *ngFor="let user of searchedUsers" class="clearfix" (click)="selectChat(user)">
+                              <img src={{user.image}} alt="avatar">
+                              <div class="about">
+                                  <div class="name">{{user.username}}</div>
+                              </div>
+                          </li>
+                      </ul>
+                  </div>
+
+                  <div class="chat" *ngIf="chatSelected" >
+                      <div class="chat-header clearfix" >
+                          <div class="row">
+                              <div class="col-lg-6">
+                                  <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                      <!--<img src={{userChattingWith.profilePhoto}} alt="avatar">-->
+                                  </a>
+                                  <div class="chat-about">
+                                      <!--<h2 class="m-b-0">{{userChattingWith.username}}</h2>-->
+                                  </div>
+                              </div>
+                              <div class="col-lg-6 hidden-sm text-right">
+                                  <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-bomb"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                      <div #chatHistory class="chat-history" style="max-height: 25vw;overflow-y: scroll; min-height: 25vw;">
+                          <ul class="m-b-0">
+                            <div *ngFor="let m of messagesfromUser1">
+                                <li *ngIf="currUsrId === m.message_from.id" class="clearfix">
+                                    <div *ngIf="currUsrId === m.message_from.id" class="message-data text-right">
+                                        <span class="message-data-time">{{m.timestamp | date:'medium'}}</span>
+                                       
+                                    </div>
+                                    
+                                    <div *ngIf="currUsrId === m.message_from.id && m.type === 0" class="message other-message float-right">{{m.content}}</div>
+                                    <div *ngIf="m.type === 2" class="message other-message float-right">
+                                        <i class="fa fa-picture-o"></i>
+                                    </div>
+                                </li>
+                                <li *ngIf="currUsrId === m.message_to.id" class="clearfix">
+                                    <div *ngIf="currUsrId === m.message_to.id" class="message-data">
+                                        <span class="message-data-time">{{m.timestamp | date:'medium'}}</span>
+                                    </div>
+                                    <div *ngIf="currUsrId === m.message_to.id && m.type === 0" class="message my-message"> {{m.content}}</div>
+                                    <div *ngIf="m.type === 2" class="message my-message"  (click)="showImg(m)">
+                                        <i class="fa fa-picture-o"></i>
+                                    </div>
+                                    
+                                </li>
+                            </div>
+                          </ul>
+                      </div>
+                      <div class="chat-message clearfix">
+
+                          <div class="input-group mb-0">
+                              <input type="text" class="form-control" [(ngModel)]="message" placeholder="Enter text here...">
+
+                              <div class="input-group-prepend">
+                                <input 
+                                 style="display: none"
+                                 type="file" (change)="onFileChanged($event)"
+                                 #fileInput accept="image/x-png,image/gif,image/jpeg">
+                                <span *ngIf="!imgSelected" class="input-group-text" (click)="fileInput.click()"><i class="fa fa-paperclip"></i></span>
+                                <span *ngIf="imgSelected" class="input-group-text" (click)="removeImg()"><i class="fa fa-check"></i></span>
+                              </div>
+
+                              <div class="input-group-prepend" (click)="sendMessage()">
+                                  <span class="input-group-text"><i class="fa fa-send"></i></span>
+                              </div>
+                              
+
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+</div>

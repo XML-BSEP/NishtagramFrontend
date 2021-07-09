@@ -12,6 +12,7 @@ import { UserDTO } from 'src/app/model/follow/userDTO';
 import { UserInFeed } from 'src/app/model/feed/userInFeed';
 import { Following } from 'src/app/model/profile/following';
 import { Follower } from 'src/app/model/follow/follower';
+import { SearchedUser } from 'src/app/model/profile/searchedProfile';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,9 @@ export class FollowService {
   }
   approveFollowReq(fr : FollowReq) : Observable<Response> {
     return this.http.post<Response>(`${environment.baseUrl}/${environment.approveFollowRequest}`, fr)
+  }
+  recomemnd(userId : string) : Observable<SearchedUser[]> {
+    return this.http.get<SearchedUser[]>(`${environment.baseUrl}/${environment.recommend}/${userId}`)
   }
 
 }
