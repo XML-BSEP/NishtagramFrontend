@@ -13,6 +13,7 @@ import { Image } from 'src/app/model/feed/image';
 import { Notification } from 'src/app/model/utilities/notification';
 import { Router } from '@angular/router';
 import { Role } from 'src/app/model/user/role';
+import { RecommendationsComponent } from 'src/app/dialogs/recommendations/recommendations.component';
 
 @Component({
   selector: 'app-customer-nav-bar',
@@ -88,6 +89,13 @@ export class RegularUserComponent implements OnInit {
     console.log(this.router.url)
     window.location.href = "/profile"
 
+  }
+  openRecommendationDialogs() {
+
+    const dialogRef = this.dialog.open(RecommendationsComponent, {
+      width: '35vw',
+      height: '90vh'
+    });
   }
   openNewStoryDialog(){
     const dialogRef = this.dialog.open(NewstoryDialogComponent, {

@@ -1,0 +1,24 @@
+.rounded-image {
+    border-radius: 50% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    width: 70px
+  }
+  
+  .rounded-image-cf {
+    border-radius: 50% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    width: 70px;
+    border: 5px solid rgb(18, 248, 18)
+  }
+  
+  
+  .name {
+    font-weight: 500
+  }
+  
