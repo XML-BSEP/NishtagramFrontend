@@ -79,7 +79,7 @@
                                 <input 
                                  style="display: none"
                                  type="file" (change)="onFileChanged($event)"
-                                 #fileInput accept="image/x-png,image/gif,image/jpeg">
+                                 #fileInput>
                                 <span *ngIf="!imgSelected" class="input-group-text" (click)="fileInput.click()"><i class="fa fa-paperclip"></i></span>
                                 <span *ngIf="imgSelected" class="input-group-text" (click)="removeImg()"><i class="fa fa-check"></i></span>
                               </div>
