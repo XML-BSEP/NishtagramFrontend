@@ -14,4 +14,4 @@ COPY . /app
 
 EXPOSE 4200
 
-CMD ng serve --ssl --host 0.0.0.0
+CMD ng serve --o --host 0.0.0.0
